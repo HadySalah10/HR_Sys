@@ -26,11 +26,12 @@ namespace HR_Sys.Models
         public DateTime emp_date_of_birth { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [StringLength(1)]
         public string emp_gender { get; set; }
 
         [Required(ErrorMessage = "Required")]
         [Range(14, 14, ErrorMessage = "Please Enter a Vaild National ID")]
-        [ServiceStack.DataAnnotations.Unique()]
+        [ServiceStack.DataAnnotations.Unique]
         public int emp_ssn { get; set; }
 
         [Required(ErrorMessage = "Required")]
