@@ -1,6 +1,15 @@
+using HR_Sys.Models;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<HRDBContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("HRsyscon")));
+
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
