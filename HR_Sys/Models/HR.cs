@@ -7,16 +7,33 @@ namespace HR_Sys.Models
     {
 
         public int? hr_id { get; set; } 
-        public string fullname { get; set;}
-        public string hr_username { get; set; }
-        public string password { get; set; }
-        public string email { get; set; }
 
+        [Required(ErrorMessage ="Please Enter Vaild Name")]  
+        [Range(5,20,ErrorMessage ="")]
+        [StringLength(50)]
+        public string fullname { get; set;}
+
+        [StringLength(20)]
+
+        public string hr_username { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Vaild Password")]
+
+        [StringLength(20)]
+        public string password { get; set; }
+
+        [NotMapped]
+        [Compare("password", ErrorMessage = "Not Matched")]
+        public string confirmPassword { get; set; }
+
+        [RegularExpression(@"[a-z0-9]+@[a-z]+\.[a-z]{2,3}", ErrorMessage ="Invalid Email")]
+        public string email { get; set; }
 
 
 
         //relation with employee table
         public virtual List<Employee> Employees { get; set; }
+
         //relation with department table
         public virtual List<Department> Departments { get; set; }
 

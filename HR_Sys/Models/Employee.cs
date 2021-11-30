@@ -1,19 +1,41 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
+
 namespace HR_Sys.Models
 
 {
     public class Employee : commonprops
     {
 
+        //[Required(ErrorMessage = "Required")]
+        //public int? emp_salary { get; set; }
 
+
+        [Required(ErrorMessage ="Required")]
+        [StringLength(50,MinimumLength =5)]
         public string emp_name { get; set; }
+
+
+        [Required(ErrorMessage = "Required")]
+        [StringLength(150)]
         public string emp_address { get; set; }
-        public DateTime? emp_date_of_birth { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        public DateTime emp_date_of_birth { get; set; }
+
+        [Required(ErrorMessage = "Required")]
         public string emp_gender { get; set; }
-        public int? emp_ssn { get; set; }
-        public DateTime? emp_hireDate { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Range(14, 14, ErrorMessage = "Please Enter a Vaild National ID")]
+        [ServiceStack.DataAnnotations.Unique()]
+        public int emp_ssn { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+
+        public DateTime emp_hireDate { get; set; }
 
         //relation with department
         [ForeignKey("Department")]
@@ -45,7 +67,6 @@ namespace HR_Sys.Models
 
 
 
-        //public int? emp_salary { get; set; }
 
 
 

@@ -1,9 +1,14 @@
-﻿namespace HR_Sys.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HR_Sys.Models
 {
     public class Validations
     {
         public int id { get; set; }
-        public string?  validation_name { get; set; }
+
+        [Required(ErrorMessage = "Please Choose The Group Validations Before Add")]
+        public string validation_name { get; set; }
         public bool? emp_add { get; set; }
         public bool? emp_edit { get; set; }
         public bool? emp_delete { get; set; }
