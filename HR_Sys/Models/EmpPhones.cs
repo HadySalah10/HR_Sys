@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using HR_Sys.Models.BaseIDEntity;
+
 
 namespace HR_Sys.Models
 {
-    public class Emp_Phones
+    public class EmpPhones:CommonProps
     {
         public int Id { get; set; }
 
@@ -13,7 +15,7 @@ namespace HR_Sys.Models
 
         //relation with employee
         [ForeignKey("Employees")]
-        public int emp_id { get; set; }
+        public int empId { get; set; }
         public virtual Employee Employees { get; set; }
 
 

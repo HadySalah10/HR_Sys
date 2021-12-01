@@ -1,36 +1,38 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using HR_Sys.Models.BaseIDEntity;
 
 namespace HR_Sys.Models
 {
-    public class Validations
+    public class Validations:CommonProps
     {
+      
         public int id { get; set; }
 
         [Required(ErrorMessage = "Please Choose The Group Validations Before Add")]
-        public string validation_name { get; set; }
-        public bool? emp_add { get; set; }
-        public bool? emp_edit { get; set; }
-        public bool? emp_delete { get; set; }
-        public bool? emp_display { get; set; }
+        public string validationName { get; set; }
+        public bool empAdd { get; set; } = false;
+        public bool empEdit { get; set; } = false;
+        public bool empDelete { get; set; } = false;
+        public bool empDisplay { get; set; } = false;
         //general settings
-        public bool? gs_add { get; set; }
-        public bool? gs_edit { get; set; }
-        public bool? gs_delete { get; set; }
-        public bool? gs_display { get; set; }
+        public bool gsAdd { get; set; } = false;
+        public bool gsEdit { get; set; } = false;
+        public bool gsDelete { get; set; } = false;
+        public bool gsDisplay { get; set; } = false;
         //attend
-        public bool? attend_add { get; set; }
-        public bool? attend_edit { get; set; }
-        public bool? attend_delete { get; set; }
-        public bool? attend_display { get; set; }
+        public bool attendAdd { get; set; } = false;
+        public bool attendEdit { get; set; } = false;
+        public bool attendDelete { get; set; } = false;
+        public bool attendDisplay { get; set; }= false;
         //report
-        public bool? report_add { get; set; }
-        public bool? report_edit { get; set; }
-        public bool? report_delete { get; set; }
-        public bool? report_display { get; set; }
+        public bool reportAdd { get; set; } = false;
+        public bool reportEdit { get; set; } = false;
+        public bool reportDelete { get; set; } = false;
+        public bool reportDisplay { get; set; } = false;
 
         //relation with hr 
-        public virtual List <HR> HRs { get; set; }  
+        public virtual ICollection<HR> HRs { get; set; }  
 
     }
 }

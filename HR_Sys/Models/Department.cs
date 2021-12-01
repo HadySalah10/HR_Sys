@@ -1,17 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using HR_Sys.Models.BaseIDEntity;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace HR_Sys.Models
 {
-    public class Department :commonprops
+    public class Department :CommonProps
     {
         [Required(ErrorMessage = "Required")]
         [StringLength(50, MinimumLength = 5)]
-        public string dept_name { get; set; }
+        public string deptName { get; set; } 
+   
 
         //relation with employee
-        public virtual List<Employee> employees { get; set; }
+        public virtual ICollection<Employee> employees { get; set; }
 
     }
 }

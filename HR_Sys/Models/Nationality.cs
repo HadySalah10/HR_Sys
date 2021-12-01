@@ -1,11 +1,13 @@
-﻿namespace HR_Sys.Models
+﻿using HR_Sys.Models.BaseIDEntity;
+
+namespace HR_Sys.Models
 {
-    public class Nationality:commonprops
+    public class Nationality: CommonProps
     {
-        public string nationality_Name { get; set; }
+        public string nationalityName { get; set; }
 
         //relation with employee
-        public virtual List <Employee> Employees { get; set; }  
+        public virtual ICollection<Employee> Employees { get; set; }  
 
     }
 }
