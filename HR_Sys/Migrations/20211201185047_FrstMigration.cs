@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HR_Sys.Migrations
 {
-    public partial class DBFirstMigration : Migration
+    public partial class FrstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -62,6 +62,39 @@ namespace HR_Sys.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Days",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    daysName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    editBy = table.Column<int>(type: "int", nullable: true),
+                    deletedBy = table.Column<int>(type: "int", nullable: true),
+                    addBy = table.Column<int>(type: "int", nullable: true),
+                    lastEdit = table.Column<bool>(type: "bit", nullable: true),
+                    isDeleted = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Days", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Days_hRs_addBy",
+                        column: x => x.addBy,
+                        principalTable: "hRs",
+                        principalColumn: "hrId");
+                    table.ForeignKey(
+                        name: "FK_Days_hRs_deletedBy",
+                        column: x => x.deletedBy,
+                        principalTable: "hRs",
+                        principalColumn: "hrId");
+                    table.ForeignKey(
+                        name: "FK_Days_hRs_editBy",
+                        column: x => x.editBy,
+                        principalTable: "hRs",
+                        principalColumn: "hrId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "departments",
                 columns: table => new
                 {
@@ -89,43 +122,6 @@ namespace HR_Sys.Migrations
                         principalColumn: "hrId");
                     table.ForeignKey(
                         name: "FK_departments_hRs_editBy",
-                        column: x => x.editBy,
-                        principalTable: "hRs",
-                        principalColumn: "hrId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EmpTimes",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    requiredAttendanceTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    requiredDepartureTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    requiredSalaryPerHour = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    requiredDaysPerMonth = table.Column<int>(type: "int", nullable: true),
-                    nameOfDay = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    editBy = table.Column<int>(type: "int", nullable: true),
-                    deletedBy = table.Column<int>(type: "int", nullable: true),
-                    addBy = table.Column<int>(type: "int", nullable: true),
-                    lastEdit = table.Column<bool>(type: "bit", nullable: true),
-                    isDeleted = table.Column<bool>(type: "bit", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EmpTimes", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_EmpTimes_hRs_addBy",
-                        column: x => x.addBy,
-                        principalTable: "hRs",
-                        principalColumn: "hrId");
-                    table.ForeignKey(
-                        name: "FK_EmpTimes_hRs_deletedBy",
-                        column: x => x.deletedBy,
-                        principalTable: "hRs",
-                        principalColumn: "hrId");
-                    table.ForeignKey(
-                        name: "FK_EmpTimes_hRs_editBy",
                         column: x => x.editBy,
                         principalTable: "hRs",
                         principalColumn: "hrId");
@@ -241,10 +237,18 @@ namespace HR_Sys.Migrations
                     empDateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     empGender = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
                     empSsn = table.Column<int>(type: "int", nullable: false),
+                    empNetSalary = table.Column<int>(type: "int", nullable: false),
+                    empNonNetSalary = table.Column<float>(type: "real", nullable: true),
+                    empGrossSalary = table.Column<float>(type: "real", nullable: true),
                     empHireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    requiredAttendanceTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    requiredDepartureTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    requiredSalaryPerHour = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    requiredDaysPerMonth = table.Column<int>(type: "int", nullable: true),
+                    requiredExtraHours = table.Column<float>(type: "real", nullable: false),
+                    requiredDeductHours = table.Column<float>(type: "real", nullable: false),
                     deptid = table.Column<int>(type: "int", nullable: false),
                     nationalityId = table.Column<int>(type: "int", nullable: false),
-                    empTimeId = table.Column<int>(type: "int", nullable: false),
                     editBy = table.Column<int>(type: "int", nullable: true),
                     deletedBy = table.Column<int>(type: "int", nullable: true),
                     addBy = table.Column<int>(type: "int", nullable: true),
@@ -258,12 +262,6 @@ namespace HR_Sys.Migrations
                         name: "FK_Employees_departments_deptid",
                         column: x => x.deptid,
                         principalTable: "departments",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Employees_EmpTimes_empTimeId",
-                        column: x => x.empTimeId,
-                        principalTable: "EmpTimes",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -343,6 +341,8 @@ namespace HR_Sys.Migrations
                     numOfDeductHours = table.Column<float>(type: "real", nullable: true),
                     totalOfExtraPrice = table.Column<float>(type: "real", nullable: true),
                     totalOfDeductionPrice = table.Column<float>(type: "real", nullable: true),
+                    NonNetSalary = table.Column<float>(type: "real", nullable: true),
+                    GrossSalary = table.Column<float>(type: "real", nullable: true),
                     netSalary = table.Column<float>(type: "real", nullable: true),
                     empId = table.Column<int>(type: "int", nullable: false),
                     editBy = table.Column<int>(type: "int", nullable: true),
@@ -389,12 +389,12 @@ namespace HR_Sys.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    attendanceTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    departureTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    attendanceTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    departureTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     extraHours = table.Column<float>(type: "real", nullable: true),
                     deductHours = table.Column<float>(type: "real", nullable: true),
-                    extraAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    deductAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    extraAmount = table.Column<float>(type: "real", nullable: true),
+                    deductAmount = table.Column<float>(type: "real", nullable: true),
                     isOff = table.Column<bool>(type: "bit", nullable: true),
                     empId = table.Column<int>(type: "int", nullable: false),
                     editBy = table.Column<int>(type: "int", nullable: true),
@@ -437,8 +437,8 @@ namespace HR_Sys.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     empId = table.Column<int>(type: "int", nullable: false),
                     vacId = table.Column<int>(type: "int", nullable: false),
-                    VacationTypeid = table.Column<int>(type: "int", nullable: false),
-                    date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    idDays = table.Column<int>(type: "int", nullable: false),
                     editBy = table.Column<int>(type: "int", nullable: true),
                     deletedBy = table.Column<int>(type: "int", nullable: true),
                     addBy = table.Column<int>(type: "int", nullable: true),
@@ -448,6 +448,12 @@ namespace HR_Sys.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TypesOfVacationsEmps", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_TypesOfVacationsEmps_Days_idDays",
+                        column: x => x.idDays,
+                        principalTable: "Days",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TypesOfVacationsEmps_Employees_empId",
                         column: x => x.empId,
@@ -470,12 +476,27 @@ namespace HR_Sys.Migrations
                         principalTable: "hRs",
                         principalColumn: "hrId");
                     table.ForeignKey(
-                        name: "FK_TypesOfVacationsEmps_vacationTypes_VacationTypeid",
-                        column: x => x.VacationTypeid,
+                        name: "FK_TypesOfVacationsEmps_vacationTypes_vacId",
+                        column: x => x.vacId,
                         principalTable: "vacationTypes",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Days_addBy",
+                table: "Days",
+                column: "addBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Days_deletedBy",
+                table: "Days",
+                column: "deletedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Days_editBy",
+                table: "Days",
+                column: "editBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_departments_addBy",
@@ -511,11 +532,6 @@ namespace HR_Sys.Migrations
                 name: "IX_Employees_editBy",
                 table: "Employees",
                 column: "editBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employees_empTimeId",
-                table: "Employees",
-                column: "empTimeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_nationalityId",
@@ -566,21 +582,6 @@ namespace HR_Sys.Migrations
                 name: "IX_EmpReports_idmonth",
                 table: "EmpReports",
                 column: "idmonth");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmpTimes_addBy",
-                table: "EmpTimes",
-                column: "addBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmpTimes_deletedBy",
-                table: "EmpTimes",
-                column: "deletedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmpTimes_editBy",
-                table: "EmpTimes",
-                column: "editBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_generalsSettings_addBy",
@@ -658,9 +659,14 @@ namespace HR_Sys.Migrations
                 column: "empId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TypesOfVacationsEmps_VacationTypeid",
+                name: "IX_TypesOfVacationsEmps_idDays",
                 table: "TypesOfVacationsEmps",
-                column: "VacationTypeid");
+                column: "idDays");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TypesOfVacationsEmps_vacId",
+                table: "TypesOfVacationsEmps",
+                column: "vacId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_vacationTypes_addBy",
@@ -696,6 +702,9 @@ namespace HR_Sys.Migrations
                 name: "Months");
 
             migrationBuilder.DropTable(
+                name: "Days");
+
+            migrationBuilder.DropTable(
                 name: "Employees");
 
             migrationBuilder.DropTable(
@@ -703,9 +712,6 @@ namespace HR_Sys.Migrations
 
             migrationBuilder.DropTable(
                 name: "departments");
-
-            migrationBuilder.DropTable(
-                name: "EmpTimes");
 
             migrationBuilder.DropTable(
                 name: "nationalities");

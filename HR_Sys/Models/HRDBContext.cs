@@ -13,7 +13,6 @@ namespace HR_Sys.Models
         public virtual DbSet<HR> hRs { get; set; }
         public virtual DbSet<EmpPhones> EmpPhones { get; set; }
         public virtual DbSet<EmpReport> EmpReports { get; set; }
-        public virtual DbSet<EmpTime> EmpTimes { get; set; }
         public virtual DbSet<GeneralSettings> generalsSettings { get; set; }
         public virtual DbSet<Nationality> nationalities { get; set; }
         public virtual DbSet<VacationType> vacationTypes { get; set; }
@@ -22,6 +21,7 @@ namespace HR_Sys.Models
         public virtual DbSet<TypesOfVacationsEmp> TypesOfVacationsEmps { get; set; }
         public virtual DbSet<Validations> validations { get; set; }
         public virtual DbSet<Months> Months { get; set; }
+        public virtual DbSet<Days> Days { get; set; }
 
     }
 }

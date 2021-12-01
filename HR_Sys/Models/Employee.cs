@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using HR_Sys.Models.BaseIDEntity;
-
-
+using HR_Sys.ValidationsAttributes;
 
 namespace HR_Sys.Models
 
@@ -22,6 +21,7 @@ namespace HR_Sys.Models
         public string empAddress { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [Within20Years ]
         public DateTime empDateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Required")]
@@ -29,19 +29,37 @@ namespace HR_Sys.Models
         public string empGender { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Range(14, 14, ErrorMessage = "Please Enter a Vaild National ID")]
+        [Range(14, 14, ErrorMessage = "يجب الا يقل الرقم القومى عن 14 رقم!")]
         [ServiceStack.DataAnnotations.Unique]
         public int empSsn { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[0-9]*(?:\.[0-9]*)?$", ErrorMessage = " من فضلك ادخل راتب صحيح")]
         public int? empNetSalary { get; set; }
+        [RegularExpression(@"^[0-9]*(?:\.[0-9]*)?$", ErrorMessage = " من فضلك ادخل راتب صحيح")]
+
         public float? empNonNetSalary { get; set; }
+        [RegularExpression(@"^[0-9]*(?:\.[0-9]*)?$", ErrorMessage = " من فضلك ادخل راتب صحيح")]
+
         public float? empGrossSalary { get; set; }
 
 
         [Required(ErrorMessage = "Required")]
-
+        [YearOfTheCompany]
         public DateTime empHireDate { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        public DateTime? requiredAttendanceTime { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        public DateTime? requiredDepartureTime { get; set; }
+        public decimal? requiredSalaryPerHour { get; set; }
+        public int? requiredDaysPerMonth { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        public float requiredExtraHours { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public float requiredDeductHours { get; set; }
 
         //relation with department
         [ForeignKey("Department")]
@@ -59,10 +77,7 @@ namespace HR_Sys.Models
         //relation with emp_phones table
         public virtual ICollection<EmpPhones> EmpPhones { get; set; }
 
-        //relation with emptimes
-        [ForeignKey("EmpTime")]
-        public int empTimeId { get; set; }
-        public virtual EmpTime EmpTime { get; set; }
+   
 
         //relation with emp_report table
         public virtual ICollection<EmpReport> EmpReports { get; set; }

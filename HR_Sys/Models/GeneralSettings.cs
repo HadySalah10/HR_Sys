@@ -7,12 +7,18 @@ namespace HR_Sys.Models
 {
     public class GeneralSettings: CommonProps
     {
-        public DateTime? attendanceTime { get; set; }
-        public DateTime? departureTime { get; set; }
+        [Required(ErrorMessage = "Required")]
+
+        public DateTime attendanceTime { get; set; }
+        [Required(ErrorMessage = "Required")]
+
+        public DateTime departureTime { get; set; }
+
         public float? extraHours { get; set; }
         public float? deductHours { get; set; }
-        public decimal? extraAmount { get; set; }
-        public decimal? deductAmount { get; set; }
+        public float? extraAmount { get; set; }
+        public float? deductAmount { get; set; }
+
         public bool? isOff { get; set; }
 
         //relation with employee

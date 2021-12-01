@@ -9,7 +9,7 @@ namespace HR_Sys.Models
       
         public int id { get; set; }
 
-        [Required(ErrorMessage = "Please Choose The Group Validations Before Add")]
+        [Required(ErrorMessage = "من فضلك ادخل اسم المجموعة")]
         public string validationName { get; set; }
         public bool empAdd { get; set; } = false;
         public bool empEdit { get; set; } = false;

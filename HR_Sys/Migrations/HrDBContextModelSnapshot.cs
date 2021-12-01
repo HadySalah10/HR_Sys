@@ -22,6 +22,44 @@ namespace HR_Sys.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("HR_Sys.Models.Days", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<int?>("addBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("daysName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("deletedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("editBy")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("lastEdit")
+                        .HasColumnType("bit");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("addBy");
+
+                    b.HasIndex("deletedBy");
+
+                    b.HasIndex("editBy");
+
+                    b.ToTable("Days");
+                });
+
             modelBuilder.Entity("HR_Sys.Models.Department", b =>
                 {
                     b.Property<int>("id")
@@ -94,6 +132,9 @@ namespace HR_Sys.Migrations
                         .HasMaxLength(1)
                         .HasColumnType("nvarchar(1)");
 
+                    b.Property<float?>("empGrossSalary")
+                        .HasColumnType("real");
+
                     b.Property<DateTime>("empHireDate")
                         .HasColumnType("datetime2");
 
@@ -102,10 +143,14 @@ namespace HR_Sys.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("empSsn")
+                    b.Property<int?>("empNetSalary")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("empTimeId")
+                    b.Property<float?>("empNonNetSalary")
+                        .HasColumnType("real");
+
+                    b.Property<int>("empSsn")
                         .HasColumnType("int");
 
                     b.Property<bool?>("isDeleted")
@@ -117,6 +162,26 @@ namespace HR_Sys.Migrations
                     b.Property<int>("nationalityId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("requiredAttendanceTime")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("requiredDaysPerMonth")
+                        .HasColumnType("int");
+
+                    b.Property<float>("requiredDeductHours")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime?>("requiredDepartureTime")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("requiredExtraHours")
+                        .HasColumnType("real");
+
+                    b.Property<decimal?>("requiredSalaryPerHour")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("id");
 
                     b.HasIndex("addBy");
@@ -126,8 +191,6 @@ namespace HR_Sys.Migrations
                     b.HasIndex("deptid");
 
                     b.HasIndex("editBy");
-
-                    b.HasIndex("empTimeId");
 
                     b.HasIndex("nationalityId");
 
@@ -184,6 +247,12 @@ namespace HR_Sys.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<float?>("GrossSalary")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("NonNetSalary")
+                        .HasColumnType("real");
 
                     b.Property<int?>("addBy")
                         .HasColumnType("int");
@@ -245,58 +314,6 @@ namespace HR_Sys.Migrations
                     b.ToTable("EmpReports");
                 });
 
-            modelBuilder.Entity("HR_Sys.Models.EmpTime", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<int?>("addBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("deletedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("editBy")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("isDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("lastEdit")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("nameOfDay")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("requiredAttendanceTime")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("requiredDaysPerMonth")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("requiredDepartureTime")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal?>("requiredSalaryPerHour")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("addBy");
-
-                    b.HasIndex("deletedBy");
-
-                    b.HasIndex("editBy");
-
-                    b.ToTable("EmpTimes");
-                });
-
             modelBuilder.Entity("HR_Sys.Models.GeneralSettings", b =>
                 {
                     b.Property<int>("id")
@@ -308,11 +325,11 @@ namespace HR_Sys.Migrations
                     b.Property<int?>("addBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("attendanceTime")
+                    b.Property<DateTime>("attendanceTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal?>("deductAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float?>("deductAmount")
+                        .HasColumnType("real");
 
                     b.Property<float?>("deductHours")
                         .HasColumnType("real");
@@ -320,7 +337,7 @@ namespace HR_Sys.Migrations
                     b.Property<int?>("deletedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("departureTime")
+                    b.Property<DateTime>("departureTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("editBy")
@@ -329,8 +346,8 @@ namespace HR_Sys.Migrations
                     b.Property<int>("empId")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("extraAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float?>("extraAmount")
+                        .HasColumnType("real");
 
                     b.Property<float?>("extraHours")
                         .HasColumnType("real");
@@ -478,13 +495,11 @@ namespace HR_Sys.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<int>("VacationTypeid")
-                        .HasColumnType("int");
-
                     b.Property<int?>("addBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("date")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("deletedBy")
@@ -494,6 +509,9 @@ namespace HR_Sys.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("empId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idDays")
                         .HasColumnType("int");
 
                     b.Property<bool?>("isDeleted")
@@ -507,8 +525,6 @@ namespace HR_Sys.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("VacationTypeid");
-
                     b.HasIndex("addBy");
 
                     b.HasIndex("deletedBy");
@@ -516,6 +532,10 @@ namespace HR_Sys.Migrations
                     b.HasIndex("editBy");
 
                     b.HasIndex("empId");
+
+                    b.HasIndex("idDays");
+
+                    b.HasIndex("vacId");
 
                     b.ToTable("TypesOfVacationsEmps");
                 });
@@ -623,6 +643,27 @@ namespace HR_Sys.Migrations
                     b.ToTable("validations");
                 });
 
+            modelBuilder.Entity("HR_Sys.Models.Days", b =>
+                {
+                    b.HasOne("HR_Sys.Models.HR", "Add")
+                        .WithMany()
+                        .HasForeignKey("addBy");
+
+                    b.HasOne("HR_Sys.Models.HR", "Delete")
+                        .WithMany()
+                        .HasForeignKey("deletedBy");
+
+                    b.HasOne("HR_Sys.Models.HR", "edit")
+                        .WithMany()
+                        .HasForeignKey("editBy");
+
+                    b.Navigation("Add");
+
+                    b.Navigation("Delete");
+
+                    b.Navigation("edit");
+                });
+
             modelBuilder.Entity("HR_Sys.Models.Department", b =>
                 {
                     b.HasOne("HR_Sys.Models.HR", "Add")
@@ -664,12 +705,6 @@ namespace HR_Sys.Migrations
                         .WithMany("EmployeesEdit")
                         .HasForeignKey("editBy");
 
-                    b.HasOne("HR_Sys.Models.EmpTime", "EmpTime")
-                        .WithMany("Employees")
-                        .HasForeignKey("empTimeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("HR_Sys.Models.Nationality", "Nationality")
                         .WithMany("Employees")
                         .HasForeignKey("nationalityId")
@@ -681,8 +716,6 @@ namespace HR_Sys.Migrations
                     b.Navigation("Delete");
 
                     b.Navigation("Department");
-
-                    b.Navigation("EmpTime");
 
                     b.Navigation("Nationality");
 
@@ -751,27 +784,6 @@ namespace HR_Sys.Migrations
                     b.Navigation("Employees");
 
                     b.Navigation("Months");
-
-                    b.Navigation("edit");
-                });
-
-            modelBuilder.Entity("HR_Sys.Models.EmpTime", b =>
-                {
-                    b.HasOne("HR_Sys.Models.HR", "Add")
-                        .WithMany()
-                        .HasForeignKey("addBy");
-
-                    b.HasOne("HR_Sys.Models.HR", "Delete")
-                        .WithMany()
-                        .HasForeignKey("deletedBy");
-
-                    b.HasOne("HR_Sys.Models.HR", "edit")
-                        .WithMany()
-                        .HasForeignKey("editBy");
-
-                    b.Navigation("Add");
-
-                    b.Navigation("Delete");
 
                     b.Navigation("edit");
                 });
@@ -860,12 +872,6 @@ namespace HR_Sys.Migrations
 
             modelBuilder.Entity("HR_Sys.Models.TypesOfVacationsEmp", b =>
                 {
-                    b.HasOne("HR_Sys.Models.VacationType", "VacationType")
-                        .WithMany("TypesOfVacationsEmps")
-                        .HasForeignKey("VacationTypeid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("HR_Sys.Models.HR", "Add")
                         .WithMany("TypesOfVacationsEmps")
                         .HasForeignKey("addBy");
@@ -884,11 +890,25 @@ namespace HR_Sys.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HR_Sys.Models.Days", "days")
+                        .WithMany("TypesOfVacationsEmps")
+                        .HasForeignKey("idDays")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HR_Sys.Models.VacationType", "VacationType")
+                        .WithMany("TypesOfVacationsEmps")
+                        .HasForeignKey("vacId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Add");
 
                     b.Navigation("Delete");
 
                     b.Navigation("VacationType");
+
+                    b.Navigation("days");
 
                     b.Navigation("edit");
 
@@ -916,6 +936,11 @@ namespace HR_Sys.Migrations
                     b.Navigation("edit");
                 });
 
+            modelBuilder.Entity("HR_Sys.Models.Days", b =>
+                {
+                    b.Navigation("TypesOfVacationsEmps");
+                });
+
             modelBuilder.Entity("HR_Sys.Models.Department", b =>
                 {
                     b.Navigation("employees");
@@ -930,11 +955,6 @@ namespace HR_Sys.Migrations
                     b.Navigation("GeneralSettings");
 
                     b.Navigation("TypesOfVacationsEmps");
-                });
-
-            modelBuilder.Entity("HR_Sys.Models.EmpTime", b =>
-                {
-                    b.Navigation("Employees");
                 });
 
             modelBuilder.Entity("HR_Sys.Models.HR", b =>

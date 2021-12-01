@@ -28,7 +28,7 @@ namespace HR_Sys.Models
         [Compare("password", ErrorMessage = "Not Matched")]
         public string confirmPassword { get; set; }
 
-        [RegularExpression(@"[a-z0-9]+@[a-z]+\.[a-z]{2,3}", ErrorMessage ="Invalid Email")]
+        [RegularExpression(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", ErrorMessage ="Invalid Email")]
         public string email { get; set; }
 
 
@@ -120,6 +120,7 @@ namespace HR_Sys.Models
         public virtual ICollection<Months> MonthsDelete { get; set; }
 
         //relation with validation table
+        [Required(ErrorMessage = "من فضلك ادخل اسم المجموعة")]
 
         [ForeignKey("Valids")]
         public int validationId { get; set; }
