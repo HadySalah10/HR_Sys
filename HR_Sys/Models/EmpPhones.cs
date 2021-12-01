@@ -7,7 +7,6 @@ namespace HR_Sys.Models
 {
     public class EmpPhones:CommonProps
     {
-        public int Id { get; set; }
 
         [Required(ErrorMessage ="Please Enter your Phone Number")]
         [Range(11,11,ErrorMessage ="Please Enter a Vaild Phone Number")]

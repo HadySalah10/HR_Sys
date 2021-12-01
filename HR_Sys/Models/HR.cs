@@ -34,22 +34,90 @@ namespace HR_Sys.Models
 
 
         //relation with employee table
-        public virtual ICollection<Employee> Employees { get; set; }
+        [InverseProperty("edit")]
+
+        public virtual ICollection<Employee> EmployeesEdit { get; set; }
+
+        [InverseProperty("Delete")]
+
+        public virtual ICollection<Employee> EmployeesDelete { get; set; }
+
+        [InverseProperty("Add")]
+        public virtual ICollection<Employee> EmployeesAdd { get; set; }
+
 
         //relation with department table
-        public virtual ICollection<Department> Departments { get; set; }
+        [InverseProperty("edit")]
+
+        public virtual ICollection<Department> DepartmentsEdit { get; set; }
+
+        [InverseProperty("Delete")]
+
+        public virtual ICollection<Department> DepartmentsDelete { get; set; }
+
+        [InverseProperty("Add")]
+        public virtual ICollection<Department> DepartmentsAdd { get; set; }
 
         //relation with Emp_Reports table
-        public virtual ICollection<EmpReport> Emp_Reports { get; set; }
+        [InverseProperty("Add")]
+
+        public virtual ICollection<EmpReport> Emp_ReportsAdd { get; set; }
+        [InverseProperty("edit")]
+
+        public virtual ICollection<EmpReport> Emp_ReportsEdit { get; set; }
+        [InverseProperty("Delete")]
+
+        public virtual ICollection<EmpReport> Emp_ReportsDelete { get; set; }
 
         //relation with General_Settings table
+        [InverseProperty("Add")]
+
         public virtual ICollection<GeneralSettings> General_Settings { get; set; }
+        [InverseProperty("edit")]
+
+        public virtual ICollection<GeneralSettings> General_SettingsEdit { get; set; }
+        [InverseProperty("Delete")]
+
+        public virtual ICollection<GeneralSettings> General_SettingsDelete { get; set; }
         //relation with nationality table
-        public virtual ICollection<Nationality> Nationalities { get; set; }
+        [InverseProperty("Add")]
+
+        public virtual ICollection<Nationality> NationalitiesAdd { get; set; }
+        [InverseProperty("edit")]
+
+        public virtual ICollection<Nationality> NationalitiesEdit { get; set; }
+        [InverseProperty("Delete")]
+
+        public virtual ICollection<Nationality> NationalitiesDelete { get; set; }
         //relation with Types_Of_Vacations table
+        [InverseProperty("Add")]
+
         public virtual ICollection<TypesOfVacationsEmp> TypesOfVacationsEmps { get; set; }
+        [InverseProperty("edit")]
+
+        public virtual ICollection<TypesOfVacationsEmp> TypesOfVacationsEmpsEdit { get; set; }
+        [InverseProperty("Delete")]
+
+        public virtual ICollection<TypesOfVacationsEmp> TypesOfVacationsEmpsDelete { get; set; }
         //relation with Vacation_Types table
-        public virtual ICollection<VacationType> Vacation_Types { get; set; }
+        [InverseProperty("Add")]
+        public virtual ICollection<VacationType> VacationTypes { get; set; }
+        [InverseProperty("edit")]
+        public virtual ICollection<VacationType> VacatioTypesEdit { get; set; }
+        [InverseProperty("Delete")]
+        public virtual ICollection<VacationType> VacatioTypesDelete { get; set; }
+
+        //relation with Months table
+
+        [InverseProperty("Add")]
+
+        public virtual ICollection<Months> Months { get; set; }
+        [InverseProperty("edit")]
+
+        public virtual ICollection<Months> MonthsEdit { get; set; }
+
+        [InverseProperty("Delete")]
+        public virtual ICollection<Months> MonthsDelete { get; set; }
 
         //relation with validation table
 

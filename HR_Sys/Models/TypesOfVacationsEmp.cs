@@ -13,10 +13,10 @@ namespace HR_Sys.Models
         public int vacId { get; set; }
 
         //object from employee
-        public Employee emp { get; set; }
+        public virtual Employee emp { get; set; }
 
         //object from vacation
-        public VacationType VacationType { get; set; }
+        public virtual VacationType VacationType { get; set; }
 
         public DateTime? date { get; set; }
 

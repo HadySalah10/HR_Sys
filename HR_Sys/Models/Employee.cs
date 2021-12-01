@@ -10,9 +10,7 @@ namespace HR_Sys.Models
     public class Employee : CommonProps
     {
 
-        //[Required(ErrorMessage = "Required")]
-        //public int? emp_salary { get; set; }
-
+      
 
         [Required(ErrorMessage ="Required")]
         [StringLength(50,MinimumLength =5)]
@@ -34,6 +32,12 @@ namespace HR_Sys.Models
         [Range(14, 14, ErrorMessage = "Please Enter a Vaild National ID")]
         [ServiceStack.DataAnnotations.Unique]
         public int empSsn { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        public int? empNetSalary { get; set; }
+        public float? empNonNetSalary { get; set; }
+        public float? empGrossSalary { get; set; }
+
 
         [Required(ErrorMessage = "Required")]
 

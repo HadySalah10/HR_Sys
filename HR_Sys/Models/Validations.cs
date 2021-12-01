@@ -4,7 +4,7 @@ using HR_Sys.Models.BaseIDEntity;
 
 namespace HR_Sys.Models
 {
-    public class Validations:CommonProps
+    public class Validations
     {
       
         public int id { get; set; }

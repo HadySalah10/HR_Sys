@@ -1,35 +1,37 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HR_Sys.Models.BaseIDEntity
 {
     public class CommonProps
     {
-        public CommonProps()
-        {
-            hrAdd = new HR();
-            hrEdit = new HR();
-            hrDelete = new HR();
-
-        }
+      [Key]
         public int id { get; set; }
-        [ForeignKey("hrAdd")]
-        
-        public int? addedBy { get; set; }
-        [ForeignKey("hrEdit")]
+
+        [ForeignKey("edit")]
 
         public int? editBy { get; set; }
 
-        [ForeignKey("hrDelete")]
+        [ForeignKey("Delete")]
 
         public int? deletedBy { get; set; }
+
+        [ForeignKey("Add")]
+
+        public int? addBy { get; set; }
+
         public bool? lastEdit { get; set; }
         public bool? isDeleted { get; set; }
 
 
-        public virtual HR hrAdd { get; set; }
-        public virtual HR hrEdit { get; set; }
+        public virtual HR edit { get; set; }
 
-        public virtual HR hrDelete { get; set; }
+
+        public virtual HR Delete { get; set; }
+        public virtual HR Add { get; set; }
+
+      
+
 
     }
 }
