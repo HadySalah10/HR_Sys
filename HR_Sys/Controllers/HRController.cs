@@ -8,5 +8,11 @@ namespace HR_Sys.Controllers
         {
             return View();
         }
+
+        public IActionResult RegisterHR()
+        {
+
+            return View();
+        }
     }
 }
