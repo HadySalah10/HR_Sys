@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" class="loading">
+<html class="loading" dir="rtl"  lang="ar">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +27,7 @@
       <link rel="stylesheet" href="~/HR_Sys.styles.css" asp-append-version="true" />
       <link rel="stylesheet" type="text/css" href="~/css/app.css">
 </head>
-   <body data-col="2-columns" class=" 2-columns ">
+   <body data-col="2-columns" class="2-columns" > 
       <div class="wrapper">
          <div data-active-color="white" data-background-color="black" data-image="~/app-assets/img/sidebar-bg/01.jpg" class="app-sidebar">
             <div class="sidebar-header">
@@ -43,37 +43,52 @@
             <div class="sidebar-content">
                <div class="nav-container">
                   <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-                     <li class="nav-item home"><a href="#"><i class="icon-home"></i><span data-i18n=""
-                        class="menu-title">Dashboard</span></a>
+                     <li class="nav-item home">
+                         <a href="#">
+                             <span data-i18n="" class="menu-title">لوحة القيادة</span>
+                             <i class="icon-home"></i>
+                          </a>
+                
                      </li>
                      <li class="has-sub nav-item">
-                        <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title"> Employees</span></a>
+                        <a href="#"><span data-i18n="" class="menu-title"> الموظفين</span><i class="icon-users"></i></a>
                         <ul class="menu-content">
                            <li>
-                               <a href="employees.html" class="menu-item"> <i class="icon-bar"></i> Employees Statistics</a>
+                               <a href="employees.html" class="menu-item"> إحصائيات الموظفين<i class="icon-bar"></i> </a>
                            </li>
                            <li>
-                               <a href="add_employee.html" class="menu-item">Add Employee</a>
+                               <a href="add_employee.html" class="menu-item">إضافة موظف</a>
                            </li>
                         </ul>
                      </li>
-                     <li class=" nav-item"><a href="add_employee.html"><i class="icon-note"></i><span data-i18n="" class="menu-title">Add Employee</span></a>
+                     <li class=" nav-item"><a href="add_employee.html">
+                         <i class="icon-note"></i>                 
+                         <span data-i18n="" class="menu-title">إضافة موظف</span>
+                           
+                     </a>
                      </li>
                      <li class=" nav-item">
-                         <a href="general_settings.html"><i class="icon-pie-chart"></i><span data-i18n="" class="menu-title">
-                        General Settings</span></a>
+                         <a href="general_settings.html">
+                              <span data-i18n="" class="menu-title"> الإعدادات العامة</span>
+                             <i class="icon-pie-chart"></i>
+                            </a>
                      </li>
-                     <li class=" nav-item"><a href="attendance_ departure.html"><i class="icon-support"></i><span data-i18n="" class="menu-title">
-                        Attendance</span></a>
+                     <li class=" nav-item">
+                         <a href="attendance_ departure.html">
+                                <span data-i18n="" class="menu-title">
+                        الحضور</span>
+                             <i class="icon-support"></i>
+                          </a>
                      </li>
-                     <li class=" nav-item"><a href="salary_report.html"><i class="icon-layers"></i><span data-i18n="" class="menu-title">Salary report</span></a>
+                     <li class=" nav-item">
+                         <a href="salary_report.html"><span data-i18n="" class="menu-title">تقرير الراتب </span><i class="icon-layers"></i></a>
                      </li>
-                     <li class=" nav-item"><a href="users.html"><i class="icon-users"></i><span data-i18n="" class="menu-title">Users</span></a>
+                     <li class=" nav-item"><a href="users.html"><span data-i18n="" class="menu-title">المستخدمون</span><i class="icon-users"></i></a>
                      </li>
-                     <li class=" nav-item"><a href="permissions.html"><i class="icon-equalizer"></i><span data-i18n="" class="menu-title">Permissions</span></a>
+                     <li class=" nav-item"><a href="permissions.html"><span data-i18n="" class="menu-title">الصلاحيات</span><i class="icon-equalizer"></i></a>
                      </li>
                     
-                     <li class=" nav-item"><a href="login.html"><i class="icon-pin"></i><span data-i18n="" class="menu-title">Login Page </span></a>
+                     <li class=" nav-item"><a href="login.html"<span data-i18n="" class="menu-title">صفحة تسجيل الدخول </span>><i class="icon-pin"></i></a>
                      </li>
                   </ul>
                </div>
@@ -83,7 +98,7 @@
          <nav class="navbar navbar-expand-lg navbar-light bg-faded">
             <div class="container-fluid">
                <div class="navbar-header">
-                  <button type="button" data-toggle="collapse" class="navbar-toggle d-lg-none float-left"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="d-lg-none navbar-right navbar-collapse-toggle"><a class="open-navbar-container"><i class="ft-more-vertical"></i></a></span>
+                  <button type="button" data-toggle="collapse" class="navbar-toggle d-lg-none float-left"><span class="sr-only">تبديل التنقل</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="d-lg-none navbar-right navbar-collapse-toggle"><a class="open-navbar-container"><i class="ft-more-vertical"></i></a></span>
                   <a id="navbar-fullscreen" href="javascript:;" class="mr-2 display-inline-block apptogglefullscreen">
                      <i class="ft-maximize blue-grey darken-4 toggleClass"></i>
                      <p class="d-none">fullscreen</p>
@@ -93,9 +108,9 @@
                      <p class="d-none">cart</p>
                   </a>
                   <div class="dropdown ml-2 display-inline-block">
-                     <a id="apps" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i class="ft-edit blue-grey darken-4"></i><span class="mx-1 blue-grey darken-4 text-bold-400">Apps</span></a>
+                     <a id="apps" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i class="ft-edit blue-grey darken-4"></i><span class="mx-1 blue-grey darken-4 text-bold-400">التطبيقات</span></a>
                      <div class="apps dropdown-menu">
-                        <div class="arrow_box"><a href="chat.html" class="dropdown-item py-1"><span>Chat</span></a><a href="#" class="dropdown-item py-1"><span>TaskBoard</span></a><a href="#" class="dropdown-item py-1"><span>Calendar</span></a></div>
+                        <div class="arrow_box"><a href="chat.html" class="dropdown-item py-1"><span>Chat</span></a><a href="#" class="dropdown-item py-1"><span>لوحة المهام</span></a><a href="#" class="dropdown-item py-1"><span>التقويم</span></a></div>
                      </div>
                   </div>
                </div>
@@ -139,7 +154,7 @@
                               <p class="d-none">Notifications Sidebar</p>
                            </a>
                         </li>
-                        <li class="dropdown nav-item mr-0">
+                        <li class="dropdown nav-item ml-4">
                            <a id="dropdownBasic3" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-user-link dropdown-toggle">
                               <span class="avatar avatar-online"><img id="navbar-avatar" src="~/app-assets/img/portrait/small/avatar-s-3.jpg" alt="avatar"/></span>
                               <p class="d-none">User Settings</p>
