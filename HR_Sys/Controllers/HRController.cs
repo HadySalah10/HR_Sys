@@ -14,5 +14,9 @@ namespace HR_Sys.Controllers
 
             return View();
         }
+ 
+
+
+
     }
 }
