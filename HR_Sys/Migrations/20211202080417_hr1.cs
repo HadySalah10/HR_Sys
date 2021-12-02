@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HR_Sys.Migrations
 {
-    public partial class fristmig : Migration
+    public partial class hr1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
