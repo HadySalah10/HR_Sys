@@ -14,7 +14,14 @@ namespace HR_Sys.Controllers
 
             return View();
         }
+<<<<<<< Updated upstream
         
+=======
+        public IActionResult AddValidation()
+        {
+            return View();
+        }
+>>>>>>> Stashed changes
  
 
 
