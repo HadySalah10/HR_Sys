@@ -10,6 +10,7 @@ namespace HR_Sys.Models
         [Required(ErrorMessage = "*")]
 
         public DateTime attendanceTime { get; set; }
+       
         [Required(ErrorMessage = "*")]
 
         public DateTime departureTime { get; set; }

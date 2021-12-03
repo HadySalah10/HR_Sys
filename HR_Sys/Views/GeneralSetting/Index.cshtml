@@ -1,0 +1,106 @@
+﻿@model HR_Sys.Models.GeneralSettings
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="horizontal-form-layouts">
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<div class="card-title-wrap bar-success">
+						<h4 class="card-title" id="horz-layout-basic">الاعدادات العامة  </h4>
+					</div>
+					<p class="mb-0">This is the basic horizontal form with labels on left and cost estimation form is the default position.</p>
+				</div>
+				<div class="card-body">
+					<div class="px-3">
+						<form class="form form-horizontal">
+							<div class="form-body">
+								<h4 class="form-section">
+									<i class="icon-user"></i>الاعدادات العامة </h4>
+								<div class="form-group row">
+									<label class="col-md-3 label-control" asp-for="attendanceTime">:وقت الحضور  </label>
+									<div class="col-md-9">
+										<input type="text" asp-for="attendanceTime" class="form-control">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 label-control" asp-for="departureTime">وقت الانصراف:</label>
+									<div class="col-md-9">
+										<input type="text" asp-for="departureTime" class="form-control">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 label-control" asp-for="extraHours">الاضافة  </label>
+									<div class="col-md-9">
+										<input type="text" asp-for="extraHours" class="form-control">
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label class="col-md-3 label-control" asp-for="deductHours">
+                                        الخصم: </label>
+									<div class="col-md-9">
+										<input type="text" asp-for="deductHours" class="form-control" />
+       
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-md-8 text-md-center">
+										<form>
+											<input type="checkbox" id="vehicle1" @*asp-for="isOff"*@ >
+                                            <label @*asp-for="isOff"*@> اليـــوم اجــــازة</label><br>
+
+										</form>
+								    </div>
+
+								</div>
+
+
+								<div class="form-group row">
+									<label class="col-md-3 label-control" for="projectinput7">الاجازات الاسبوعية : </label>
+									<div class="col-md-9 text-md-right">
+                                        <form action="/action_page.php">
+                                            <input type="checkbox" id="vehicle1" name="sat" >
+                                            <label for="sat"> السبت</label><br>
+                                            <input type="checkbox" id="vehicle2" name="sun" >
+                                            <label for="sun"> الاحد</label><br>
+                                            <input type="checkbox" id="vehicle3" name="mon">
+                                            <label for="mon"> الاثنين</label><br>
+                                            <input type="checkbox" id="vehicle2" name="sun">
+                                            <label for="sun"> الثلاثاء</label><br>
+                                            <input type="checkbox" id="Tue" name="Tue" >
+                                            <label for="sun"> الاربعاء</label><br>
+											<input type="checkbox" id="Tue" name="Tue" >
+                                            <label for="sun"> الخميس</label><br>
+                                            <input type="checkbox" id="Tue" name="Tue" >
+                                            <label for="Fri">الجمعة</label><br>
+                                      
+                                      
+                                          </form>
+									</div>
+								</div>
+
+						
+   
+
+							<div class="form-actions">
+								<button type="button" class="btn btn-danger mr-1">
+									<i class="icon-trash"></i> الغاء
+								</button>
+								<button type="button" class="btn btn-success">
+									<i class="icon-note"></i> حفظ
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</section>
+
