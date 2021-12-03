@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HR_Sys.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HR_Sys.Controllers
 {
@@ -14,6 +15,12 @@ namespace HR_Sys.Controllers
 
             return View();
         }
+        //[HttpPost]  
+        //public IActionResult RegisterHR( HR user)
+        //{
+
+            
+        //}
 
         public IActionResult AddValidation()
         {

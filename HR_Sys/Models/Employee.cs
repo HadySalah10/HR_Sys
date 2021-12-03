@@ -11,29 +11,29 @@ namespace HR_Sys.Models
 
       
 
-        [Required(ErrorMessage ="Required")]
+        [Required(ErrorMessage ="*")]
         [StringLength(50,MinimumLength =5)]
         public string empName { get; set; }
 
 
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         [StringLength(150)]
         public string empAddress { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         [Within20Years ]
         public DateTime empDateOfBirth { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         [StringLength(1)]
         public string empGender { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         [Range(14, 14, ErrorMessage = "يجب الا يقل الرقم القومى عن 14 رقم!")]
         [ServiceStack.DataAnnotations.Unique]
         public int empSsn { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         [RegularExpression(@"^[0-9]*(?:\.[0-9]*)?$", ErrorMessage = " من فضلك ادخل راتب صحيح")]
         public int? empNetSalary { get; set; }
         [RegularExpression(@"^[0-9]*(?:\.[0-9]*)?$", ErrorMessage = " من فضلك ادخل راتب صحيح")]
@@ -44,21 +44,21 @@ namespace HR_Sys.Models
         public float? empGrossSalary { get; set; }
 
 
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         [YearOfTheCompany]
         public DateTime empHireDate { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         public DateTime? requiredAttendanceTime { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         public DateTime? requiredDepartureTime { get; set; }
         public decimal? requiredSalaryPerHour { get; set; }
         public int? requiredDaysPerMonth { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         public float requiredExtraHours { get; set; }
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         public float requiredDeductHours { get; set; }
 
         //relation with department

@@ -1,4 +1,6 @@
 ﻿
+@model HR_Sys.Models.HR
+
 @{
     //Layout = null;
 }
@@ -19,7 +21,7 @@
                 <div class="card">
                      <div class="card-header">
                         <div class="card-title-wrap bar-success">
-                          <h4 class="card-title">Add user </h4>
+                          <h4 class="card-title">اضافة مستخدم </h4>
                         </div>
                      </div>
            
@@ -29,38 +31,59 @@
                              <form class="form form-horizontal">
                                  <div class="form-body">
                                      <div class="form-group row">
-                                          <label class="col-md-3 label-control" for="projectinput1">الاسم بالكامل : </label>
+                                          <label class="col-md-3 label-control" asp-for="fullName">الاسم بالكامل : </label>
                                           <div class="col-md-9">
-                                              <input type="text" id="projectinput1" class="form-control" name="fname" placeholder="الاسم بالكامل ">
+                                              <input type="text"  class="form-control" asp-for="fullName" placeholder="الاسم بالكامل ">
+                                              <span asp-validation-for="fullName" class="text-danger"></span>
                                           </div>
-                                          <br />
-                                          <br />
-                                           <label class="col-md-3 label-control" for="projectinput2"> اسم المستخدم: </label>
-                                          <div class="col-md-9">
-                                              <input type="text" id="projectinput2" class="form-control" name="fname" placeholder="اسم المستخدم ">
-                                          </div>
-                                           <br />
-                                          <br />
-                                           <label class="col-md-3 label-control" for="projectinput3"> البريد الالكتروني: </label>
-                                          <div class="col-md-9">
-                                              <input type="text" id="projectinput3" class="form-control" name="fname" placeholder="example@gmail.com ">
-                                          </div>
-                                           <br />
-                                          <br />
+                                          
+                       
 
                                      </div>
                                      <div class="form-group row">
-                                         <label class="col-md-3 label-control" for="projectinput4">كلمة المرور: </label>
-                                         <div class="col-md-9">
-                                          <input type="password" id="projectinput4" class="form-control" name="fname" placeholder="كلمة المرور ">
-                                         </div>
+                                          <label class="col-md-3 label-control" asp-for="hrUserName">اسم المستخدم : </label>
+                                          <div class="col-md-9">
+                                              <input type="text" asp-for="hrUserName" id="projectinput1" class="form-control"  placeholder="اسم المستخدم ">
+                                              <span asp-validation-for="hrUserName" class="text-danger"></span>
+                                          </div>
+                                          
+                       
+
                                      </div>
-                                      <br />
+                                     <div class="form-group row">
+                                          <label class="col-md-3 label-control" asp-for="email">البريد الالكتروني </label>
+                                          <div class="col-md-9">
+                                              <input type="text" asp-for="email" id="projectinput1" class="form-control"  placeholder="البريد الالكتروني ">
+                                              <span asp-validation-for="hrUserName" class="text-danger"></span>
+                                          </div>
+                                          
+                       
+
+                                     </div>
+
+
+
+                                     <div class="form-group row">
+                                         <label class="col-md-3 label-control" asp-for="password">كلمة المرور: </label>
+                                         <div class="col-md-9">
+                                          <input type="password" asp-for="password" id="projectinput4" class="form-control"  placeholder="كلمة المرور ">
+                                          <span asp-validation-for="password" class="text-danger"></span>
+                                      </div>
+                                     </div>
+
+                                     <div class="form-group row">
+                                         <label class="col-md-3 label-control" asp-for="confirmPassword">كلمة المرور: </label>
+                                         <div class="col-md-9">
+                                          <input type="password" asp-for="confirmPassword" id="projectinput4" class="form-control"  placeholder="كلمة المرور ">
+                                          <span asp-validation-for="confirmPassword" class="text-danger"></span>
+                                      </div>
+                                     </div>
+                                     
                                           
                                      <div class="form-group row">
-                                         <label class="col-md-3 label-control" for="projectinput7">الصلاحيات: </label>
+                                         <label class="col-md-3 label-control" asp-for="validationId">الصلاحيات: </label>
                                          <div class="col-md-9">
-                                             <select id="projectinput7" name="budget" class="form-control">
+                                             <select asp-for="validationId" id="projectinput7"  class="form-control">
                                                   <option value="0" selected="" disabled="">Admin</option>
                                                   <option value="leman">hr system</option>
              

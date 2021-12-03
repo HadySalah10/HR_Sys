@@ -44,7 +44,7 @@
                <div class="nav-container">
                   <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
                      <li class="nav-item home">
-                         <a href="#">
+                         <a asp-controller="HR">
                              <span data-i18n="" class="menu-title">لوحة القيادة</span>
                              <i class="icon-home"></i>
                           </a>
@@ -57,11 +57,11 @@
                                <a href="employees.html" class="menu-item"> إحصائيات الموظفين<i class="icon-bar"></i> </a>
                            </li>
                            <li>
-                               <a href="add_employee.html" class="menu-item">إضافة موظف</a>
+                               <a asp-action="Create" asp-controller="Employee" class="menu-item">إضافة موظف</a>
                            </li>
                         </ul>
                      </li>
-                     <li class=" nav-item"><a href="add_employee.html">
+                     <li class=" nav-item"><a asp-action="Create" asp-controller="Employee">
                          <i class="icon-note"></i>                 
                          <span data-i18n="" class="menu-title">إضافة موظف</span>
                            
@@ -85,10 +85,10 @@
                      </li>
                      <li class=" nav-item"><a href="users.html"><span data-i18n="" class="menu-title">المستخدمون</span><i class="icon-users"></i></a>
                      </li>
-                     <li class=" nav-item"><a href="permissions.html"><span data-i18n="" class="menu-title">الصلاحيات</span><i class="icon-equalizer"></i></a>
+                     <li class=" nav-item"><a asp-action="AddValidation" asp-controller="HR"><span data-i18n="" class="menu-title">الصلاحيات</span><i class="icon-equalizer"></i></a>
                      </li>
                     
-                     <li class=" nav-item"><a href="login.html"><span data-i18n="" class="menu-title">صفحة تسجيل الدخول </span><i class="icon-pin"></i></a>
+                     <li class=" nav-item"><a href="login.html"><span data-i18n="" class="menu-title"> تسجيل الدخول</span><i class="icon-pin"></i></a>
                      </li>
                   </ul>
                </div>
