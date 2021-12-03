@@ -19,6 +19,11 @@ namespace HR_Sys.Controllers
         {
             return View();
         }
+        public IActionResult Permissions() { 
+
+            return View(); 
+        
+        }
 
  
 
