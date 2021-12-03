@@ -8,7 +8,7 @@ namespace HR_Sys.Models
 {
     public class Department :CommonProps
     {
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
         [StringLength(50, MinimumLength = 5)]
         public string deptName { get; set; } 
    
