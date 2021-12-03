@@ -8,27 +8,28 @@ namespace HR_Sys.Models
     {
 
    
-        public int? hrId { get; set; } 
+        public int? hrId { get; set; }
 
-        [Required(ErrorMessage ="Please Enter Vaild Name")]  
-        [Range(5,20,ErrorMessage ="")]
+        [Required(ErrorMessage = "من فضلك ادخل الاسم ")]
+
+        [Range(5,20,ErrorMessage ="لا يجب ان يقل عدد االاحرف عن خمسة احرف ولا يزيد عن عشرون حرف ")]
         [StringLength(50)]
         public string fullName { get; set;}
 
         [StringLength(20)]
-
+        [Required(ErrorMessage = "من فضلك ادخل اسم مستخدم  ")]
         public string hrUserName { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Vaild Password")]
+        [Required(ErrorMessage = "من فضبلك ادخل كلمة المرور")]
 
         [StringLength(20)]
         public string password { get; set; }
 
         [NotMapped]
-        [Compare("password", ErrorMessage = "Not Matched")]
+        [Compare("password", ErrorMessage = "غير متطابق")]
         public string confirmPassword { get; set; }
 
-        [RegularExpression(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", ErrorMessage ="Invalid Email")]
+        [RegularExpression(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", ErrorMessage ="بريد الكتروني غير صالح")]
         public string email { get; set; }
 
 
