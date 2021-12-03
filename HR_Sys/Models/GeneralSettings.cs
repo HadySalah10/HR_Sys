@@ -7,10 +7,10 @@ namespace HR_Sys.Models
 {
     public class GeneralSettings: CommonProps
     {
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
 
         public DateTime attendanceTime { get; set; }
-        [Required(ErrorMessage = "Required")]
+        [Required(ErrorMessage = "*")]
 
         public DateTime departureTime { get; set; }
 
