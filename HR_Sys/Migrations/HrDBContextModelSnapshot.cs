@@ -197,6 +197,66 @@ namespace HR_Sys.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("HR_Sys.Models.EmployeeAttendance", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<int?>("addBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("attendanceTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float?>("deductAmount")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("deductHours")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("deletedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("departureTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("editBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("empId")
+                        .HasColumnType("int");
+
+                    b.Property<float?>("extraAmount")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("extraHours")
+                        .HasColumnType("real");
+
+                    b.Property<bool?>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("isOff")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("lastEdit")
+                        .HasColumnType("bit");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("addBy");
+
+                    b.HasIndex("deletedBy");
+
+                    b.HasIndex("editBy");
+
+                    b.HasIndex("empId");
+
+                    b.ToTable("EmployeesAttendance");
+                });
+
             modelBuilder.Entity("HR_Sys.Models.EmpPhones", b =>
                 {
                     b.Property<int>("id")
@@ -312,66 +372,6 @@ namespace HR_Sys.Migrations
                     b.HasIndex("idmonth");
 
                     b.ToTable("EmpReports");
-                });
-
-            modelBuilder.Entity("HR_Sys.Models.GeneralSettings", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<int?>("addBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("attendanceTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float?>("deductAmount")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("deductHours")
-                        .HasColumnType("real");
-
-                    b.Property<int?>("deletedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("departureTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("editBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("empId")
-                        .HasColumnType("int");
-
-                    b.Property<float?>("extraAmount")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("extraHours")
-                        .HasColumnType("real");
-
-                    b.Property<bool?>("isDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("isOff")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("lastEdit")
-                        .HasColumnType("bit");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("addBy");
-
-                    b.HasIndex("deletedBy");
-
-                    b.HasIndex("editBy");
-
-                    b.HasIndex("empId");
-
-                    b.ToTable("generalsSettings");
                 });
 
             modelBuilder.Entity("HR_Sys.Models.HR", b =>
@@ -722,6 +722,35 @@ namespace HR_Sys.Migrations
                     b.Navigation("edit");
                 });
 
+            modelBuilder.Entity("HR_Sys.Models.EmployeeAttendance", b =>
+                {
+                    b.HasOne("HR_Sys.Models.HR", "Add")
+                        .WithMany("General_Settings")
+                        .HasForeignKey("addBy");
+
+                    b.HasOne("HR_Sys.Models.HR", "Delete")
+                        .WithMany("General_SettingsDelete")
+                        .HasForeignKey("deletedBy");
+
+                    b.HasOne("HR_Sys.Models.HR", "edit")
+                        .WithMany("General_SettingsEdit")
+                        .HasForeignKey("editBy");
+
+                    b.HasOne("HR_Sys.Models.Employee", "Employee")
+                        .WithMany("GeneralSettings")
+                        .HasForeignKey("empId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Add");
+
+                    b.Navigation("Delete");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("edit");
+                });
+
             modelBuilder.Entity("HR_Sys.Models.EmpPhones", b =>
                 {
                     b.HasOne("HR_Sys.Models.HR", "Add")
@@ -784,35 +813,6 @@ namespace HR_Sys.Migrations
                     b.Navigation("Employees");
 
                     b.Navigation("Months");
-
-                    b.Navigation("edit");
-                });
-
-            modelBuilder.Entity("HR_Sys.Models.GeneralSettings", b =>
-                {
-                    b.HasOne("HR_Sys.Models.HR", "Add")
-                        .WithMany("General_Settings")
-                        .HasForeignKey("addBy");
-
-                    b.HasOne("HR_Sys.Models.HR", "Delete")
-                        .WithMany("General_SettingsDelete")
-                        .HasForeignKey("deletedBy");
-
-                    b.HasOne("HR_Sys.Models.HR", "edit")
-                        .WithMany("General_SettingsEdit")
-                        .HasForeignKey("editBy");
-
-                    b.HasOne("HR_Sys.Models.Employee", "Employee")
-                        .WithMany("GeneralSettings")
-                        .HasForeignKey("empId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Add");
-
-                    b.Navigation("Delete");
-
-                    b.Navigation("Employee");
 
                     b.Navigation("edit");
                 });

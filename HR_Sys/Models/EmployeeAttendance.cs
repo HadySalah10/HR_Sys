@@ -5,7 +5,7 @@ using HR_Sys.Models.BaseIDEntity;
 
 namespace HR_Sys.Models
 {
-    public class GeneralSettings: CommonProps
+    public class EmployeeAttendance: CommonProps
     {
         [Required(ErrorMessage = "*")]
 

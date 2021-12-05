@@ -73,13 +73,13 @@ namespace HR_Sys.Models
         //relation with General_Settings table
         [InverseProperty("Add")]
 
-        public virtual ICollection<GeneralSettings> General_Settings { get; set; }
+        public virtual ICollection<EmployeeAttendance> General_Settings { get; set; }
         [InverseProperty("edit")]
 
-        public virtual ICollection<GeneralSettings> General_SettingsEdit { get; set; }
+        public virtual ICollection<EmployeeAttendance> General_SettingsEdit { get; set; }
         [InverseProperty("Delete")]
 
-        public virtual ICollection<GeneralSettings> General_SettingsDelete { get; set; }
+        public virtual ICollection<EmployeeAttendance> General_SettingsDelete { get; set; }
         //relation with nationality table
         [InverseProperty("Add")]
 

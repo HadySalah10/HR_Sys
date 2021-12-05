@@ -67,7 +67,7 @@ namespace HR_Sys.Models
         public virtual Department Department { get; set; }
 
         //relation with general settings table
-        public virtual ICollection<GeneralSettings> GeneralSettings { get; set; }
+        public virtual ICollection<EmployeeAttendance> GeneralSettings { get; set; }
 
         //relation with nationality
         [ForeignKey("Nationality")]
