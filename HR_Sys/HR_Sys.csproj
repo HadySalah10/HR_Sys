@@ -18,9 +18,4 @@
     <PackageReference Include="ServiceStack.Interfaces" Version="5.13.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\GeneralSetting\" />
-  </ItemGroup>
-
 </Project>
