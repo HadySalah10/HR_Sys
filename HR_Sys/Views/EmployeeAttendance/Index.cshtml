@@ -1,0 +1,91 @@
+﻿@model EmployeeAttendance ;
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <section id="horizontal-form-layouts">
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<div class="card-title-wrap bar-success text-right">
+						<h4 class="card-title" id="horz-layout-basic">حضور وانصراف الموظف </h4>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="px-3">
+						<form class="form form-horizontal">
+							<div class="form-body">
+								<h4 class="form-section">
+									<i class="icon-user text-right"></i>الحضور والانصراف</h4>
+								<div class="form-group row">
+									<label class="col-md-3 label-control" asp-for="attendanceTime">ميعاد الحضور </label>
+									<div class="col-md-9">
+										<input type="text" asp-for="attendanceTime" class="form-control">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 label-control" asp-for="departureTime">ميعاد الانصراف: </label>
+									<div class="col-md-9">
+										<input type="text" asp-for="departureTime" class="form-control" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 label-control" asp-for="extraHours"> الاضافي:</label>
+									<div class="col-md-9">
+										<input type="text" asp-for="extraHours" class="form-control" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 label-control" asp-for="deductHours">
+                                        الخصم: </label>
+									<div class="col-md-9">
+										<input type="text" asp-for="deductHours" class="form-control" />
+                                        
+									</div>
+								</div>
+
+
+								<div class="form-group row text-right">
+									<label class="col-md-3 label-control" for="projectinput7"> </label>
+									<div class="col-md-9">
+                                        <form action="/action_page.php">
+                                            <input type="checkbox" id="vehicle1"  >
+                                            <label for="sat"> اليوم اجازة</label><br>
+                                            
+                                      
+                                      
+                                          </form>
+									</div>
+								</div>
+
+						
+   
+
+							<div class="form-actions">
+								<button type="button" class="btn btn-danger mr-1">
+									<i class="icon-trash"></i> الغاء
+								</button>
+								<button type="button" class="btn btn-success">
+									<i class="icon-note"></i> حفظ
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</section>
+</body>
+</html>

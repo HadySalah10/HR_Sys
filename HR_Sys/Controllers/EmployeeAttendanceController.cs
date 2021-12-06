@@ -2,9 +2,9 @@
 
 namespace HR_Sys.Controllers
 {
-    public class GeneralSettingController : Controller
+    public class EmployeeAttendanceController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int empId)
         {
             return View();
         }
