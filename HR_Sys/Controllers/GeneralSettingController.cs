@@ -15,5 +15,11 @@ namespace HR_Sys.Controllers
 
             return View();
         }
+
+        public ActionResult EditGeneralSetting(int id)
+        {
+            return View();
+        
+        }
     }
 }
