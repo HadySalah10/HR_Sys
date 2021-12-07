@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HR_Sys.Migrations
 {
-    public partial class m1 : Migration
+    public partial class afterSeedingMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -481,6 +481,58 @@ namespace HR_Sys.Migrations
                         principalTable: "vacationTypes",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Days",
+                columns: new[] { "id", "addBy", "daysName", "deletedBy", "editBy", "isDeleted", "lastEdit" },
+                values: new object[,]
+                {
+                    { 1, null, "Saturday", null, null, null, null },
+                    { 2, null, "Sunday", null, null, null, null },
+                    { 3, null, "Monday", null, null, null, null },
+                    { 4, null, "Tuesday", null, null, null, null },
+                    { 5, null, "Wednesday", null, null, null, null },
+                    { 6, null, "Thursday", null, null, null, null },
+                    { 7, null, "Friday", null, null, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Months",
+                columns: new[] { "id", "addBy", "deletedBy", "editBy", "isDeleted", "lastEdit", "nameMonth" },
+                values: new object[,]
+                {
+                    { 1, null, null, null, null, null, "January" },
+                    { 2, null, null, null, null, null, "February" },
+                    { 3, null, null, null, null, null, "March" },
+                    { 4, null, null, null, null, null, "April" },
+                    { 5, null, null, null, null, null, "May" },
+                    { 6, null, null, null, null, null, "June" },
+                    { 7, null, null, null, null, null, "July" },
+                    { 8, null, null, null, null, null, "August" },
+                    { 9, null, null, null, null, null, "September" },
+                    { 10, null, null, null, null, null, "October" },
+                    { 11, null, null, null, null, null, "November" },
+                    { 12, null, null, null, null, null, "December" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "nationalities",
+                columns: new[] { "id", "addBy", "deletedBy", "editBy", "isDeleted", "lastEdit", "nationalityName" },
+                values: new object[,]
+                {
+                    { 1, null, null, null, null, null, "Egypt" },
+                    { 2, null, null, null, null, null, "England" },
+                    { 3, null, null, null, null, null, "France" },
+                    { 4, null, null, null, null, null, "Germany" },
+                    { 5, null, null, null, null, null, "Oman" },
+                    { 6, null, null, null, null, null, "Morocco" },
+                    { 7, null, null, null, null, null, "Saudi Arabia" },
+                    { 8, null, null, null, null, null, "Sudan" },
+                    { 9, null, null, null, null, null, "September" },
+                    { 10, null, null, null, null, null, "The United Arab Emirates" },
+                    { 11, null, null, null, null, null, "Libya" },
+                    { 12, null, null, null, null, null, "Jordan" }
                 });
 
             migrationBuilder.CreateIndex(

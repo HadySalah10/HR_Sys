@@ -58,6 +58,43 @@ namespace HR_Sys.Migrations
                     b.HasIndex("editBy");
 
                     b.ToTable("Days");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            daysName = "Saturday"
+                        },
+                        new
+                        {
+                            id = 2,
+                            daysName = "Sunday"
+                        },
+                        new
+                        {
+                            id = 3,
+                            daysName = "Monday"
+                        },
+                        new
+                        {
+                            id = 4,
+                            daysName = "Tuesday"
+                        },
+                        new
+                        {
+                            id = 5,
+                            daysName = "Wednesday"
+                        },
+                        new
+                        {
+                            id = 6,
+                            daysName = "Thursday"
+                        },
+                        new
+                        {
+                            id = 7,
+                            daysName = "Friday"
+                        });
                 });
 
             modelBuilder.Entity("HR_Sys.Models.Department", b =>
@@ -447,6 +484,68 @@ namespace HR_Sys.Migrations
                     b.HasIndex("editBy");
 
                     b.ToTable("Months");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            nameMonth = "January"
+                        },
+                        new
+                        {
+                            id = 2,
+                            nameMonth = "February"
+                        },
+                        new
+                        {
+                            id = 3,
+                            nameMonth = "March"
+                        },
+                        new
+                        {
+                            id = 4,
+                            nameMonth = "April"
+                        },
+                        new
+                        {
+                            id = 5,
+                            nameMonth = "May"
+                        },
+                        new
+                        {
+                            id = 6,
+                            nameMonth = "June"
+                        },
+                        new
+                        {
+                            id = 7,
+                            nameMonth = "July"
+                        },
+                        new
+                        {
+                            id = 8,
+                            nameMonth = "August"
+                        },
+                        new
+                        {
+                            id = 9,
+                            nameMonth = "September"
+                        },
+                        new
+                        {
+                            id = 10,
+                            nameMonth = "October"
+                        },
+                        new
+                        {
+                            id = 11,
+                            nameMonth = "November"
+                        },
+                        new
+                        {
+                            id = 12,
+                            nameMonth = "December"
+                        });
                 });
 
             modelBuilder.Entity("HR_Sys.Models.Nationality", b =>
@@ -485,6 +584,68 @@ namespace HR_Sys.Migrations
                     b.HasIndex("editBy");
 
                     b.ToTable("nationalities");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            nationalityName = "Egypt"
+                        },
+                        new
+                        {
+                            id = 2,
+                            nationalityName = "England"
+                        },
+                        new
+                        {
+                            id = 3,
+                            nationalityName = "France"
+                        },
+                        new
+                        {
+                            id = 4,
+                            nationalityName = "Germany"
+                        },
+                        new
+                        {
+                            id = 5,
+                            nationalityName = "Oman"
+                        },
+                        new
+                        {
+                            id = 6,
+                            nationalityName = "Morocco"
+                        },
+                        new
+                        {
+                            id = 7,
+                            nationalityName = "Saudi Arabia"
+                        },
+                        new
+                        {
+                            id = 8,
+                            nationalityName = "Sudan"
+                        },
+                        new
+                        {
+                            id = 9,
+                            nationalityName = "September"
+                        },
+                        new
+                        {
+                            id = 10,
+                            nationalityName = "The United Arab Emirates"
+                        },
+                        new
+                        {
+                            id = 11,
+                            nationalityName = "Libya"
+                        },
+                        new
+                        {
+                            id = 12,
+                            nationalityName = "Jordan"
+                        });
                 });
 
             modelBuilder.Entity("HR_Sys.Models.TypesOfVacationsEmp", b =>
