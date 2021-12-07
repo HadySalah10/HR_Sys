@@ -15,5 +15,9 @@ namespace HR_Sys.Controllers
         {
             return View(db.EmpReports.ToList());
         }
+        public IActionResult invoice(int empId)
+        {
+            return View();
+        }
     }
 }
