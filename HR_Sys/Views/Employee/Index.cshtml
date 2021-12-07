@@ -2,11 +2,11 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+@*
 <div class="main-panel">
         <div class="main-content">
           <div class="content-wrapper style="padding-right:2px; padding-left:158px;">
-            <div class="container-fluid"><!-- Zero configuration table -->
+            <div class="container-fluid"><!-- Zero configuration table -->*@
 <section id="configuration" style="width:170%;">
     <div class="row">
         <div class="col-12">
@@ -59,6 +59,7 @@
                                     <th>وقت الانصراف</th>
                                     <th>الجنسيه</th>
                                     <th>تعديل</th>
+                                    <th> تعديل اعدادات الموظف</th>
                                     <th>حذف</th>
                                     @*
                                     <th>Name</th>
@@ -106,6 +107,11 @@
                                             <a asp-controller="HR" asp-action="Index" asp-route-id="@*@item.id*@">تعديل</a>
                                         </button>
                                     </td>
+                                     <td>
+                                        <button class="btn btn-info mb-2">
+                                            <a asp-controller= " GeneralSetting"asp-action="Edit" asp-route-id="@*@item.id*@">تعديل الاعدادات</a>
+                                        </button>
+                                    </td>
                                     <td>
                                         <button class="btn btn-danger mb-2">
                                             <a asp-controller="HR" asp-action="Index" asp-route-id="@*@item.id*@">حذف</a>
@@ -123,9 +129,9 @@
     </div>
 </section>
 
-            </div>
+   @*         </div>
           </div>
-        </div>
+        </div>*@
 
         <footer class="footer footer-static footer-light">
           <p class="clearfix text-muted text-center px-2"><span>Copyright  &copy; 2021 <a href="#" id="pixinventLink" target="_blank" class="text-bold-800 primary darken-2">Pioneer solutions </a>, All rights reserved. </span></p>
