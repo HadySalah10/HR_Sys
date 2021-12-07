@@ -5,14 +5,9 @@ namespace HR_Sys.Controllers
 {
     public class EmployeeController : Controller
     {
+        
         // GET: EmployeeController
         public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: EmployeeController/Details/5
-        public ActionResult Details(int id)
         {
             return View();
         }

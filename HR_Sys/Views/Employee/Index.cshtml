@@ -2,18 +2,19 @@
 @{
     ViewData["Title"] = "Index";
 }
-@*
-<div class="main-panel">
-        <div class="main-content">
-          <div class="content-wrapper style="padding-right:2px; padding-left:158px;">
-            <div class="container-fluid"><!-- Zero configuration table -->*@
-<section id="configuration" style="width:170%;">
+
+
+<div class="main-panel" style="width: 170%;">
+        <div class="main-content" style="">
+          <div class="content-wrappe">
+            <div class="container-fluid"><!-- Zero configuration table -->
+<section id="configuration">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title text-center">معلومات الموظفين</h4>
+                        <h4 class="card-title">معلومات الموظفين</h4>
                     </div>
                 </div>
                 <div class="card-body collapse show">
@@ -104,7 +105,7 @@
 
                                     <td>
                                         <button class="btn btn-success mb-2">
-                                            <a asp-controller="HR" asp-action="Index" asp-route-id="@*@item.id*@">تعديل</a>
+                                            <a asp-controller="HR" asp-action="Index" asp-route-id="@*item.id*@">تعديل</a>
                                         </button>
                                     </td>
                                      <td>
@@ -129,12 +130,13 @@
     </div>
 </section>
 
-   @*         </div>
+            </div>
           </div>
-        </div>*@
+        </div>
 
-        <footer class="footer footer-static footer-light">
+        @*<footer class="footer footer-static footer-light">
           <p class="clearfix text-muted text-center px-2"><span>Copyright  &copy; 2021 <a href="#" id="pixinventLink" target="_blank" class="text-bold-800 primary darken-2">Pioneer solutions </a>, All rights reserved. </span></p>
-        </footer>
+        </footer>*@
 
+      </div>
      
