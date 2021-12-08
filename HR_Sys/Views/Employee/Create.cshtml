@@ -1,4 +1,4 @@
-﻿@model HR_Sys.Models.Employee
+﻿@model Icollection<Employee>
 
 @{
     ViewData["Title"] = "Create";
@@ -19,7 +19,7 @@
                 <td><span asp-validation-for="empName" class="text-danger"></span></td>
             </tr>
             <tr class="form-group">
-                <td><label asp-for="empName" class="control-label"> العنوان</label></td>
+                <td><label asp-for="empAddress" class="control-label"> العنوان</label></td>
                 <td><input asp-for="empAddress" class="form-control" /></td>
                 <td><span asp-validation-for="empAddress" class="text-danger"></span></td>
             </tr>
@@ -74,14 +74,12 @@
                 <td><span asp-validation-for="requiredDepartureTime" class="text-danger"></span></td>
             </tr>
         </table>
-           <div class="form-group text-center my-5">
-                <button class="btn btn-info mb-2 ml-2">
-                      <a asp-controller="HR" asp-action="Index" asp-route-id="@*@item.id*@">حفظ</a>
-                </button>
-                <button class="btn btn-danger mb-2">
-                      <a asp-controller="HR" asp-action="Index" asp-route-id="@*@item.id*@">الغاء</a>
-                </button>
-            </div>
+        <br />
+        <div class="text-center">
+            <input type="submit" class="btn btn-info" value="حفط"/>
+            <a asp-controller="Employee" asp-action="Index" class="btn btn-danger">الغاء</a>
+        </div>
+         
     </div>
 </div>
 </form>
@@ -138,6 +136,7 @@
                                     <th>تعديل</th>
                                     <th> تعديل اعدادات الموظف</th>
                                     <th>حذف</th>
+<<<<<<< Updated upstream
                                     @*
                                     <th>Name</th>
                                     <th>Id</th>
@@ -150,10 +149,13 @@
                                     <th>check-out date</th>
                                     <th>Nationality</th>
                                     *@
+=======
+>>>>>>> Stashed changes
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
+<<<<<<< Updated upstream
                                     @*@foreach(var item in Employee)
                                     {
                                         <td>item.empName</td>
@@ -167,6 +169,21 @@
                                         <td>item.requiredDepartureTime</td>
                                         <td>item.Nationality</td>
                                     }*@
+=======
+                                    @foreach(var item in Model)
+                                    {
+                                        <td>item.empname</td>
+                                        <td>item.id</td>
+                                        <td>item.empphones</td>
+                                        <td>item.empdateofbirth</td>
+                                        <td>item.empgender</td>
+                                        <td>item.emphiredate</td>
+                                        <td>item.empnetsalary</td>
+                                        <td>item.requiredattendancetime</td>
+                                        <td>item.requireddeparturetime</td>
+                                        <td>item.nationality</td>
+                                    }
+>>>>>>> Stashed changes
 
                                     <td>ABO ALAA</td>
                                     <td>1</td>

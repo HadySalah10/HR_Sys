@@ -1,16 +1,35 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using HR_Sys.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace HR_Sys.Controllers
 {
     public class EmployeeController : Controller
     {
+<<<<<<< Updated upstream
+        
+        // GET: EmployeeController
+        public ActionResult Index()
+=======
+        //iticontext 
+        HrDBContext db;
+        public EmployeeController(HrDBContext db)
+>>>>>>> Stashed changes
+        {
+            this.db = db;   
+        }
+<<<<<<< Updated upstream
+=======
         
         // GET: EmployeeController
         public ActionResult Index()
         {
-            return View();
+            List<Employee> emps = db.Employees.ToList();
+            return View(emps);
+  
         }
+>>>>>>> Stashed changes
 
         // GET: EmployeeController/Create
         public ActionResult Create()
@@ -21,16 +40,18 @@ namespace HR_Sys.Controllers
         // POST: EmployeeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Employee emp)
         {
-            try
+            if (ModelState.IsValid)
             {
+                db.Employees.Add(emp);  
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            else
             {
                 return View();
             }
+        
         }
 
         // GET: EmployeeController/Edit/5
@@ -42,39 +63,51 @@ namespace HR_Sys.Controllers
         // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Employee emp)
         {
-            try
+            if (ModelState.IsValid) 
             {
+                Employee selectedfromdatabase = db.Employees.Find(id);
+                emp.empName = selectedfromdatabase.empName;
+                emp.deptid = selectedfromdatabase.deptid;   
+                emp.empAddress = selectedfromdatabase.empAddress;   
+                emp.empGender= selectedfromdatabase.empGender;       
+                emp.nationalityId = selectedfromdatabase.nationalityId; 
+                emp.empHireDate = selectedfromdatabase.empHireDate; 
+                emp.empDateOfBirth = selectedfromdatabase.empDateOfBirth;
+                emp.empNetSalary = selectedfromdatabase.empNetSalary;
+                emp.empGrossSalary = selectedfromdatabase.empGrossSalary;
+                emp.empNonNetSalary = selectedfromdatabase.empNonNetSalary;
+                emp.requiredDaysPerMonth = selectedfromdatabase.requiredDaysPerMonth;
+                emp.requiredDeductHours = selectedfromdatabase.requiredDeductHours;
+                emp.requiredExtraHours = selectedfromdatabase.requiredExtraHours;
+                emp.requiredSalaryPerHour = selectedfromdatabase.requiredSalaryPerHour;
+                emp.requiredAttendanceTime = selectedfromdatabase.requiredAttendanceTime; 
+                emp.requiredDepartureTime = selectedfromdatabase.requiredDepartureTime; 
+                emp.empSsn = selectedfromdatabase.empSsn;   
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            else
             {
                 return View();
             }
+              
         }
 
         // GET: EmployeeController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+
+            return RedirectToAction("Index");
         }
 
-        // POST: EmployeeController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+      
+        //public ActionResult Editsettings(int id)
+        //{
 
-       
+        //}
+
+
+
     }
 }
