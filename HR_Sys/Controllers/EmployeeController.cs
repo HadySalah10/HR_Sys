@@ -15,16 +15,12 @@ namespace HR_Sys.Controllers
         {
             this.db = db;   
         }
-
         // GET: EmployeeController
         public ActionResult Index()
         {
             List<Employee> emps = db.Employees.ToList();
             return View(emps);
-  
         }
-
-
         // GET: EmployeeController/Create
         public ActionResult Create()
         {
@@ -39,6 +35,7 @@ namespace HR_Sys.Controllers
             if (ModelState.IsValid)
             {
                 db.Employees.Add(emp);  
+                db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             else
@@ -62,27 +59,33 @@ namespace HR_Sys.Controllers
             if (ModelState.IsValid) 
             {
                 Employee selectedfromdatabase = db.Employees.Find(id);
-                emp.empName = selectedfromdatabase.empName;
-                emp.deptid = selectedfromdatabase.deptid;   
-                emp.empAddress = selectedfromdatabase.empAddress;   
-                emp.empGender= selectedfromdatabase.empGender;       
-                emp.nationalityId = selectedfromdatabase.nationalityId; 
-                emp.empHireDate = selectedfromdatabase.empHireDate; 
-                emp.empDateOfBirth = selectedfromdatabase.empDateOfBirth;
-                emp.empNetSalary = selectedfromdatabase.empNetSalary;
-                emp.empGrossSalary = selectedfromdatabase.empGrossSalary;
-                emp.empNonNetSalary = selectedfromdatabase.empNonNetSalary;
-                emp.requiredDaysPerMonth = selectedfromdatabase.requiredDaysPerMonth;
-                emp.requiredDeductHours = selectedfromdatabase.requiredDeductHours;
-                emp.requiredExtraHours = selectedfromdatabase.requiredExtraHours;
-                emp.requiredSalaryPerHour = selectedfromdatabase.requiredSalaryPerHour;
-                emp.requiredAttendanceTime = selectedfromdatabase.requiredAttendanceTime; 
-                emp.requiredDepartureTime = selectedfromdatabase.requiredDepartureTime; 
-                emp.empSsn = selectedfromdatabase.empSsn;   
-                return RedirectToAction(nameof(Index));
+                if (selectedfromdatabase != null)
+                {
+                    emp.empName = selectedfromdatabase.empName;
+                    emp.deptid = selectedfromdatabase.deptid;
+                    emp.empAddress = selectedfromdatabase.empAddress;
+                    emp.empGender = selectedfromdatabase.empGender;
+                    emp.nationalityId = selectedfromdatabase.nationalityId;
+                    emp.empHireDate = selectedfromdatabase.empHireDate;
+                    emp.empDateOfBirth = selectedfromdatabase.empDateOfBirth;
+                    emp.empNetSalary = selectedfromdatabase.empNetSalary;
+                    emp.empGrossSalary = selectedfromdatabase.empGrossSalary;
+                    emp.empNonNetSalary = selectedfromdatabase.empNonNetSalary;
+                    emp.requiredDaysPerMonth = selectedfromdatabase.requiredDaysPerMonth;
+                    emp.requiredDeductHours = selectedfromdatabase.requiredDeductHours;
+                    emp.requiredExtraHours = selectedfromdatabase.requiredExtraHours;
+                    emp.requiredSalaryPerHour = selectedfromdatabase.requiredSalaryPerHour;
+                    emp.requiredAttendanceTime = selectedfromdatabase.requiredAttendanceTime;
+                    emp.requiredDepartureTime = selectedfromdatabase.requiredDepartureTime;
+                    emp.empSsn = selectedfromdatabase.empSsn;
+                    db.SaveChanges();
+                    return RedirectToAction(nameof(Index));
+                }
+                return View();
             }
             else
             {
+
                 return View();
             }
               
@@ -91,7 +94,9 @@ namespace HR_Sys.Controllers
         // GET: EmployeeController/Delete/5
         public ActionResult Delete(int id)
         {
-
+            Employee selectedfromdatabase = db.Employees.Find(id);
+            db.Employees.Remove(selectedfromdatabase);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
