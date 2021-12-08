@@ -9,6 +9,7 @@ namespace HR_Sys.ViewModels
 {
     public class HrRegisterationViewModel
     {
+        public int? hrId { get; set; }
 
         [Required(ErrorMessage = "من فضلك ادخل الاسم ")]
 

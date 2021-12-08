@@ -56,37 +56,54 @@ namespace HR_Sys.Controllers
         {
             var user = HrDb.hRs.Find(id);
 
-            //HrRegisterationViewModel hrUser = new HrRegisterationViewModel();
-            //hrUser.fullName = user.fullName;
-            //hrUser.hrUserName = user.hrUserName;
-            //hrUser.email = user.email;
-            //hrUser.validationId = user.validationId;
+            HrRegisterationViewModel hrUser = new HrRegisterationViewModel();
+            hrUser.hrId = user.hrId;
+            hrUser.fullName = user.fullName;
+            hrUser.hrUserName = user.hrUserName;
+            hrUser.email = user.email;
+            hrUser.validationId = user.validationId;
 
             ViewBag.validation = new SelectList(HrDb.validations.ToList(), "id", "validationName");
 
 
-            return View(user);
+            return View(hrUser);
        
         }
         [HttpPost]
-        public IActionResult editHr(HR user)
+        public IActionResult editHr(HrRegisterationViewModel user)
 
         {
-            //HR newUser = new HR();
-            //newUser.fullName = user.fullName;
-            //newUser.hrUserName = user.hrUserName;
-            //newUser.email = user.email;
-            //newUser.validationId = user.validationId;
+            ModelState.Remove("password");
+            ModelState.Remove("confirmPassword");
 
-            var userFromDB =HrDb.hRs.Find(user.hrId);
 
-            userFromDB.fullName = user.fullName;
-            userFromDB.hrUserName = user.hrUserName;
-            userFromDB.email = user.email;
-            userFromDB.validationId = user.validationId;
+            if (ModelState.IsValid)
+            {
+                var userFromDB = HrDb.hRs.Find(user.hrId);
 
-            HrDb.SaveChanges();
-            return RedirectToAction("index");
+
+                userFromDB.fullName = user.fullName;
+                userFromDB.hrUserName = user.hrUserName;
+                userFromDB.email = user.email;
+                userFromDB.validationId = user.validationId;
+
+
+                //userFromDB.fullName = user.fullName;
+                //userFromDB.hrUserName = user.hrUserName;
+                //userFromDB.email = user.email;
+                //userFromDB.validationId = user.validationId;
+                HrDb.SaveChanges();
+                return RedirectToAction("index");
+
+
+            }
+            else
+            {
+                ViewBag.validation = new SelectList(HrDb.validations.ToList(), "id", "validationName");
+
+                return View();
+            }
+
 
 
 
