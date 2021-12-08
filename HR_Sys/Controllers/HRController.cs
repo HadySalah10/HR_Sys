@@ -107,10 +107,10 @@ namespace HR_Sys.Controllers
 
 
         }
-        public IActionResult deleteHR(HR user)
+        public IActionResult deleteHR(int id)
         {
-            var delUser = HrDb.hRs.Find(user.hrId);
-            HrDb.hRs.Remove(user);
+            var delUser = HrDb.hRs.Find(id);
+            HrDb.hRs.Remove(delUser);
             HrDb.SaveChanges();
             return RedirectToAction("index");
         }
