@@ -7,21 +7,15 @@ namespace HR_Sys.Controllers
 {
     public class EmployeeController : Controller
     {
-<<<<<<< Updated upstream
-        
-        // GET: EmployeeController
-        public ActionResult Index()
-=======
+
         //iticontext 
         HrDBContext db;
         public EmployeeController(HrDBContext db)
->>>>>>> Stashed changes
+
         {
             this.db = db;   
         }
-<<<<<<< Updated upstream
-=======
-        
+
         // GET: EmployeeController
         public ActionResult Index()
         {
@@ -29,7 +23,7 @@ namespace HR_Sys.Controllers
             return View(emps);
   
         }
->>>>>>> Stashed changes
+
 
         // GET: EmployeeController/Create
         public ActionResult Create()
