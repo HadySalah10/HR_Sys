@@ -5,12 +5,28 @@ namespace HR_Sys.Controllers
 {
     public class EmployeeController : Controller
     {
+<<<<<<< HEAD
         
+=======
+
+        //iticontext 
+        HrDBContext db;
+        public EmployeeController(HrDBContext db)
+
+        {
+            this.db = db;   
+        }
+
+>>>>>>> a650b7d29aaa605ba3662b16a67962564ae15541
         // GET: EmployeeController
         public ActionResult Index()
         {
             return View();
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a650b7d29aaa605ba3662b16a67962564ae15541
 
         // GET: EmployeeController/Create
         public ActionResult Create()

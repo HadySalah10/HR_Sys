@@ -3,18 +3,21 @@
     ViewData["Title"] = "Index";
 }
 
+<<<<<<< HEAD
 
 <div class="main-panel" style="width: 170%;">
         <div class="main-content" style="">
           <div class="content-wrappe">
             <div class="container-fluid"><!-- Zero configuration table -->
+=======
+>>>>>>> a650b7d29aaa605ba3662b16a67962564ae15541
 <section id="configuration">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">معلومات الموظفين</h4>
+                        <h4 class="card-title text-center">معلومات الموظفين</h4>
                     </div>
                 </div>
                 <div class="card-body collapse show">
@@ -45,8 +48,13 @@
                                    </button>
                                 </div>
                             </div> 
+<<<<<<< HEAD
                         <!------------------------------------------- start table of HRS-------------------------------------->                    
                         <table class="table table-striped table-bordered zero-configuration">
+=======
+                        <!------------------------------------------- start table of HRS-------------------------------------->   
+                        <table class="table table-striped table-bordered" >
+>>>>>>> a650b7d29aaa605ba3662b16a67962564ae15541
                             <thead>
                                 <tr>
                                     <th>الاسم</th>
@@ -80,6 +88,7 @@
                                 <tr>
                                     @*@foreach(var item in Employee)
                                     {
+<<<<<<< HEAD
                                         <td>item.empName</td>
                                         <td>item.id</td>
                                         <td>item.EmpPhones</td>
@@ -103,6 +112,20 @@
                                     <td>17.00</td>
                                     <td>egy</td>
 
+=======
+                                        <td>@item.empName</td>
+                                        <td>@item.id</td>
+                                        <td>@item.EmpPhones</td>
+                                        <td>@item.empDateOfBirth</td>
+                                        <td>@item.empGender</td>
+                                        <td>@item.empHireDate</td>
+                                        <td>@item.empNetSalary</td>
+                                        <td>@item.requiredDepartureTime</td>
+                                        <td>@item.Nationality</td>
+                                        <td><a class="btn btn-success mb-2" asp-controller="Employee" asp-action="Edit" asp-route-id="@item.id">تعديل</a></td>
+                                        <td><a class="btn btn-info mb-2" asp-controller= "Employee" asp-action="Editsettings" asp-route-id="@item.id">تعديل الاعدادات</a>  </td>
+                                        <td><a class="btn btn-danger mb-2" asp-controller="Employee" asp-action="delete" asp-route-id="@item.id">حذف</a></td>
+>>>>>>> a650b7d29aaa605ba3662b16a67962564ae15541
                                     <td>
                                         <button class="btn btn-success mb-2">
                                             <a asp-controller="HR" asp-action="Index" asp-route-id="@*item.id*@">تعديل</a>
@@ -118,7 +141,15 @@
                                             <a asp-controller="HR" asp-action="Index" asp-route-id="@*@item.id*@">حذف</a>
                                         </button>
                                     </td>
+<<<<<<< HEAD
                                 </tr>
+=======
+               
+                                    
+                                    }
+                                </tr>                                                                                                                                                                                                                     </yr>
+                                       
+>>>>>>> a650b7d29aaa605ba3662b16a67962564ae15541
                                                                                                                                                                                                                                                                                                                </yr>
                             </tbody>
                         </table>
@@ -130,6 +161,7 @@
     </div>
 </section>
 
+<<<<<<< HEAD
             </div>
           </div>
         </div>
@@ -137,6 +169,8 @@
         @*<footer class="footer footer-static footer-light">
           <p class="clearfix text-muted text-center px-2"><span>Copyright  &copy; 2021 <a href="#" id="pixinventLink" target="_blank" class="text-bold-800 primary darken-2">Pioneer solutions </a>, All rights reserved. </span></p>
         </footer>*@
+=======
 
-      </div>
+>>>>>>> a650b7d29aaa605ba3662b16a67962564ae15541
+
      

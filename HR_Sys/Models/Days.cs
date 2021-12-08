@@ -7,6 +7,7 @@ namespace HR_Sys.Models
         public string daysName { get; set; } 
 
         public virtual ICollection<TypesOfVacationsEmp> TypesOfVacationsEmps { get; set; }
+        //dummy edit
 
     }
 }
