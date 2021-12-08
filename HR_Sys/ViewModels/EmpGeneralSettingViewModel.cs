@@ -5,7 +5,7 @@ using HR_Sys.ValidationsAttributes;
 
 namespace HR_Sys.ViewModels
 {
-    public class EmpGeneralSetting
+    public class EmpGeneralSettingViewModel
     {
 
         [Required(ErrorMessage = "*")]

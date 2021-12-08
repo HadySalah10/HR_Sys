@@ -7,12 +7,12 @@ namespace HR_Sys.Models
     public class HR
     {
 
-   
         public int? hrId { get; set; }
 
         [Required(ErrorMessage = "من فضلك ادخل الاسم ")]
 
-        [Range(5,20,ErrorMessage ="لا يجب ان يقل عدد االاحرف عن خمسة احرف ولا يزيد عن عشرون حرف ")]
+       
+        //[Range(5,20,ErrorMessage ="لا يجب ان يقل عدد االاحرف عن خمسة احرف ولا يزيد عن عشرون حرف ")]
         [StringLength(50)]
         public string fullName { get; set;}
 
@@ -48,6 +48,7 @@ namespace HR_Sys.Models
 
 
         //relation with department table
+
         [InverseProperty("edit")]
 
         public virtual ICollection<Department> DepartmentsEdit { get; set; }
@@ -121,6 +122,7 @@ namespace HR_Sys.Models
         public virtual ICollection<Months> MonthsDelete { get; set; }
 
         //relation with validation table
+       
         [Required(ErrorMessage = "من فضلك ادخل اسم المجموعة")]
 
         [ForeignKey("Valids")]
