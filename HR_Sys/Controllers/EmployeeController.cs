@@ -18,7 +18,7 @@ namespace HR_Sys.Controllers
         // GET: EmployeeController
         public ActionResult Index()
         {
-            return View();
+            return View(db.Employees.ToList());
         }
 
 
