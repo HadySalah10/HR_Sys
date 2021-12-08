@@ -63,6 +63,7 @@ namespace HR_Sys.Models
            new Nationality { id = 11, nationalityName = "Libya" },
            new Nationality { id = 12, nationalityName = "Jordan" }
        );
+           
 
         }
     }
