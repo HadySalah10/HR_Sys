@@ -33,6 +33,10 @@ namespace HR_Sys.Models
         public string email { get; set; }
 
 
+        [Required(ErrorMessage = "من فضلك ادخل اسم المجموعة")]
+
+        [ForeignKey("Valids")]
+        public int validationId { get; set; }
 
         //relation with employee table
         [InverseProperty("edit")]
@@ -122,11 +126,7 @@ namespace HR_Sys.Models
         public virtual ICollection<Months> MonthsDelete { get; set; }
 
         //relation with validation table
-       
-        [Required(ErrorMessage = "من فضلك ادخل اسم المجموعة")]
-
-        [ForeignKey("Valids")]
-        public int validationId { get; set; }
+      
         public virtual Validations Valids { get; set; }
        
     }

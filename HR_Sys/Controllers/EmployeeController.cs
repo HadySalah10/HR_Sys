@@ -8,17 +8,16 @@ namespace HR_Sys.Controllers
     {
 
         //iticontext 
-        HrDBContext db;
-        public EmployeeController(HrDBContext db)
-
+        HrDBContext _db;
+        public EmployeeController(HrDBContext context)
         {
-            this.db = db;   
+            _db = context;   
         }
 
         // GET: EmployeeController
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            return View(_db.Employees.ToList());
         }
 
 
