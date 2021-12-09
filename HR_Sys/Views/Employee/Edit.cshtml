@@ -1,0 +1,139 @@
+﻿@model HR_Sys.Models.Employee
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="empName" class="control-label"></label>
+                <input asp-for="empName" class="form-control" />
+                <span asp-validation-for="empName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="empAddress" class="control-label"></label>
+                <input asp-for="empAddress" class="form-control" />
+                <span asp-validation-for="empAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="empDateOfBirth" class="control-label"></label>
+                <input asp-for="empDateOfBirth" class="form-control" />
+                <span asp-validation-for="empDateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="empGender" class="control-label"></label>
+                <input asp-for="empGender" class="form-control" />
+                <span asp-validation-for="empGender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="empSsn" class="control-label"></label>
+                <input asp-for="empSsn" class="form-control" />
+                <span asp-validation-for="empSsn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="empNetSalary" class="control-label"></label>
+                <input asp-for="empNetSalary" class="form-control" />
+                <span asp-validation-for="empNetSalary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="empNonNetSalary" class="control-label"></label>
+                <input asp-for="empNonNetSalary" class="form-control" />
+                <span asp-validation-for="empNonNetSalary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="empGrossSalary" class="control-label"></label>
+                <input asp-for="empGrossSalary" class="form-control" />
+                <span asp-validation-for="empGrossSalary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="empHireDate" class="control-label"></label>
+                <input asp-for="empHireDate" class="form-control" />
+                <span asp-validation-for="empHireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="requiredAttendanceTime" class="control-label"></label>
+                <input asp-for="requiredAttendanceTime" class="form-control" />
+                <span asp-validation-for="requiredAttendanceTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="requiredDepartureTime" class="control-label"></label>
+                <input asp-for="requiredDepartureTime" class="form-control" />
+                <span asp-validation-for="requiredDepartureTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="requiredSalaryPerHour" class="control-label"></label>
+                <input asp-for="requiredSalaryPerHour" class="form-control" />
+                <span asp-validation-for="requiredSalaryPerHour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="requiredDaysPerMonth" class="control-label"></label>
+                <input asp-for="requiredDaysPerMonth" class="form-control" />
+                <span asp-validation-for="requiredDaysPerMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="requiredExtraHours" class="control-label"></label>
+                <input asp-for="requiredExtraHours" class="form-control" />
+                <span asp-validation-for="requiredExtraHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="requiredDeductHours" class="control-label"></label>
+                <input asp-for="requiredDeductHours" class="form-control" />
+                <span asp-validation-for="requiredDeductHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deptid" class="control-label"></label>
+                <select asp-for="deptid" class="form-control" asp-items="ViewBag.deptid"></select>
+                <span asp-validation-for="deptid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nationalityId" class="control-label"></label>
+                <select asp-for="nationalityId" class="form-control" asp-items="ViewBag.nationalityId"></select>
+                <span asp-validation-for="nationalityId" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="editBy" class="control-label"></label>
+                <select asp-for="editBy" class="form-control" asp-items="ViewBag.editBy"></select>
+                <span asp-validation-for="editBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deletedBy" class="control-label"></label>
+                <select asp-for="deletedBy" class="form-control" asp-items="ViewBag.deletedBy"></select>
+                <span asp-validation-for="deletedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="addBy" class="control-label"></label>
+                <select asp-for="addBy" class="form-control" asp-items="ViewBag.addBy"></select>
+                <span asp-validation-for="addBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="lastEdit" class="control-label"></label>
+                <input asp-for="lastEdit" class="form-control" />
+                <span asp-validation-for="lastEdit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="isDeleted" class="control-label"></label>
+                <input asp-for="isDeleted" class="form-control" />
+                <span asp-validation-for="isDeleted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
