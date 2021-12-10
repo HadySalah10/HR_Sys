@@ -10,16 +10,16 @@ namespace HR_Sys.Models
         }
 
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<HR> hRs { get; set; }
+        public virtual DbSet<HR> HRs { get; set; }
         public virtual DbSet<EmpPhones> EmpPhones { get; set; }
         public virtual DbSet<EmpReport> EmpReports { get; set; }
         public virtual DbSet<EmployeeAttendance> EmployeesAttendance { get; set; }
-        public virtual DbSet<Nationality> nationalities { get; set; }
-        public virtual DbSet<VacationType> vacationTypes { get; set; }
-        public virtual DbSet<Department> departments { get; set; }
+        public virtual DbSet<Nationality> Nationalities { get; set; }
+        public virtual DbSet<VacationType> VacationTypes { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
 
         public virtual DbSet<TypesOfVacationsEmp> TypesOfVacationsEmps { get; set; }
-        public virtual DbSet<Validations> validations { get; set; }
+        public virtual DbSet<Validations> Validations { get; set; }
         public virtual DbSet<Months> Months { get; set; }
         public virtual DbSet<Days> Days { get; set; }
 
@@ -30,10 +30,15 @@ namespace HR_Sys.Models
            new HR { hrId = 1, fullName = "admin admin", hrUserName = "admin20", password = "admin@1234", email = "hady20@admin.com", validationId = 1 }
 
        );
-            modelBuilder.Entity<Employee>().HasData(
-        new Employee {id=1, empName="test User", empAddress="كوكب الارض", empDateOfBirth = new DateTime(2008, 1, 1) }
-
-    );
+            modelBuilder.Entity<Department>().HasData(
+              new Department { id = 1, deptName = "قسم العلاقات العامة", addBy = 1, lastEdit = true },
+              new Department { id = 2, deptName = " قسم الموارد البشرية", addBy = 1, lastEdit = true },
+              new Department { id = 3, deptName = "قسم التطوير", addBy = 1, lastEdit = true },
+              new Department { id = 4, deptName = "قسم التسويق", addBy = 1, lastEdit = true },
+              new Department { id = 5, deptName = "قسم المبيعات", addBy = 1, lastEdit = true }
+         
+          );
+       
             modelBuilder.Entity<Validations>().HasData(
        new Validations
        {
@@ -59,29 +64,29 @@ namespace HR_Sys.Models
 
    );
             modelBuilder.Entity<Days>().HasData(
-                new Days { id=1, daysName = "Saturday" ,addBy=1,lastEdit=true },
-                new Days {id=2, daysName = "Sunday", addBy = 1, lastEdit = true },
-                new Days {id=3, daysName = "Monday", addBy = 1, lastEdit = true },
-                new Days {id=4, daysName = "Tuesday", addBy = 1, lastEdit = true },
-                new Days {id=5, daysName = "Wednesday", addBy = 1, lastEdit = true },
-                new Days {id=6, daysName = "Thursday", addBy = 1, lastEdit = true },
-                new Days {id=7, daysName = "Friday", addBy = 1, lastEdit = true }
+                new Days { id=1, daysName = "السبت" ,addBy=1,lastEdit=true },
+                new Days {id=2, daysName = "الاحد", addBy = 1, lastEdit = true },
+                new Days {id=3, daysName = "الاثنين", addBy = 1, lastEdit = true },
+                new Days {id=4, daysName = "الثلاثاء", addBy = 1, lastEdit = true },
+                new Days {id=5, daysName = "الاربعاء", addBy = 1, lastEdit = true },
+                new Days {id=6, daysName = "الخميس", addBy = 1, lastEdit = true },
+                new Days {id=7, daysName = "الجمعة", addBy = 1, lastEdit = true }
             );
          
           
             modelBuilder.Entity<Months>().HasData(
-               new Months { id = 1, nameMonth = "January", addBy = 1, lastEdit = true },
-               new Months { id = 2, nameMonth = "February", addBy = 1, lastEdit = true },
-               new Months { id = 3, nameMonth = "March", addBy = 1, lastEdit = true },
-               new Months { id = 4, nameMonth = "April", addBy = 1, lastEdit = true },
-               new Months { id = 5, nameMonth = "May", addBy = 1, lastEdit = true },
-               new Months { id = 6, nameMonth = "June", addBy = 1, lastEdit = true },
-               new Months { id = 7, nameMonth = "July", addBy = 1, lastEdit = true },
-               new Months { id = 8, nameMonth = "August", addBy = 1, lastEdit = true },
-               new Months { id = 9, nameMonth = "September", addBy = 1, lastEdit = true },
-               new Months { id = 10, nameMonth = "October", addBy = 1, lastEdit = true },
-               new Months { id = 11, nameMonth = "November", addBy = 1, lastEdit = true },
-               new Months { id = 12, nameMonth = "December", addBy = 1, lastEdit = true }
+               new Months { id = 1, nameMonth = "يناير", addBy = 1, lastEdit = true },
+               new Months { id = 2, nameMonth = "فبارير", addBy = 1, lastEdit = true },
+               new Months { id = 3, nameMonth = "مارس", addBy = 1, lastEdit = true },
+               new Months { id = 4, nameMonth = "ابريل", addBy = 1, lastEdit = true },
+               new Months { id = 5, nameMonth = "مايو", addBy = 1, lastEdit = true },
+               new Months { id = 6, nameMonth = "يونيو", addBy = 1, lastEdit = true },
+               new Months { id = 7, nameMonth = "يوليو", addBy = 1, lastEdit = true },
+               new Months { id = 8, nameMonth = "اغسطس", addBy = 1, lastEdit = true },
+               new Months { id = 9, nameMonth = "سبتمبر", addBy = 1, lastEdit = true },
+               new Months { id = 10, nameMonth = "اكتوبر", addBy = 1, lastEdit = true },
+               new Months { id = 11, nameMonth = "نوفمبر", addBy = 1, lastEdit = true },
+               new Months { id = 12, nameMonth = "ديسمبر", addBy = 1, lastEdit = true }
            );
             modelBuilder.Entity<Nationality>().HasData(
            new Nationality { id = 1, nationalityName = "Egypt", addBy = 1, lastEdit = true },
@@ -97,7 +102,47 @@ namespace HR_Sys.Models
            new Nationality { id = 11, nationalityName = "Libya", addBy = 1, lastEdit = true },
            new Nationality { id = 12, nationalityName = "Jordan", addBy = 1, lastEdit = true }
        );
+            modelBuilder.Entity<Employee>().HasData(
+   new Employee
+   {
+       id = 1,
+       empName = "test User",
+       empAddress = "كوكب الارض",
+       empDateOfBirth = new DateTime(1997, 5, 21),
+       empGender = true,
+       empSsn = "29705251400191",
+       empNetSalary = 600.20,
+       empNonNetSalary = 100.20,
+       empGrossSalary = 600.20 + 100.20,
+       empHireDate = new DateTime(2008, 1, 1),
+       requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0),
+       requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0),
+       requiredSalaryPerHour = 50,
+       requiredDaysPerMonth = 5,
+       requiredExtraHours = 2,
+       requiredDeductHours = 2,
+       addBy = 1,
+       deptid = 1,
+       nationalityId = 1,
+       phoneNum = "01119959346",
+       phoneNum2 = "01554904905"
+   }
+
+);
            
+            modelBuilder.Entity<VacationType>().HasData(
+            new VacationType { id = 1, vacationName = "اجازة اسبوعية", addBy = 1, lastEdit = true },
+            new VacationType { id = 2, vacationName = "اجازة عارضة", addBy = 1, lastEdit = true },
+            new VacationType { id = 3, vacationName = "اجازة سنوية", addBy = 1, lastEdit = true }
+
+        );
+            modelBuilder.Entity<TypesOfVacationsEmp>().HasData(
+          new TypesOfVacationsEmp { id = 1, empId=1 , vacId=1,idDays=1,date=null, addBy = 1, lastEdit = true },
+          new TypesOfVacationsEmp { id = 2, empId=1 , vacId=1,idDays=7, date = null, addBy = 1, lastEdit = true }
+         
+
+      );
+
 
         }
     }

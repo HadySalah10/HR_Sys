@@ -20,8 +20,8 @@ namespace HR_Sys.Models.BaseIDEntity
 
         public int? addBy { get; set; }
 
-        public bool? lastEdit { get; set; }
-        public bool? isDeleted { get; set; }
+        public bool? lastEdit { get; set; }=true;
+        public bool? isDeleted { get; set; } = false;
 
 
         public virtual HR edit { get; set; }

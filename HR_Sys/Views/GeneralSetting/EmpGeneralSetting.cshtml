@@ -1,5 +1,4 @@
-﻿@using HR_Sys.ViewModels 
-@model EmpGeneralSettingViewModel 
+﻿@model  HR_Sys.ViewModels.EmpGeneralSettingViewModel 
 
 @{
 }
@@ -17,81 +16,68 @@
 					</div>
 					<div class="card-body">
 						<div class="px-3">
-							<form class="form form-horizontal">
-								<div class="form-body">
-									<h4 class="form-section">
-										<i class="icon-user"></i>الاعدادات العامة</h4>
+							<form class="form form-horizontal" asp-action="EmpGeneralSetting" method="post">
+								
+						
 									<div class="form-group row">
-										<label class="col-md-3 label-control" for="projectinput1">وقت الحضور الرسمي: </label>
-										<div class="col-md-9">
-											<input type="text" id="projectinput1" class="form-control" name="extra">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-md-3 label-control" for="projectinput2">
-											وقت الانصراف الرسمي: </label>
-										<div class="col-md-9">
-											<input type="text" id="projectinput2" class="form-control" name="
-											Discount">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-md-3 label-control" for="projectinput2">
-										   سعر الساعة: </label>
-										<div class="col-md-9">
-											<input type="text" id="projectinput2" class="form-control" name="
-											Discount">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-md-3 label-control" for="projectinput2">
-											عدد ايام الحضور الشهرية: </label>
-										<div class="col-md-9">
-											<input type="text" id="projectinput2" class="form-control" name="
-											Discount">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-md-3 label-control" for="projectinput2">
-											 الساعة الاضافيه </label>
-										<div class="col-md-9">
-											<input type="text" id="projectinput2" class="form-control" name="
-											Discount">
-										</div>
-									</div>
+						
+										  <label asp-for="requiredExtraHours" class="col-md-3 label-control control-label"></label>
 
+											<div class="col-md-6">
+										
+												 <input asp-for="requiredExtraHours" id="projectinput2" class="form-control" />
+
+											</div>
+											<div class="col-md-3">
+												 <span asp-validation-for="requiredExtraHours" class="text-danger"></span>
+
+											</div>
+
+									</div>
 									<div class="form-group row">
-										<label class="col-md-3 label-control" for="projectinput2">
-										ساعةالخصم </label>
-										<div class="col-md-9">
-											<input type="text" id="projectinput2" class="form-control" name="
-											Discount">
-										</div>
+						
+										  <label asp-for="requiredDeductHours" class="col-md-3 label-control control-label"></label>
+
+											<div class="col-md-6">
+										
+												 <input asp-for="requiredDeductHours" id="projectinput2" class="form-control" />
+
+											</div>
+											<div class="col-md-3">
+												 <span asp-validation-for="requiredDeductHours" class="text-danger"></span>
+
+											</div>
+
 									</div>
 
 
 									<div class="form-group row">
-										<label class="col-md-3 label-control" for="projectinput7">الاجازات الاسبوعية : </label>
-										<div class="col-md-9">
-											<form action="/action_page.php">
-												<input type="checkbox" id="vehicle1" name="sat" >
-												<label for="sat"> Satrday</label><br>
-												<input type="checkbox" id="vehicle2" name="sun" >
-												<label for="sun"> Sunday</label><br>
-												<input type="checkbox" id="vehicle3" name="mon">
-												<label for="mon"> Monday</label><br>
-												<input type="checkbox" id="vehicle2" name="sun">
-												<label for="sun"> Tuesday</label><br>
-												<input type="checkbox" id="Tue" name="Tue" >
-												<label for="sun"> Turthday</label><br>
-												<input type="checkbox" id="Tue" name="Tue" >
-												<label for="Fri">Friday</label><br>
+										  <label asp-for="idDayHolday1" class="col-md-3 label-control control-label"></label>
+
+										<div class="col-md-6 text-right">
+										 <select asp-for="idDayHolday1"  class="form-control" asp-items="ViewBag.holidays1">
+									      </select>
                                       
-                                      
-											  </form>
 										</div>
+											<div class="col-md-3">
+												 <span asp-validation-for="idDayHolday1" class="text-danger"></span>
+
+											</div>
 									</div>
-								</div>
+							<div class="form-group row">
+										  <label asp-for="idDayHolday2" class="col-md-3 label-control control-label"></label>
+
+										<div class="col-md-6 text-right">
+										 <select asp-for="idDayHolday2"  class="form-control" asp-items="ViewBag.holidays2">
+									      </select>
+                                      
+										</div>
+											<div class="col-md-3">
+												 <span asp-validation-for="idDayHolday2" class="text-danger"></span>
+
+											</div>
+									</div>
+							
 						
    
 

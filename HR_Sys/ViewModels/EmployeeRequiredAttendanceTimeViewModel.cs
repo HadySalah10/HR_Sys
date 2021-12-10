@@ -5,9 +5,8 @@ using HR_Sys.ValidationsAttributes;
 
 namespace HR_Sys.ViewModels
 {
-    public class EmpGeneralSettingViewModel
+    public class EmployeeRequiredAttendanceTimeViewModel
     {
-
         [DisplayName(" ساعات الاضافة/ساعة اضافية لكل ساعة اضافة")]
         [Required(ErrorMessage = "يجب ادخال عدد ساعات الاضافة؟")]
         public float requiredExtraHours { get; set; }

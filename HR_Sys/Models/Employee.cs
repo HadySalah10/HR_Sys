@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using HR_Sys.Models.BaseIDEntity;
 using HR_Sys.ValidationsAttributes;
@@ -20,39 +21,45 @@ namespace HR_Sys.Models
         [StringLength(150)]
         public string empAddress { get; set; }
 
-        [Required(ErrorMessage = "*")]
         [Within20Years ]
         public DateTime empDateOfBirth { get; set; }
 
         [Required(ErrorMessage = "*")]
-        [StringLength(1)]
-        public string empGender { get; set; }
+    
+        // 1 for male 0 for female
+        public bool empGender { get; set; }
 
         [Required(ErrorMessage = "*")]
         [Range(14, 14, ErrorMessage = "يجب الا يقل الرقم القومى عن 14 رقم!")]
         [ServiceStack.DataAnnotations.Unique]
-        public int empSsn { get; set; }
+        public string empSsn { get; set; }
 
         [Required(ErrorMessage = "*")]
         [RegularExpression(@"^[0-9]*(?:\.[0-9]*)?$", ErrorMessage = " من فضلك ادخل راتب صحيح")]
-        public int? empNetSalary { get; set; }
+        public double? empNetSalary { get; set; }
         [RegularExpression(@"^[0-9]*(?:\.[0-9]*)?$", ErrorMessage = " من فضلك ادخل راتب صحيح")]
 
-        public float? empNonNetSalary { get; set; }
+        public double? empNonNetSalary { get; set; }
         [RegularExpression(@"^[0-9]*(?:\.[0-9]*)?$", ErrorMessage = " من فضلك ادخل راتب صحيح")]
 
-        public float? empGrossSalary { get; set; }
+        public double? empGrossSalary { get; set; }
 
 
         [Required(ErrorMessage = "*")]
         [YearOfTheCompany]
         public DateTime empHireDate { get; set; }
+        //   time supposed to be in work  
+        [DataType(DataType.Time)]
 
         [Required(ErrorMessage = "*")]
-        public DateTime? requiredAttendanceTime { get; set; }
+        public DateTime requiredAttendanceTime { get; set; }
+        //   time supposed to be end of his/her base  time  
+        [DataType(DataType.Time)]
+
 
         [Required(ErrorMessage = "*")]
-        public DateTime? requiredDepartureTime { get; set; }
+        public DateTime requiredDepartureTime { get; set; }
+
         public decimal? requiredSalaryPerHour { get; set; }
         public int? requiredDaysPerMonth { get; set; }
 
@@ -60,6 +67,11 @@ namespace HR_Sys.Models
         public float requiredExtraHours { get; set; }
         [Required(ErrorMessage = "*")]
         public float requiredDeductHours { get; set; }
+
+
+        public string phoneNum { get; set; }
+
+        public string? phoneNum2 { get; set; }
 
         //relation with department
         [ForeignKey("Department")]

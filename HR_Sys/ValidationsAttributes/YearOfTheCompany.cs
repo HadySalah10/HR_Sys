@@ -14,7 +14,7 @@ namespace HR_Sys.ValidationsAttributes
             }
             else
             {
-                return new ValidationResult("من فضلك ادخل تاريخ تعاقد صحيح");
+                return new ValidationResult("من فضلك ادخل تاريخ تعاقد صحيح بعد تواجد الشركة");
             }
         }
     }

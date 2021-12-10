@@ -15,13 +15,13 @@ namespace HR_Sys.Controllers
         }
         public IActionResult Index()
         {
-            return View(HrDb.hRs.ToList());
+            return View(HrDb.HRs.ToList());
         }
 
         public IActionResult RegisterHR()
         {
 
-            ViewBag.validation = new SelectList(HrDb.validations.ToList(), "id", "validationName");
+            ViewBag.validation = new SelectList(HrDb.Validations.ToList(), "id", "validationName");
 
             return View();
         }
@@ -43,7 +43,7 @@ namespace HR_Sys.Controllers
             }
             else
             {
-                ViewBag.validation = new SelectList(HrDb.validations.ToList(), "id", "validationName");
+                ViewBag.validation = new SelectList(HrDb.Validations.ToList(), "id", "validationName");
 
                 return View();
             }
@@ -54,7 +54,7 @@ namespace HR_Sys.Controllers
 
         public IActionResult editHr(int id)
         {
-            var user = HrDb.hRs.Find(id);
+            var user = HrDb.HRs.Find(id);
 
             HrRegisterationViewModel hrUser = new HrRegisterationViewModel();
             hrUser.hrId = user.hrId;
@@ -63,7 +63,7 @@ namespace HR_Sys.Controllers
             hrUser.email = user.email;
             hrUser.validationId = user.validationId;
 
-            ViewBag.validation = new SelectList(HrDb.validations.ToList(), "id", "validationName");
+            ViewBag.validation = new SelectList(HrDb.Validations.ToList(), "id", "validationName");
 
 
             return View(hrUser);
@@ -79,7 +79,7 @@ namespace HR_Sys.Controllers
 
             if (ModelState.IsValid)
             {
-                var userFromDB = HrDb.hRs.Find(user.hrId);
+                var userFromDB = HrDb.HRs.Find(user.hrId);
 
 
                 userFromDB.fullName = user.fullName;
@@ -99,7 +99,7 @@ namespace HR_Sys.Controllers
             }
             else
             {
-                ViewBag.validation = new SelectList(HrDb.validations.ToList(), "id", "validationName");
+                ViewBag.validation = new SelectList(HrDb.Validations.ToList(), "id", "validationName");
 
                 return View();
             }
@@ -109,8 +109,8 @@ namespace HR_Sys.Controllers
         }
         public IActionResult deleteHR(int id)
         {
-            var delUser = HrDb.hRs.Find(id);
-            HrDb.hRs.Remove(delUser);
+            var delUser = HrDb.HRs.Find(id);
+            HrDb.HRs.Remove(delUser);
             HrDb.SaveChanges();
             return RedirectToAction("index");
         }

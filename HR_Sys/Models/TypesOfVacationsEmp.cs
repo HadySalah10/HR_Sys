@@ -13,7 +13,7 @@ namespace HR_Sys.Models
         
         [ForeignKey("VacationType")]
         public int vacId { get; set; }
-        [Required (ErrorMessage = "هذا الحقل مطلوب")]
+        //[Required (ErrorMessage = "هذا الحقل مطلوب")]
         public DateTime? date { get; set; }
         [ForeignKey("days")]
         public int idDays { get; set; }
