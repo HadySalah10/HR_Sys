@@ -125,7 +125,25 @@ namespace HR_Sys.Controllers
         
         }
 
- 
+        public IActionResult checkEmail(string email)
+        {
+            var user = HrDb.HRs.Where(u => u.email == email).FirstOrDefault();
+            if (user != null)
+            {
+                return Json(false, new Newtonsoft.Json.JsonSerializerSettings());
+
+
+            }
+            else
+            {
+                return Json(true, new Newtonsoft.Json.JsonSerializerSettings());
+
+            }
+
+        }
+
+
+
 
 
 

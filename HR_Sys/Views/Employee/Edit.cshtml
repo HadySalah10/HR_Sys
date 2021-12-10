@@ -1,17 +1,22 @@
 ﻿@model HR_Sys.ViewModels.CreateEmployeeViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
 <h1 class="text-center">الموظفين</h1>
 <hr />
 
-<form asp-action="Create" method="post">
+<form  method="post">
 <div class="row">
 
     <div class="col-md-6">
         <h2 class="text-center text-border"> بيانات الموظفين  <i class="icon-user"></i> </h2>
         <table>
+             <tr class="form-group">
+                    <td><input asp-for="EmployeeID"  type="hidden"class="form-control" /></td>
+                
+
+            </tr>
             <tr class="form-group">
                     <td><label asp-for="empName" class="control-label text-border"></label></td>
                     <td><input asp-for="empName" class="form-control" /></td>

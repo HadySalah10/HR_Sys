@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using HR_Sys.ValidationsAttributes;
 
+
 namespace HR_Sys.ViewModels
 {
     public class EmpGeneralSettingViewModel

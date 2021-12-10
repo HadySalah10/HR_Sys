@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using HR_Sys.Models.BaseIDEntity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HR_Sys.Models
 {
@@ -29,6 +30,7 @@ namespace HR_Sys.Models
         [Compare("password", ErrorMessage = "غير متطابق")]
         public string confirmPassword { get; set; }
 
+        [Remote("checkEmail","HR",ErrorMessage ="هذا البريد الالكتروني موجود مسبقا ")]
         [RegularExpression(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", ErrorMessage ="بريد الكتروني غير صالح")]
         public string email { get; set; }
 

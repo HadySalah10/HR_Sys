@@ -73,7 +73,7 @@
                                     </td>
                                     <td>
                                         <button class="btn btn-danger mb-2"> 
-                                        <a asp-controller="HR" asp-action="deleteHR" asp-route-id="@item.hrId">حذف</a>
+                                        <a asp-controller="HR" asp-action="deleteHR" asp-route-id="@item.hrId" onclick="return confirm('هل تريد حذف @item.hrUserName ؟ ')">حذف</a>
                                         </button>
                                     </td>   
 
