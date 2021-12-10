@@ -1,4 +1,4 @@
-﻿@model Employee
+﻿@model HR_Sys.ViewModels.CreateEmployeeViewModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -10,81 +10,139 @@
 <div class="row">
 
     <div class="col-md-6">
-        <h2 class="text-center text-border">بيانات الموظفين </h2>
+        <h2 class="text-center text-border"> بيانات الموظفين  <i class="icon-user"></i> </h2>
         <table>
             <tr class="form-group">
-                <td><label asp-for="empName" class="control-label">اسم الموظف</label></td>
-                <td><input asp-for="empName" class="form-control" /></td>
-                <td><span asp-validation-for="empName" class="text-danger"></span></td>
+                    <td><label asp-for="empName" class="control-label text-border"></label></td>
+                    <td><input asp-for="empName" class="form-control" /></td>
+                    <td><span asp-validation-for="empName" class="text-danger"></span></td>
+                
+
             </tr>
             <tr class="form-group">
-                <td><label asp-for="empName" class="control-label"> العنوان</label></td>
+                <td><label asp-for="empAddress" class="control-label"> </label></td>
                 <td><input asp-for="empAddress" class="form-control" /></td>
                 <td><span asp-validation-for="empAddress" class="text-danger"></span></td>
             </tr>
-            <tr class="form-group">
-                <td><label class="control-label"> رقم التليفون</label></td>
-                <td><input class="form-control" /></td>
-                <td></td>
+             <tr class="form-group">
+                <td><label asp-for="phoneNum" class="control-label"> </label></td>
+                <td><input asp-for="phoneNum" class="form-control" /></td>
+                <td><span asp-validation-for="phoneNum" class="text-danger"></span></td>
+            </tr>
+             <tr class="form-group">
+                <td><label asp-for="phoneNum2" class="control-label"> </label></td>
+                <td><input asp-for="phoneNum2" class="form-control" /></td>
             </tr>
               <tr class="form-group">
-                <td><label asp-for="empGender" class="control-label"> النوع</label></td>
-                <td><select class="form-control"></select></td>
+                <td><label asp-for="empGender" class="control-label"> </label></td>
+                <td><select asp-for="empGender"  class="form-control">
+                     <option  value="true" >ذكر</option> 
+                      <option value="false">انثى</option> 
+                </select></td>
                 <td><span asp-validation-for="empGender" class="text-danger"></span></td>
-            </tr>
-               <tr class="form-group">
-                <td><label class="control-label"> الجنسية</label></td>
-                <td><input class="form-control" /></td>
-                <td></td>
-            </tr>
+           
             <tr class="form-group">
-               <td><label class="control-label"> تاريخ الميلاد</label></td>
-               <td><input asp-for="empDateOfBirth" class="form-control" /></td>
+               <td><label asp-for="empDateOfBirth" class="control-label"></label></td>
+               <td><input type="date" asp-for="empDateOfBirth" class="form-control" /></td>
                <td><span asp-validation-for="empDateOfBirth" class="text-danger"></span></td>
             </tr>
             <tr class="form-group">
-               <td><label class="control-label"> الرقم القومى </label></td>
+               <td><label asp-for="empSsn" class="control-label"></label></td>
                <td> <input asp-for="empSsn" class="form-control" /></td>
                <td> <span asp-validation-for="empSsn" class="text-danger"></span></td>
+            </tr>
+             
+             <tr class="form-group">
+               <td><label asp-for="nationalityId" class="control-label"></label></td>
+               <td>
+
+               
+                <select asp-for="nationalityId"  class="form-control" asp-items="ViewBag.nationalities">
+                 </select>
+
+               </td>                                
+               <td> <span asp-validation-for="nationalityId" class="text-danger"></span></td>
+            </tr>
+             <tr class="form-group">
+               <td><label asp-for="deptid" class="control-label"></label></td>
+               <td>
+
+               
+                <select asp-for="deptid"  class="form-control" asp-items="ViewBag.Departments">
+                 </select>
+
+               </td>                                
+               <td> <span asp-validation-for="deptid" class="text-danger"></span></td>
             </tr>
         </table>
     </div>
     <div class="col-md-6" dir="rtl">
-        <h2 class="text-center text-border">بيانات العمل </h2>
+        <h2 class="text-center text-border">  بيانات العمل <i class="icon-book-open"></i></h2>
         <table>
               <tr class="form-group">
-                   <td><label asp-for="empHireDate" class="control-label"> تاريخ التعاقد </label></td>
+                   <td><label asp-for="empHireDate" class="control-label"></label></td>
                    <td> <input type="date" asp-for="empHireDate" class="form-control" /></td>
                    <td> <span asp-validation-for="empHireDate" class="text-danger"></span></td>
               </tr>
               <tr class="form-group">
-                <td><label asp-for="empNetSalary" class="control-label">الراتب</label></td>
+                <td><label asp-for="empNetSalary" class="control-label"></label></td>
                 <td><input asp-for="empNetSalary" class="form-control" /></td>
                 <td><span asp-validation-for="empNetSalary" class="text-danger"></span></td>
               </tr>
               <tr class="form-group">
-                <td><label asp-for="requiredAttendanceTime" class="control-label">مواعيد الحضور</label></td>
-                <td><input class="form-control" /></td>
+                <td><label asp-for="empNonNetSalary" class="control-label"></label></td>
+                <td><input asp-for="empNonNetSalary" class="form-control" /></td>
+                <td><span asp-validation-for="empNonNetSalary" class="text-danger"></span></td>
+              </tr>
+               <tr class="form-group">
+                <td><label asp-for="empGrossSalary" class="control-label"></label></td>
+                <td><input asp-for="empGrossSalary" class="form-control" /></td>
+                <td><span asp-validation-for="empGrossSalary" class="text-danger"></span></td>
+              </tr>
+              <tr class="form-group">
+                <td><label asp-for="requiredAttendanceTime" class="control-label"></label></td>
+                <td><input asp-for="requiredAttendanceTime" class="form-control" /></td>
                 <td><span asp-validation-for="requiredAttendanceTime" class="text-danger"></span></td>
             </tr>
             <tr class="form-group">
-                <td><label asp-for="requiredDepartureTime" class="control-label">مواعيد الانصراف</label></td>
-                <td><input class="form-control" /></td>
+                <td><label asp-for="requiredDepartureTime" class="control-label"></label></td>
+                <td><input asp-for="requiredDepartureTime"  class="form-control" /></td>
                 <td><span asp-validation-for="requiredDepartureTime" class="text-danger"></span></td>
             </tr>
+          
+             <tr class="form-group">
+                <td><label asp-for="requiredSalaryPerHour" class="control-label"></label></td>
+                <td><input asp-for="requiredSalaryPerHour" class="form-control" /></td>
+                <td><span asp-validation-for="requiredSalaryPerHour" class="text-danger"></span></td>
+            </tr>
+             <tr class="form-group">
+                <td><label asp-for="requiredDaysPerMonth" class="control-label"></label></td>
+                <td><input asp-for="requiredDaysPerMonth" class="form-control" /></td>
+                <td><span asp-validation-for="requiredDaysPerMonth" class="text-danger"></span></td>
+            </tr>
+
+
+
+           
+
+
         </table>
            <div class="form-group text-center my-5">
-                <button class="btn btn-info mb-2 ml-2">
-                      <a asp-controller="HR" asp-action="Index" asp-route-id="@*@item.id*@">حفظ</a>
-                </button>
-                <button class="btn btn-danger mb-2">
-                      <a asp-controller="HR" asp-action="Index" asp-route-id="@*@item.id*@">الغاء</a>
-                </button>
+                <input type="submit"  class="btn btn-info mb-2 ml-2" value="حفظ">
+                
+                 <a asp-controller="Employee" class="btn btn-danger mb-2" asp-action="Index" >الغاء</a>
+                
             </div>
     </div>
+
+
 </div>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
 </form>
+
+
+
+

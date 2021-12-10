@@ -56,7 +56,7 @@ namespace HR_Sys.Controllers
         {
             var user = HrDb.HRs.Find(id);
 
-            HrRegisterationViewModel hrUser = new HrRegisterationViewModel();
+            EditHrViewModel hrUser = new EditHrViewModel();
             hrUser.hrId = user.hrId;
             hrUser.fullName = user.fullName;
             hrUser.hrUserName = user.hrUserName;
@@ -70,11 +70,11 @@ namespace HR_Sys.Controllers
        
         }
         [HttpPost]
-        public IActionResult editHr(HrRegisterationViewModel user)
+        public IActionResult editHr(EditHrViewModel user)
 
         {
-            ModelState.Remove("password");
-            ModelState.Remove("confirmPassword");
+            //ModelState.Remove("password");
+            //ModelState.Remove("confirmPassword");
 
 
             if (ModelState.IsValid)

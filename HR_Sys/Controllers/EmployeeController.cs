@@ -18,6 +18,7 @@ namespace HR_Sys.Controllers
 
         // GET: EmployeeController
         public ActionResult Index()
+
         {
 
             return View(_db.Employees.ToList());
@@ -89,15 +90,70 @@ namespace HR_Sys.Controllers
         // GET: EmployeeController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var Employee = _db.Employees.Find(id);
+            CreateEmployeeViewModel employeeViewMOdel = new CreateEmployeeViewModel
+            {
+               EmployeeID = Employee.id,
+               empName = Employee.empName,
+               empAddress = Employee.empAddress,
+               empGender=Employee.empGender,
+               empDateOfBirth=Employee.empDateOfBirth,
+               empHireDate=Employee.empHireDate,
+               empGrossSalary=Employee.empGrossSalary,
+               empNetSalary=Employee.empNetSalary,
+               empNonNetSalary=Employee.empNonNetSalary,
+               empSsn=Employee.empSsn,
+               requiredAttendanceTime=Employee.requiredAttendanceTime,
+               requiredDaysPerMonth=Employee.requiredDaysPerMonth,
+               requiredDepartureTime=Employee.requiredDepartureTime,
+               requiredSalaryPerHour=Employee.requiredSalaryPerHour,  
+               deptid=Employee.deptid,
+               nationalityId=Employee.nationalityId,
+               phoneNum=Employee.phoneNum,
+               phoneNum2=Employee.phoneNum2
+
+            };
+            ViewBag.nationalities = new SelectList(_db.Nationalities.ToList(), "id", "nationalityName");
+            
+            ViewBag.departments = new SelectList(_db.Departments.ToList(), "id", "deptName");
+
+            return View(employeeViewMOdel);
         }
 
         // POST: EmployeeController/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(CreateEmployeeViewModel Employee)
         {
             try
             {
+
+                if (ModelState.IsValid)
+                {
+                    var employeeFromDb = _db.Employees.Find(Employee.EmployeeID);
+
+
+                    employeeFromDb.empName = Employee.empName;
+                    employeeFromDb.empAddress = Employee.empAddress;
+                    employeeFromDb.empGender = Employee.empGender;
+                    employeeFromDb.empDateOfBirth = Employee.empDateOfBirth;
+                    employeeFromDb.empHireDate = Employee.empHireDate;
+                    employeeFromDb.empGrossSalary = Employee.empGrossSalary;
+                    employeeFromDb.empNetSalary = Employee.empNetSalary;
+                    employeeFromDb.empNonNetSalary = Employee.empNonNetSalary;
+                    employeeFromDb.empSsn = Employee.empSsn;
+                    employeeFromDb.requiredAttendanceTime = Employee.requiredAttendanceTime;
+                    employeeFromDb.requiredDaysPerMonth = Employee.requiredDaysPerMonth;
+                    employeeFromDb.requiredDepartureTime = Employee.requiredDepartureTime;
+                    employeeFromDb.requiredSalaryPerHour = Employee.requiredSalaryPerHour;
+                    employeeFromDb.deptid = Employee.deptid;
+                    employeeFromDb.nationalityId = Employee.nationalityId;
+                    employeeFromDb.phoneNum = Employee.phoneNum;
+                    employeeFromDb.phoneNum2 = Employee.phoneNum2;
+
+                    
+                    
+                    _db.SaveChanges();
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch

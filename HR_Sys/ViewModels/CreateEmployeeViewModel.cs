@@ -7,6 +7,8 @@ namespace HR_Sys.ViewModels
 {
     public class CreateEmployeeViewModel
     {
+        public int EmployeeID { get; set; }
+
         //اسم الموظف 
         [DisplayName("اسم الموظف")]
 
