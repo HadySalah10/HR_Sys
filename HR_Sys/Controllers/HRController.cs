@@ -139,13 +139,18 @@ namespace HR_Sys.Controllers
 
         public IActionResult Login()
         {
+            if (Request.Cookies["userId"] != null)
+            {
+                HttpContext.Session.SetInt32("userId", int.Parse(Request.Cookies["userId"]));
+                return RedirectToAction("index");
+
+            }
             return View();
         
         }
 
         [HttpPost]
-        public IActionResult login(HrLoginViewModel user)
-        {
+        public IActionResult login(HrLoginViewModel user, bool Remember) { 
             if (user != null)
 
             {
