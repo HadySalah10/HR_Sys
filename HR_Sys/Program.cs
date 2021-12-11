@@ -16,6 +16,7 @@ builder.Services.AddMvc();
 builder.Services.AddSession();
 
 builder.Services.AddRazorPages();
+builder.Services.AddAuthentication();
 
 var app = builder.Build();
 
@@ -31,6 +32,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 
 app.UseAuthorization();
 

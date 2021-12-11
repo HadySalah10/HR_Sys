@@ -139,12 +139,18 @@ namespace HR_Sys.Controllers
 
         public IActionResult Login()
         {
+            if (Request.Cookies["userId"] != null)
+            {
+                HttpContext.Session.SetInt32("userId",int.Parse(Request.Cookies["userId"]));
+                return RedirectToAction("index");
+
+            }
             return View();
         
         }
 
         [HttpPost]
-        public IActionResult login(HrLoginViewModel user)
+        public IActionResult login(HrLoginViewModel user ,bool Remember)
         {
             if (user != null)
 
@@ -153,12 +159,21 @@ namespace HR_Sys.Controllers
                 if (dbUser != null)
                 {
 
-                    //HttpContext.Session.SetInt32("userId", dbUser.hrId);
-                    HttpContext.Session.SetString("userId", dbUser.password);
+                    if (Remember == true)
+                    {
+                        //add cookie
+                        CookieOptions co = new CookieOptions();
+
+                        co.Expires = DateTime.Now.AddMonths(10);
+
+                        Response.Cookies.Append("userId", dbUser.hrId.ToString(), co);
 
 
-
-                    return RedirectToAction("index");   
+                    }
+                    HttpContext.Session.SetInt32("userId", dbUser.hrId);
+                    HttpContext.Session.SetString("userpassword", dbUser.password);
+                 
+                   return RedirectToAction("index");   
                     
 
                 }
@@ -179,11 +194,9 @@ namespace HR_Sys.Controllers
 
 
 
-
-
-
         }
 
+        
 
 
 
