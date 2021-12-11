@@ -46,13 +46,15 @@
                                     <th> الخصم</th>
                                     <th>الاجمالي</th>
                                     <th>تفاصيل</th>
+                                    
                          
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                              
                                     @foreach(var item in Model)
                                     {
+                                          <tr>
                                         <td>@item.Employees.empName</td>
                                         <td>@item.GrossSalary</td>
                                         <td>@item.numAttendanceDays</td>
@@ -65,9 +67,10 @@
                                         <td><a asp-action="invoice" asp-controller="Report" asp-route-id="@item.empId">
                                             الفاتورة <i class="ft-plus"></i>&nbsp;</a>
                                        </td>
+                                       </tr>
                                     }
                                   
-                                </tr>
+                                
                                
 
                          
