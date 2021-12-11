@@ -1,4 +1,5 @@
 ﻿using HR_Sys.ValidationsAttributes;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -61,6 +62,8 @@ namespace HR_Sys.ViewModels
         // الرقم القومي  
 
         [Required(ErrorMessage = "يجب ادخال الرقم القومي")]
+        [Remote("checkSsn", "Employee", ErrorMessage = "هذا الرقم موجود مسبقا")]
+
         [StringLength(14, ErrorMessage = "يجب ادخال 14 رقم")]
 
         [ServiceStack.DataAnnotations.Unique]
@@ -133,4 +136,6 @@ namespace HR_Sys.ViewModels
         public int deptid { get; set; }
 
     }
+
+   
 }

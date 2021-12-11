@@ -31,7 +31,6 @@ namespace HR_Sys.ViewModels
 
         [Remote("checkEmail", "HR", ErrorMessage = "هذا البريد الالكتروني موجود مسبقا ")]
 
-        [RegularExpression(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", ErrorMessage = "بريد الكتروني غير صالح")]
         public string email { get; set; }
 
         [Required(ErrorMessage = "من فضلك ادخل اسم المجموعة")]

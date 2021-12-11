@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace HR_Sys.Models
 {
@@ -23,6 +24,8 @@ namespace HR_Sys.Models
         public virtual DbSet<Months> Months { get; set; }
         public virtual DbSet<Days> Days { get; set; }
 
+
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // dummy Data for testing 
