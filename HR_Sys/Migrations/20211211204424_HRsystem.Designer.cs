@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HR_Sys.Migrations
 {
     [DbContext(typeof(HrDBContext))]
-    [Migration("20211211200248_DbMigatin")]
-    partial class DbMigatin
+    [Migration("20211211204424_HRsystem")]
+    partial class HRsystem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

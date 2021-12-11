@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HR_Sys.Migrations
 {
-    public partial class DbMigatin : Migration
+    public partial class HRsystem : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
