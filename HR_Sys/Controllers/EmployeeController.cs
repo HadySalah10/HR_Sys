@@ -64,13 +64,10 @@ namespace HR_Sys.Controllers
                         deptid=employee.deptid,
 
                     };
-                    _db.Employees.Add(employeeModel);
-                    _db.SaveChanges();
-                   var fromDb = _db.Employees.Find(employeeModel);
-                    if (fromDb !=null)
-                    return RedirectToAction(nameof(EmpGeneralSetting), nameof(GeneralSettingController), new { id = fromDb.id });
+                  
+                
+                    return RedirectToAction("EmpGeneralSetting", "GeneralSetting", employeeModel);
 
-                    return RedirectToAction(nameof(Index));
 
 
                 }
@@ -159,7 +156,7 @@ namespace HR_Sys.Controllers
                     
                     
                     _db.SaveChanges();
-                    return RedirectToAction(nameof(Index), nameof(EmpGeneralSetting), new { id = employeeFromDb.id });
+                    return RedirectToAction(nameof(Index));
 
                 }
                 return View();
@@ -170,10 +167,7 @@ namespace HR_Sys.Controllers
             }
         }
 
-        private object EmpGeneralSetting()
-        {
-            throw new NotImplementedException();
-        }
+    
 
         // GET: EmployeeController/Delete/5
         public IActionResult Delete(int id)
