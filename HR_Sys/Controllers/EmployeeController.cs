@@ -3,6 +3,7 @@ using HR_Sys.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace HR_Sys.Controllers
 {
@@ -17,7 +18,7 @@ namespace HR_Sys.Controllers
         }
 
         // GET: EmployeeController
-        public ActionResult Index()
+        public IActionResult Index()
 
         {
 
@@ -26,7 +27,7 @@ namespace HR_Sys.Controllers
 
 
         // GET: EmployeeController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             ViewBag.nationalities = new SelectList(_db.Nationalities.ToList(), "id", "nationalityName");
             ViewBag.departments = new SelectList(_db.Departments.ToList(), "id", "deptName");
@@ -36,7 +37,7 @@ namespace HR_Sys.Controllers
 
         // POST: EmployeeController/Create
         [HttpPost]
-        public ActionResult Create(CreateEmployeeViewModel employee )
+        public IActionResult Create(CreateEmployeeViewModel employee )
         {
             try
             {
@@ -65,17 +66,22 @@ namespace HR_Sys.Controllers
                     };
                     _db.Employees.Add(employeeModel);
                     _db.SaveChanges();
+                   var fromDb = _db.Employees.Find(employeeModel);
+                    if (fromDb !=null)
+                    return RedirectToAction(nameof(EmpGeneralSetting), nameof(GeneralSettingController), new { id = fromDb.id });
 
                     return RedirectToAction(nameof(Index));
+
 
                 }
                 else
                 {
                     ViewBag.nationalities = new SelectList(_db.Nationalities.ToList(), "id", "nationalityName");
                     ViewBag.departments = new SelectList(_db.Departments.ToList(), "id", "deptName");
-
-
                     return View();
+                 
+
+
 
                 }
             }
@@ -88,7 +94,7 @@ namespace HR_Sys.Controllers
         }
 
         // GET: EmployeeController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             var Employee = _db.Employees.Find(id);
             CreateEmployeeViewModel employeeViewMOdel = new CreateEmployeeViewModel
@@ -122,11 +128,11 @@ namespace HR_Sys.Controllers
 
         // POST: EmployeeController/Edit/5
         [HttpPost]
-        public ActionResult Edit(CreateEmployeeViewModel Employee)
+        public IActionResult Edit(CreateEmployeeViewModel Employee)
         {
             try
             {
-
+                
                 if (ModelState.IsValid)
                 {
                     var employeeFromDb = _db.Employees.Find(Employee.EmployeeID);
@@ -153,8 +159,10 @@ namespace HR_Sys.Controllers
                     
                     
                     _db.SaveChanges();
+                    return RedirectToAction(nameof(Index), nameof(EmpGeneralSetting), new { id = employeeFromDb.id });
+
                 }
-                return RedirectToAction(nameof(Index));
+                return View();
             }
             catch
             {
@@ -162,8 +170,13 @@ namespace HR_Sys.Controllers
             }
         }
 
+        private object EmpGeneralSetting()
+        {
+            throw new NotImplementedException();
+        }
+
         // GET: EmployeeController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             var check = _db.Employees.Find(id);
             if (check.id>0|| check!=null )
@@ -176,6 +189,15 @@ namespace HR_Sys.Controllers
             
         }
 
+
+        public IActionResult checkSsn(string empSsn)
+        {
+            var employee = _db.Employees.Where(u => u.empSsn == empSsn).FirstOrDefault();
+            if (employee != null)
+                return Json(false);
+                return Json(true);
+
+        }
 
 
     }

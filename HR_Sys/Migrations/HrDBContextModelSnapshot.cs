@@ -64,7 +64,7 @@ namespace HR_Sys.Migrations
                         {
                             id = 1,
                             addBy = 1,
-                            daysName = "Saturday",
+                            daysName = "السبت",
                             isDeleted = false,
                             lastEdit = true
                         },
@@ -72,7 +72,7 @@ namespace HR_Sys.Migrations
                         {
                             id = 2,
                             addBy = 1,
-                            daysName = "Sunday",
+                            daysName = "الاحد",
                             isDeleted = false,
                             lastEdit = true
                         },
@@ -80,7 +80,7 @@ namespace HR_Sys.Migrations
                         {
                             id = 3,
                             addBy = 1,
-                            daysName = "Monday",
+                            daysName = "الاثنين",
                             isDeleted = false,
                             lastEdit = true
                         },
@@ -88,7 +88,7 @@ namespace HR_Sys.Migrations
                         {
                             id = 4,
                             addBy = 1,
-                            daysName = "Tuesday",
+                            daysName = "الثلاثاء",
                             isDeleted = false,
                             lastEdit = true
                         },
@@ -96,7 +96,7 @@ namespace HR_Sys.Migrations
                         {
                             id = 5,
                             addBy = 1,
-                            daysName = "Wednesday",
+                            daysName = "الاربعاء",
                             isDeleted = false,
                             lastEdit = true
                         },
@@ -104,7 +104,7 @@ namespace HR_Sys.Migrations
                         {
                             id = 6,
                             addBy = 1,
-                            daysName = "Thursday",
+                            daysName = "الخميس",
                             isDeleted = false,
                             lastEdit = true
                         },
@@ -112,7 +112,7 @@ namespace HR_Sys.Migrations
                         {
                             id = 7,
                             addBy = 1,
-                            daysName = "Friday",
+                            daysName = "الجمعة",
                             isDeleted = false,
                             lastEdit = true
                         });
@@ -266,7 +266,6 @@ namespace HR_Sys.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("phoneNum2")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("requiredAttendanceTime")
@@ -388,49 +387,6 @@ namespace HR_Sys.Migrations
                     b.HasIndex("empId");
 
                     b.ToTable("EmployeesAttendance");
-                });
-
-            modelBuilder.Entity("HR_Sys.Models.EmpPhones", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("addBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("deletedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("editBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("empId")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("isDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("lastEdit")
-                        .HasColumnType("bit");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("addBy");
-
-                    b.HasIndex("deletedBy");
-
-                    b.HasIndex("editBy");
-
-                    b.HasIndex("empId");
-
-                    b.ToTable("EmpPhones");
                 });
 
             modelBuilder.Entity("HR_Sys.Models.EmpReport", b =>
@@ -599,7 +555,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "January"
+                            nameMonth = "يناير"
                         },
                         new
                         {
@@ -607,7 +563,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "February"
+                            nameMonth = "فبارير"
                         },
                         new
                         {
@@ -615,7 +571,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "March"
+                            nameMonth = "مارس"
                         },
                         new
                         {
@@ -623,7 +579,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "April"
+                            nameMonth = "ابريل"
                         },
                         new
                         {
@@ -631,7 +587,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "May"
+                            nameMonth = "مايو"
                         },
                         new
                         {
@@ -639,7 +595,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "June"
+                            nameMonth = "يونيو"
                         },
                         new
                         {
@@ -647,7 +603,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "July"
+                            nameMonth = "يوليو"
                         },
                         new
                         {
@@ -655,7 +611,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "August"
+                            nameMonth = "اغسطس"
                         },
                         new
                         {
@@ -663,7 +619,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "September"
+                            nameMonth = "سبتمبر"
                         },
                         new
                         {
@@ -671,7 +627,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "October"
+                            nameMonth = "اكتوبر"
                         },
                         new
                         {
@@ -679,7 +635,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "November"
+                            nameMonth = "نوفمبر"
                         },
                         new
                         {
@@ -687,7 +643,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "December"
+                            nameMonth = "ديسمبر"
                         });
                 });
 
@@ -1161,35 +1117,6 @@ namespace HR_Sys.Migrations
                     b.Navigation("edit");
                 });
 
-            modelBuilder.Entity("HR_Sys.Models.EmpPhones", b =>
-                {
-                    b.HasOne("HR_Sys.Models.HR", "Add")
-                        .WithMany()
-                        .HasForeignKey("addBy");
-
-                    b.HasOne("HR_Sys.Models.HR", "Delete")
-                        .WithMany()
-                        .HasForeignKey("deletedBy");
-
-                    b.HasOne("HR_Sys.Models.HR", "edit")
-                        .WithMany()
-                        .HasForeignKey("editBy");
-
-                    b.HasOne("HR_Sys.Models.Employee", "Employees")
-                        .WithMany("EmpPhones")
-                        .HasForeignKey("empId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Add");
-
-                    b.Navigation("Delete");
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("edit");
-                });
-
             modelBuilder.Entity("HR_Sys.Models.EmpReport", b =>
                 {
                     b.HasOne("HR_Sys.Models.HR", "Add")
@@ -1358,8 +1285,6 @@ namespace HR_Sys.Migrations
 
             modelBuilder.Entity("HR_Sys.Models.Employee", b =>
                 {
-                    b.Navigation("EmpPhones");
-
                     b.Navigation("EmpReports");
 
                     b.Navigation("GeneralSettings");

@@ -130,16 +130,10 @@ namespace HR_Sys.Controllers
         {
             var user = HrDb.HRs.Where(u => u.email == email).FirstOrDefault();
             if (user != null)
-            {
-                return Json(false, new Newtonsoft.Json.JsonSerializerSettings());
+                return Json(false);
+                return Json(true);
 
-
-            }
-            else
-            {
-                return Json(true, new Newtonsoft.Json.JsonSerializerSettings());
-
-            }
+            
 
         }
 

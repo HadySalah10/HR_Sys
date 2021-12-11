@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HR_Sys.Migrations
 {
-    public partial class DBAfterSeedData : Migration
+    public partial class DbMigatin : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -248,7 +248,7 @@ namespace HR_Sys.Migrations
                     requiredExtraHours = table.Column<float>(type: "real", nullable: false),
                     requiredDeductHours = table.Column<float>(type: "real", nullable: false),
                     phoneNum = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    phoneNum2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    phoneNum2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     deptid = table.Column<int>(type: "int", nullable: false),
                     nationalityId = table.Column<int>(type: "int", nullable: false),
                     editBy = table.Column<int>(type: "int", nullable: true),
@@ -330,46 +330,6 @@ namespace HR_Sys.Migrations
                         principalColumn: "hrId");
                     table.ForeignKey(
                         name: "FK_EmployeesAttendance_HRs_editBy",
-                        column: x => x.editBy,
-                        principalTable: "HRs",
-                        principalColumn: "hrId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EmpPhones",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    empId = table.Column<int>(type: "int", nullable: false),
-                    editBy = table.Column<int>(type: "int", nullable: true),
-                    deletedBy = table.Column<int>(type: "int", nullable: true),
-                    addBy = table.Column<int>(type: "int", nullable: true),
-                    lastEdit = table.Column<bool>(type: "bit", nullable: true),
-                    isDeleted = table.Column<bool>(type: "bit", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EmpPhones", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_EmpPhones_Employees_empId",
-                        column: x => x.empId,
-                        principalTable: "Employees",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EmpPhones_HRs_addBy",
-                        column: x => x.addBy,
-                        principalTable: "HRs",
-                        principalColumn: "hrId");
-                    table.ForeignKey(
-                        name: "FK_EmpPhones_HRs_deletedBy",
-                        column: x => x.deletedBy,
-                        principalTable: "HRs",
-                        principalColumn: "hrId");
-                    table.ForeignKey(
-                        name: "FK_EmpPhones_HRs_editBy",
                         column: x => x.editBy,
                         principalTable: "HRs",
                         principalColumn: "hrId");
@@ -500,13 +460,13 @@ namespace HR_Sys.Migrations
                 columns: new[] { "id", "addBy", "daysName", "deletedBy", "editBy", "isDeleted", "lastEdit" },
                 values: new object[,]
                 {
-                    { 1, 1, "Saturday", null, null, false, true },
-                    { 2, 1, "Sunday", null, null, false, true },
-                    { 3, 1, "Monday", null, null, false, true },
-                    { 4, 1, "Tuesday", null, null, false, true },
-                    { 5, 1, "Wednesday", null, null, false, true },
-                    { 6, 1, "Thursday", null, null, false, true },
-                    { 7, 1, "Friday", null, null, false, true }
+                    { 1, 1, "السبت", null, null, false, true },
+                    { 2, 1, "الاحد", null, null, false, true },
+                    { 3, 1, "الاثنين", null, null, false, true },
+                    { 4, 1, "الثلاثاء", null, null, false, true },
+                    { 5, 1, "الاربعاء", null, null, false, true },
+                    { 6, 1, "الخميس", null, null, false, true },
+                    { 7, 1, "الجمعة", null, null, false, true }
                 });
 
             migrationBuilder.InsertData(
@@ -526,18 +486,18 @@ namespace HR_Sys.Migrations
                 columns: new[] { "id", "addBy", "deletedBy", "editBy", "isDeleted", "lastEdit", "nameMonth" },
                 values: new object[,]
                 {
-                    { 1, 1, null, null, false, true, "January" },
-                    { 2, 1, null, null, false, true, "February" },
-                    { 3, 1, null, null, false, true, "March" },
-                    { 4, 1, null, null, false, true, "April" },
-                    { 5, 1, null, null, false, true, "May" },
-                    { 6, 1, null, null, false, true, "June" },
-                    { 7, 1, null, null, false, true, "July" },
-                    { 8, 1, null, null, false, true, "August" },
-                    { 9, 1, null, null, false, true, "September" },
-                    { 10, 1, null, null, false, true, "October" },
-                    { 11, 1, null, null, false, true, "November" },
-                    { 12, 1, null, null, false, true, "December" }
+                    { 1, 1, null, null, false, true, "يناير" },
+                    { 2, 1, null, null, false, true, "فبارير" },
+                    { 3, 1, null, null, false, true, "مارس" },
+                    { 4, 1, null, null, false, true, "ابريل" },
+                    { 5, 1, null, null, false, true, "مايو" },
+                    { 6, 1, null, null, false, true, "يونيو" },
+                    { 7, 1, null, null, false, true, "يوليو" },
+                    { 8, 1, null, null, false, true, "اغسطس" },
+                    { 9, 1, null, null, false, true, "سبتمبر" },
+                    { 10, 1, null, null, false, true, "اكتوبر" },
+                    { 11, 1, null, null, false, true, "نوفمبر" },
+                    { 12, 1, null, null, false, true, "ديسمبر" }
                 });
 
             migrationBuilder.InsertData(
@@ -660,26 +620,6 @@ namespace HR_Sys.Migrations
                 column: "empId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmpPhones_addBy",
-                table: "EmpPhones",
-                column: "addBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmpPhones_deletedBy",
-                table: "EmpPhones",
-                column: "deletedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmpPhones_editBy",
-                table: "EmpPhones",
-                column: "editBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmpPhones_empId",
-                table: "EmpPhones",
-                column: "empId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_EmpReports_addBy",
                 table: "EmpReports",
                 column: "addBy");
@@ -789,9 +729,6 @@ namespace HR_Sys.Migrations
         {
             migrationBuilder.DropTable(
                 name: "EmployeesAttendance");
-
-            migrationBuilder.DropTable(
-                name: "EmpPhones");
 
             migrationBuilder.DropTable(
                 name: "EmpReports");

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using HR_Sys.Models.BaseIDEntity;
 using HR_Sys.ValidationsAttributes;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HR_Sys.Models
 
@@ -30,6 +31,8 @@ namespace HR_Sys.Models
         public bool empGender { get; set; }
 
         [Required(ErrorMessage = "*")]
+        [Remote("checkSsn", "Employee", ErrorMessage = "هذا الرقم موجود مسبقا")]
+
         [Range(14, 14, ErrorMessage = "يجب الا يقل الرقم القومى عن 14 رقم!")]
         [ServiceStack.DataAnnotations.Unique]
         public string empSsn { get; set; }
@@ -87,7 +90,6 @@ namespace HR_Sys.Models
         public virtual Nationality Nationality { get; set; }
 
         //relation with emp_phones table
-        public virtual ICollection<EmpPhones> EmpPhones { get; set; }
 
    
 
