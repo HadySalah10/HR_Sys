@@ -1,6 +1,6 @@
 using HR_Sys.Models;
 using Microsoft.EntityFrameworkCore;
-
+using ReflectionIT.Mvc.Paging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +16,7 @@ builder.Services.AddMvc();
 builder.Services.AddSession();
 
 builder.Services.AddRazorPages();
+builder.Services.AddPaging();
 
 var app = builder.Build();
 
