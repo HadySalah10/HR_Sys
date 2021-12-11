@@ -8,7 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<HrDBContext>(o => o.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("HRsyscon")));
-//
+// add session
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddMvc();
+//builder.Services.AddMemoryCache();  
+builder.Services.AddSession();
 
 builder.Services.AddRazorPages();
 
@@ -30,7 +35,20 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.UseCookiePolicy();
+//configure session 
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=HR}/{action=Index}/{id?}");
 app.Run();
+
+
+//app.UseSession(ConfigureHostBuilder: s => s.IdleTimeout = System.TimeSpan.FromMinutes(30));
+//app.UseErrorPage();
+//app.UseStaticFiles();
+//app.UseMvc(routes =>
+//{
+//    routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+//});
+
