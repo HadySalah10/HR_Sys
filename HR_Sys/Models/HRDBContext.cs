@@ -12,7 +12,6 @@ namespace HR_Sys.Models
 
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<HR> HRs { get; set; }
-        public virtual DbSet<EmpPhones> EmpPhones { get; set; }
         public virtual DbSet<EmpReport> EmpReports { get; set; }
         public virtual DbSet<EmployeeAttendance> EmployeesAttendance { get; set; }
         public virtual DbSet<Nationality> Nationalities { get; set; }

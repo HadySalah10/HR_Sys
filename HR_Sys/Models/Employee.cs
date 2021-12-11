@@ -90,7 +90,6 @@ namespace HR_Sys.Models
         public virtual Nationality Nationality { get; set; }
 
         //relation with emp_phones table
-        public virtual ICollection<EmpPhones> EmpPhones { get; set; }
 
    
 
