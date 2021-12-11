@@ -40,7 +40,17 @@ namespace HR_Sys.Models
               new Department { id = 5, deptName = "قسم المبيعات", addBy = 1, lastEdit = true }
          
           );
-       
+            modelBuilder.Entity<NameAnnualHoliday>().HasData(
+             new NameAnnualHoliday { id = 1, nameHoliday = "عيد الغطاس",  addBy = 1, lastEdit = true },
+             new NameAnnualHoliday { id = 2, nameHoliday = "عيد الاضحي", addBy = 1, lastEdit = true },
+             new NameAnnualHoliday { id = 3, nameHoliday = "عيد الفطر", addBy = 1, lastEdit = true }
+           
+
+         );
+            modelBuilder.Entity<annualHoliday>().HasData(
+        new annualHoliday { id = 1, idHoliday = 1,dateHoliday= new DateTime(2021, 1, 19), addBy = 1, lastEdit = true }
+    );
+
             modelBuilder.Entity<Validations>().HasData(
        new Validations
        {
@@ -127,7 +137,9 @@ namespace HR_Sys.Models
        deptid = 1,
        nationalityId = 1,
        phoneNum = "01119959346",
-       phoneNum2 = "01554904905"
+       phoneNum2 = "01554904905",
+       annualHolidayId = 1
+       
    }
 
 );

@@ -3,7 +3,6 @@ using HR_Sys.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
 
 namespace HR_Sys.Controllers
 {
@@ -64,9 +63,11 @@ namespace HR_Sys.Controllers
                         deptid=employee.deptid,
 
                     };
+                    _db.Add(employeeModel);
+                    _db.SaveChanges();
                   
                 
-                    return RedirectToAction("EmpGeneralSetting", "GeneralSetting", employeeModel);
+                    return RedirectToAction("EmpGeneralSetting", "GeneralSetting", new { ssn = employeeModel.empSsn });
 
 
 

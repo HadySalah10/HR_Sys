@@ -152,12 +152,8 @@ namespace HR_Sys.Controllers
                 var dbUser = HrDb.HRs.SingleOrDefault(u => u.email == user.email && u.password == user.password);
                 if (dbUser != null)
                 {
-
-                    //HttpContext.Session.SetInt32("userId", dbUser.hrId);
-                    HttpContext.Session.SetString("userId", dbUser.password);
-
-
-
+                    HttpContext.Session.SetInt32("userId", dbUser.hrId);
+                    HttpContext.Session.SetString("userPass", dbUser.password);
                     return RedirectToAction("index");   
                     
 

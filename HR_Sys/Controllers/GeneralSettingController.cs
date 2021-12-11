@@ -19,10 +19,12 @@ namespace HR_Sys.Controllers
             return View(); 
         }
          
-        public ActionResult EmpGeneralSetting(CreateEmployeeViewModel employee)
+        public ActionResult EmpGeneralSetting(string ssn)
         {
 
-                     
+           var employee=  _db.Employees.Where(sn=>sn.empSsn==ssn).Select(s=>new {s.id,s.empName}).FirstOrDefault();
+            ViewBag.idEmployee = employee;
+            ViewBag.nameEmployee = employee;
 
             var holidays = new SelectList(_db.Days.ToList(), "id", "daysName");
             ViewBag.holidays1 = holidays;
@@ -36,6 +38,7 @@ namespace HR_Sys.Controllers
             if (ModelState.IsValid)
             {
                 RedirectToAction("Index", "Employee");
+
             }
 
             else

@@ -8,7 +8,7 @@ namespace HR_Sys.Models
     public class HR
     {
 
-        public int? hrId { get; set; }
+        public int hrId { get; set; }
 
         [Required(ErrorMessage = "من فضلك ادخل الاسم ")]
 

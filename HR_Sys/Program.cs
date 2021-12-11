@@ -44,11 +44,5 @@ app.MapControllerRoute(
 app.Run();
 
 
-//app.UseSession(ConfigureHostBuilder: s => s.IdleTimeout = System.TimeSpan.FromMinutes(30));
-//app.UseErrorPage();
-//app.UseStaticFiles();
-//app.UseMvc(routes =>
-//{
-//    routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
-//});
+
 
