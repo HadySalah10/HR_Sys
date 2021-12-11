@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using HR_Sys.ViewModels;
-
+using Microsoft.AspNetCore.Session;
 namespace HR_Sys.Controllers
+
 {
     public class HRController : Controller
     {
@@ -135,6 +136,55 @@ namespace HR_Sys.Controllers
             
 
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        
+        }
+
+        [HttpPost]
+        public IActionResult login(HrLoginViewModel user)
+        {
+            if (user != null)
+
+            {
+                var dbUser = HrDb.HRs.SingleOrDefault(u => u.email == user.email && u.password == user.password);
+                if (dbUser != null)
+                {
+
+                    //HttpContext.Session.SetInt32("userId", dbUser.hrId);
+                    HttpContext.Session.SetString("userId", dbUser.password);
+
+
+
+                    return RedirectToAction("index");   
+                    
+
+                }
+                else
+                {
+                    ViewBag.state = "كلمة مرور خاطئة او بريد الكتروني خاطئ";
+                    return View(user);
+
+                }
+
+            }
+            else
+            {
+                ViewBag.state = "من فضلك ادخل اسم مستخدم صالح وكلمة مرور صالحة";
+
+                return View(user);
+            }
+
+
+
+
+
+
+        }
+
+
 
 
 
