@@ -7,10 +7,11 @@ namespace HR_Sys.Controllers
 {
     public class EmployeeAttendanceController : Controller
     {
-        HrDBContext db;
+        HrDBContext _db;
+
         public EmployeeAttendanceController(HrDBContext db)
         {
-            this.db = db;   
+            _db = db;   
 
         }
         public IActionResult Index(int empId)
@@ -20,23 +21,49 @@ namespace HR_Sys.Controllers
        public IActionResult Show()
         {
 
-            return View(db.EmployeesAttendance.ToList());
+            return View(_db.EmployeesAttendance.ToList());
         }
         [HttpPost]
      
 
         public IActionResult Show(IFormFile formFile , [FromServices] IWebHostEnvironment hostingEnvironment)
         {
-            string fileName = $"{hostingEnvironment.WebRootPath}\\files\\{formFile.FileName}";
-            using (FileStream fileStream = System.IO.File.Create(fileName))
+            try
             {
-                formFile.CopyTo(fileStream);
-                fileStream.Flush();
-            }
-            var attendance = this.GetAttencanceList(formFile.FileName);
-
+                string fileName = $"{hostingEnvironment.WebRootPath}\\files\\{formFile.FileName}";
+                using (FileStream fileStream = System.IO.File.Create(fileName))
+                {
+                    formFile.CopyTo(fileStream);
+                    fileStream.Flush();
+                }
+                var attendance = GetAttencanceList(formFile.FileName);
+                ViewBag.Error = "";
+                ViewBag.Path = fileName;
                 return View(attendance);
+
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "البيانات اللي ادخلتها ربما تكون غير صحيحه";
+                return View();
+
+                throw;
+            }
+          
+
         }
+        [HttpPost]
+
+        public IActionResult saveInDataBase(List<EmployeeAttendance> employeeAttendances, IFormFile pathFile)
+        {
+
+
+            return RedirectToAction();
+        }
+
+
+
+
 
         private List<EmployeeAttendance> GetAttencanceList(string fName)
         {
@@ -53,6 +80,7 @@ namespace HR_Sys.Controllers
                         var attendanceTime= reader.GetValue(1).ToString();
                        var departureTime =  reader.GetValue(2).ToString();
                        var isOff = reader.GetValue(3).ToString();
+                       
                         attendance.Add(new EmployeeAttendance()
                         {
                             empId=Convert.ToInt32(id),
@@ -63,6 +91,29 @@ namespace HR_Sys.Controllers
                         });
                     }
                 }
+                attendance = this.generateEmployee(attendance);
+
+            }
+            return attendance;
+        }
+
+        private List<EmployeeAttendance> generateEmployee(List<EmployeeAttendance> attendance)
+        {
+            var idsEmployee = attendance.Select(s => s.empId).ToList();
+            var employees = _db.Employees.Where(a => idsEmployee.Contains(a.id)).ToList();
+            int i = 0;
+            while (i < employees.Count)
+            {
+                for (int j = 0; j < attendance.Count; j++)
+                {
+                    if (employees[i].id == attendance[j].empId)
+                    {
+                        attendance[j].Employee = employees[i];
+
+                    }
+
+                }
+                i++;
 
             }
             return attendance;
