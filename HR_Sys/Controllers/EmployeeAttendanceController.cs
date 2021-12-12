@@ -17,7 +17,7 @@ namespace HR_Sys.Controllers
         }
         public IActionResult Index( )
         {
-            ViewBag.Employees = new SelectList(db.Employees.ToList(), "id", "empName");
+            ViewBag.Employees = new SelectList(_db.Employees.ToList(), "id", "empName");
 
             return View();
         }
