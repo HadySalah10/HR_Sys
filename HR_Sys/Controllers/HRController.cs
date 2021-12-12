@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using HR_Sys.ViewModels;
 using Microsoft.AspNetCore.Session;
+
+
+
 namespace HR_Sys.Controllers
 
 {
@@ -150,13 +153,25 @@ namespace HR_Sys.Controllers
         }
 
         [HttpPost]
-        public IActionResult login(HrLoginViewModel user, bool Remember) { 
+        public IActionResult login(HrLoginViewModel user, bool Remember) 
+        { 
             if (user != null)
 
             {
                 var dbUser = HrDb.HRs.SingleOrDefault(u => u.email == user.email && u.password == user.password);
                 if (dbUser != null)
                 {
+                    if (Remember == true)
+                    {
+                        CookieOptions option = new CookieOptions
+                        {
+                            Expires = DateTime.Now.AddMinutes(1)
+                        };
+
+                        Response.Cookies.Append("userId", dbUser.hrId.ToString(), option);
+
+
+                    }
                     HttpContext.Session.SetInt32("userId", dbUser.hrId);
                     HttpContext.Session.SetString("userPass", dbUser.password);
                     return RedirectToAction("index");   
