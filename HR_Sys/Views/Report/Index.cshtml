@@ -1,4 +1,7 @@
-﻿@model List<EmpReport>;
+﻿@model ReflectionIT.Mvc.Paging.PagingList<EmpReport>;
+@using ReflectionIT.Mvc.Paging;
+@addTagHelper *,ReflectionIT.Mvc.Paging;
+
 
 @{
         ViewData["Title"] = "Salaries Report";
@@ -51,7 +54,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                              
+                             <nav>
+                                 @await this.Component.InvokeAsync("pager",new{PagingList=this.Model})
+                             </nav>
                                     @foreach(var item in Model)
                                     {
                                           <tr>
@@ -78,6 +83,9 @@
                             </tbody>
                 
                         </table>
+                        <nav>
+                            <vc:pager paging-list="@Model"/>
+                        </nav>
                     </div>
                 </div>
             </div>
