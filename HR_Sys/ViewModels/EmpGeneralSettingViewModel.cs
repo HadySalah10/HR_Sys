@@ -11,7 +11,7 @@ namespace HR_Sys.ViewModels
 
              public int id { get; set; }
 
-        [DisplayName(" ساعات الاضافة/ساعة اضافية لكل ساعة اضافة")]
+            [DisplayName(" ساعات الاضافة/ساعة اضافية لكل ساعة اضافة")]
             [Required(ErrorMessage = "يجب ادخال عدد ساعات الاضافة؟")]
             public float requiredExtraHours { get; set; }
             [DisplayName("ساعات الخصم/ساعة مخصومة")]

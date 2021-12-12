@@ -13,16 +13,11 @@ namespace HR_Sys.Controllers
             _db = db;
         }
 
-      
-        public IActionResult Index()
-        {
-            return View(); 
-        }
-         
+    
         public ActionResult EmpGeneralSetting(string ssn)
         {
 
-           var employee=  _db.Employees.Where(sn=>sn.empSsn==ssn).Select(s=>new {s.id,s.empName}).FirstOrDefault();
+            var employee=  _db.Employees.Where(sn=>sn.empSsn==ssn).Select(s=>new {s.id,s.empName}).FirstOrDefault();
             ViewBag.idEmployee = employee;
             ViewBag.nameEmployee = employee;
 
@@ -37,6 +32,30 @@ namespace HR_Sys.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                Employee EMP = _db.Employees.Where(s => s.id == empGeneral.id).FirstOrDefault();
+                EMP.requiredExtraHours = empGeneral.requiredExtraHours;
+                EMP.requiredDeductHours = empGeneral.requiredDeductHours;
+
+                TypesOfVacationsEmp typesOfVacationsEmp = new TypesOfVacationsEmp()
+                {
+                    empId = empGeneral.id,
+                    vacId = 1,
+                    idDays = empGeneral.idDayHolday1
+                   
+                };
+                TypesOfVacationsEmp typesOfVacationsEmp2 = new TypesOfVacationsEmp()
+                {
+                    empId = empGeneral.id,
+                    vacId = 1,
+                    idDays = empGeneral.idDayHolday2
+
+                };
+
+
+
+                _db.SaveChanges();
+
                 RedirectToAction("Index", "Employee");
 
             }
@@ -59,6 +78,25 @@ namespace HR_Sys.Controllers
         {
             return View();
         
+        }
+
+        [HttpPost]
+        public ActionResult EditGeneralSetting(EmpGeneralSettingViewModel empGeneral)
+        {
+            Employee EMP = _db.Employees.Where(s => s.id == empGeneral.id).FirstOrDefault();
+            EMP.requiredExtraHours = empGeneral.requiredExtraHours;
+            EMP.requiredDeductHours = empGeneral.requiredDeductHours;
+            List <TypesOfVacationsEmp> TV = _db.TypesOfVacationsEmps.TakeWhile(n => n.id == empGeneral.id).ToList();
+            TV[0].vacId = 1;
+            TV[1].vacId = 1;
+            TV[0].idDays = empGeneral.idDayHolday1;
+            TV[1].idDays = empGeneral.idDayHolday2;
+
+            _db.SaveChanges();
+
+
+            return RedirectToAction("Index", "Employee");
+
         }
     }
 }
