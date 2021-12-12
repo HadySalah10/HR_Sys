@@ -196,12 +196,12 @@ namespace HR_Sys.Controllers
                     HttpContext.Session.SetString("reportDisplay", dbUser.Valids.reportDisplay.ToString());
                     HttpContext.Session.SetString("reportEdit", dbUser.Valids.reportEdit.ToString());
 
-                    HttpContext.Session.SetString("admin", dbUser.Valids.validationName);
+                    HttpContext.Session.SetString("group", dbUser.Valids.validationName);
 
 
 
 
-                    return RedirectToAction("index");   
+                    return View("welcome");   
                     
 
                 }
