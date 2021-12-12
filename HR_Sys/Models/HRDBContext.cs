@@ -72,7 +72,27 @@ namespace HR_Sys.Models
            reportDelete = true,
            reportDisplay = true,
            id = 1
-       }
+       },
+        new Validations
+        {
+            validationName = "الموظفين",
+            empAdd = true,
+            empEdit = true,
+            empDisplay = true,
+            empDelete = true,
+           
+            id = 2
+        },
+         new Validations
+         {
+             validationName = "الاعدادات العامة",
+             gsAdd = true,
+             gsEdit = true,
+             gsDisplay = true,
+             gsDelete = true,
+
+             id = 3
+         }
 
    );
             modelBuilder.Entity<Days>().HasData(

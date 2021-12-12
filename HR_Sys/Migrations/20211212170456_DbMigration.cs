@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HR_Sys.Migrations
 {
-    public partial class DbMigatin : Migration
+    public partial class DbMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -370,6 +370,7 @@ namespace HR_Sys.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     attendanceTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     departureTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    attendaceDay = table.Column<DateTime>(type: "datetime2", nullable: false),
                     extraHours = table.Column<float>(type: "real", nullable: true),
                     deductHours = table.Column<float>(type: "real", nullable: true),
                     extraAmount = table.Column<float>(type: "real", nullable: true),
@@ -522,6 +523,16 @@ namespace HR_Sys.Migrations
                 table: "Validations",
                 columns: new[] { "id", "attendAdd", "attendDelete", "attendDisplay", "attendEdit", "empAdd", "empDelete", "empDisplay", "empEdit", "gsAdd", "gsDelete", "gsDisplay", "gsEdit", "reportAdd", "reportDelete", "reportDisplay", "reportEdit", "validationName" },
                 values: new object[] { 1, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, "Admin" });
+
+            migrationBuilder.InsertData(
+                table: "Validations",
+                columns: new[] { "id", "attendAdd", "attendDelete", "attendDisplay", "attendEdit", "empAdd", "empDelete", "empDisplay", "empEdit", "gsAdd", "gsDelete", "gsDisplay", "gsEdit", "reportAdd", "reportDelete", "reportDisplay", "reportEdit", "validationName" },
+                values: new object[] { 2, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, "الموظفين" });
+
+            migrationBuilder.InsertData(
+                table: "Validations",
+                columns: new[] { "id", "attendAdd", "attendDelete", "attendDisplay", "attendEdit", "empAdd", "empDelete", "empDisplay", "empEdit", "gsAdd", "gsDelete", "gsDisplay", "gsEdit", "reportAdd", "reportDelete", "reportDisplay", "reportEdit", "validationName" },
+                values: new object[] { 3, false, false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, "الاعدادات العامة" });
 
             migrationBuilder.InsertData(
                 table: "HRs",

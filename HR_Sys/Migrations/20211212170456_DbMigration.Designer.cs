@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HR_Sys.Migrations
 {
     [DbContext(typeof(HrDBContext))]
-    [Migration("20211212085056_DbMigatin")]
-    partial class DbMigatin
+    [Migration("20211212170456_DbMigration")]
+    partial class DbMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -394,6 +394,9 @@ namespace HR_Sys.Migrations
 
                     b.Property<int?>("addBy")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("attendaceDay")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("attendanceTime")
                         .HasColumnType("datetime2");
@@ -1125,6 +1128,48 @@ namespace HR_Sys.Migrations
                             reportDisplay = true,
                             reportEdit = true,
                             validationName = "Admin"
+                        },
+                        new
+                        {
+                            id = 2,
+                            attendAdd = false,
+                            attendDelete = false,
+                            attendDisplay = false,
+                            attendEdit = false,
+                            empAdd = true,
+                            empDelete = true,
+                            empDisplay = true,
+                            empEdit = true,
+                            gsAdd = false,
+                            gsDelete = false,
+                            gsDisplay = false,
+                            gsEdit = false,
+                            reportAdd = false,
+                            reportDelete = false,
+                            reportDisplay = false,
+                            reportEdit = false,
+                            validationName = "الموظفين"
+                        },
+                        new
+                        {
+                            id = 3,
+                            attendAdd = false,
+                            attendDelete = false,
+                            attendDisplay = false,
+                            attendEdit = false,
+                            empAdd = false,
+                            empDelete = false,
+                            empDisplay = false,
+                            empEdit = false,
+                            gsAdd = true,
+                            gsDelete = true,
+                            gsDisplay = true,
+                            gsEdit = true,
+                            reportAdd = false,
+                            reportDelete = false,
+                            reportDisplay = false,
+                            reportEdit = false,
+                            validationName = "الاعدادات العامة"
                         });
                 });
 

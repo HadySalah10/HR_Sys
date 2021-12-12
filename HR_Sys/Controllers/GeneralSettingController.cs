@@ -40,6 +40,7 @@ namespace HR_Sys.Controllers
                 TypesOfVacationsEmp typesOfVacationsEmp = new TypesOfVacationsEmp()
                 {
                     empId = empGeneral.id,
+                    // الاجازات الاسبوعية
                     vacId = 1,
                     idDays = empGeneral.idDayHolday1
                    
@@ -47,7 +48,7 @@ namespace HR_Sys.Controllers
                 TypesOfVacationsEmp typesOfVacationsEmp2 = new TypesOfVacationsEmp()
                 {
                     empId = empGeneral.id,
-                    vacId = 1,
+                    vacId = 1,  
                     idDays = empGeneral.idDayHolday2
 
                 };
