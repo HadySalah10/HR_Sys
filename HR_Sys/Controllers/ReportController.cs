@@ -13,11 +13,11 @@ namespace HR_Sys.Controllers
             this.db = db;
 
         }
-        public async Task<IActionResult> Index(int page=1)
+        public async Task<IActionResult> Index()
         {
-            var item = db.EmpReports.AsNoTracking().OrderBy(p => p.empId);
-            var model = await PagingList<EmpReport>.CreateAsync(item, 2, page);
-            return View(model);
+            //var item = db.EmpReports.AsNoTracking().OrderBy(p => p.empId);
+            //var model = await PagingList<EmpReport>.CreateAsync(item, 2, page);
+            return View(db.EmpReports.ToList());
         }
         public IActionResult invoice(int empId)
         {

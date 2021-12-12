@@ -54,9 +54,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             <nav>
+                            @* <nav>
                                  @await this.Component.InvokeAsync("pager",new{PagingList=this.Model})
-                             </nav>
+                             </nav>*@
                                     @foreach(var item in Model)
                                     {
                                           <tr>
@@ -83,9 +83,9 @@
                             </tbody>
                 
                         </table>
-                        <nav>
+                       @* <nav>
                             <vc:pager paging-list="@Model"/>
-                        </nav>
+                        </nav>*@
                     </div>
                 </div>
             </div>
