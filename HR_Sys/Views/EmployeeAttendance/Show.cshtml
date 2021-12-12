@@ -22,21 +22,23 @@
                     </div>
                 </div>
                 <div class="card-body collapse show">
+                   
                     <div class="card-block card-dashboard">
-                         <div class="col-lg-12 d-flex" style="flex-direction:row-reverse">
-                             <button type="button" class="btn btn-success " style="margin-right: 15px;  padding: 0px 40px;">
-                                      excel
-                                    </button>
-                                    <button type="button" class="btn btn-success " style="    height: 40px;">
-                                       <a asp-controller="employeeAttendance" asp-action="index">حضورالموظف</a>
-                                    </button>
+                         <form asp-controller="EmployeeAttendance" asp-action="Show" method="post" enctype="multipart/form-data">
+                        
+                             <div class="col-lg-12 d-flex" style="flex-direction:row-reverse">
+                                 <input type="file" class="btn btn-success " id="fileupload" name="formFile" style="margin-right: 15px;  padding: 0px 40px;" />
+                                   
+                                        <button type="submit">Upload</button>
                                     
 
-                         </div>
-                       @* <p class="card-text text-right">تم تمكين معظم ميزات  افتراضيًا ،
-                            لذلك كل ما عليك القيام به لاستخدامه مع قدراتك هو استدعاء البناء</p>
+                             </div>
 
-                   *@        
+                     </form>
+
+                    <button type="button" class="btn btn-success " style="    height: 40px;">
+                                           <a asp-controller="employeeAttendance" asp-action="index">حضورالموظف</a>
+                                        </button>
                             <div class="row"><div class="col-sm-12 col-md-3"><div class="dataTables_length" id="DataTables_Table_0_length"><label>عرض التاريخ
                             <input type="date" 
                                 class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0">    
@@ -50,7 +52,12 @@
                                
                               
                             </div> 
-                        <table class="table table-striped table-bordered zero-configuration mt-40 text-right">
+                            @if(Model.Count()>0){
+                                
+                            
+
+
+                            <table class="table table-striped table-bordered zero-configuration mt-40 text-right">
                             <thead>
                                 <tr>
                                     <th>اسم</th>
@@ -66,13 +73,12 @@
                                  
                                     @foreach (var item in Model)
                                     {
-                                         <td>@item.Employee.empName</td>
+                                         <td>@item.empId</td>
                                     <td>@item.attendanceTime</td>
                                
                                     <td>@item.departureTime</td>
                                
-                                    <td>@item.extraHours</td>
-                                    <th>@item.deductHours</th>
+                                   
                                     <th><button type="button" class="btn btn-danger mr-1">
                                       <i class="icon-trash"></i> حذف
                                     </button></th>
@@ -83,7 +89,7 @@
                                 </tr>
                                 </tbody>
                                 </table>
-
+                                }
                          </div>
                 </div>
               
@@ -94,4 +100,3 @@
 
 </body>
 </html>
-

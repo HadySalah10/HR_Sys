@@ -12,6 +12,5 @@ namespace HR_Sys.Models
         public virtual NameAnnualHoliday NameAnnualHoliday { get; set; }
         public DateTime dateHoliday { get; set; }
 
-        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

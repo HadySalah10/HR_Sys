@@ -138,7 +138,6 @@ namespace HR_Sys.Models
        nationalityId = 1,
        phoneNum = "01119959346",
        phoneNum2 = "01554904905",
-       annualHolidayId = 1
        
    }
 

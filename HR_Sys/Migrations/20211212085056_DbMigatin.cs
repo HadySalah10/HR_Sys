@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HR_Sys.Migrations
 {
-    public partial class HRsystem : Migration
+    public partial class DbMigatin : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -324,7 +324,6 @@ namespace HR_Sys.Migrations
                     phoneNum2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     deptid = table.Column<int>(type: "int", nullable: false),
                     nationalityId = table.Column<int>(type: "int", nullable: false),
-                    annualHolidayId = table.Column<int>(type: "int", nullable: false),
                     editBy = table.Column<int>(type: "int", nullable: true),
                     deletedBy = table.Column<int>(type: "int", nullable: true),
                     addBy = table.Column<int>(type: "int", nullable: true),
@@ -334,12 +333,6 @@ namespace HR_Sys.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Employees_annualHoliday_annualHolidayId",
-                        column: x => x.annualHolidayId,
-                        principalTable: "annualHoliday",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Employees_Departments_deptid",
                         column: x => x.deptid,
@@ -620,14 +613,14 @@ namespace HR_Sys.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "id", "addBy", "deletedBy", "deptid", "editBy", "empAddress", "empDateOfBirth", "empGender", "empGrossSalary", "empHireDate", "empName", "empNetSalary", "empNonNetSalary", "empSsn", "isDeleted", "lastEdit", "nationalityId", "phoneNum", "phoneNum2", "requiredAttendanceTime", "requiredDaysPerMonth", "requiredDeductHours", "requiredDepartureTime", "requiredExtraHours", "requiredSalaryPerHour" },
+                values: new object[] { 1, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User", 600.20000000000005, 100.2, "29705251400191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 5, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m });
+
+            migrationBuilder.InsertData(
                 table: "annualHoliday",
                 columns: new[] { "id", "addBy", "dateHoliday", "deletedBy", "editBy", "idHoliday", "isDeleted", "lastEdit" },
                 values: new object[] { 1, 1, new DateTime(2021, 1, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, 1, false, true });
-
-            migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "id", "addBy", "annualHolidayId", "deletedBy", "deptid", "editBy", "empAddress", "empDateOfBirth", "empGender", "empGrossSalary", "empHireDate", "empName", "empNetSalary", "empNonNetSalary", "empSsn", "isDeleted", "lastEdit", "nationalityId", "phoneNum", "phoneNum2", "requiredAttendanceTime", "requiredDaysPerMonth", "requiredDeductHours", "requiredDepartureTime", "requiredExtraHours", "requiredSalaryPerHour" },
-                values: new object[] { 1, 1, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User", 600.20000000000005, 100.2, "29705251400191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 5, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m });
 
             migrationBuilder.InsertData(
                 table: "TypesOfVacationsEmps",
@@ -693,11 +686,6 @@ namespace HR_Sys.Migrations
                 name: "IX_Employees_addBy",
                 table: "Employees",
                 column: "addBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employees_annualHolidayId",
-                table: "Employees",
-                column: "annualHolidayId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_deletedBy",
@@ -863,6 +851,9 @@ namespace HR_Sys.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "annualHoliday");
+
+            migrationBuilder.DropTable(
                 name: "EmployeesAttendance");
 
             migrationBuilder.DropTable(
@@ -870,6 +861,9 @@ namespace HR_Sys.Migrations
 
             migrationBuilder.DropTable(
                 name: "TypesOfVacationsEmps");
+
+            migrationBuilder.DropTable(
+                name: "NameAnnualHoliday");
 
             migrationBuilder.DropTable(
                 name: "Months");
@@ -884,16 +878,10 @@ namespace HR_Sys.Migrations
                 name: "VacationTypes");
 
             migrationBuilder.DropTable(
-                name: "annualHoliday");
-
-            migrationBuilder.DropTable(
                 name: "Departments");
 
             migrationBuilder.DropTable(
                 name: "Nationalities");
-
-            migrationBuilder.DropTable(
-                name: "NameAnnualHoliday");
 
             migrationBuilder.DropTable(
                 name: "HRs");

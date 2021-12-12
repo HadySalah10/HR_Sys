@@ -89,11 +89,8 @@ namespace HR_Sys.Models
         public int nationalityId { get; set; }
         public virtual Nationality Nationality { get; set; }
 
-        //relation with annual Holidays table
 
-        [ForeignKey("AnnualHoliday")]
-        public int annualHolidayId { get; set; }
-        public virtual annualHoliday AnnualHoliday { get; set; }
+     
 
         //relation with emp_report table
         public virtual ICollection<EmpReport> EmpReports { get; set; }
