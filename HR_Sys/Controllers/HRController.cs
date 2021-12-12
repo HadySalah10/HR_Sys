@@ -165,15 +165,42 @@ namespace HR_Sys.Controllers
                     {
                         CookieOptions option = new CookieOptions
                         {
-                            Expires = DateTime.Now.AddMinutes(1)
+                            Expires = DateTime.Now.AddMonths(3)
                         };
 
                         Response.Cookies.Append("userId", dbUser.hrId.ToString(), option);
 
 
                     }
+
+
                     HttpContext.Session.SetInt32("userId", dbUser.hrId);
-                    HttpContext.Session.SetString("userPass", dbUser.password);
+
+                    HttpContext.Session.SetString("attendAdd", dbUser.Valids.attendAdd.ToString());
+                    HttpContext.Session.SetString("attendDelete", dbUser.Valids.attendDelete.ToString());
+                    HttpContext.Session.SetString("attendDisplay", dbUser.Valids.attendDisplay.ToString());
+                    HttpContext.Session.SetString("attendEdit", dbUser.Valids.attendEdit.ToString());
+
+                    HttpContext.Session.SetString("empAdd", dbUser.Valids.empAdd.ToString());
+                    HttpContext.Session.SetString("empDisplay", dbUser.Valids.empDisplay.ToString());
+                    HttpContext.Session.SetString("empDelete", dbUser.Valids.empDelete.ToString());
+                    HttpContext.Session.SetString("empEdit", dbUser.Valids.empEdit.ToString());
+
+                    HttpContext.Session.SetString("gsAdd", dbUser.Valids.gsAdd.ToString());
+                    HttpContext.Session.SetString("gsDisplay", dbUser.Valids.gsDisplay.ToString());
+                    HttpContext.Session.SetString("gsDelete", dbUser.Valids.gsDelete.ToString());
+                    HttpContext.Session.SetString("gsEdit", dbUser.Valids.gsEdit.ToString());
+
+                    HttpContext.Session.SetString("reportAdd", dbUser.Valids.reportAdd.ToString());
+                    HttpContext.Session.SetString("reportDelete", dbUser.Valids.reportDelete.ToString());
+                    HttpContext.Session.SetString("reportDisplay", dbUser.Valids.reportDisplay.ToString());
+                    HttpContext.Session.SetString("reportEdit", dbUser.Valids.reportEdit.ToString());
+
+                    HttpContext.Session.SetString("admin", dbUser.Valids.validationName);
+
+
+
+
                     return RedirectToAction("index");   
                     
 

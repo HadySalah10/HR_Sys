@@ -2,6 +2,7 @@
 using HR_Sys.Models;
 using Microsoft.AspNetCore.Http;
 using ExcelDataReader;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HR_Sys.Controllers
 {
@@ -13,8 +14,10 @@ namespace HR_Sys.Controllers
             this.db = db;   
 
         }
-        public IActionResult Index(int empId)
+        public IActionResult Index( )
         {
+            ViewBag.Employees = new SelectList(db.Employees.ToList(), "id", "empName");
+
             return View();
         }
        public IActionResult Show()

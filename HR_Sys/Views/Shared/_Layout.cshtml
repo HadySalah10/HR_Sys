@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Session
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
+
+
+<!DOCTYPE html>
 <html class="loading" dir="rtl" lang="ar">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
@@ -59,42 +66,49 @@
                            <li>
                                <a asp-action="Create" asp-controller="Employee" class="menu-item">إضافة موظف</a>
                            </li>
+                           <li class=" nav-item">
+                                <a asp-controller="employeeAttendance" asp-action="show">
+                                     <span data-i18n="" class="menu-title"> حضور الموظفين</span>
+                                                                       
+                                     <i class="icon-support"></i>
+                                </a>
+                           </li>
+                           <li class=" nav-item">
+                                <a asp-controller="employeeAttendance" asp-action="index">
+                                    <span data-i18n="" class="menu-title"> ادخال حضور موظف</span>
+
+                                    <i class="icon-support"></i>
+                                </a>
+                           </li>
                         </ul>
                      </li>
-                     <li class=" nav-item"><a asp-action="registerHr" asp-controller="HR">
-                         <i class="icon-note"></i>                 
-                         <span data-i18n="" class="menu-title">إضافة مستخدم</span>
-                           
-                     </a>
-                     </li>
+                     
                      <li class=" nav-item">
                          <a asp-controller="GeneralSetting" asp-action="empGeneralSetting">
-                              <span data-i18n="" class="menu-title"> الإعدادات العامة</span>
+                              <span data-i18n="" class="menu-title"> الإعدادات الموظف</span>
                              <i class="icon-pie-chart"></i>
                             </a>
                      </li>
-                     <li class=" nav-item">
-                         <a href="attendance_ departure.html">
-                                <span data-i18n="" class="menu-title">
-                        حضور الموظفين</span>
-                             <i class="icon-support"></i>
-                          </a>
-                     </li>
-                      <li class=" nav-item">
-                         <a asp-controller="employeeAttendance" asp-action="show">
-                                <span data-i18n="" class="menu-title">
-                        حضورالموظف</span>
-                             <i class="icon-support"></i>
-                          </a>
-                     </li>
+                     
                      <li class=" nav-item">
                          <a asp-controller="Report" asp-action="index"><span data-i18n="" class="menu-title">تقرير الرواتب </span><i class="icon-layers"></i></a>
                      </li>
                      <li class=" nav-item"><a asp-controller="hr"><span data-i18n="" class="menu-title">المستخدمون</span><i class="icon-users"></i></a>
                      </li>
-                     <li class=" nav-item"><a asp-action="AddValidation" asp-controller="HR"><span data-i18n="" class="menu-title">الصلاحيات</span><i class="icon-equalizer"></i></a>
-                     </li>
-                    
+                  
+                     @if(HttpContextAccessor.HttpContext.Session.GetString("admin")!=null)
+                        {
+
+                                 <li class=" nav-item">
+                                     <a asp-action="AddValidation" asp-controller="HR"><span data-i18n="" class="menu-title">الصلاحيات</span><i class="icon-equalizer"></i></a>
+                                 </li>
+                                 <li class=" nav-item"><a asp-action="registerHr" asp-controller="HR">
+                                 <i class="icon-note"></i>                 
+                                    <span data-i18n="" class="menu-title">إضافة مستخدم</span>
+                           
+                                         </a>
+                                </li>
+                        }
                      <li class=" nav-item"><a asp-action="Login" asp-controller="hr"><span data-i18n="" class="menu-title"> تسجيل الدخول</span><i class="icon-pin"></i></a>
                      </li>
                   </ul>
