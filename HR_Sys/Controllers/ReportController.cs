@@ -15,9 +15,14 @@ namespace HR_Sys.Controllers
         }
         public  IActionResult Index()
         {
-            //var item = db.EmpReports.AsNoTracking().OrderBy(p => p.empId);
-            //var model = await PagingList<EmpReport>.CreateAsync(item, 2, page);
-            return View(db.EmpReports.ToList());
+            if (HttpContext.Session.GetString("reportDisplay") == "true")
+            {
+
+                //var item = db.EmpReports.AsNoTracking().OrderBy(p => p.empId);
+                //var model = await PagingList<EmpReport>.CreateAsync(item, 2, page);
+                return View(db.EmpReports.ToList());
+            }
+            return View("ErrorPage");
         }
         public IActionResult invoice(int empId)
         {
