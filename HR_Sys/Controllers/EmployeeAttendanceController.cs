@@ -17,14 +17,20 @@ namespace HR_Sys.Controllers
         }
         public IActionResult Index( )
         {
-            ViewBag.Employees = new SelectList(_db.Employees.ToList(), "id", "empName");
+            if (HttpContext.Session.GetString("attendAdd") == "True") { 
+                ViewBag.Employees = new SelectList(_db.Employees.ToList(), "id", "empName");
 
             return View();
+                }
+            return View("ErrorPage");
         }
        public IActionResult Show()
         {
-
-            return View(_db.EmployeesAttendance.ToList());
+            if (HttpContext.Session.GetString("attendDisplay") == "True")
+            {
+                return View(_db.EmployeesAttendance.ToList());
+            }
+            return View("ErrorPage");
         }
         [HttpPost]
      
