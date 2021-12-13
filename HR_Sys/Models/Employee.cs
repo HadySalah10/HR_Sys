@@ -11,8 +11,6 @@ namespace HR_Sys.Models
     public class Employee : CommonProps
     {
 
-      
-
         [Required(ErrorMessage ="*")]
         [StringLength(50,MinimumLength =5)]
         public string empName { get; set; }

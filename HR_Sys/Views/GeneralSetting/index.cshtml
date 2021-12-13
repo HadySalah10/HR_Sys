@@ -1,0 +1,54 @@
+﻿@model IEnumerable<HR_Sys.ViewModels.EmpGeneralSettingViewModel>
+
+@{
+    ViewData["Title"] = "index";
+}
+
+<h1 class="text-center">GeneralSetting</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="container">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.requiredExtraHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.requiredDeductHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idDayHolday1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idDayHolday2)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.requiredExtraHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.requiredDeductHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idDayHolday1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idDayHolday2)
+            </td>
+            <td>
+                <a asp-action="EditGeneralSetting" asp-route-id="@item.id" class="btn btn-primary">Edit</a> 
+                <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger"> Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
