@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using HR_Sys.ViewModels;
 
 namespace HR_Sys.Models
 {
@@ -17,14 +18,11 @@ namespace HR_Sys.Models
         public virtual DbSet<Nationality> Nationalities { get; set; }
         public virtual DbSet<VacationType> VacationTypes { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
-
         public virtual DbSet<TypesOfVacationsEmp> TypesOfVacationsEmps { get; set; }
         public virtual DbSet<Validations> Validations { get; set; }
         public virtual DbSet<Months> Months { get; set; }
         public virtual DbSet<Days> Days { get; set; }
 
-
-        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // dummy Data for testing 
@@ -178,5 +176,7 @@ namespace HR_Sys.Models
 
 
         }
+
+        public DbSet<HR_Sys.ViewModels.EmpGeneralSettingViewModel> EmpGeneralSettingViewModel { get; set; }
     }
 }

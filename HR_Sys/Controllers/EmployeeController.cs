@@ -90,10 +90,6 @@ namespace HR_Sys.Controllers
                     ViewBag.nationalities = new SelectList(_db.Nationalities.ToList(), "id", "nationalityName");
                     ViewBag.departments = new SelectList(_db.Departments.ToList(), "id", "deptName");
                     return View();
-                 
-
-
-
                 }
             }
             catch
