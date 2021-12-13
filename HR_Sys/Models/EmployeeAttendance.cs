@@ -14,6 +14,8 @@ namespace HR_Sys.Models
         [Required(ErrorMessage = "*")]
 
         public DateTime departureTime { get; set; }
+        public DateTime attendaceDay { get; set; }
+
 
         public float? extraHours { get; set; }
         public float? deductHours { get; set; }

@@ -3,6 +3,7 @@ using HR_Sys.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Session;
 
 namespace HR_Sys.Controllers
 {
@@ -20,18 +21,30 @@ namespace HR_Sys.Controllers
         public IActionResult Index()
 
         {
+            if (HttpContext.Session.GetString("empDisplay") =="True")
+            { return View(_db.Employees.ToList()); }
 
-            return View(_db.Employees.ToList());
+              return View("ErrorPage");
+
+
+
         }
 
 
         // GET: EmployeeController/Create
         public IActionResult Create()
         {
-            ViewBag.nationalities = new SelectList(_db.Nationalities.ToList(), "id", "nationalityName");
-            ViewBag.departments = new SelectList(_db.Departments.ToList(), "id", "deptName");
+            if (HttpContext.Session.GetString("empAdd") == "True")
+            {
+                ViewBag.nationalities = new SelectList(_db.Nationalities.ToList(), "id", "nationalityName");
+                ViewBag.departments = new SelectList(_db.Departments.ToList(), "id", "deptName");
 
-            return View();
+                return View();
+            }
+
+            return View("ErrorPage");
+
+
         }
 
         // POST: EmployeeController/Create
@@ -77,10 +90,6 @@ namespace HR_Sys.Controllers
                     ViewBag.nationalities = new SelectList(_db.Nationalities.ToList(), "id", "nationalityName");
                     ViewBag.departments = new SelectList(_db.Departments.ToList(), "id", "deptName");
                     return View();
-                 
-
-
-
                 }
             }
             catch
@@ -94,34 +103,43 @@ namespace HR_Sys.Controllers
         // GET: EmployeeController/Edit/5
         public IActionResult Edit(int id)
         {
-            var Employee = _db.Employees.Find(id);
-            CreateEmployeeViewModel employeeViewMOdel = new CreateEmployeeViewModel
+            if (HttpContext.Session.GetString("empEdit") == "True")
             {
-               EmployeeID = Employee.id,
-               empName = Employee.empName,
-               empAddress = Employee.empAddress,
-               empGender=Employee.empGender,
-               empDateOfBirth=Employee.empDateOfBirth,
-               empHireDate=Employee.empHireDate,
-               empGrossSalary=Employee.empGrossSalary,
-               empNetSalary=Employee.empNetSalary,
-               empNonNetSalary=Employee.empNonNetSalary,
-               empSsn=Employee.empSsn,
-               requiredAttendanceTime=Employee.requiredAttendanceTime,
-               requiredDaysPerMonth=Employee.requiredDaysPerMonth,
-               requiredDepartureTime=Employee.requiredDepartureTime,
-               requiredSalaryPerHour=Employee.requiredSalaryPerHour,  
-               deptid=Employee.deptid,
-               nationalityId=Employee.nationalityId,
-               phoneNum=Employee.phoneNum,
-               phoneNum2=Employee.phoneNum2
 
-            };
-            ViewBag.nationalities = new SelectList(_db.Nationalities.ToList(), "id", "nationalityName");
-            
-            ViewBag.departments = new SelectList(_db.Departments.ToList(), "id", "deptName");
 
-            return View(employeeViewMOdel);
+                var Employee = _db.Employees.Find(id);
+                CreateEmployeeViewModel employeeViewMOdel = new CreateEmployeeViewModel
+                {
+                    EmployeeID = Employee.id,
+                    empName = Employee.empName,
+                    empAddress = Employee.empAddress,
+                    empGender = Employee.empGender,
+                    empDateOfBirth = Employee.empDateOfBirth,
+                    empHireDate = Employee.empHireDate,
+                    empGrossSalary = Employee.empGrossSalary,
+                    empNetSalary = Employee.empNetSalary,
+                    empNonNetSalary = Employee.empNonNetSalary,
+                    empSsn = Employee.empSsn,
+                    requiredAttendanceTime = Employee.requiredAttendanceTime,
+                    requiredDaysPerMonth = Employee.requiredDaysPerMonth,
+                    requiredDepartureTime = Employee.requiredDepartureTime,
+                    requiredSalaryPerHour = Employee.requiredSalaryPerHour,
+                    deptid = Employee.deptid,
+                    nationalityId = Employee.nationalityId,
+                    phoneNum = Employee.phoneNum,
+                    phoneNum2 = Employee.phoneNum2
+
+                };
+                ViewBag.nationalities = new SelectList(_db.Nationalities.ToList(), "id", "nationalityName");
+
+                ViewBag.departments = new SelectList(_db.Departments.ToList(), "id", "deptName");
+
+                return View(employeeViewMOdel);
+            }
+
+            return View("ErrorPage");
+
+
         }
 
         // POST: EmployeeController/Edit/5
@@ -173,15 +191,22 @@ namespace HR_Sys.Controllers
         // GET: EmployeeController/Delete/5
         public IActionResult Delete(int id)
         {
-            var check = _db.Employees.Find(id);
-            if (check.id>0|| check!=null )
-                _db.Employees.Remove(check);
-            _db.SaveChanges();
+            if (HttpContext.Session.GetString("empDelete") == "True")
+            {
 
-          return   RedirectToAction("Index");
 
-            
-            
+                var check = _db.Employees.Find(id);
+                if (check.id > 0 || check != null)
+                    _db.Employees.Remove(check);
+                _db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            return View("ErrorPage");
+
+
+
+
         }
 
 

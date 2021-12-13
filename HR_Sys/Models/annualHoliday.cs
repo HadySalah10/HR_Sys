@@ -25,6 +25,5 @@ namespace HR_Sys.Models
         [DisplayName("تاريخ الأجازه")]
         public DateTime? dateHoliday { get; set; }
 
-        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

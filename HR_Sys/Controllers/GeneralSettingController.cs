@@ -13,16 +13,17 @@ namespace HR_Sys.Controllers
             _db = db;
         }
 
-      
-        public IActionResult Index()
+        public ActionResult index()
         {
-            return View(); 
+
+            return View(new List<EmpGeneralSettingViewModel>());
         }
-         
+
+    
         public ActionResult EmpGeneralSetting(string ssn)
         {
 
-           var employee=  _db.Employees.Where(sn=>sn.empSsn==ssn).Select(s=>new {s.id,s.empName}).FirstOrDefault();
+            var employee=  _db.Employees.Where(sn=>sn.empSsn==ssn).Select(s=>new {s.id,s.empName}).FirstOrDefault();
             ViewBag.idEmployee = employee;
             ViewBag.nameEmployee = employee;
 
@@ -37,6 +38,31 @@ namespace HR_Sys.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                Employee EMP = _db.Employees.Where(s => s.id == empGeneral.id).FirstOrDefault();
+                EMP.requiredExtraHours = empGeneral.requiredExtraHours;
+                EMP.requiredDeductHours = empGeneral.requiredDeductHours;
+
+                TypesOfVacationsEmp typesOfVacationsEmp = new TypesOfVacationsEmp()
+                {
+                    empId = empGeneral.id,
+                    // الاجازات الاسبوعية
+                    vacId = 1,
+                    idDays = empGeneral.idDayHolday1
+                   
+                };
+                TypesOfVacationsEmp typesOfVacationsEmp2 = new TypesOfVacationsEmp()
+                {
+                    empId = empGeneral.id,
+                    vacId = 1,  
+                    idDays = empGeneral.idDayHolday2
+
+                };
+
+
+
+                _db.SaveChanges();
+
                 RedirectToAction("Index", "Employee");
 
             }
@@ -59,6 +85,28 @@ namespace HR_Sys.Controllers
         {
             return View();
         
+        }
+
+        [HttpPost]
+        public ActionResult EditGeneralSetting(EmpGeneralSettingViewModel empGeneral)
+        {
+            EmpGeneralSettingViewModel obj = _db.EmpGeneralSettingViewModel.Where(n => n.id == empGeneral.id).FirstOrDefault();
+            obj.requiredExtraHours = empGeneral.requiredExtraHours; 
+            obj.requiredDeductHours = empGeneral.requiredDeductHours;   
+            obj.idDayHolday1 = empGeneral.idDayHolday1; 
+            obj.idDayHolday2 = empGeneral.idDayHolday2;
+            _db.SaveChanges();
+
+            return RedirectToAction("Index", "Employee");
+
+        }
+        public ActionResult delete (int id)
+        {
+            EmpGeneralSettingViewModel obj = _db.EmpGeneralSettingViewModel.Find (id);
+            _db.EmpGeneralSettingViewModel.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("index");
+
         }
     }
 }

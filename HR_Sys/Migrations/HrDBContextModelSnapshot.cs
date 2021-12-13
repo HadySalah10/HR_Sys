@@ -263,9 +263,6 @@ namespace HR_Sys.Migrations
                     b.Property<int?>("addBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("annualHolidayId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("deletedBy")
                         .HasColumnType("int");
 
@@ -346,8 +343,6 @@ namespace HR_Sys.Migrations
 
                     b.HasIndex("addBy");
 
-                    b.HasIndex("annualHolidayId");
-
                     b.HasIndex("deletedBy");
 
                     b.HasIndex("deptid");
@@ -363,7 +358,6 @@ namespace HR_Sys.Migrations
                         {
                             id = 1,
                             addBy = 1,
-                            annualHolidayId = 1,
                             deptid = 1,
                             empAddress = "كوكب الارض",
                             empDateOfBirth = new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -398,6 +392,9 @@ namespace HR_Sys.Migrations
 
                     b.Property<int?>("addBy")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("attendaceDay")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("attendanceTime")
                         .HasColumnType("datetime2");
@@ -1129,6 +1126,48 @@ namespace HR_Sys.Migrations
                             reportDisplay = true,
                             reportEdit = true,
                             validationName = "Admin"
+                        },
+                        new
+                        {
+                            id = 2,
+                            attendAdd = false,
+                            attendDelete = false,
+                            attendDisplay = false,
+                            attendEdit = false,
+                            empAdd = true,
+                            empDelete = true,
+                            empDisplay = true,
+                            empEdit = true,
+                            gsAdd = false,
+                            gsDelete = false,
+                            gsDisplay = false,
+                            gsEdit = false,
+                            reportAdd = false,
+                            reportDelete = false,
+                            reportDisplay = false,
+                            reportEdit = false,
+                            validationName = "الموظفين"
+                        },
+                        new
+                        {
+                            id = 3,
+                            attendAdd = false,
+                            attendDelete = false,
+                            attendDisplay = false,
+                            attendEdit = false,
+                            empAdd = false,
+                            empDelete = false,
+                            empDisplay = false,
+                            empEdit = false,
+                            gsAdd = true,
+                            gsDelete = true,
+                            gsDisplay = true,
+                            gsEdit = true,
+                            reportAdd = false,
+                            reportDelete = false,
+                            reportDisplay = false,
+                            reportEdit = false,
+                            validationName = "الاعدادات العامة"
                         });
                 });
 
@@ -1209,12 +1248,6 @@ namespace HR_Sys.Migrations
                         .WithMany("EmployeesAdd")
                         .HasForeignKey("addBy");
 
-                    b.HasOne("HR_Sys.Models.annualHoliday", "AnnualHoliday")
-                        .WithMany("Employees")
-                        .HasForeignKey("annualHolidayId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("HR_Sys.Models.HR", "Delete")
                         .WithMany("EmployeesDelete")
                         .HasForeignKey("deletedBy");
@@ -1236,8 +1269,6 @@ namespace HR_Sys.Migrations
                         .IsRequired();
 
                     b.Navigation("Add");
-
-                    b.Navigation("AnnualHoliday");
 
                     b.Navigation("Delete");
 
@@ -1452,11 +1483,6 @@ namespace HR_Sys.Migrations
                     b.Navigation("Delete");
 
                     b.Navigation("edit");
-                });
-
-            modelBuilder.Entity("HR_Sys.Models.annualHoliday", b =>
-                {
-                    b.Navigation("Employees");
                 });
 
             modelBuilder.Entity("HR_Sys.Models.Days", b =>

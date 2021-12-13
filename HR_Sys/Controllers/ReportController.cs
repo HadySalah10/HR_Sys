@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿ using Microsoft.AspNetCore.Mvc;
 using HR_Sys.Models;
+using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 
 namespace HR_Sys.Controllers
 {
@@ -11,9 +13,16 @@ namespace HR_Sys.Controllers
             this.db = db;
 
         }
-        public IActionResult Index()
+        public  IActionResult Index()
         {
-            return View(db.EmpReports.ToList());
+            if (HttpContext.Session.GetString("reportDisplay") == "true")
+            {
+
+                //var item = db.EmpReports.AsNoTracking().OrderBy(p => p.empId);
+                //var model = await PagingList<EmpReport>.CreateAsync(item, 2, page);
+                return View(db.EmpReports.ToList());
+            }
+            return View("ErrorPage");
         }
         public IActionResult invoice(int empId)
         {

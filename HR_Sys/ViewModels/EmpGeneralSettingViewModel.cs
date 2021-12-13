@@ -11,7 +11,7 @@ namespace HR_Sys.ViewModels
 
              public int id { get; set; }
 
-        [DisplayName(" ساعات الاضافة/ساعة اضافية لكل ساعة اضافة")]
+            [DisplayName(" ساعات الاضافة/ساعة اضافية لكل ساعة اضافة")]
             [Required(ErrorMessage = "يجب ادخال عدد ساعات الاضافة؟")]
             public float requiredExtraHours { get; set; }
             [DisplayName("ساعات الخصم/ساعة مخصومة")]
@@ -23,7 +23,7 @@ namespace HR_Sys.ViewModels
 
             public int idDayHolday1 { get; set; }
             [DisplayName("يوم الاجازة الرسمي 2")]
-            [Required(ErrorMessage = "يجب ادخال يوم الاجازة الرسمي ")]
+            //[Required(ErrorMessage = "يجب ادخال يوم الاجازة الرسمي ")]
 
             public int idDayHolday2 { get; set; }
     }
