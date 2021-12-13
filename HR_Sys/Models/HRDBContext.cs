@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using HR_Sys.Models;
 
 namespace HR_Sys.Models
 {
@@ -22,6 +23,8 @@ namespace HR_Sys.Models
         public virtual DbSet<Validations> Validations { get; set; }
         public virtual DbSet<Months> Months { get; set; }
         public virtual DbSet<Days> Days { get; set; }
+        public virtual DbSet<annualHoliday> AnnualHolidays { get; set; }
+        public virtual DbSet<NameAnnualHoliday> NameAnnualHolidays { get; set; }
 
 
         
@@ -43,7 +46,9 @@ namespace HR_Sys.Models
             modelBuilder.Entity<NameAnnualHoliday>().HasData(
              new NameAnnualHoliday { id = 1, nameHoliday = "عيد الغطاس",  addBy = 1, lastEdit = true },
              new NameAnnualHoliday { id = 2, nameHoliday = "عيد الاضحي", addBy = 1, lastEdit = true },
-             new NameAnnualHoliday { id = 3, nameHoliday = "عيد الفطر", addBy = 1, lastEdit = true }
+             new NameAnnualHoliday { id = 3, nameHoliday = "عيد الفطر", addBy = 1, lastEdit = true },
+             new NameAnnualHoliday { id = 4, nameHoliday = "عيد العمال", addBy = 1, lastEdit = true },
+             new NameAnnualHoliday { id = 5, nameHoliday = "عيد تحرير سيناء", addBy = 1, lastEdit = true }
            
 
          );
@@ -159,5 +164,9 @@ namespace HR_Sys.Models
 
 
         }
+
+
+        
+        public DbSet<HR_Sys.Models.annualHoliday> annualHoliday { get; set; }
     }
 }

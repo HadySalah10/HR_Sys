@@ -1,0 +1,46 @@
+﻿@model HR_Sys.Models.annualHoliday
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center text-bold"> الأجازات الرسميه</h1>
+
+<hr />
+
+<form asp-action="Edit" method="post">
+    <table class="table">
+        <div class="row">
+             <div class="col-md-6">
+                 <tr class="form-group">
+                     <td><input asp-for="idHoliday"  type="hidden" class="form-control" /></td>
+                     <td><label asp-for="idHoliday" class="control-label"></label></td>
+                     <td>
+                     <select asp-for="idHoliday"  class="form-control pl-5" asp-items="ViewBag.NameAnnualHoliday">
+                     </select>
+                     </td>                                
+                     <td> <span asp-validation-for="idHoliday" class="text-danger"></span></td>
+                     
+                     <td><label asp-for="dateHoliday" class="control-label"> </label></td>
+                     <td><input type="date" asp-for="dateHoliday" class="form-control" /></td>
+                     <td><span asp-validation-for="dateHoliday" class="text-danger"></span></td>
+                 </tr>
+             </div>
+        </div> 
+    </table>
+    <br />
+    <br />
+    <div class="form-group text-center">
+        <input type="submit"  class="btn btn-success" value="تأكيد">
+    </div> 
+    <br />
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>  
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>  
+}
