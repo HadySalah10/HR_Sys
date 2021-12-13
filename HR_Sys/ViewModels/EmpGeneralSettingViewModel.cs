@@ -23,7 +23,7 @@ namespace HR_Sys.ViewModels
 
             public int idDayHolday1 { get; set; }
             [DisplayName("يوم الاجازة الرسمي 2")]
-            [Required(ErrorMessage = "يجب ادخال يوم الاجازة الرسمي ")]
+            //[Required(ErrorMessage = "يجب ادخال يوم الاجازة الرسمي ")]
 
             public int idDayHolday2 { get; set; }
     }

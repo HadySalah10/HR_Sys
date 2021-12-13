@@ -69,40 +69,52 @@
                            
                         </ul>
                      </li>
-                     <li class="has-sub nav-item">
-                         <a href="#"><span data-i18n="" class="menu-title">الحضور والانصراف</span><i class="icon-users"></i></a>
-                         <ul class="menu-content">
-                             <li class=" nav-item">
-                                <a asp-controller="employeeAttendance" asp-action="show">
-                                     <span data-i18n="" class="menu-title"> حضور الموظفين</span>
-                                                                       
-                                     <i class="icon-support"></i>
-                                </a>
-                           </li>
-                           <li class=" nav-item">
-                                <a asp-controller="employeeAttendance" asp-action="index">
-                                    <span data-i18n="" class="menu-title"> ادخال حضور موظف</span>
-                                    <i class="icon-support"></i>
-                                </a>
-                           </li>
-                         </ul>
-                     </li>
+                        
+                            <li class="has-sub nav-item">
+                                <a href="#"><span data-i18n="" class="menu-title">الحضور والانصراف</span><i class="icon-users"></i></a>
+                                <ul class="menu-content">
+                               @if (HttpContextAccessor.HttpContext.Session.GetString("attendDisplay") == "True")
+                                {
+                                    <li class=" nav-item">
+                                        <a asp-controller="employeeAttendance" asp-action="show">
+                                            <span data-i18n="" class="menu-title"> حضور الموظفين</span>
 
-                     
-                     <li class=" nav-item">
-                         <a asp-controller="GeneralSetting" asp-action="index">
-                              <span data-i18n="" class="menu-title">اعدادات الموظفين</span>
-                             <i class="icon-pie-chart"></i>
-                            </a>
-                     </li>
-                     
+                                            <i class="icon-support"></i>
+                                        </a>
+                                    </li>
+                                }
+                                 @if (HttpContextAccessor.HttpContext.Session.GetString("attendAdd") == "True")
+                                {
+                                    <li class=" nav-item">
+                                        <a asp-controller="employeeAttendance" asp-action="index">
+                                            <span data-i18n="" class="menu-title"> ادخال حضور موظف</span>
+                                            <i class="icon-support"></i>
+                                        </a>
+                                    </li>
+                                 }
+                            </ul>
+                            </li>
+                        }
+                      @if (HttpContextAccessor.HttpContext.Session.GetString("attendAdd") == "True")
+                        {
+                            <li class=" nav-item">
+                                <a asp-controller="GeneralSetting" asp-action="index">
+                                    <span data-i18n="" class="menu-title">اعدادات الموظفين</span>
+                                    <i class="icon-pie-chart"></i>
+                                </a>
+                            </li>
+                           }
+                        @if(HttpContextAccessor.HttpContext.Session.GetString("reportDisplay")=="True")
+                      {
                      <li class=" nav-item">
                          <a asp-controller="Report" asp-action="index"><span data-i18n="" class="menu-title">تقرير الرواتب </span><i class="icon-layers"></i></a>
                      </li>
-                     <li class=" nav-item"><a asp-controller="hr"><span data-i18n="" class="menu-title">المستخدمون</span><i class="icon-users"></i></a>
+                      }
+
+                     <li class=" nav-item"><a asp-controller="hr" asp-action="index" ><span data-i18n="" class="menu-title">المستخدمون</span><i class="icon-users"></i></a>
                      </li>
                   
-                     @if(HttpContextAccessor.HttpContext.Session.GetString("admin")!=null)
+                     @if(HttpContextAccessor.HttpContext.Session.GetString("group")=="Admin")
                         {
 
                                  <li class=" nav-item">

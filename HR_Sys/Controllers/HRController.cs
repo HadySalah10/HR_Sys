@@ -19,17 +19,26 @@ namespace HR_Sys.Controllers
         }
         public IActionResult Index()
         {
-            return View(HrDb.HRs.ToList());
+            if (HttpContext.Session.GetString("group") =="Admin")
+
+                return View(HrDb.HRs.ToList());
+            return View("ErrorPage");  
         }
 
         public IActionResult RegisterHR()
         {
+            if (HttpContext.Session.GetString("group") =="Admin")
 
-            ViewBag.validation = new SelectList(HrDb.Validations.ToList(), "id", "validationName");
+            {
+                ViewBag.validation = new SelectList(HrDb.Validations.ToList(), "id", "validationName");
 
-            return View();
+                return View();
+            }
+
+            return View("ErrorPage");
+
         }
-         [HttpPost]  
+        [HttpPost]  
         public IActionResult RegisterHR(HrRegisterationViewModel user)
         {
             if (ModelState.IsValid)
@@ -58,20 +67,27 @@ namespace HR_Sys.Controllers
 
         public IActionResult editHr(int id)
         {
-            var user = HrDb.HRs.Find(id);
+            if (HttpContext.Session.GetString("group")=="Admin")
 
-            EditHrViewModel hrUser = new EditHrViewModel();
-            hrUser.hrId = user.hrId;
-            hrUser.fullName = user.fullName;
-            hrUser.hrUserName = user.hrUserName;
-            hrUser.email = user.email;
-            hrUser.validationId = user.validationId;
+            {
+                var user = HrDb.HRs.Find(id);
 
-            ViewBag.validation = new SelectList(HrDb.Validations.ToList(), "id", "validationName");
+                EditHrViewModel hrUser = new EditHrViewModel();
+                hrUser.hrId = user.hrId;
+                hrUser.fullName = user.fullName;
+                hrUser.hrUserName = user.hrUserName;
+                hrUser.email = user.email;
+                hrUser.validationId = user.validationId;
+
+                ViewBag.validation = new SelectList(HrDb.Validations.ToList(), "id", "validationName");
 
 
-            return View(hrUser);
-       
+                return View(hrUser);
+            }
+
+            return View("ErrorPage");
+
+
         }
         [HttpPost]
         public IActionResult editHr(EditHrViewModel user)
@@ -113,15 +129,26 @@ namespace HR_Sys.Controllers
         }
         public IActionResult deleteHR(int id)
         {
-            var delUser = HrDb.HRs.Find(id);
-            HrDb.HRs.Remove(delUser);
-            HrDb.SaveChanges();
-            return RedirectToAction("index");
+            if (HttpContext.Session.GetString("group") == "Admin")
+            {
+                var delUser = HrDb.HRs.Find(id);
+                HrDb.HRs.Remove(delUser);
+                HrDb.SaveChanges();
+                return RedirectToAction("index");
+            }
+            return View("ErrorPage");
         }
 
         public IActionResult AddValidation()
         {
-            return View();
+            if (HttpContext.Session.GetString("group") == "Admin")
+
+                return View();
+           
+            
+            return View("ErrorPage");
+
+
         }
         public IActionResult Permissions() { 
 
