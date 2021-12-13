@@ -31,7 +31,7 @@ namespace HR_Sys.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // dummy Data for testing 
-            modelBuilder.Entity<HR>().HasData(
+           modelBuilder.Entity<HR>().HasData(
            new HR { hrId = 1, fullName = "admin admin", hrUserName = "admin20", password = "admin@1234", email = "hady20@admin.com", validationId = 1 }
 
        );
@@ -142,8 +142,8 @@ namespace HR_Sys.Models
        deptid = 1,
        nationalityId = 1,
        phoneNum = "01119959346",
-       phoneNum2 = "01554904905",
-       annualHolidayId = 1
+       phoneNum2 = "01554904905"
+    
        
    }
 

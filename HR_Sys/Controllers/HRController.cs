@@ -150,6 +150,25 @@ namespace HR_Sys.Controllers
 
 
         }
+        [HttpPost]
+        public IActionResult AddValidation(Validations valid)
+        {
+            if (ModelState.IsValid)
+            {
+                HrDb.Validations.Add(valid);
+                HrDb.SaveChanges();
+                return RedirectToAction("index");
+            }
+            else
+            {
+                return View("ErrorPage");
+
+            }
+             
+
+
+
+        }
         public IActionResult Permissions() { 
 
             return View(); 

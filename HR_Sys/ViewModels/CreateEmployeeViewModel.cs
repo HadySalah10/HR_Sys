@@ -19,8 +19,6 @@ namespace HR_Sys.ViewModels
 
         //عنوان الموظف 
         [DisplayName("العنوان")]
-
-
         [Required(ErrorMessage = "رجاء ادخل عنوان الموظف")]
         [StringLength(150)]
         public string empAddress { get; set; }
