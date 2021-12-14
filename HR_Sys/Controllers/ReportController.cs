@@ -15,7 +15,7 @@ namespace HR_Sys.Controllers
         }
         public  IActionResult Index()
         {
-            if (HttpContext.Session.GetString("reportDisplay") == "true")
+            if (HttpContext.Session.GetString("reportDisplay") == "True")
             {
 
                 //var item = db.EmpReports.AsNoTracking().OrderBy(p => p.empId);

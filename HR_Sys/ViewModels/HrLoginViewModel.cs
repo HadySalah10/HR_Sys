@@ -17,5 +17,7 @@ namespace HR_Sys.ViewModels
 
         [StringLength(20)]
         public string password { get; set; }
+        [NotMapped]
+        public bool Remember { get; set; }
     }
 }

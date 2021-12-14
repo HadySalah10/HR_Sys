@@ -5,7 +5,7 @@ namespace HR_Sys.Models.BaseIDEntity
 {
     public class CommonProps
     {
-      [Key]
+        [Key]
         public int id { get; set; }
 
         [ForeignKey("edit")]

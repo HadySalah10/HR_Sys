@@ -150,6 +150,25 @@ namespace HR_Sys.Controllers
 
 
         }
+        [HttpPost]
+        public IActionResult AddValidation(Validations valid)
+        {
+            if (ModelState.IsValid)
+            {
+                HrDb.Validations.Add(valid);
+                HrDb.SaveChanges();
+                return RedirectToAction("index");
+            }
+            else
+            {
+                return View("ErrorPage");
+
+            }
+             
+
+
+
+        }
         public IActionResult Permissions() { 
 
             return View(); 
@@ -166,14 +185,38 @@ namespace HR_Sys.Controllers
             
 
         }
+        public ActionResult logout()
+        {
+
+            HttpContext.Session.Clear();
+            Response.Cookies.Delete("email");
+            Response.Cookies.Delete("password");
+            Response.Cookies.Delete("userId");
+            return RedirectToAction("login");
+        }
 
         public IActionResult Login()
         {
-            if (Request.Cookies["userId"] != null)
-            {
-                HttpContext.Session.SetInt32("userId", int.Parse(Request.Cookies["userId"]));
-                return RedirectToAction("index");
 
+            var dbUser = HrDb.HRs.SingleOrDefault(u => u.email == Request.Cookies["email"] && u.password == Request.Cookies["password"]);
+            if (HttpContext.Session.GetString("userId")!=null)
+            {
+                return View("welcome");
+            }
+            if (Request.Cookies["userId"] != null && dbUser!=null)
+            {
+                CookieOptions option = new CookieOptions
+                {
+                    Expires = DateTime.Now.AddMonths(3)
+                };
+                HttpContext.Session.SetInt32("userId", int.Parse(Request.Cookies["userId"]));
+
+
+                setSession(dbUser);
+
+
+
+                return View("welcome");
             }
             return View();
         
@@ -182,6 +225,7 @@ namespace HR_Sys.Controllers
         [HttpPost]
         public IActionResult login(HrLoginViewModel user, bool Remember) 
         { 
+
             if (user != null)
 
             {
@@ -196,35 +240,13 @@ namespace HR_Sys.Controllers
                         };
 
                         Response.Cookies.Append("userId", dbUser.hrId.ToString(), option);
+                        Response.Cookies.Append("email", dbUser.email.ToString(), option);
+                        Response.Cookies.Append("password", dbUser.password.ToString(), option);
 
 
                     }
 
-
-                    HttpContext.Session.SetInt32("userId", dbUser.hrId);
-
-                    HttpContext.Session.SetString("attendAdd", dbUser.Valids.attendAdd.ToString());
-                    HttpContext.Session.SetString("attendDelete", dbUser.Valids.attendDelete.ToString());
-                    HttpContext.Session.SetString("attendDisplay", dbUser.Valids.attendDisplay.ToString());
-                    HttpContext.Session.SetString("attendEdit", dbUser.Valids.attendEdit.ToString());
-
-                    HttpContext.Session.SetString("empAdd", dbUser.Valids.empAdd.ToString());
-                    HttpContext.Session.SetString("empDisplay", dbUser.Valids.empDisplay.ToString());
-                    HttpContext.Session.SetString("empDelete", dbUser.Valids.empDelete.ToString());
-                    HttpContext.Session.SetString("empEdit", dbUser.Valids.empEdit.ToString());
-
-                    HttpContext.Session.SetString("gsAdd", dbUser.Valids.gsAdd.ToString());
-                    HttpContext.Session.SetString("gsDisplay", dbUser.Valids.gsDisplay.ToString());
-                    HttpContext.Session.SetString("gsDelete", dbUser.Valids.gsDelete.ToString());
-                    HttpContext.Session.SetString("gsEdit", dbUser.Valids.gsEdit.ToString());
-
-                    HttpContext.Session.SetString("reportAdd", dbUser.Valids.reportAdd.ToString());
-                    HttpContext.Session.SetString("reportDelete", dbUser.Valids.reportDelete.ToString());
-                    HttpContext.Session.SetString("reportDisplay", dbUser.Valids.reportDisplay.ToString());
-                    HttpContext.Session.SetString("reportEdit", dbUser.Valids.reportEdit.ToString());
-
-                    HttpContext.Session.SetString("group", dbUser.Valids.validationName);
-
+                    setSession(dbUser);
 
 
 
@@ -254,12 +276,33 @@ namespace HR_Sys.Controllers
 
         }
 
+        private void setSession(HR dbUser)
+        {
 
+            HttpContext.Session.SetInt32("userId", dbUser.hrId);
 
+            HttpContext.Session.SetString("attendAdd", dbUser.Valids.attendAdd.ToString());
+            HttpContext.Session.SetString("attendDelete", dbUser.Valids.attendDelete.ToString());
+            HttpContext.Session.SetString("attendDisplay", dbUser.Valids.attendDisplay.ToString());
+            HttpContext.Session.SetString("attendEdit", dbUser.Valids.attendEdit.ToString());
 
+            HttpContext.Session.SetString("empAdd", dbUser.Valids.empAdd.ToString());
+            HttpContext.Session.SetString("empDisplay", dbUser.Valids.empDisplay.ToString());
+            HttpContext.Session.SetString("empDelete", dbUser.Valids.empDelete.ToString());
+            HttpContext.Session.SetString("empEdit", dbUser.Valids.empEdit.ToString());
 
+            HttpContext.Session.SetString("gsAdd", dbUser.Valids.gsAdd.ToString());
+            HttpContext.Session.SetString("gsDisplay", dbUser.Valids.gsDisplay.ToString());
+            HttpContext.Session.SetString("gsDelete", dbUser.Valids.gsDelete.ToString());
+            HttpContext.Session.SetString("gsEdit", dbUser.Valids.gsEdit.ToString());
 
+            HttpContext.Session.SetString("reportAdd", dbUser.Valids.reportAdd.ToString());
+            HttpContext.Session.SetString("reportDelete", dbUser.Valids.reportDelete.ToString());
+            HttpContext.Session.SetString("reportDisplay", dbUser.Valids.reportDisplay.ToString());
+            HttpContext.Session.SetString("reportEdit", dbUser.Valids.reportEdit.ToString());
 
+            HttpContext.Session.SetString("group", dbUser.Valids.validationName);
 
+        }
     }
 }
