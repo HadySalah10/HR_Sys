@@ -135,7 +135,7 @@ namespace HR_Sys.Models
        requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0),
        requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0),
        requiredSalaryPerHour = 50,
-       requiredDaysPerMonth = 5,
+       requiredDaysPerMonth = 24,
        requiredExtraHours = 2,
        requiredDeductHours = 2,
        addBy = 1,
