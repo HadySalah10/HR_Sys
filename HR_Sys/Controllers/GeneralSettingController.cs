@@ -36,6 +36,7 @@ namespace HR_Sys.Controllers
         [HttpPost]
         public ActionResult EmpGeneralSetting(EmpGeneralSettingViewModel empGeneral )
         {
+            ViewBag.idEmployee = empGeneral.id;
             if (ModelState.IsValid)
             {
 
@@ -43,30 +44,38 @@ namespace HR_Sys.Controllers
                 EMP.requiredExtraHours = empGeneral.requiredExtraHours;
                 EMP.requiredDeductHours = empGeneral.requiredDeductHours;
 
-                TypesOfVacationsEmp typesOfVacationsEmp = new TypesOfVacationsEmp()
+
+                TypesOfVacationsEmp typesOfVacationsEmp1 = new TypesOfVacationsEmp()
                 {
                     empId = empGeneral.id,
-                    // الاجازات الاسبوعية
                     vacId = 1,
                     idDays = empGeneral.idDayHolday1
-                   
                 };
-                TypesOfVacationsEmp typesOfVacationsEmp2 = new TypesOfVacationsEmp()
-                {
-                    empId = empGeneral.id,
-                    vacId = 1,  
-                    idDays = empGeneral.idDayHolday2
+                _db.TypesOfVacationsEmps.Add(typesOfVacationsEmp1);
 
-                };
+
+                if (empGeneral.idDayHolday2 > 0)
+                {
+                    TypesOfVacationsEmp typesOfVacationsEmp2 = new TypesOfVacationsEmp()
+                    {
+                        empId = empGeneral.id,
+                        vacId = 1,
+                        idDays = empGeneral.idDayHolday2
+
+                    };
+                    _db.TypesOfVacationsEmps.Add(typesOfVacationsEmp2);
+
+
+                }
+
+
 
 
 
                 _db.SaveChanges();
-
-                RedirectToAction("Index", "Employee");
+                return RedirectToAction("Index", "Employee");
 
             }
-
             else
             {
 
@@ -76,13 +85,29 @@ namespace HR_Sys.Controllers
 
                 return View();
             }
-            return View();
 
+     
 
         }
 
         public ActionResult EditGeneralSetting(int id)
         {
+            var tVE = _db.TypesOfVacationsEmps.Where(a => a.id == id).ToList();
+            if (tVE != null) { 
+            var holidays = new SelectList(_db.Days.ToList(), "id", "daysName",tVE[0].idDays);
+            var holidays2 = new SelectList(_db.Days.ToList(), "id", "daysName",tVE[1].idDays);
+            
+            ViewBag.holidays1 = holidays;
+            ViewBag.holidays2 = holidays2;
+            }
+            else
+            {
+                var holidays = new SelectList(_db.Days.ToList(), "id", "daysName");
+
+                ViewBag.holidays1 = holidays;
+                ViewBag.holidays2 = holidays;
+
+            }
             return View();
         
         }
@@ -90,12 +115,23 @@ namespace HR_Sys.Controllers
         [HttpPost]
         public ActionResult EditGeneralSetting(EmpGeneralSettingViewModel empGeneral)
         {
+           
+
             Employee obj = _db.Employees.Find(empGeneral.id);
             obj.requiredExtraHours = empGeneral.requiredExtraHours; 
             obj.requiredDeductHours = empGeneral.requiredDeductHours; 
             List <TypesOfVacationsEmp> tv = _db.TypesOfVacationsEmps.Where(n => n.empId == empGeneral.id).ToList();
-            tv[0].idDays = empGeneral.idDayHolday1;
-            tv[1].idDays = empGeneral.idDayHolday2;
+
+            if (empGeneral.idDayHolday1 > 0)
+            {
+                tv[0].idDays = empGeneral.idDayHolday1;
+
+            }
+
+            if (empGeneral.idDayHolday2 > 0)
+            {
+                tv[1].idDays = empGeneral.idDayHolday2;
+            }
 
             _db.SaveChanges();
 

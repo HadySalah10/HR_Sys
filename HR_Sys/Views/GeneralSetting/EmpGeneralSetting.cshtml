@@ -39,6 +39,7 @@
 											<div class="col-md-6">
 										
 												 <input asp-for="requiredDeductHours" id="projectinput2" class="form-control" />
+												 <input asp-for="id"  id="projectinput2" value=@ViewBag.idEmployee hidden class="form-control" />
 
 											</div>
 											<div class="col-md-3">
@@ -54,6 +55,7 @@
 
 										<div class="col-md-6 text-right">
 										 <select asp-for="idDayHolday1"  class="form-control" asp-items="@ViewBag.holidays1">
+
 									      </select>
                                       
 										</div>
@@ -67,14 +69,11 @@
 
 										<div class="col-md-6 text-right">
 										 <select asp-for="idDayHolday2"  class="form-control" asp-items="ViewBag.holidays2" >
-											 <option selected="selected">   </option>
+											 <option value="0" selected="selected">   </option>
 									      </select>
                                       
 										</div>
-											<div class="col-md-3">
-												 <span asp-validation-for="idDayHolday2" class="text-danger"></span>
-
-											</div>
+											
 									</div>
 							
 						

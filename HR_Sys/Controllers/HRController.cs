@@ -161,7 +161,7 @@ namespace HR_Sys.Controllers
             }
             else
             {
-                return View("ErrorPage");
+                return View();
 
             }
              

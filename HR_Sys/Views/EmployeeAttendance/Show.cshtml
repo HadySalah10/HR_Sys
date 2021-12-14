@@ -1,17 +1,11 @@
-﻿@model List<EmployeeAttendance>;
+﻿@model List<HR_Sys.ViewModels.EmployeeAttendanceExcelViewModel>
 @{
-        ViewData["Title"] = "Attendance Report";
+       
 
     
 }
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Attendance Report</title>
-</head>
-<body>
+
 <section id="configuration">
     <div class="row">
         <div class="col-lg-12">
@@ -36,27 +30,26 @@
                              </div>
 
                      </form>
-                     <button type="button" class="btn btn-success " style=" margin-left: 15px; height: 40px;width: 255px;">
-                                           <a asp-controller="employeeAttendance" asp-action="index">حضورالموظف</a>
-                                        </button>
+                     
+                         <form asp-controller="EmployeeAttendance" asp-action="Show" method="post" enctype="multipart/form-data">
+                        
+                             <div class="col-lg-12 d-flex" style="flex-direction:row-reverse">
+                                 <input type="file" class="btn btn-success "  id="hidden" name="formFile" style="margin-right: 15px;width: 240px;" />
+                                   
+                                        <button type="submit" class="btn btn-success ">Add</button>
+                                    
+                                          
+                             </div>
+
+                        </form>
+
+                  
                          
                          </div>
                      
-                            <div class="row"><div class="col-sm-12 col-md-3"><div class="dataTables_length" id="DataTables_Table_0_length"><label>عرض التاريخ
-                            <input type="date" 
-                                class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0">    
-                            </label></div></div>
-                                      <div class="col-lg-1"></div> 
-                                        <div class="col-sm-12 col-md-5"><div id="DataTables_Table_0_filter"
-                                             class="dataTables_filter"><label>اسم الموظف<input type="search" 
-                                class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0"></label>
-                                </div>
-                                </div>
-                               
-                              
-                            </div> 
-                            @if(Model.Count()>0){
-                                
+                        
+                            @if(  Model != null){
+                                if(Model.Count()>0){
                             
 
 
@@ -64,10 +57,11 @@
                             <thead>
                                 <tr>
                                     <th>اسم</th>
-                                    <th>التاريخ </th>
+                                    <th>القسم</th>
                                     <th>وقت الحضور</th>
                                     <th>وقت الانصراف</th>
-                                    <th></th>
+                                    <th>التاريخ </th>
+
                               
                                 </tr>
                             </thead>
@@ -77,30 +71,43 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                         <td>@item.empId</td>
-                                    <td>@item.attendanceTime</td>
+                                             <td> @(item.Employee ==null ?Html.Label(""," id  لم يتم ادخال ",new {style="color:red"}) : item.Employee.empName)</td>
+                                             <td>@(item.Employee ==null ? Html.Label(""," لا يوجد قسم ",new {style="color:red"}) : item.Employee.Department.deptName)</td>
+                                             <td>@(item.attendanceTime==""? Html.Label(""," لم يتم ادخال  شئ هنا ",new {style="color:red"}) :item.attendanceTime)</td>
                                
-                                    <td>@item.departureTime</td>
-                               
-                                   
-                                    <th><button type="button" class="btn btn-danger mr-1">
-                                      <i class="icon-trash"></i> حذف
-                                    </button></th>
-                                         </tr>
+                                             <td>@(item.departureTime==""? Html.Label("","لم يتم ادخال  شئ هنا",new {style="color:red"}) :item.departureTime)</td>
+                                       
+                                              <td>@(item.attendaceDay==""? Html.Label("","لم يتم ادخال  شئ هنا",new {style="color:red"}) :item.attendaceDay)</td>
+                                        </tr>
                                     }
                                    
                                 
                                
                                 </tbody>
                                 </table>
-                                }
+                                }}
                          </div>
                 </div>
               
             </div>
         </div>
     </div>
-</section>
 
-</body>
-</html>
+
+@section Scripts
+{
+   <script type="text/javascript" >
+
+       console.log("hi");
+       $('#fileupload').change(function() {
+      $('#hidden').val($(this).val());
+});
+    $('#fileupload').keyup(function(){
+    $('#hidden').val($(this).val());
+    });
+    $('#fileupload').keyup(function(){
+        $('#hidden').val($(this).val());
+    });    
+   </script> 
+}
+   

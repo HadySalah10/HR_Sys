@@ -3,6 +3,7 @@ using HR_Sys.Models;
 using Microsoft.AspNetCore.Http;
 using ExcelDataReader;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using HR_Sys.ViewModels;
 
 namespace HR_Sys.Controllers
 {
@@ -28,9 +29,12 @@ namespace HR_Sys.Controllers
         {
             if (HttpContext.Session.GetString("attendDisplay") == "True")
             {
-                return View(_db.EmployeesAttendance.ToList());
+                return View();
+
             }
             return View("ErrorPage");
+
+
         }
         [HttpPost]
      
@@ -39,6 +43,10 @@ namespace HR_Sys.Controllers
         {
             try
             {
+                if (formFile==null)
+                {
+                    return View();
+                }
                 string fileName = $"{hostingEnvironment.WebRootPath}\\files\\{formFile.FileName}";
                 using (FileStream fileStream = System.IO.File.Create(fileName))
                 {
@@ -74,9 +82,9 @@ namespace HR_Sys.Controllers
 
 
 
-        private List<EmployeeAttendance> GetAttencanceList(string fName)
+        private List<EmployeeAttendanceExcelViewModel> GetAttencanceList(string fName)
         {
-            var attendance = new List<EmployeeAttendance>();
+            var attendance = new List<EmployeeAttendanceExcelViewModel>();
             var fileName = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\files"}" + "\\" + fName;
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             using (var stream =System.IO.File.Open(fileName,FileMode.Open,FileAccess.Read)) 
@@ -85,17 +93,24 @@ namespace HR_Sys.Controllers
                 {
                     while (reader.Read())
                     {
-                       var id= reader.GetValue(0).ToString();
-                        var attendanceTime= reader.GetValue(1).ToString();
-                       var departureTime =  reader.GetValue(2).ToString();
-                       var isOff = reader.GetValue(3).ToString();
+                        if (reader.GetValue(0)==null)
+                        {
+                            continue;
+                        }
+                           var id = reader.GetValue(0).ToString() == null ? "0" : reader.GetValue(0).ToString();
+                            var attendanceTime= reader.GetValue(1)==null?"": reader.GetValue(1).ToString();
+                           var departureTime = reader.GetValue(2) == null ? "" : reader.GetValue(2).ToString();
+                             var DayDate = reader.GetValue(3) == null ? "" : reader.GetValue(3).ToString();
+                                
+                        var isOff = reader.GetValue(4).ToString();
                        
-                        attendance.Add(new EmployeeAttendance()
+                        attendance.Add(new EmployeeAttendanceExcelViewModel()
                         {
                             empId=Convert.ToInt32(id),
-                            attendanceTime=Convert.ToDateTime(attendanceTime),
-                            departureTime= Convert.ToDateTime(departureTime),
-                            isOff= Convert.ToBoolean(isOff),
+                            attendanceTime=attendanceTime,
+                            departureTime= departureTime,
+                            attendaceDay = DayDate,
+                            isOff = Convert.ToBoolean(isOff)
 
                         });
                     }
@@ -106,7 +121,7 @@ namespace HR_Sys.Controllers
             return attendance;
         }
 
-        private List<EmployeeAttendance> generateEmployee(List<EmployeeAttendance> attendance)
+        private List<EmployeeAttendanceExcelViewModel> generateEmployee(List<EmployeeAttendanceExcelViewModel> attendance)
         {
             var idsEmployee = attendance.Select(s => s.empId).ToList();
             var employees = _db.Employees.Where(a => idsEmployee.Contains(a.id)).ToList();
