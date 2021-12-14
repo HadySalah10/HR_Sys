@@ -17,11 +17,19 @@ namespace HR_Sys.Controllers
             this.HrDb = HrDb;   
 
         }
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
-            if (HttpContext.Session.GetString("group") =="Admin")
+            if (HttpContext.Session.GetString("group") == "Admin")
+            {
+                var hrs = HrDb.HRs.ToList();
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                     hrs = hrs.Where(n => n.hrUserName.Contains(searchString)).ToList();
 
-                return View(HrDb.HRs.ToList());
+                }
+                return View(hrs);
+
+            }
             return View("ErrorPage");  
         }
 
