@@ -69,11 +69,31 @@ namespace HR_Sys.Controllers
           
 
         }
+        public IActionResult saveInDataBase()
+        {
+            if (HttpContext.Session.GetString("attendDisplay") == "True")
+            {
+                return View();
+
+            }
+
+            return View("ErrorPage");
+        }
         [HttpPost]
 
-        public IActionResult saveInDataBase(List<EmployeeAttendance> employeeAttendances, IFormFile pathFile)
+        public IActionResult saveInDataBase(IFormFile formFile, [FromServices] IWebHostEnvironment hostingEnvironment)
         {
+            try
+            {
+                if (formFile == null)
+                {
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
 
+            }
 
             return RedirectToAction();
         }
