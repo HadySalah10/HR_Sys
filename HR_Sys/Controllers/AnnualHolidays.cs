@@ -80,10 +80,10 @@ namespace HR_Sys.Controllers
         [HttpPost]
         public IActionResult Edit(annualHoliday holidays)
         {
-            annualHoliday ah = db.AnnualHolidays.Find(holidays.idHoliday);
-            //annualHoliday annual = db.annualHoliday.Find(holidays.id);
-            ah.id = holidays.idHoliday;
-            ah.dateHoliday = holidays.dateHoliday;
+            //annualHoliday ah = db.AnnualHolidays.Find(holidays.idHoliday);
+            annualHoliday annual = db.annualHoliday.Find(holidays.id);
+            annual.idHoliday = holidays.idHoliday;
+            annual.dateHoliday = holidays.dateHoliday;
 
             db.SaveChanges();
             return RedirectToAction("Index");

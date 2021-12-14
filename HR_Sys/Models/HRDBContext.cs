@@ -23,11 +23,11 @@ namespace HR_Sys.Models
         public virtual DbSet<Validations> Validations { get; set; }
         public virtual DbSet<Months> Months { get; set; }
         public virtual DbSet<Days> Days { get; set; }
-        public virtual DbSet<annualHoliday> AnnualHolidays { get; set; }
         public virtual DbSet<NameAnnualHoliday> NameAnnualHolidays { get; set; }
+        public DbSet<HR_Sys.Models.annualHoliday> annualHoliday { get; set; }
 
 
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // dummy Data for testing 
@@ -142,8 +142,8 @@ namespace HR_Sys.Models
        deptid = 1,
        nationalityId = 1,
        phoneNum = "01119959346",
-       phoneNum2 = "01554904905",
-       annualHolidayId = 1
+       phoneNum2 = "01554904905"
+      
        
    }
 
@@ -167,6 +167,5 @@ namespace HR_Sys.Models
 
 
         
-        public DbSet<HR_Sys.Models.annualHoliday> annualHoliday { get; set; }
     }
 }
