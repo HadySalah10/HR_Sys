@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="card-body collapse show">
-                    <div class="card-block card-dashboard">
+                    <div class="card-block card-dashboard" style="padding:1rem 20px">
                      
                             <div class="row"><div class="col-sm-12 col-md-3">
                                 <div class="dataTables_length" id="DataTables_Table_0_length">
@@ -43,14 +43,16 @@
                                     </button>
                                 </div>
                             }
-                        </div> 
+                        </div>
+                        <br />
                       <!------------------------------------------- start table of Employee-------------------------------------->   
                         <table class="table table-striped table-bordered" >
 
-                            <thead>
+                            <thead class="text-center">
                                 <tr>
                                     <th >الاسم</th>
-                                    <th>التليفون</th>
+                                    <th>رقم التليفون</th>
+                                    <th>رقم اخر</th>
                                     <th>تاريخ الميلاد </th>
                                     <th>تاريخ التعاقد</th>
                                     <th>المرتب</th>
@@ -71,8 +73,8 @@
                                                 </td>
                                                 <td>
                                                     @item.phoneNum
-                                                    @item.phoneNum2
                                                 </td>
+                                                <td>@item.phoneNum2</td>
                                                 <td>@item.empDateOfBirth.ToString("dd/MM/yyyy")</td>
                                             
                                                 <td>@item.empHireDate.ToString("dd/MM/yyyy")</td>
@@ -81,7 +83,7 @@
                                                     <td> @item.requiredDepartureTime.ToShortTimeString() </td>
                                                     <td>@item.Nationality.nationalityName</td>
 
-                                                    <td>
+                                                    <td class="text-center">
                                                          @if (HttpContextAccessor.HttpContext.Session.GetString("empEdit") == "True")
                                                          {
                                                              <a class="btn btn-success mb-2" asp-controller="Employee" asp-action="Edit" asp-route-id="@item.id">تعديل</a>

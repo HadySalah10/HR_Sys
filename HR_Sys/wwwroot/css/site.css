@@ -16,3 +16,23 @@ html {
 body {
   margin-bottom: 60px;
 }
+#emptext {
+    position: relative;
+    right: 34px;
+    font-size: 40px;
+    font-weight:300;
+    padding:5px;
+    color:#000;
+}
+#emptext1 {
+    font-size: 40px;
+    font-weight: 500;
+    padding: 5px;
+    color: #000;
+}
+
+#formsites {
+    font-size: 28px;
+    font-weight: 500;
+    padding: 5px;
+}

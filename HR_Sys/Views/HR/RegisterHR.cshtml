@@ -24,7 +24,7 @@
                              <form class="form form-horizontal" method="post">
                                  <div class="form-body">
                                      <div class="form-group row">
-                                          <label class="col-md-3 label-control" asp-for="fullName">الاسم بالكامل : </label>
+                                          <label class="col-md-2 label-control" asp-for="fullName">الاسم بالكامل : </label>
                                           <div class="col-md-9">
                                               <input type="text"  class="form-control" asp-for="fullName" placeholder="الاسم بالكامل ">
                                               <span asp-validation-for="fullName" class="text-danger"></span>
@@ -32,7 +32,7 @@
                                           
                                      </div>
                                      <div class="form-group row">
-                                          <label class="col-md-3 label-control" asp-for="hrUserName">اسم المستخدم : </label>
+                                          <label class="col-md-2 label-control" asp-for="hrUserName">اسم المستخدم : </label>
                                           <div class="col-md-9">
                                               <input type="text" asp-for="hrUserName" class="form-control"  placeholder="اسم المستخدم ">
                                               <span asp-validation-for="hrUserName" class="text-danger"></span>
@@ -40,7 +40,7 @@
                                           
                                       </div>
                                      <div class="form-group row">
-                                          <label class="col-md-3 label-control" asp-for="email">البريد الالكتروني </label>
+                                          <label class="col-md-2 label-control" asp-for="email">البريد الالكتروني : </label>
                                           <div class="col-md-9">
                                               <input type="text" asp-for="email"  class="form-control"  placeholder="البريد الالكتروني ">
                                               <span asp-validation-for="email" class="text-danger"></span>
@@ -53,7 +53,7 @@
 
 
                                      <div class="form-group row">
-                                         <label class="col-md-3 label-control" asp-for="password">كلمة المرور: </label>
+                                         <label class="col-md-2 label-control" asp-for="password">كلمة المرور: </label>
                                          <div class="col-md-9">
                                           <input type="password" asp-for="password"  class="form-control"  placeholder="كلمة المرور ">
                                           <span asp-validation-for="password" class="text-danger"></span>
@@ -61,7 +61,7 @@
                                      </div>
 
                                      <div class="form-group row">
-                                         <label class="col-md-3 label-control" asp-for="confirmPassword">تأكيد كلمة المرور: </label>
+                                         <label class="col-md-2 label-control" asp-for="confirmPassword">تأكيد كلمة المرور: </label>
                                          <div class="col-md-9">
                                           <input type="password" asp-for="confirmPassword" id="projectinput4" class="form-control"  placeholder="كلمة المرور ">
                                           <span asp-validation-for="confirmPassword" class="text-danger"></span>
@@ -70,7 +70,7 @@
                                      
                                           
                                      <div class="form-group row">
-                                         <label class="col-md-3 label-control" asp-for="validationId">الصلاحيات: </label>
+                                         <label class="col-md-2 label-control" asp-for="validationId">الصلاحيات: </label>
                                          <div class="col-md-9">
                                              <select asp-for="validationId"  class="form-control" asp-items="ViewBag.validation">
                                                

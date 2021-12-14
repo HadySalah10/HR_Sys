@@ -3,14 +3,14 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1 class="text-center">الموظفين</h1>
+<h1 class="text-center" id="emptext1">الـمـوظـفـيـن</h1>
 <hr />
 
 <form  method="post">
 <div class="row">
 
     <div class="col-md-6">
-        <h2 class="text-center text-border"> بيانات الموظفين  <i class="icon-user"></i> </h2>
+        <h2 class="text-right text-border" id="emptext"><i class="icon-user"> بيانات الموظفين  </i> </h2>
         <table>
              <tr class="form-group">
                     <td><input asp-for="EmployeeID"  type="hidden"class="form-control" /></td>
@@ -82,7 +82,7 @@
         </table>
     </div>
     <div class="col-md-6" dir="rtl">
-        <h2 class="text-center text-border">  بيانات العمل <i class="icon-book-open"></i></h2>
+        <h2 class="text-right text-border" id="emptext"><i class="icon-book-open"> بيانات العمل </i></h2>
         <table>
               <tr class="form-group">
                    <td><label asp-for="empHireDate" class="control-label"></label></td>

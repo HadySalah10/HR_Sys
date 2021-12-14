@@ -40091,6 +40091,8 @@ button:hover {
   -webkit-box-shadow : none;
           box-shadow : none;
 }
+
+}
 .card .card-img {
   position : relative;
 }
@@ -40208,9 +40210,9 @@ button:hover {
   position : relative;
 }
 .card h1.card-title, .card h2.card-title, .card h3.card-title, .card h4.card-title, .card h5.card-title, .card h6.card-title {
-  font-weight : 600;
+  font-weight : 700;
   letter-spacing : 0.05rem;
-  font-size : 1.25rem;
+  font-size : 30px;
   margin-bottom : 0.25rem;
 }
 .card .card-footer {
