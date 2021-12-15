@@ -17,6 +17,11 @@ namespace HR_Sys.Controllers
             this.db = db;   
 
         }
+        public IActionResult welcome()
+        {
+            
+            return View("welcome"); 
+        }
         public IActionResult Index(string searchString)
         {
             if (HttpContext.Session.GetString("group") == "Admin")

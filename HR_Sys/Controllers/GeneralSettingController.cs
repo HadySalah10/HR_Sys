@@ -40,6 +40,7 @@ namespace HR_Sys.Controllers
             {
 
                 Employee EMP = _db.Employees.Where(s => s.id == empGeneral.id).FirstOrDefault();
+             
                 EMP.requiredExtraHours = empGeneral.requiredExtraHours;
                 EMP.requiredDeductHours = empGeneral.requiredDeductHours;
 

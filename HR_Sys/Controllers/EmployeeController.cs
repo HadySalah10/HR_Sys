@@ -18,11 +18,21 @@ namespace HR_Sys.Controllers
         }
 
         // GET: EmployeeController
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
 
         {
-            if (HttpContext.Session.GetString("empDisplay") =="True")
-            { return View(_db.Employees.ToList()); }
+            if (HttpContext.Session.GetString("empDisplay") == "True")
+            {
+                var employees = _db.Employees.ToList();
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    employees = employees.Where(n => n.empName.Contains(searchString)).ToList();
+
+                }
+
+
+                return View(employees);
+            }
 
               return View("ErrorPage");
 
