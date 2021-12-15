@@ -16,7 +16,7 @@
                                         <label>اســــــــم المجموعة :</label>  
                                      </div>
                                       <div class="col-sm-12 col-md-6 dataTables_filter" id="DataTables_Table_0_filter">
-                                        <input type="search" class="form-control form-control " placeholder="" aria-controls="DataTables_Table_0" style="height: 58px;">
+                                        <input type="search" class="form-control form-control " placeholder="" aria-controls="DataTables_Table_0" style="height: 58px;" name="validationName">
                                      </div>
 
                                
@@ -36,36 +36,37 @@
                             <tbody>
                                 <tr>
                                     <td>الموظفين</td>
-                                    <td>     <input type="checkbox" id="item1" name="item"></td>
-                                    <td>  <input type="checkbox" id="item1" name="item"></td>
-                                    <td>  <input type="checkbox" id="item1" name="item"></td>
-                                    <td>  <input type="checkbox" id="item1" name="item"></td>
+                                    <td>  <input type="checkbox" id="item1" name="empAdd"></td>
+                                    <td>  <input type="checkbox" id="item1" name="empEdit"></td>
+                                    <td>  <input type="checkbox" id="item1" name="empDelete"></td>
+                                    <td>  <input type="checkbox" id="item1" name="empDisplay"></td>
                                
                                 </tr>
                                 
                                 <tr>
                                     <td>الأعدادات العامة</td>
-                                    <td>     <input type="checkbox" id="item1" name="item"></td>
-                                    <td>  <input type="checkbox" id="item1" name="item"></td>
-                                    <td>  <input type="checkbox" id="item1" name="item"></td>
-                                    <td>  <input type="checkbox" id="item1" name="item"></td>
+                                    <td>  <input type="checkbox" id="item1" name="gsAdd"></td>
+                                    <td>  <input type="checkbox" id="item1" name="gsEdit"></td>
+                                    <td>  <input type="checkbox" id="item1" name="gsDelete"></td>
+                                    <td>  <input type="checkbox" id="item1" name="gsDisplay"></td>
+                               
+                                </tr>
+                                
+                               
+                                <tr>
+                                    <td>الحصور والانصراف  </td>
+                                    <td>     <input type="checkbox" id="item1" name="reportAdd"></td>
+                                    <td>  <input type="checkbox" id="item1" name="reportEdit"></td>
+                                    <td>  <input type="checkbox" id="item1" name="reportDelete"></td>
+                                    <td>  <input type="checkbox" id="item1" name="reportDisplay"></td>
                                
                                 </tr>
                                 <tr>
                                     <td>تقرير الرواتب </td>
-                                    <td>     <input type="checkbox" id="item1" name="item"></td>
-                                    <td>  <input type="checkbox" id="item1" name="item"></td>
-                                    <td>  <input type="checkbox" id="item1" name="item"></td>
-                                    <td>  <input type="checkbox" id="item1" name="item"></td>
-                               
-                                </tr>
-                               
-                                <tr>
-                                    <td>الحصور والانصراف  </td>
-                                    <td>     <input type="checkbox" id="item1" name="item"></td>
-                                    <td>  <input type="checkbox" id="item1" name="item"></td>
-                                    <td>  <input type="checkbox" id="item1" name="item"></td>
-                                    <td>  <input type="checkbox" id="item1" name="item"></td>
+                                    <td>     <input type="checkbox" id="item1" name="attendAdd"></td>
+                                    <td>  <input type="checkbox" id="item1" name="attendEdit"></td>
+                                    <td>  <input type="checkbox" id="item1" name="attendDelete"></td>
+                                    <td>  <input type="checkbox" id="item1" name="attendDisplay"></td>
                                
                                 </tr>
                                                                                                                                                                                                                                                      </yr>
@@ -76,7 +77,9 @@
                 </div>
             </div>
         </div>
-        <input class="btn btn-sucess" type="submit" />
+        <div class="text-center">
+             <input class="btn btn-success" type="submit" value="confirm"/>
+        </div>
 </section>
 </form>
 

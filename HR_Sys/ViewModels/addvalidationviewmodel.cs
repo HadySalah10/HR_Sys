@@ -1,15 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using HR_Sys.Models.BaseIDEntity;
 
-namespace HR_Sys.Models
+namespace HR_Sys.ViewModels
 {
-    public class Validations
+    public class addvalidationviewmodel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
-
         [Required(ErrorMessage = "من فضلك ادخل اسم المجموعة")]
         public string validationName { get; set; }
         public bool empAdd { get; set; } = false;
@@ -25,15 +19,11 @@ namespace HR_Sys.Models
         public bool attendAdd { get; set; } = false;
         public bool attendEdit { get; set; } = false;
         public bool attendDelete { get; set; } = false;
-        public bool attendDisplay { get; set; }= false;
+        public bool attendDisplay { get; set; } = false;
         //report
         public bool reportAdd { get; set; } = false;
         public bool reportEdit { get; set; } = false;
         public bool reportDelete { get; set; } = false;
         public bool reportDisplay { get; set; } = false;
-
-        //relation with hr 
-        public virtual ICollection<HR> HRs { get; set; }  
-
     }
 }

@@ -15,8 +15,7 @@ namespace HR_Sys.Controllers
 
         public ActionResult index()
         {
-
-            return View(new List<EmpGeneralSettingViewModel>());
+            return View(_db.Employees.ToList());
         }
 
     

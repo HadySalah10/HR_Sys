@@ -11,17 +11,17 @@ namespace HR_Sys.Controllers
 {
     public class HRController : Controller
     {
-        HrDBContext HrDb;
-        public HRController(HrDBContext HrDb)
+        HrDBContext db;
+        public HRController(HrDBContext db)
         {
-            this.HrDb = HrDb;   
+            this.db = db;   
 
         }
         public IActionResult Index(string searchString)
         {
             if (HttpContext.Session.GetString("group") == "Admin")
             {
-                var hrs = HrDb.HRs.ToList();
+                var hrs = db.HRs.ToList();
                 if (!String.IsNullOrEmpty(searchString))
                 {
                      hrs = hrs.Where(n => n.hrUserName.Contains(searchString)).ToList();
@@ -38,7 +38,7 @@ namespace HR_Sys.Controllers
             if (HttpContext.Session.GetString("group") =="Admin")
 
             {
-                ViewBag.validation = new SelectList(HrDb.Validations.ToList(), "id", "validationName");
+                ViewBag.validation = new SelectList(db.Validations.ToList(), "id", "validationName");
 
                 return View();
             }
@@ -58,13 +58,13 @@ namespace HR_Sys.Controllers
                 newUser.password = user.password;
                 newUser.confirmPassword = user.confirmPassword;
                 newUser.validationId=user.validationId;
-                HrDb.Add(newUser);
-                HrDb.SaveChanges();
+                db.Add(newUser);
+                db.SaveChanges();
 
             }
             else
             {
-                ViewBag.validation = new SelectList(HrDb.Validations.ToList(), "id", "validationName");
+                ViewBag.validation = new SelectList(db.Validations.ToList(), "id", "validationName");
 
                 return View();
             }
@@ -78,7 +78,7 @@ namespace HR_Sys.Controllers
             if (HttpContext.Session.GetString("group")=="Admin")
 
             {
-                var user = HrDb.HRs.Find(id);
+                var user = db.HRs.Find(id);
 
                 EditHrViewModel hrUser = new EditHrViewModel();
                 hrUser.hrId = user.hrId;
@@ -87,7 +87,7 @@ namespace HR_Sys.Controllers
                 hrUser.email = user.email;
                 hrUser.validationId = user.validationId;
 
-                ViewBag.validation = new SelectList(HrDb.Validations.ToList(), "id", "validationName");
+                ViewBag.validation = new SelectList(db.Validations.ToList(), "id", "validationName");
 
 
                 return View(hrUser);
@@ -107,7 +107,7 @@ namespace HR_Sys.Controllers
 
             if (ModelState.IsValid)
             {
-                var userFromDB = HrDb.HRs.Find(user.hrId);
+                var userFromDB = db.HRs.Find(user.hrId);
 
 
                 userFromDB.fullName = user.fullName;
@@ -120,14 +120,14 @@ namespace HR_Sys.Controllers
                 //userFromDB.hrUserName = user.hrUserName;
                 //userFromDB.email = user.email;
                 //userFromDB.validationId = user.validationId;
-                HrDb.SaveChanges();
+                db.SaveChanges();
                 return RedirectToAction("index");
 
 
             }
             else
             {
-                ViewBag.validation = new SelectList(HrDb.Validations.ToList(), "id", "validationName");
+                ViewBag.validation = new SelectList(db.Validations.ToList(), "id", "validationName");
 
                 return View();
             }
@@ -139,9 +139,9 @@ namespace HR_Sys.Controllers
         {
             if (HttpContext.Session.GetString("group") == "Admin")
             {
-                var delUser = HrDb.HRs.Find(id);
-                HrDb.HRs.Remove(delUser);
-                HrDb.SaveChanges();
+                var delUser = db.HRs.Find(id);
+                db.HRs.Remove(delUser);
+                db.SaveChanges();
                 return RedirectToAction("index");
             }
             return View("ErrorPage");
@@ -150,21 +150,45 @@ namespace HR_Sys.Controllers
         public IActionResult AddValidation()
         {
             if (HttpContext.Session.GetString("group") == "Admin")
-
+            {
                 return View();
-           
-            
-            return View("ErrorPage");
-
-
+            }
+        
+            else
+            {
+                return View("ErrorPage");
+            }
+          
         }
         [HttpPost]
-        public IActionResult AddValidation(Validations valid)
+        public IActionResult AddValidation(addvalidationviewmodel valid)
         {
             if (ModelState.IsValid)
             {
-                HrDb.Validations.Add(valid);
-                HrDb.SaveChanges();
+                Validations val = new Validations()
+            {
+                validationName = valid.validationName,
+                empAdd = valid.empAdd,
+                empEdit = valid.empEdit,
+                empDelete = valid.empDelete,
+                empDisplay = valid.empDisplay,
+                gsAdd = valid.gsAdd,
+                gsEdit = valid.gsEdit,
+                gsDelete = valid.gsDelete,
+                gsDisplay = valid.gsDisplay,
+                attendAdd = valid.attendAdd,
+                attendEdit = valid.attendEdit,
+                attendDelete = valid.attendDelete,
+                attendDisplay = valid.attendDisplay,
+                reportAdd = valid.reportAdd,
+                reportEdit = valid.reportEdit,
+                reportDelete = valid.reportDelete,
+                reportDisplay = valid.reportDisplay
+
+            };
+ 
+                db.Validations.Add(val);
+                db.SaveChanges();
                 return RedirectToAction("index");
             }
             else
@@ -172,7 +196,7 @@ namespace HR_Sys.Controllers
                 return View();
 
             }
-             
+
 
 
 
@@ -185,7 +209,7 @@ namespace HR_Sys.Controllers
 
         public IActionResult checkEmail(string email)
         {
-            var user = HrDb.HRs.Where(u => u.email == email).FirstOrDefault();
+            var user = db.HRs.Where(u => u.email == email).FirstOrDefault();
             if (user != null)
                 return Json(false);
                 return Json(true);
@@ -206,7 +230,7 @@ namespace HR_Sys.Controllers
         public IActionResult Login()
         {
 
-            var dbUser = HrDb.HRs.SingleOrDefault(u => u.email == Request.Cookies["email"] && u.password == Request.Cookies["password"]);
+            var dbUser = db.HRs.SingleOrDefault(u => u.email == Request.Cookies["email"] && u.password == Request.Cookies["password"]);
             if (HttpContext.Session.GetString("userId")!=null)
             {
                 return View("welcome");
@@ -237,7 +261,7 @@ namespace HR_Sys.Controllers
             if (user != null)
 
             {
-                var dbUser = HrDb.HRs.SingleOrDefault(u => u.email == user.email && u.password == user.password);
+                var dbUser = db.HRs.SingleOrDefault(u => u.email == user.email && u.password == user.password);
                 if (dbUser != null)
                 {
                     if (Remember == true)
