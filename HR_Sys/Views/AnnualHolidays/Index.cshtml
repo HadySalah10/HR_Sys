@@ -55,7 +55,6 @@
                     <td>@item.dateHoliday</td>
 
                     <td>
-                        <a asp-controller="AnnualHolidays" asp-action="Edit"  asp-route-id="@item.anoholidayId"><i class="fa fa-pencil font-medium-5"></i></a>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                         <a asp-controller="AnnualHolidays" asp-action="Delete" onclick="return confirm('هل تريد مسح  الأجازه    @item.NameAnnualHoliday  ؟  ')"  asp-route-id="@item.id"><i class="fa fa-trash font-medium-4"></i></a> 
                     </td>
                 </tr>

@@ -10,7 +10,7 @@ namespace HR_Sys.Models
     public class annualHoliday: CommonProps
     {
         
-        public int anoholidayId { get; set; }
+     
 
         //اسم الأجازه 
         [DisplayName("اسـم الأجازه")]
