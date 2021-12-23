@@ -44,6 +44,20 @@ namespace HR_Sys.Controllers
 
         }
 
+        public IActionResult search(string searchString)
+        {
+                var employees = _db.Employees.ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+               ViewBag.emp = employees.Where(n => n.empName.Contains(searchString)).ToList();
+
+            }
+
+            return PartialView();
+        }
+
 
         // GET: EmployeeController/Create
         public IActionResult Create()

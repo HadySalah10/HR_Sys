@@ -18,7 +18,7 @@ namespace HR_Sys.Controllers
         {
             if (HttpContext.Session.GetString("reportDisplay") == "True")
             {
-                //var report = db.EmpReports.ToList();
+                var report = db.EmpReports.ToList();
                 
                 ViewBag.months = new SelectList(db.Months.ToList(), "id", "nameMonth");
                 //var item = db.EmpReports.AsNoTracking().OrderBy(p => p.empId);
@@ -28,16 +28,16 @@ namespace HR_Sys.Controllers
                 //    report = (List<EmpReport>)report.Where(n => n.idmonth.ToString() == searchinput.ToString());
 
                 //}
-                return View();
+                return View(report);
             }
             return View("ErrorPage");
         }
 
         public IActionResult searchByMonth(int idmonth)
         {
-            ViewBag.emp = db.EmpReports.Where(n=>n.idmonth== idmonth).ToList();
+            var emps = db.EmpReports.Where(n=>n.idmonth== idmonth).ToList();
 
-            return PartialView(); 
+            return PartialView(emps); 
         
         }
 

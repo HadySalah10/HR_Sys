@@ -1,4 +1,5 @@
-﻿
+﻿@model List<EmpReport>;
+
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -50,7 +51,7 @@
                             @* <nav>
                                  @await this.Component.InvokeAsync("pager",new{PagingList=this.Model})
                              </nav>*@
-                                    @foreach(var item in ViewBag.emp)
+                                    @foreach(var item in Model)
                                     {
                                           <tr>
                                         <td>@item.Employees.empName</td>
