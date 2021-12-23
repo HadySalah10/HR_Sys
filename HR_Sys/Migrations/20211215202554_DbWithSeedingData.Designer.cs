@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HR_Sys.Migrations
 {
     [DbContext(typeof(HrDBContext))]
-    [Migration("20211212170456_DbMigration")]
-    partial class DbMigration
+    [Migration("20211215202554_DbWithSeedingData")]
+    partial class DbWithSeedingData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,7 +35,8 @@ namespace HR_Sys.Migrations
                     b.Property<int?>("addBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("dateHoliday")
+                    b.Property<DateTime?>("dateHoliday")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("deletedBy")
@@ -376,7 +377,7 @@ namespace HR_Sys.Migrations
                             phoneNum = "01119959346",
                             phoneNum2 = "01554904905",
                             requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            requiredDaysPerMonth = 5,
+                            requiredDaysPerMonth = 24,
                             requiredDeductHours = 2f,
                             requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             requiredExtraHours = 2f,
@@ -729,7 +730,6 @@ namespace HR_Sys.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("nameHoliday")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -740,7 +740,7 @@ namespace HR_Sys.Migrations
 
                     b.HasIndex("editBy");
 
-                    b.ToTable("NameAnnualHoliday");
+                    b.ToTable("NameAnnualHolidays");
 
                     b.HasData(
                         new
@@ -766,6 +766,22 @@ namespace HR_Sys.Migrations
                             isDeleted = false,
                             lastEdit = true,
                             nameHoliday = "عيد الفطر"
+                        },
+                        new
+                        {
+                            id = 4,
+                            addBy = 1,
+                            isDeleted = false,
+                            lastEdit = true,
+                            nameHoliday = "عيد العمال"
+                        },
+                        new
+                        {
+                            id = 5,
+                            addBy = 1,
+                            isDeleted = false,
+                            lastEdit = true,
+                            nameHoliday = "عيد تحرير سيناء"
                         });
                 });
 
@@ -1128,48 +1144,6 @@ namespace HR_Sys.Migrations
                             reportDisplay = true,
                             reportEdit = true,
                             validationName = "Admin"
-                        },
-                        new
-                        {
-                            id = 2,
-                            attendAdd = false,
-                            attendDelete = false,
-                            attendDisplay = false,
-                            attendEdit = false,
-                            empAdd = true,
-                            empDelete = true,
-                            empDisplay = true,
-                            empEdit = true,
-                            gsAdd = false,
-                            gsDelete = false,
-                            gsDisplay = false,
-                            gsEdit = false,
-                            reportAdd = false,
-                            reportDelete = false,
-                            reportDisplay = false,
-                            reportEdit = false,
-                            validationName = "الموظفين"
-                        },
-                        new
-                        {
-                            id = 3,
-                            attendAdd = false,
-                            attendDelete = false,
-                            attendDisplay = false,
-                            attendEdit = false,
-                            empAdd = false,
-                            empDelete = false,
-                            empDisplay = false,
-                            empEdit = false,
-                            gsAdd = true,
-                            gsDelete = true,
-                            gsDisplay = true,
-                            gsEdit = true,
-                            reportAdd = false,
-                            reportDelete = false,
-                            reportDisplay = false,
-                            reportEdit = false,
-                            validationName = "الاعدادات العامة"
                         });
                 });
 

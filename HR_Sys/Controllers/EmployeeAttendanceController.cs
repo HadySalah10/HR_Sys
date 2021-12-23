@@ -54,7 +54,7 @@ namespace HR_Sys.Controllers
                     fileStream.Flush();
                 }
                 var attendance = GetAttencanceList(formFile.FileName);
-                var attendanceToDatabse = GetAttencanceListToDataBase(attendance);
+               // var attendanceToDatabse = GetAttencanceList(attendance);
                 return View(attendance);
 
             }
@@ -68,8 +68,8 @@ namespace HR_Sys.Controllers
           
 
         }
-
-        private List<EmployeeAttendance> GetAttencanceListToDataBase(List<EmployeeAttendanceExcelViewModel> excelViewModels)
+      
+    private List<EmployeeAttendance> GetAttencanceListToDataBase(List<EmployeeAttendanceExcelViewModel> excelViewModels)
         {
             List<EmployeeAttendance> attendance =new List<EmployeeAttendance>();
             List<int> ids =new List<int>();
