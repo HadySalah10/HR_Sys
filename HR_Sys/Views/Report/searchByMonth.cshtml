@@ -1,8 +1,54 @@
-﻿@model List<EmpReport>;
+﻿@model X.PagedList.IPagedList<HR_Sys.Models.EmpReport>;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Common;
 
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@{
+    Layout = null;
+}
+<style>
+        .pagination {
+            /display: inline-block;/
+        }
+
+            .pagination a {
+                color: black;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+                transition: background-color .3s;
+                border: 1px solid #ddd;
+                font-size: 20px;
+                font-weight: bold; 
+            }
+
+                .pagination .active {
+                        color: #2a75ff;
+                        float: left;
+                        padding: 8px 16px;
+                        text-decoration: none;
+                        transition: background-color .3s;
+                        border: 1px solid #ddd;
+                        font-size: 20px;
+                        font-weight: bold;  
+                }
+
+                .pagination a:hover:not(.active) {
+                    background-color: #ddd;
+                }
+
+        .container {
+            padding-bottom: 3% !important;
+        }
+
+        .btn {
+            margin-bottom: -12px !important;
+        }
+    </style>
+    
  <section id="configuration">
     <div class="row">
         <div class="col-12">
@@ -77,6 +123,20 @@
                             </tbody>
                 
                         </table>
+                         <div class="pagination">
+                              Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                       </div>
+                       <div>
+                     
+                  <div class="pull-right">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("searchByMonth",
+                   new
+                        {
+                            page ,idmonth=@ViewBag.month 
+                 }))
+            </div>
+                        
+                       
                        @* <nav>
                             <vc:pager paging-list="@Model"/>
                         </nav>*@

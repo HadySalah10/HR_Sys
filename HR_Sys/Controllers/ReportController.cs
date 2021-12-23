@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using HR_Sys.Models;
 using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
+using X.PagedList;
 
 namespace HR_Sys.Controllers
 {
@@ -14,7 +15,7 @@ namespace HR_Sys.Controllers
             this.db = db;
 
         }
-        public  IActionResult Index(int searchinput)
+        public  IActionResult Index()
         {
             if (HttpContext.Session.GetString("reportDisplay") == "True")
             {
@@ -33,12 +34,15 @@ namespace HR_Sys.Controllers
             return View("ErrorPage");
         }
 
-        public IActionResult searchByMonth(int idmonth)
+        public IActionResult searchByMonth(int idmonth, int page = 1, int pageSize = 2)
         {
-            var emps = db.EmpReports.Where(n=>n.idmonth== idmonth).ToList();
+            page = page > 0 ? page : 1;
 
-            return PartialView(emps); 
-        
+            pageSize = pageSize > 0 ? pageSize : 7;
+            var emps = db.EmpReports.Where(n=>n.idmonth== idmonth).ToList();
+            ViewBag.month = idmonth;
+            return View(emps.ToPagedList(page, pageSize));
+
         }
 
         public IActionResult invoice(int empId)
