@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using HR_Sys.ViewModels;
 using Microsoft.AspNetCore.Session;
-
-
+using X.PagedList;
 
 namespace HR_Sys.Controllers
 
@@ -22,17 +21,20 @@ namespace HR_Sys.Controllers
             
             return View("welcome"); 
         }
-        public IActionResult Index(string searchString)
+        public IActionResult Index(string searchString, int page = 1, int pageSize = 2)
         {
             if (HttpContext.Session.GetString("group") == "Admin")
             {
+                page = page > 0 ? page : 1;
+
+                pageSize = pageSize > 0 ? pageSize : 7;
                 var hrs = db.HRs.ToList();
                 if (!String.IsNullOrEmpty(searchString))
                 {
                      hrs = hrs.Where(n => n.hrUserName.Contains(searchString)).ToList();
 
                 }
-                return View(hrs);
+                return View(hrs.ToPagedList(page, pageSize));
 
             }
             return View("ErrorPage");  

@@ -1,8 +1,54 @@
 ﻿
-@model List<HR>
+@model  X.PagedList.IPagedList<HR_Sys.Models.HR>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Common;
+
+
 @{
     ViewData["Title"] = "Index";
 }
+
+<style>
+        .pagination {
+            /display: inline-block;/
+        }
+
+            .pagination a {
+                color: black;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+                transition: background-color .3s;
+                border: 1px solid #ddd;
+                font-size: 20px;
+                font-weight: bold; 
+            }
+
+                .pagination .active {
+                        color: #2a75ff;
+                        float: left;
+                        padding: 8px 16px;
+                        text-decoration: none;
+                        transition: background-color .3s;
+                        border: 1px solid #ddd;
+                        font-size: 20px;
+                        font-weight: bold;  
+                }
+
+                .pagination a:hover:not(.active) {
+                    background-color: #ddd;
+                }
+
+        .container {
+            padding-bottom: 3% !important;
+        }
+
+        .btn {
+            margin-bottom: -12px !important;
+        }
+    </style>
+
 
 <div class="content-wrapper">
             <div class="container-fluid">
@@ -90,6 +136,19 @@
                                  
                             </tbody>               
                         </table>
+                        <div class="pagination">
+                              Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                       </div>
+                       <div>
+                     
+                  <div class="pull-right">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index",
+                   new
+                        {
+                            page
+                 }))
+            </div>
+                        
                             <!------------------------------------------- end table of HRS-------------------------------------->                    
 
                     </div>
