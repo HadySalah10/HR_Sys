@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Session;
+using X.PagedList;
 
 namespace HR_Sys.Controllers
 {
@@ -18,11 +19,14 @@ namespace HR_Sys.Controllers
         }
 
         // GET: EmployeeController
-        public IActionResult Index(string searchString)
+        public IActionResult Index(string searchString,int page=1,int pageSize=2)
 
         {
             if (HttpContext.Session.GetString("empDisplay") == "True")
             {
+                page = page > 0 ? page : 1;
+
+                pageSize = pageSize > 0 ? pageSize : 7;
                 var employees = _db.Employees.ToList();
                 if (!String.IsNullOrEmpty(searchString))
                 {
@@ -31,7 +35,7 @@ namespace HR_Sys.Controllers
                 }
 
 
-                return View(employees);
+                return View(employees.ToPagedList(page, pageSize));
             }
 
               return View("ErrorPage");
