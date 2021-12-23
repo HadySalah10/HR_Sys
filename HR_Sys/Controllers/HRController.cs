@@ -333,10 +333,10 @@ namespace HR_Sys.Controllers
             HttpContext.Session.SetString("gsDelete", dbUser.Valids.gsDelete.ToString());
             HttpContext.Session.SetString("gsEdit", dbUser.Valids.gsEdit.ToString());
 
-            HttpContext.Session.SetString("reportAdd", dbUser.Valids.reportAdd.ToString());
-            HttpContext.Session.SetString("reportDelete", dbUser.Valids.reportDelete.ToString());
+            //HttpContext.Session.SetString("reportAdd", dbUser.Valids.reportAdd.ToString());
+            //HttpContext.Session.SetString("reportDelete", dbUser.Valids.reportDelete.ToString());
             HttpContext.Session.SetString("reportDisplay", dbUser.Valids.reportDisplay.ToString());
-            HttpContext.Session.SetString("reportEdit", dbUser.Valids.reportEdit.ToString());
+            //HttpContext.Session.SetString("reportEdit", dbUser.Valids.reportEdit.ToString());
 
             HttpContext.Session.SetString("group", dbUser.Valids.validationName);
 

@@ -93,7 +93,7 @@ namespace HR_Sys.Models
           
             modelBuilder.Entity<Months>().HasData(
                new Months { id = 1, nameMonth = "يناير", addBy = 1, lastEdit = true },
-               new Months { id = 2, nameMonth = "فبارير", addBy = 1, lastEdit = true },
+               new Months { id = 2, nameMonth = "فبراير", addBy = 1, lastEdit = true },
                new Months { id = 3, nameMonth = "مارس", addBy = 1, lastEdit = true },
                new Months { id = 4, nameMonth = "ابريل", addBy = 1, lastEdit = true },
                new Months { id = 5, nameMonth = "مايو", addBy = 1, lastEdit = true },
