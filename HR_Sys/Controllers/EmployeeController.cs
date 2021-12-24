@@ -225,19 +225,14 @@ namespace HR_Sys.Controllers
         {
             if (HttpContext.Session.GetString("empDelete") == "True")
             {
-
-
-                var check = _db.Employees.Find(id);
-                if (check.id > 0 || check != null)
-                    _db.Employees.Remove(check);
+               var employeetodelete = _db.Employees.Find(id);
+               if (employeetodelete.id > 0 || employeetodelete != null)
+                    employeetodelete.isDeleted = true;
                 _db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
             return View("ErrorPage");
-
-
-
 
         }
 

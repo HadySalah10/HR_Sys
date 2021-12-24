@@ -1,10 +1,16 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using HR_Sys.Models;
 
 namespace HR_Sys.Controllers
 {
     public class FormalHolidayController : Controller
     {
+        HrDBContext _db;
+        public FormalHolidayController(HrDBContext context)
+        {
+            _db = context;
+        }
         // GET: FormalHolidayController
         public ActionResult Index()
         {
@@ -59,25 +65,19 @@ namespace HR_Sys.Controllers
             }
         }
 
-        // GET: FormalHolidayController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
-            return View();
-        }
+            if (HttpContext.Session.GetString("empDelete") == "True")
+            {
+                var typeofvacation = _db.TypesOfVacationsEmps.Find(id);
+                if (typeofvacation.id > 0 || typeofvacation != null)
+                    typeofvacation.isDeleted = true;
+                _db.SaveChanges();
 
-        // POST: FormalHolidayController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View("ErrorPage");
+
         }
     }
 }
