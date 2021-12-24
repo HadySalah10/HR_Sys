@@ -424,6 +424,22 @@ namespace HR_Sys.Controllers
             return attendance;
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
         private List<EmployeeAttendanceExcelViewModel> generateEmployee(List<EmployeeAttendanceExcelViewModel> attendance)
         {
             var idsEmployee = attendance.Select(s => s.empId).ToList();

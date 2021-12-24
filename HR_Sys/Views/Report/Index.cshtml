@@ -34,7 +34,9 @@
                            
                                 <div class="col-lg-3"><button id="searchinput" class="btn btn-primary mb-2"> <i class="ft-search"></i>&nbsp;
                                    <a>  بحث عن موظف</a></button></div>
+                                   <input id="pageNum" hidden value="@ViewBag.pageNum"/>
                             </div>
+
                             
                             <div id="renderTable">
 
@@ -109,7 +111,9 @@
         })
 
         $(function(){
-            $("#renderTable").load("/Report/searchByMonth");
+            let id=$("#idmonth").val();
+            let idPageNum=$("#pageNum").val();
+            $("#renderTable").load("/Report/searchByMonth?idmonth="+id+"&page="+idPageNum);
         
         })
 

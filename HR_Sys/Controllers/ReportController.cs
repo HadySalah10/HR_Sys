@@ -34,6 +34,9 @@ namespace HR_Sys.Controllers
                 //    report = (List<EmpReport>)report.Where(n => n.idmonth.ToString() == searchinput.ToString());
 
                 //}
+
+                ViewBag.pageNum = page;
+
                 return View(emps);
             }
             return View("ErrorPage");
