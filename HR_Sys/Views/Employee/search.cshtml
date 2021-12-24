@@ -1,6 +1,86 @@
 ﻿
+@model X.PagedList.IPagedList<HR_Sys.Models.Employee>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Common;
+
+
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
+<table class="table table-striped table-bordered" >
+
+                            <thead class="text-center">
+                                <tr>
+                                    <th >الاسم</th>
+                                    <th>رقم التليفون</th>
+                                    <th>رقم اخر</th>
+                                    <th>تاريخ الميلاد </th>
+                                    <th>تاريخ التعاقد</th>
+                                    <th>المرتب</th>
+                                    <th>وقت الحضور</th>
+                                    <th>وقت الانصراف</th>
+                                    <th>الجنسيه</th>
+                                    <th>إجراءات</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                          
+                                    @foreach(var item in Model)
+                                    {
+                                         <tr>
+                                                <td >
+                                                      <span>@item.empName</span>
+                                                </td>
+                                                <td>
+                                                    @item.phoneNum
+                                                </td>
+                                                <td>@item.phoneNum2</td>
+                                                <td>@item.empDateOfBirth.ToString("dd/MM/yyyy")</td>
+                                            
+                                                <td>@item.empHireDate.ToString("dd/MM/yyyy")</td>
+                                                    <td>@item.empNetSalary</td>
+                                                    <td> @item.requiredAttendanceTime.ToShortTimeString()</td>
+                                                    <td> @item.requiredDepartureTime.ToShortTimeString() </td>
+                                                    <td>@item.Nationality.nationalityName</td>
+
+                                                    <td class="text-center">
+                                                         @if (HttpContextAccessor.HttpContext.Session.GetString("empEdit") == "True")
+                                                         {
+                                                             <a class="btn btn-success mb-2" asp-controller="Employee" asp-action="Edit" asp-route-id="@item.id">تعديل</a>
+                                                         }   
+                                                           @if (HttpContextAccessor.HttpContext.Session.GetString("empDelete") == "True")
+                                                         {
+                                                              <a class="btn btn-danger mb-2" asp-controller="Employee"  onclick="return confirm('هل تريد مسح  الموظف    @item.empName  ؟  ')" asp-action="delete" asp-route-id="@item.id">حذف</a>
+                                                          }
+@*                                                     <a class="btn btn-info mb-2" asp-controller= "Employee" asp-action="Editsettings" asp-route-id="@item.id">تعديل الاعدادات</a>
+*@                                                
+                                                    </td>
+                                            </tr>
+                                    }                                
+
+                            
+                                
+
+                                                                                                                                                                                                                                                                                                               </yr>
+                            </tbody>
+                        </table>
+
+                                               
+                        <div class="pagination">
+                              Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                       </div>
+                       <div>
+                     
+                  <div class="pull-right">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index",
+                   new
+                        {
+                            page
+                 }))
+            </div>
+                           
+    </div>
 

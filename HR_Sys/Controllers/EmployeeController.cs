@@ -24,15 +24,15 @@ namespace HR_Sys.Controllers
         {
             if (HttpContext.Session.GetString("empDisplay") == "True")
             {
-                page = page > 0 ? page : 1;
+                //page = page > 0 ? page : 1;
 
-                pageSize = pageSize > 0 ? pageSize : 7;
+                //pageSize = pageSize > 0 ? pageSize : 7;
                 var employees = _db.Employees.ToList();
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    employees = employees.Where(n => n.empName.Contains(searchString)).ToList();
+                //if (!String.IsNullOrEmpty(searchString))
+                //{
+                //    employees = employees.Where(n => n.empName.Contains(searchString)).ToList();
 
-                }
+                //}
 
 
                 return View(employees.ToPagedList(page, pageSize));
@@ -44,18 +44,22 @@ namespace HR_Sys.Controllers
 
         }
 
-        public IActionResult search(string searchString)
+        public IActionResult search(string searchString, int page = 1, int pageSize = 2)
         {
-                var employees = _db.Employees.ToList();
+            page = page > 0 ? page : 1;
+
+            pageSize = pageSize > 0 ? pageSize : 7;
+
+            var employees = _db.Employees.ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
 
-               ViewBag.emp = employees.Where(n => n.empName.Contains(searchString)).ToList();
+               employees = employees.Where(n => n.empName.Contains(searchString)).ToList();
 
             }
 
-            return PartialView();
+            return PartialView(employees.ToPagedList(page, pageSize));
         }
 
 

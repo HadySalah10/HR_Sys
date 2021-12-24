@@ -6,9 +6,7 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-    Layout = null;
-}
+
 <style>
         .pagination {
             /display: inline-block;/
@@ -129,10 +127,10 @@
                        <div>
                      
                   <div class="pull-right">
-                @Html.PagedListPager((IPagedList)Model, page => Url.Action("searchByMonth",
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("index",
                    new
                         {
-                            page ,idmonth=@ViewBag.month 
+                            page ,idmonth=ViewBag.month 
                  }))
             </div>
                         

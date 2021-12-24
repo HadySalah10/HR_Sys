@@ -27,6 +27,7 @@
                                     
                                       <div class="col-sm-12 col-md-3"><div class="dataTables_length" id="DataTables_Table_0_length"><label>الشهر
                                        <select  class="form-control"  asp-items="ViewBag.months" asp-for="@Model.FirstOrDefault().idmonth">
+                                           <option selected >اختار الشهر</option>
                                        </select> 
                                       </label></div></div>
                            
@@ -105,7 +106,7 @@
         })
 
         $(function(){
-            $("renderTable").load('/Report/searchByMonth');
+            $("renderTable").load('/Report/searchByMonth?idmonth=');
         
         })
 

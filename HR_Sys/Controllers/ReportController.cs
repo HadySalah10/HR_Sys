@@ -41,7 +41,7 @@ namespace HR_Sys.Controllers
             pageSize = pageSize > 0 ? pageSize : 7;
             var emps = db.EmpReports.Where(n=>n.idmonth== idmonth).ToList();
             ViewBag.month = idmonth;
-            return View(emps.ToPagedList(page, pageSize));
+            return PartialView(emps.ToPagedList(page, pageSize));
 
         }
 
