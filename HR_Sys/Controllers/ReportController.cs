@@ -15,13 +15,18 @@ namespace HR_Sys.Controllers
             this.db = db;
 
         }
-        public  IActionResult Index()
+        public  IActionResult Index(int idmonth, int page = 1, int pageSize = 2)
         {
             if (HttpContext.Session.GetString("reportDisplay") == "True")
             {
-                var report = db.EmpReports.ToList();
                 
-                ViewBag.months = new SelectList(db.Months.ToList(), "id", "nameMonth");
+                ViewBag.months = new SelectList(db.Months.ToList(), "id", "nameMonth",idmonth);
+
+                page = page > 0 ? page : 1;
+
+                pageSize = pageSize > 0 ? pageSize : 7;
+                var emps = db.EmpReports.Where(n => n.idmonth == idmonth).ToPagedList(page, pageSize);
+                ViewBag.month = idmonth;
                 //var item = db.EmpReports.AsNoTracking().OrderBy(p => p.empId);
                 //var model = await PagingList<EmpReport>.CreateAsync(item, 2, page);
                 //if (searchinput != null)
@@ -29,7 +34,7 @@ namespace HR_Sys.Controllers
                 //    report = (List<EmpReport>)report.Where(n => n.idmonth.ToString() == searchinput.ToString());
 
                 //}
-                return View(report);
+                return View(emps);
             }
             return View("ErrorPage");
         }
@@ -39,9 +44,9 @@ namespace HR_Sys.Controllers
             page = page > 0 ? page : 1;
 
             pageSize = pageSize > 0 ? pageSize : 7;
-            var emps = db.EmpReports.Where(n=>n.idmonth== idmonth).ToList();
+            var emps = db.EmpReports.Where(n=>n.idmonth== idmonth).ToPagedList(page, pageSize);
             ViewBag.month = idmonth;
-            return PartialView(emps.ToPagedList(page, pageSize));
+            return PartialView(emps);
 
         }
 
