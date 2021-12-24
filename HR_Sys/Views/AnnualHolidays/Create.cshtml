@@ -15,7 +15,7 @@
                  <tr class="form-group">
                      <td><label asp-for="idHoliday" class="control-label"></label></td>
                      <td>
-                     <select asp-for="idHoliday"  class="form-control pl-5" asp-items="ViewBag.NameAnnualHoliday">
+                     <select asp-for="idHoliday"  class="form-control pl-5" asp-items="@ViewBag.NameAnnualHoliday">
                      </select>
                      </td>                                
                      <td> <span asp-validation-for="idHoliday" class="text-danger"></span></td>

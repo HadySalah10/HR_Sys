@@ -45,7 +45,7 @@ namespace HR_Sys.Controllers
         public IActionResult Create() 
         {
 
-            ViewBag.NameAnnualHoliday = new SelectList(db.NameAnnualHolidays.ToList(), "idHoliday", "NameAnnualHoliday");
+            ViewBag.NameAnnualHoliday = new SelectList(db.AnnualHolidays.ToList(), "idHoliday", "NameAnnualHoliday");
             return View();
         }
 
