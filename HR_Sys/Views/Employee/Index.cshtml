@@ -150,20 +150,20 @@
                                                                                                                                                                                                                                                                                                                </yr>
                             </tbody>
                         </table>*@
-  @*                      <div class="pagination">
+                       @* <div class="pagination">
                               Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-                       </div>
+                       </div>*@
                        <div>
                      
                   <div class="pull-right">
                 @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index",
                    new
                         {
-                            page
+                            page,searchString=ViewBag.search
                  }))
-            </div>
+                </div>
                            
-    </div>*@
+                 </div>
                         <!------------------------------------------- end table of Empolyees-------------------------------------->
                     </div>
                 </div>
