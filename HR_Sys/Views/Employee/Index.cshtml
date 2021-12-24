@@ -199,14 +199,14 @@
 <script>
             $("#searchString").on("keyup",function(){
             let text=$("#searchString").val();
-            $("renderTable").load("/Employee/search?searchString=" + text)
+            $("#renderTable").load("/Employee/search?searchString=" + text)
 
             
             })
 
             $(function(){
             
-                $("renderTable").load("/Employee/search?searchString=")
+                $("#renderTable").load("/Employee/search")
 
             
             })
