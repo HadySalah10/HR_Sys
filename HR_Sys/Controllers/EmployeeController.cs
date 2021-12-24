@@ -52,18 +52,18 @@ namespace HR_Sys.Controllers
 
             pageSize = pageSize > 0 ? pageSize : 7;
 
-            var employees = _db.Employees.ToPagedList(page, pageSize);
+            var employees = _db.Employees.ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
 
-               employees = employees.Where(n => n.empName.Contains(searchString)).ToPagedList(page, pageSize);
+                employees = employees.Where(n => n.empName.Contains(searchString)).ToList();
 
             }
 
             ViewBag.search=searchString;    
 
-            return PartialView(employees);
+            return PartialView(employees.ToPagedList(page, pageSize));
         }
 
 

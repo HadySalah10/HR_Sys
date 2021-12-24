@@ -8,7 +8,7 @@
 
     
 }
-   @* <section id="configuration">
+    <section id="configuration">
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -32,8 +32,18 @@
                                        </select> 
                                       </label></div></div>
                            
-                                <div class="col-lg-3"><button id="searchinput" class="btn btn-primary mb-2"> <i class="ft-search"></i>&nbsp;
-                                   <a>  بحث عن موظف</a></button></div>
+                                <div class="col-lg-3">
+                                    <form>
+                                        <div class="col-sm-12 col-md-8">
+                                            <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                                <input type="text" class="form-control form-control-sm" placeholder="بحث عن موظف" aria-controls="DataTables_Table_0" name="searchString" id="searchString" />
+                                            </div>
+                                            @*<div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                                <input type="submit" class="btn btn-info"  name="searchString" value="search">
+                                            </div>*@
+                                        </div>
+                                      </form>
+                                </div>
                                    <input id="pageNum" hidden value="@ViewBag.pageNum"/>
                             </div>
 
@@ -44,53 +54,7 @@
 
                         
 
-                        @*<table class="table table-striped table-bordered zero-configuration mt-40">
-                            <thead>
-                                <tr>
-                                    <th>اسم الموظف</th>
-                                    <th>رقم الهاتف</th>
-                                    <th>المرتب</th>
-                                    <th>أيام الحضور</th>
-                                    <th>أيام الغياب</th>
-                                    <th>عدد الساعات الاضافية </th>
-                                    <th> عدد ساعات الخصم</th>
-                                    <th>الاضافي</th>
-                                    <th> الخصم</th>
-                                    <th>الاجمالي</th>
-                                    <th>تفاصيل</th>
-                                    
-                         
-                                </tr>
-                            </thead>
-                            <tbody>
-                           
-                                    @foreach(var item in Model)
-                                    {
-                                          <tr>
-                                        <td>@item.Employees.empName</td>
-                                        <td>@item.GrossSalary</td>
-                                        <td>@item.numAttendanceDays</td>
-                                        <td>@item.numAbsenceDays</td>
-                                        <td>@item.numOfExtraHours</td>
-                                        <td>@item.numOfDeductHours</td>
-                                        <td>@item.totalOfExtraPrice</td>
-                                        <td>@item.totalOfDeductionPrice</td>
-                                        <td>@item.netSalary</td>
-                                        <td><a asp-action="invoice" asp-controller="Report" asp-route-id="@item.empId">
-                                            الفاتورة <i class="ft-plus"></i>&nbsp;</a>
-                                       </td>
-                                       </tr>
-                                    }
-                                  
-                                
-                               
-
-                         
-                                                                                                                                                                                                                                                                                 </yr>
-                            </tbody>
-                
-                        </table>*@
-                     
+                        
                     </div>
                 </div>
             </div>
@@ -103,6 +67,7 @@
     <script>
         $("#idmonth").on("change",function(){
             let id=$("#idmonth").val();
+
 
              $("#renderTable").load("/Report/searchByMonth?idmonth="+id)
 
@@ -118,19 +83,19 @@
         })
 
 
-        //$.ajax({
+        $.ajax({
 
-        //    url:'Report/searchByMonth',
-        //    method:'GET',
-        //    success:function(data)
-        //             {
-        //                 $("#idmonth").append(data)
-        //              }
-        //    error:function(data)
-        //           {
-        //           }
+            url:'Report/searchByName',
+            method:'GET',
+            success:function(data)
+                     {
+                         $("renderTable").append(data)
+                      }
+            error:function(data)
+                   {
+                   }
 
-        //})
+        })
 
     </script>
 

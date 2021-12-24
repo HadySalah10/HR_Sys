@@ -53,6 +53,27 @@ namespace HR_Sys.Controllers
 
         }
 
+        public IActionResult searchByName(string searchString, int page = 1, int pageSize = 2)
+        {
+            page = page > 0 ? page : 1;
+
+            pageSize = pageSize > 0 ? pageSize : 7;
+
+            var employee = db.EmpReports.ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                employee = employee.Where(n => n.Employees.empName.Contains(searchString)).ToList();
+
+            }
+
+            ViewBag.search = searchString;
+
+            return PartialView(employee.ToPagedList(page, pageSize));
+        }
+
+
         public IActionResult invoice(int empId)
         {
             return View();
