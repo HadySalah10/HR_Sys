@@ -45,6 +45,8 @@
                                       </form>
                                 </div>
                                    <input id="pageNum" hidden value="@ViewBag.pageNum"/>
+@*                                  <input id="pageNum" hidden value="@ViewBag.pageNum"/>
+*@
                             </div>
 
                             
@@ -82,20 +84,39 @@
         
         })
 
+         $("#searchString").on("keyup",function(){
+            let text=$("#searchString").val();
+            let idPageNum=$("#pageNum").val();
 
-        $.ajax({
+            $("#renderTable").load("/report/searchByName?searchString=" + text+"&page="+idPageNum);
+            
 
-            url:'Report/searchByName',
-            method:'GET',
-            success:function(data)
-                     {
-                         $("renderTable").append(data)
-                      }
-            error:function(data)
-                   {
-                   }
 
-        })
+            
+            })
+
+            //$(function(){
+            //    let text=$("#searchString").val();
+            //    let idPageNum=$("#pageNum").val();
+            //    $("#renderTable").load("/report/searchByName?searchString=" + text+"&page="+idPageNum)
+
+            
+            //})
+
+
+        //$.ajax({
+
+        //    url:'Report/searchByName',
+        //    method:'GET',
+        //    success:function(data)
+        //             {
+        //                 $("renderTable").append(data)
+        //              }
+        //    error:function(data)
+        //           {
+        //           }
+
+        //})
 
     </script>
 
