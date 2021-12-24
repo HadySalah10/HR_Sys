@@ -88,6 +88,8 @@
                                 </div>
                             }
                         </div>
+                        <input id="pageNum" hidden value="@ViewBag.pageNum"/>
+
                         <br />
                       <!------------------------------------------- start table of Employee-------------------------------------->   
                         <div id="renderTable"></div>
@@ -199,14 +201,17 @@
 <script>
             $("#searchString").on("keyup",function(){
             let text=$("#searchString").val();
-            $("#renderTable").load("/Employee/search?searchString=" + text)
+            $("#renderTable").load("/Employee/search?searchString=" + text);
+            
+
 
             
             })
 
             $(function(){
-            
-                $("#renderTable").load("/Employee/search")
+                let text=$("#searchString").val();
+                let idPageNum=$("#pageNum").val();
+                $("#renderTable").load("/Employee/search?searchString=" + text+"&page="+idPageNum)
 
             
             })

@@ -34,6 +34,8 @@ namespace HR_Sys.Controllers
 
                 //}
 
+                ViewBag.pageNum = page;
+
                 ViewBag.search = searchString;
                 return View(_db.Employees.ToPagedList(page, pageSize));
             }
