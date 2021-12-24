@@ -1,6 +1,6 @@
 ﻿@*@model HR_Sys.Models.annualHoliday
 *@
-@using HR_Sys.Models
+
 @model List<annualHoliday>
 
 @{
@@ -16,13 +16,13 @@
         <div class="row">
              <div class="col-md-6">
                  <tr class="form-group">
-                     <td><label asp-for="@Model[0].idHoliday" class="control-label"></label></td>
+                     <td><label asp-for="@Model.FirstOrDefault().idHoliday" class="control-label"></label></td>
                      <td>
-                     <select asp-for="@Model[0].idHoliday" class="form-control pl-5" asp-items="ViewBag.NameAnnualHoliday">
+                     <select asp-for="@Model.FirstOrDefault().idHoliday" class="form-control pl-5" asp-items="@ViewBag.NameAnnualHoliday">
                      </select>
                      </td>
 @*                   <td><input asp-for="NameAnnualHoliday.nameHoliday"  type="hidden" class="form-control" /></td>
-*@                   <td> <span asp-validation-for="@Model[0].idHoliday" class="text-danger"></span></td>
+*@                   <td> <span asp-validation-for="@Model.FirstOrDefault().idHoliday" class="text-danger"></span></td>
                      
                      <td><label asp-for="@Model[0].dateHoliday" class="control-label"> </label></td>
                      <td><input type="date" asp-for="@Model[0].dateHoliday" class="form-control" /></td>

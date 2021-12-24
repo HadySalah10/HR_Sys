@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HR_Sys.Migrations
 {
-    public partial class DbWithSeedingData : Migration
+    public partial class intial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -561,7 +561,7 @@ namespace HR_Sys.Migrations
                 values: new object[,]
                 {
                     { 1, 1, null, null, false, true, "يناير" },
-                    { 2, 1, null, null, false, true, "فبارير" },
+                    { 2, 1, null, null, false, true, "فبراير" },
                     { 3, 1, null, null, false, true, "مارس" },
                     { 4, 1, null, null, false, true, "ابريل" },
                     { 5, 1, null, null, false, true, "مايو" },

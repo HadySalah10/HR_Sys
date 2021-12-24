@@ -620,7 +620,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "فبارير"
+                            nameMonth = "فبراير"
                         },
                         new
                         {

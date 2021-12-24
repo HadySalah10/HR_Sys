@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HR_Sys.Migrations
 {
     [DbContext(typeof(HrDBContext))]
-    [Migration("20211215202554_DbWithSeedingData")]
-    partial class DbWithSeedingData
+    [Migration("20211224212813_intial")]
+    partial class intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -622,7 +622,7 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "فبارير"
+                            nameMonth = "فبراير"
                         },
                         new
                         {

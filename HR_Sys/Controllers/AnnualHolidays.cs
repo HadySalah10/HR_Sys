@@ -16,9 +16,9 @@ namespace HR_Sys.Controllers
         //Index
         public IActionResult Index()
         {
-            ViewBag.NameAnnualHoliday = new SelectList(db.NameAnnualHolidays.ToList(), "id", "nameHoliday");
+            ViewBag.NameAnnualHoliday = new SelectList(db.AnnualHolidays.ToList(), "idHoliday", "NameAnnualHoliday");
             //ViewBag.annulholiday = db.annualHoliday.ToList();
-            return View(db.annualHoliday.ToList());
+            return View(db.AnnualHolidays.ToList());
         }
 
         //[HttpPost]
@@ -45,7 +45,7 @@ namespace HR_Sys.Controllers
         public IActionResult Create() 
         {
 
-            ViewBag.NameAnnualHoliday = new SelectList(db.NameAnnualHolidays.ToList(), "id", "nameHoliday");
+            ViewBag.NameAnnualHoliday = new SelectList(db.NameAnnualHolidays.ToList(), "idHoliday", "NameAnnualHoliday");
             return View();
         }
 
