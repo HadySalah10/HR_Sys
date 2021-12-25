@@ -73,7 +73,7 @@ namespace HR_Sys.Controllers
         public IActionResult Edit( int id)
         {
             var AnnualHolidays = db.AnnualHolidays.Find(id);
-            ViewBag.NameAnnualHoliday = new SelectList(db.NameAnnualHolidays.ToList(), "id", "nameHoliday");
+           // ViewBag.NameAnnualHoliday = new SelectList(db.NameAnnualHolidays.ToList(), "id", "nameHoliday");
 
             return View(AnnualHolidays);
         }
@@ -84,7 +84,7 @@ namespace HR_Sys.Controllers
         {
             //annualHoliday ah = db.AnnualHolidays.Find(holidays.idHoliday);
             annualHoliday annual = db.annualHoliday.Find(holidays.id);
-            annual.idHoliday = holidays.idHoliday;
+         //   annual.idHoliday = holidays.idHoliday;
             annual.dateHoliday = holidays.dateHoliday;
 
             db.SaveChanges();
