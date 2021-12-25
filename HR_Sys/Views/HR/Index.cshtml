@@ -10,9 +10,7 @@
 }
 
 <style>
-        .pagination {
-            /display: inline-block;/
-        }
+        
 
             .pagination a {
                 color: black;
@@ -64,39 +62,36 @@
                 </div>
                 <div class="card-body collapse show">
                     <div class="card-block card-dashboard">
-                                                 
-                                       <div class="row"><div class="col-sm-12 col-md-3">
-                                        <div class="dataTables_length" id="DataTables_Table_0_length">
-                                             <label>عرض 
-                                           <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                             </select>
-                                            </label>
-                                        </div>
-                                    </div>
-                                      <div class="col-lg-1"></div> 
-                                      <form>
-                                        <div class="col-sm-12 col-md-8">
-                                            <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                                <label>بحث:<input type="text" class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0" name="searchString" id="searchString"></label>
-                                            </div>
-                                            @*<div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                                <input type="submit" class="btn btn-info"  name="searchString" value="search">
-                                            </div>*@
-                                        </div>
-                                      </form>
-                                <div class="col-lg-1"></div>
-                                <div class="col-lg-3">
-                                    <button id="addRow" class="btn btn-primary mb-2"> 
-                                        <i class="ft-plus"></i>&nbsp;
-                                        <a asp-controller="HR" asp-action="registerhr" target="_blank"> إضافة مستخدم جديد</a>
-                                   </button>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="dataTables_length" id="DataTables_Table_0_length">
+                                        <label>عرض 
+                                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                    </label>
                                 </div>
-                            </div> 
-                            <input id="pageNum" hidden value="@ViewBag.pageNum"/>
+                            </div>
+                            <div class="col-md-5">
+                                <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                    <label>بحث:<input type="text" class="form-control" aria-controls="DataTables_Table_0" name="searchString" id="searchString"></label>
+                                </div>
+                                @*<div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                    <input type="submit" class="btn btn-info"  name="searchString" value="search">
+                                </div>*@
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <button id="addRow" class="btn btn-primary mb-2"> 
+                                    <i class="ft-plus"></i>&nbsp;
+                                    <a asp-controller="HR" asp-action="registerhr" target="_blank"> إضافة مستخدم جديد</a>
+                                </button>
+                            </div>
+                        </div><br /> 
+                        <input id="pageNum" hidden value="@ViewBag.pageNum"/>
 
                             <!------------------------------------------- start table of HRS-------------------------------------->                    
                         <div id="renderTable"></div>
