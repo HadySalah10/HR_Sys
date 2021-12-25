@@ -82,22 +82,13 @@ namespace HR_Sys.Controllers
 
             else if (!String.IsNullOrEmpty(searchString))
             {
-
                 result = result.Where(n => n.Employees.empName.Contains(searchString)).ToList();
-
-
-
-
             }
 
             else if (idmonth != 0)
             {
 
                 result = result.Where(n => n.idmonth == idmonth).ToList();
-
-
-
-
             }
             else if (year != 0)
             {
@@ -151,5 +142,6 @@ namespace HR_Sys.Controllers
         {
             return View();
         }
+   
     }
 }
