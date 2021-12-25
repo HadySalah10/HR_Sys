@@ -53,24 +53,26 @@ namespace HR_Sys.Controllers
         [HttpPost]
         public IActionResult Create(annualHoliday holidays)
         {
+
+            //annualHoliday annualHolidayModel = new annualHoliday()
+            //{
+            //    NameAnnualHoliday = holidays.NameAnnualHoliday,
+            //    dateHoliday = holidays.dateHoliday,
+            //};
             if (ModelState.IsValid)
             {
-                db.annualHoliday.Add(holidays);
+                db.AnnualHolidays.Add(holidays);    
                 db.SaveChanges();
-
+            }
                 return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.NameAnnualHoliday = new SelectList(db.NameAnnualHolidays.ToList(), "id", "nameHoliday");
-                return View();
-            }
+            
+           
         }
 
         //Get: Edit
         public IActionResult Edit( int id)
         {
-            var AnnualHolidays = db.annualHoliday.Find(id);
+            var AnnualHolidays = db.AnnualHolidays.Find(id);
             ViewBag.NameAnnualHoliday = new SelectList(db.NameAnnualHolidays.ToList(), "id", "nameHoliday");
 
             return View(AnnualHolidays);

@@ -1,7 +1,7 @@
 ﻿@*@model HR_Sys.Models.annualHoliday
 *@
 
-@model List<annualHoliday>
+@model List<HR_Sys.Models.annualHoliday>
 
 @{
     ViewData["Title"] = "Index";
@@ -10,23 +10,22 @@
 <h1 class="text-center text-bold"> الأجازات الرسميه</h1>
 
 <hr />
-
-<form asp-action="Index" method="post">
+@*
+<form  method="post">
     <table class="table">
         <div class="row">
              <div class="col-md-6">
                  <tr class="form-group">
                      <td><label asp-for="@Model.FirstOrDefault().idHoliday" class="control-label"></label></td>
                      <td>
-                     <select asp-for="@Model.FirstOrDefault().idHoliday" class="form-control pl-5" asp-items="@ViewBag.NameAnnualHoliday">
-                     </select>
+                     <input type="input" asp-for="@Model.FirstOrDefault().NameAnnualHoliday" class="form-control" />
                      </td>
-@*                   <td><input asp-for="NameAnnualHoliday.nameHoliday"  type="hidden" class="form-control" /></td>
-*@                   <td> <span asp-validation-for="@Model.FirstOrDefault().idHoliday" class="text-danger"></span></td>
+                  <td><input asp-for="NameAnnualHoliday.nameHoliday"  type="hidden" class="form-control" /></td>
+                   <td> <span asp-validation-for="@Model.FirstOrDefault().idHoliday" class="text-danger"></span></td>
                      
-                     <td><label asp-for="@Model[0].dateHoliday" class="control-label"> </label></td>
-                     <td><input type="date" asp-for="@Model[0].dateHoliday" class="form-control" /></td>
-                     <td><span asp-validation-for="@Model[0].dateHoliday" class="text-danger"></span></td>
+                     <td><label asp-for="@Model.FirstOrDefault().dateHoliday" class="control-label"> </label></td>
+                     <td><input type="date" asp-for="@Model.FirstOrDefault().dateHoliday" class="form-control" /></td>
+                     <td><span asp-validation-for="@Model.FirstOrDefault().dateHoliday" class="text-danger"></span></td>
                  </tr>
              </div>
         </div> 
@@ -37,7 +36,24 @@
         <input type="submit"  class="btn btn-info" value="إضافة">
     </div> 
     <br />
-    <!------------------------------------------- start table of HRS-------------------------------------->                    
+    </form>*@
+    <!------------------------------------------- start table of HRS-------------------------------------->   
+    <section id="configuration">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title text-center">معلومات الموظفين</h4>
+                    </div>
+                </div>
+                <div class="card-body collapse show">
+                    <div class="card-block card-dashboard" style="padding:1rem 20px">
+
+    <button id="addRow" class="btn btn-primary mb-2"> 
+         <i class="ft-plus"></i>&nbsp;
+         <a asp-controller="AnnualHolidays" asp-action="create" target="">إضافةأجازه سنوية جديدة</a>
+   </button>
     <table class="table text-center table-striped table-bordered zero-configuration">
         <thead>
             <tr>
@@ -62,8 +78,14 @@
             
         </tbody>            
     </table>
+   </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
     <!------------------------------------------- end table of HRS-------------------------------------->  
-</form>
+
 
 <div>
     <a asp-action="Index">Back to List</a>
