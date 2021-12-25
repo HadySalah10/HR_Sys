@@ -169,6 +169,7 @@ namespace HR_Sys.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nameMonth = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    nameMonthEnglish = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     editBy = table.Column<int>(type: "int", nullable: true),
                     deletedBy = table.Column<int>(type: "int", nullable: true),
                     addBy = table.Column<int>(type: "int", nullable: true),
@@ -519,21 +520,21 @@ namespace HR_Sys.Migrations
 
             migrationBuilder.InsertData(
                 table: "Months",
-                columns: new[] { "id", "addBy", "deletedBy", "editBy", "isDeleted", "lastEdit", "nameMonth" },
+                columns: new[] { "id", "addBy", "deletedBy", "editBy", "isDeleted", "lastEdit", "nameMonth", "nameMonthEnglish" },
                 values: new object[,]
                 {
-                    { 1, 1, null, null, false, true, "يناير" },
-                    { 2, 1, null, null, false, true, "فبراير" },
-                    { 3, 1, null, null, false, true, "مارس" },
-                    { 4, 1, null, null, false, true, "ابريل" },
-                    { 5, 1, null, null, false, true, "مايو" },
-                    { 6, 1, null, null, false, true, "يونيو" },
-                    { 7, 1, null, null, false, true, "يوليو" },
-                    { 8, 1, null, null, false, true, "اغسطس" },
-                    { 9, 1, null, null, false, true, "سبتمبر" },
-                    { 10, 1, null, null, false, true, "اكتوبر" },
-                    { 11, 1, null, null, false, true, "نوفمبر" },
-                    { 12, 1, null, null, false, true, "ديسمبر" }
+                    { 1, 1, null, null, false, true, "يناير", "January" },
+                    { 2, 1, null, null, false, true, "فبراير", "February" },
+                    { 3, 1, null, null, false, true, "مارس", "March" },
+                    { 4, 1, null, null, false, true, "ابريل", "April" },
+                    { 5, 1, null, null, false, true, "مايو", "May" },
+                    { 6, 1, null, null, false, true, "يونيو", "June" },
+                    { 7, 1, null, null, false, true, "يوليو", "July" },
+                    { 8, 1, null, null, false, true, "اغسطس", "August" },
+                    { 9, 1, null, null, false, true, "سبتمبر", "September" },
+                    { 10, 1, null, null, false, true, "اكتوبر", "October" },
+                    { 11, 1, null, null, false, true, "نوفمبر", "November" },
+                    { 12, 1, null, null, false, true, "ديسمبر", "December" }
                 });
 
             migrationBuilder.InsertData(

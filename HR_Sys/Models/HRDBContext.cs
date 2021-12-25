@@ -84,18 +84,18 @@ namespace HR_Sys.Models
          
           
             modelBuilder.Entity<Months>().HasData(
-               new Months { id = 1, nameMonth = "يناير", addBy = 1, lastEdit = true },
-               new Months { id = 2, nameMonth = "فبراير", addBy = 1, lastEdit = true },
-               new Months { id = 3, nameMonth = "مارس", addBy = 1, lastEdit = true },
-               new Months { id = 4, nameMonth = "ابريل", addBy = 1, lastEdit = true },
-               new Months { id = 5, nameMonth = "مايو", addBy = 1, lastEdit = true },
-               new Months { id = 6, nameMonth = "يونيو", addBy = 1, lastEdit = true },
-               new Months { id = 7, nameMonth = "يوليو", addBy = 1, lastEdit = true },
-               new Months { id = 8, nameMonth = "اغسطس", addBy = 1, lastEdit = true },
-               new Months { id = 9, nameMonth = "سبتمبر", addBy = 1, lastEdit = true },
-               new Months { id = 10, nameMonth = "اكتوبر", addBy = 1, lastEdit = true },
-               new Months { id = 11, nameMonth = "نوفمبر", addBy = 1, lastEdit = true },
-               new Months { id = 12, nameMonth = "ديسمبر", addBy = 1, lastEdit = true }
+               new Months { id = 1, nameMonth = "يناير",nameMonthEnglish= "January", addBy = 1, lastEdit = true },
+               new Months { id = 2, nameMonth = "فبراير", nameMonthEnglish = "February", addBy = 1, lastEdit = true },
+               new Months { id = 3, nameMonth = "مارس", nameMonthEnglish = "March", addBy = 1, lastEdit = true },
+               new Months { id = 4, nameMonth = "ابريل", nameMonthEnglish = "April", addBy = 1, lastEdit = true },
+               new Months { id = 5, nameMonth = "مايو", nameMonthEnglish = "May", addBy = 1, lastEdit = true },
+               new Months { id = 6, nameMonth = "يونيو", nameMonthEnglish = "June", addBy = 1, lastEdit = true },
+               new Months { id = 7, nameMonth = "يوليو", nameMonthEnglish = "July", addBy = 1, lastEdit = true },
+               new Months { id = 8, nameMonth = "اغسطس", nameMonthEnglish = "August", addBy = 1, lastEdit = true },
+               new Months { id = 9, nameMonth = "سبتمبر", nameMonthEnglish = "September", addBy = 1, lastEdit = true },
+               new Months { id = 10, nameMonth = "اكتوبر", nameMonthEnglish = "October", addBy = 1, lastEdit = true },
+               new Months { id = 11, nameMonth = "نوفمبر", nameMonthEnglish = "November", addBy = 1, lastEdit = true },
+               new Months { id = 12, nameMonth = "ديسمبر", nameMonthEnglish = "December", addBy = 1, lastEdit = true }
            );
             modelBuilder.Entity<Nationality>().HasData(
            new Nationality { id = 1, nationalityName = "Egypt", addBy = 1, lastEdit = true },

@@ -7,6 +7,7 @@ namespace HR_Sys.Models
     {
 
         public string nameMonth { get; set; }
+        public string nameMonthEnglish { get; set; }
 
         public virtual ICollection<EmpReport> EmpReports{ get; set; }
     }

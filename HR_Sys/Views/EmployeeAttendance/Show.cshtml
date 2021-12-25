@@ -31,17 +31,7 @@
 
                      </form>
                      
-                         <form asp-controller="EmployeeAttendance" asp-action="Show" method="post" enctype="multipart/form-data">
-                        
-                             <div class="col-lg-12 d-flex" style="flex-direction:row-reverse">
-                                 <input type="file" class="btn btn-success "  id="hidden" name="formFile" style="margin-right: 15px;width: 240px;" />
-                                   
-                                        <button type="submit" class="btn btn-success ">Add</button>
-                                    
-                                          
-                             </div>
-
-                        </form>
+                      
 
                   
                          
@@ -71,7 +61,7 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                             <td> @(item.Employee ==null ?Html.Label(""," id  لم يتم ادخال ",new {style="color:red"}) : item.Employee.empName)</td>
+                                             <td> @(item.Employee ==null ?Html.Label("","صحيح id  لم يتم ادخال ",new {style="color:red"}) : item.Employee.empName)</td>
                                              <td>@(item.Employee ==null ? Html.Label(""," لا يوجد قسم ",new {style="color:red"}) : item.Employee.Department.deptName)</td>
                                              <td>@(item.attendanceTime==""? Html.Label(""," لم يتم ادخال  شئ هنا ",new {style="color:red"}) :item.attendanceTime)</td>
                                

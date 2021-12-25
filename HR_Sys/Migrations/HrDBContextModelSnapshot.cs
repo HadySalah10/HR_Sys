@@ -17,7 +17,7 @@ namespace HR_Sys.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.0")
+                .HasAnnotation("ProductVersion", "6.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -614,6 +614,10 @@ namespace HR_Sys.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("nameMonthEnglish")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("id");
 
                     b.HasIndex("addBy");
@@ -631,7 +635,8 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "يناير"
+                            nameMonth = "يناير",
+                            nameMonthEnglish = "January"
                         },
                         new
                         {
@@ -639,7 +644,8 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "فبراير"
+                            nameMonth = "فبراير",
+                            nameMonthEnglish = "February"
                         },
                         new
                         {
@@ -647,7 +653,8 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "مارس"
+                            nameMonth = "مارس",
+                            nameMonthEnglish = "March"
                         },
                         new
                         {
@@ -655,7 +662,8 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "ابريل"
+                            nameMonth = "ابريل",
+                            nameMonthEnglish = "April"
                         },
                         new
                         {
@@ -663,7 +671,8 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "مايو"
+                            nameMonth = "مايو",
+                            nameMonthEnglish = "May"
                         },
                         new
                         {
@@ -671,7 +680,8 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "يونيو"
+                            nameMonth = "يونيو",
+                            nameMonthEnglish = "June"
                         },
                         new
                         {
@@ -679,7 +689,8 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "يوليو"
+                            nameMonth = "يوليو",
+                            nameMonthEnglish = "July"
                         },
                         new
                         {
@@ -687,7 +698,8 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "اغسطس"
+                            nameMonth = "اغسطس",
+                            nameMonthEnglish = "August"
                         },
                         new
                         {
@@ -695,7 +707,8 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "سبتمبر"
+                            nameMonth = "سبتمبر",
+                            nameMonthEnglish = "September"
                         },
                         new
                         {
@@ -703,7 +716,8 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "اكتوبر"
+                            nameMonth = "اكتوبر",
+                            nameMonthEnglish = "October"
                         },
                         new
                         {
@@ -711,7 +725,8 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "نوفمبر"
+                            nameMonth = "نوفمبر",
+                            nameMonthEnglish = "November"
                         },
                         new
                         {
@@ -719,7 +734,8 @@ namespace HR_Sys.Migrations
                             addBy = 1,
                             isDeleted = false,
                             lastEdit = true,
-                            nameMonth = "ديسمبر"
+                            nameMonth = "ديسمبر",
+                            nameMonthEnglish = "December"
                         });
                 });
 
