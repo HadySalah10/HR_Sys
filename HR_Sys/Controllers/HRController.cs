@@ -98,7 +98,7 @@ namespace HR_Sys.Controllers
                 newUser.password = user.password;
                 newUser.confirmPassword = user.confirmPassword;
                 newUser.validationId = user.validationId;
-                db.Add(newUser);
+                db.HRs.Add(newUser);
                 db.SaveChanges();
 
             }
