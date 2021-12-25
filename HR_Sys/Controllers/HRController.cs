@@ -218,7 +218,6 @@ namespace HR_Sys.Controllers
                     reportEdit = valid.reportEdit,
                     reportDelete = valid.reportDelete,
                     reportDisplay = valid.reportDisplay
-
                 };
 
                 db.Validations.Add(val);
