@@ -87,6 +87,7 @@ namespace HR_Sys.Controllers
                  {
                     
                     var minusOrAdds1 = 0;
+                    float minus = 0;
 
                     foreach (var emp in emps)
                     {
@@ -99,14 +100,19 @@ namespace HR_Sys.Controllers
                                 if (emp.requiredDepartureTime.TimeOfDay != Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay)
                                 {
                                     //جه متأخر
-                                    if (Convert.ToDateTime(excelViewModels[i].attendanceTime).TimeOfDay > emp.requiredAttendanceTime.TimeOfDay)
+                                    if (Convert.ToDateTime(excelViewModels[i].attendanceTime).TimeOfDay.TotalHours > emp.requiredAttendanceTime.TimeOfDay.TotalHours)
                                     {
                                         // ساعات الخصم
-                                        var minusOrAddDeduct = (Convert.ToDateTime(excelViewModels[i].attendanceTime).TimeOfDay - emp.requiredDepartureTime.TimeOfDay) * emp.requiredDeductHours;
+                                        var minusOrAddDeduct = Math.Abs(Convert.ToDateTime(excelViewModels[i].attendanceTime).TimeOfDay.TotalHours - emp.requiredAttendanceTime.TimeOfDay.TotalHours) * emp.requiredDeductHours;
+                                        // كميه الخصم
+                                        var deductAmount = minusOrAddDeduct *(float) emp.requiredSalaryPerHour;
                                         //مشي بعد الوقت
                                         if (Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay > emp.requiredDepartureTime.TimeOfDay)
                                         {
-                                            var minusOrAddExtra = (Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay - emp.requiredDepartureTime.TimeOfDay) * emp.requiredExtraHours;
+                                            // ساعات الزيادة
+                                            var minusOrAddExtra = (Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay.TotalHours - emp.requiredDepartureTime.TimeOfDay.TotalHours) * emp.requiredExtraHours;
+                                           // كميه الزيادة
+                                           var extraAmount=minusOrAddExtra*(float) emp.requiredSalaryPerHour;
                                             // جه متأخر ومشي بعد الوقت
                                             var attendanceObject = new EmployeeAttendance()
                                             {
@@ -114,8 +120,11 @@ namespace HR_Sys.Controllers
                                                 attendanceTime = Convert.ToDateTime(excelViewModels[i].attendanceTime),
                                                 departureTime = Convert.ToDateTime(excelViewModels[i].departureTime),
                                                 attendaceDay = Convert.ToDateTime(excelViewModels[i].attendaceDay),
-                                                extraHours =(float) minusOrAddDeduct.TotalHours,
-                                                deductHours =(float) minusOrAddDeduct.TotalHours
+                                                extraHours =(float)minusOrAddExtra,
+                                                deductHours =(float) minusOrAddDeduct,
+                                                deductAmount=(float)deductAmount,
+                                                extraAmount=(float)extraAmount
+
 
 
 
@@ -126,7 +135,8 @@ namespace HR_Sys.Controllers
                                         //مشي قبل الوقت
                                         else
                                         {
-                                             minusOrAddDeduct = minusOrAddDeduct+ ((emp.requiredDepartureTime.TimeOfDay - Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay) * emp.requiredDeductHours);
+                                             minusOrAddDeduct = minusOrAddDeduct+ (Math.Abs(emp.requiredDepartureTime.TimeOfDay.TotalHours - Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay.TotalHours) * emp.requiredDeductHours);
+                                            var minusOrAddDeductAmount = minusOrAddDeduct * (float)emp.requiredSalaryPerHour;
                                             var attendanceObject = new EmployeeAttendance()
                                             {
                                                 empId = excelViewModels[i].empId,
@@ -134,7 +144,10 @@ namespace HR_Sys.Controllers
                                                 departureTime = Convert.ToDateTime(excelViewModels[i].departureTime),
                                                 attendaceDay = Convert.ToDateTime(excelViewModels[i].attendaceDay),
                                               
-                                                deductHours = (float)minusOrAddDeduct.TotalHours
+                                                deductHours = (float)minusOrAddDeduct,
+                                                deductAmount =(float)minusOrAddDeductAmount,
+                                                extraHours=0,
+                                                extraAmount=0,
 
 
 
@@ -144,25 +157,52 @@ namespace HR_Sys.Controllers
                                         }
 
                                     }
-                                    // جه في معاده 
-
+                                   
+                                    //جه بدري
                                     else
                                     {
                                         // ساعات الزيادة
-                                        var minusOrAddExtra = (Convert.ToDateTime(excelViewModels[i].attendanceTime).TimeOfDay - emp.requiredDepartureTime.TimeOfDay) * emp.requiredExtraHours;
+                                        float minusOrAddExtra = (float) Math.Abs(Convert.ToDateTime(excelViewModels[i].attendanceTime).TimeOfDay.TotalHours -  emp.requiredAttendanceTime.TimeOfDay.TotalHours )* emp.requiredExtraHours;
+                                        var extraAmpunt = (decimal)minusOrAddExtra * emp.requiredSalaryPerHour;
                                         //مشي بعد الوقت
-                                        if (Convert.ToDateTime(excelViewModels[i].departureTime) > emp.requiredDepartureTime)
+                                        if (Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay > emp.requiredDepartureTime.TimeOfDay)
                                         {
-                                             minusOrAddExtra = minusOrAddExtra+((Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay - emp.requiredDepartureTime.TimeOfDay) * emp.requiredExtraHours);
+                                             minusOrAddExtra =  minusOrAddExtra+ (float)((Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay.TotalHours - emp.requiredDepartureTime.TimeOfDay.TotalHours) * emp.requiredExtraHours);
                                             // جه بدري ومشي بعد الوقت
+                                           var extraAmpuntForExtra = (decimal)minusOrAddExtra * emp.requiredSalaryPerHour;
+
+
                                             var attendanceObject = new EmployeeAttendance()
                                             {
                                                 empId = excelViewModels[i].empId,
                                                 attendanceTime = Convert.ToDateTime(excelViewModels[i].attendanceTime),
                                                 departureTime = Convert.ToDateTime(excelViewModels[i].departureTime),
                                                 attendaceDay = Convert.ToDateTime(excelViewModels[i].attendaceDay),
-                                                extraHours = (float)minusOrAddExtra.TotalHours,
-                                           
+                                                extraHours = (float)minusOrAddExtra,
+                                                deductHours=0,
+                                                extraAmount=(float)extraAmpuntForExtra,
+                                                deductAmount=0,
+
+                                            };
+                                            attendance.Add(attendanceObject);
+
+                                        }
+                                        //مشي في ميعاده
+                                        else if (Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay == emp.requiredDepartureTime.TimeOfDay)
+                                        {
+                                            // جه بدري ومشي في ميعاده
+                                            var attendanceObject = new EmployeeAttendance()
+                                            {
+                                                empId = excelViewModels[i].empId,
+                                                attendanceTime = Convert.ToDateTime(excelViewModels[i].attendanceTime),
+                                                departureTime = Convert.ToDateTime(excelViewModels[i].departureTime),
+                                                attendaceDay = Convert.ToDateTime(excelViewModels[i].attendaceDay),
+                                                extraHours = (float)minusOrAddExtra,
+                                                deductHours = 0,
+                                                extraAmount=(float) extraAmpunt,
+                                                deductAmount=0
+
+
 
                                             };
                                             attendance.Add(attendanceObject);
@@ -171,7 +211,8 @@ namespace HR_Sys.Controllers
                                         //مشي قبل الوقت
                                         else
                                         {
-                                            var minusOrAddDeduct =  ((emp.requiredDepartureTime.TimeOfDay - Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay) * emp.requiredDeductHours);
+                                             minus = (float) Math.Abs((emp.requiredDepartureTime.TimeOfDay.TotalHours - Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay.TotalHours) * emp.requiredDeductHours);
+                                           var DeductAmount =minus* (float)emp.requiredSalaryPerHour;
                                             var attendanceObject = new EmployeeAttendance()
                                             {
                                                 empId = excelViewModels[i].empId,
@@ -179,7 +220,12 @@ namespace HR_Sys.Controllers
                                                 departureTime = Convert.ToDateTime(excelViewModels[i].departureTime),
                                                 attendaceDay = Convert.ToDateTime(excelViewModels[i].attendaceDay),
 
-                                                deductHours = (float)minusOrAddDeduct.TotalHours
+                                                deductHours = minus,
+                                               extraHours = minusOrAddExtra,
+                                               extraAmount = (float) extraAmpunt,
+                                               deductAmount= DeductAmount
+
+
 
 
 
@@ -189,13 +235,15 @@ namespace HR_Sys.Controllers
                                         }
                                     }
                                 }
-                                // جه بدري او متأخر ومشي بدري او متأخر
+                                // مشي في ميعاده
                                 else
                                 {
-                                    //مشي بعد الوقت
-                                    if (Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay > emp.requiredDepartureTime.TimeOfDay)
+
+                                    //جه بعد الوقت
+                                    if (Convert.ToDateTime(excelViewModels[i].attendanceTime).TimeOfDay.TotalHours > emp.requiredAttendanceTime.TimeOfDay.TotalHours)
                                     {
-                                       var minusOrAddExtra =   ((Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay - emp.requiredDepartureTime.TimeOfDay) * emp.requiredExtraHours);
+                                       var minusHours = (float)  Math.Abs( Convert.ToDateTime(excelViewModels[i].attendanceTime).TimeOfDay.TotalHours - emp.requiredAttendanceTime.TimeOfDay.TotalHours) * emp.requiredDeductHours;
+                                        var minusAmount = minusHours * (float)emp.requiredSalaryPerHour;
                                         // جه بدري ومشي بعد الوقت
                                         var attendanceObject = new EmployeeAttendance()
                                         {
@@ -203,17 +251,43 @@ namespace HR_Sys.Controllers
                                             attendanceTime = Convert.ToDateTime(excelViewModels[i].attendanceTime),
                                             departureTime = Convert.ToDateTime(excelViewModels[i].departureTime),
                                             attendaceDay = Convert.ToDateTime(excelViewModels[i].attendaceDay),
-                                            extraHours = (float)minusOrAddExtra.TotalHours,
+                                            extraHours = 0,
+                                            deductHours = minusHours,
+                                            deductAmount = minusAmount,
+                                            extraAmount=0,
+
+
 
 
                                         };
                                         attendance.Add(attendanceObject);
 
                                     }
-                                    //مشي قبل الوقت
+                                    //جه في الوقت
+                                    else if (Convert.ToDateTime(excelViewModels[i].attendanceTime).TimeOfDay.TotalHours == emp.requiredAttendanceTime.TimeOfDay.TotalHours)
+                                    {
+
+                                        //  ومشي في معاده
+                                        var attendanceObject = new EmployeeAttendance()
+                                        {
+                                            empId = excelViewModels[i].empId,
+                                            attendanceTime = Convert.ToDateTime(excelViewModels[i].attendanceTime),
+                                            departureTime = Convert.ToDateTime(excelViewModels[i].departureTime),
+                                            attendaceDay = Convert.ToDateTime(excelViewModels[i].attendaceDay),
+                                            extraHours = 0,
+                                            deductHours=0,
+                                            deductAmount = 0,
+                                            extraAmount = 0,
+
+
+                                        };
+                                        attendance.Add(attendanceObject);
+                                    }
+                                    //جه قبل الوقت
                                     else
                                     {
-                                        var minusOrAddDeduct = (emp.requiredDepartureTime.TimeOfDay - Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay) * emp.requiredDeductHours;
+                                        var minusOrAddExtra = (emp.requiredAttendanceTime.TimeOfDay.TotalHours - Convert.ToDateTime(excelViewModels[i].attendanceTime).TimeOfDay.TotalHours) * emp.requiredExtraHours;
+                                        var extraAmount = minusOrAddExtra*(float) emp.requiredSalaryPerHour;
                                         var attendanceObject = new EmployeeAttendance()
                                         {
                                             empId = excelViewModels[i].empId,
@@ -221,7 +295,10 @@ namespace HR_Sys.Controllers
                                             departureTime = Convert.ToDateTime(excelViewModels[i].departureTime),
                                             attendaceDay = Convert.ToDateTime(excelViewModels[i].attendaceDay),
 
-                                            deductHours = (float)minusOrAddDeduct.TotalHours
+                                            extraHours = (float)minusOrAddExtra,
+                                            deductHours = 0,
+                                            extraAmount =(float) extraAmount,
+                                            deductAmount = 0
 
 
 
@@ -245,7 +322,10 @@ namespace HR_Sys.Controllers
                                         // مشي بعد الوقت
                                         if (Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay> emp.requiredDepartureTime.TimeOfDay)
                                         {
-                                            var minusOrAddExtra = (Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay - emp.requiredDepartureTime.TimeOfDay ) * emp.requiredExtraHours;
+                                            // ساعات الزيادة
+                                            var minusOrAddExtra = (Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay.TotalHours - emp.requiredDepartureTime.TimeOfDay.TotalHours ) * emp.requiredExtraHours;
+                                            // كمية الزيادة
+                                            var minusOrAddExtraAmount = minusOrAddExtra *(float) emp.requiredSalaryPerHour;
                                             var attendanceObject = new EmployeeAttendance()
                                             {
                                                 empId = excelViewModels[i].empId,
@@ -253,7 +333,10 @@ namespace HR_Sys.Controllers
                                                 departureTime = Convert.ToDateTime(excelViewModels[i].departureTime),
                                                 attendaceDay = Convert.ToDateTime(excelViewModels[i].attendaceDay),
 
-                                                extraHours = (float)minusOrAddExtra.TotalHours
+                                                extraHours = (float)minusOrAddExtra,
+                                                deductHours=0,
+                                                extraAmount= (float)minusOrAddExtraAmount,
+                                                deductAmount= 0,
 
 
 
@@ -264,7 +347,9 @@ namespace HR_Sys.Controllers
                                         // مشي قبل الوقت
                                         else
                                         {
-                                            var minusOrAddDeduct = (  emp.requiredDepartureTime.TimeOfDay - Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay) * emp.requiredDeductHours;
+                                            // عدد ساعات الخصم
+                                            var minusOrAddDeduct = (  emp.requiredDepartureTime.TimeOfDay.TotalHours - Convert.ToDateTime(excelViewModels[i].departureTime).TimeOfDay.TotalHours) * emp.requiredDeductHours;
+                                            var minusOrAddDeductAmount = minusOrAddDeduct *(float) emp.requiredSalaryPerHour;
                                             var attendanceObject = new EmployeeAttendance()
                                             {
                                                 empId = excelViewModels[i].empId,
@@ -272,7 +357,10 @@ namespace HR_Sys.Controllers
                                                 departureTime = Convert.ToDateTime(excelViewModels[i].departureTime),
                                                 attendaceDay = Convert.ToDateTime(excelViewModels[i].attendaceDay),
 
-                                                deductHours = (float)minusOrAddDeduct.TotalHours
+                                                deductHours = (float)minusOrAddDeduct,
+                                                deductAmount = (float) minusOrAddDeductAmount,
+                                                extraHours = 0,
+                                                extraAmount= 0
 
 
 
@@ -311,7 +399,9 @@ namespace HR_Sys.Controllers
                                         departureTime = Convert.ToDateTime(excelViewModels[i].departureTime),
                                         attendaceDay = Convert.ToDateTime(excelViewModels[i].attendaceDay),
                                         extraHours = 0,
-                                        deductHours = 0
+                                        deductHours = 0,
+                                        extraAmount = 0,
+                                        deductAmount = 0
 
 
 
