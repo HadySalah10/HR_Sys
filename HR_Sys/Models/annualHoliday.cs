@@ -16,9 +16,7 @@ namespace HR_Sys.Models
         [DisplayName("اسـم الأجازه")]
         //[Required(ErrorMessage = "برجاء تحديد اسـم الأجازه")]
 
-        [ForeignKey("NameAnnualHoliday")]
-        public int  idHoliday { get; set; }
-        public virtual NameAnnualHoliday? NameAnnualHoliday { get; set; }
+        public string  nameHoliday { get; set; }
 
         //تاريخ الأجازه
         [Required(ErrorMessage = "برجاء ادخال تاريخ الأجازه")]

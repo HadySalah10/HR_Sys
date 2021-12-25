@@ -67,11 +67,11 @@
 *@            @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.NameAnnualHoliday.nameHoliday</td>
+                    <td></td>
                     <td>@item.dateHoliday</td>
 
                     <td>
-                        <a asp-controller="AnnualHolidays" asp-action="Delete" onclick="return confirm('هل تريد مسح  الأجازه    @item.NameAnnualHoliday  ؟  ')"  asp-route-id="@item.id"><i class="fa fa-trash font-medium-4"></i></a> 
+                        <a asp-controller="AnnualHolidays" asp-action="Delete" onclick="return confirm('هل تريد مسح  الأجازه      ؟  ')"  asp-route-id="@item.id"><i class="fa fa-trash font-medium-4"></i></a> 
                     </td>
                 </tr>
             }
