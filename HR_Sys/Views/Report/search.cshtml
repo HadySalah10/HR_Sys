@@ -105,7 +105,8 @@
                       @Html.PagedListPager((IPagedList)Model, page => Url.Action("index",
                        new
                         {
-                            page ,searchString=ViewBag.search
+                            page ,searchString=ViewBag.search, year= ViewBag.year,idmonth=ViewBag.month 
+
                  }))
                 </div>
                </div>   

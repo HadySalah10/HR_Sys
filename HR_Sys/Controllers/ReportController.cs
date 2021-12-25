@@ -15,7 +15,7 @@ namespace HR_Sys.Controllers
             this.db = db;
 
         }
-        public  IActionResult Index(int idmonth, string searchString,int page = 1, int pageSize = 2)
+        public  IActionResult Index(int idmonth, string searchString, int year, int page = 1, int pageSize = 2)
         {
             if (HttpContext.Session.GetString("reportDisplay") == "True")
             {
@@ -29,13 +29,15 @@ namespace HR_Sys.Controllers
                 ViewBag.month = idmonth;
                 ViewBag.search = searchString;
                 ViewBag.pageNum = page;
+                ViewBag.year = year;
+
 
                 return View(emps);
             }
             return View("ErrorPage");
         }
 
-        public IActionResult search(int idmonth, string searchString, int page = 1, int pageSize = 2)
+        public IActionResult search(int idmonth, string searchString, int year, int page = 1, int pageSize = 2)
         {
             page = page > 0 ? page : 1;
 
@@ -44,36 +46,78 @@ namespace HR_Sys.Controllers
             ViewBag.month = idmonth;
             ViewBag.pageNum = page;
             ViewBag.search = searchString;
+            ViewBag.year = year;    
 
             var result = db.EmpReports.ToList();
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString) && idmonth != 0 && year != 0)
+            {
+                result = result.Where(n => n.Employees.empName.Contains(searchString) && n.idmonth == idmonth && n.year == year).ToList();
+
+
+
+            }
+            else if (!String.IsNullOrEmpty(searchString) && idmonth != 0)
+            {
+                result = result.Where(n => n.Employees.empName.Contains(searchString) && n.idmonth == idmonth).ToList();
+
+
+
+            }
+            else if (!String.IsNullOrEmpty(searchString) && year != 0)
+            {
+                result = result.Where(n => n.Employees.empName.Contains(searchString) && n.year == year).ToList();
+
+
+
+            }
+            else if (idmonth != 0 && year != 0)
+            {
+                result = result.Where(n => n.idmonth == idmonth && n.year == year).ToList();
+
+
+
+            }
+
+
+            else if (!String.IsNullOrEmpty(searchString))
+            {
+                result = result.Where(n => n.Employees.empName.Contains(searchString)).ToList();
+            }
+
+            else if (idmonth != 0)
             {
 
-                result = result.Where(n => n.Employees.empName.Contains(searchString)).ToList();
-
-
-
-
-            }
-
-            else{
-
                 result = result.Where(n => n.idmonth == idmonth).ToList();
+            }
+            else if (year != 0)
+            {
+                int dateOFYear = DateTime.Now.Year;
+                if (year >= 2008 && year <= dateOFYear)
+                {
+                    result = result.Where(n => n.year == year).ToList();
 
+
+
+                }
+                else
+                {
+
+
+                }
 
 
 
             }
-            
+
 
             return PartialView(result.ToPagedList(page, pageSize));
-
-
-
-
-
         }
+
+
+
+
+        
 
         //public IActionResult searchByName(string searchString, int page = 1, int pageSize = 2)
         //{
@@ -98,5 +142,6 @@ namespace HR_Sys.Controllers
         {
             return View();
         }
+   
     }
 }

@@ -111,30 +111,59 @@
 
 @section scripts{
     <script>
-        $("#idmonth").on("change",function(){
-            let id=$("#idmonth").val();
 
-
-             $("#renderTable").load("/Report/search?idmonth="+id)
-
-
-        
-        })
-
-        $(function(){
+         $(function(){
             let id=$("#idmonth").val();
             let idPageNum=$("#pageNum").val();
             let text=$("#searchString").val();
+            let year=$("#year").val();
 
-            $("#renderTable").load("/Report/search?idmonth="+id+"&page="+idPageNum+"&searchString=" + text);
+
+            $("#renderTable").load("/Report/search?idmonth="+id+"&page="+idPageNum+"&searchString=" + text+"&year="+year);
         
         })
+
+
+        ///search by month
+
+        $("#idmonth").on("change",function(){
+            let id=$("#idmonth").val();
+            let text=$("#searchString").val();
+            let year=$("#year").val();
+
+
+
+             $("#renderTable").load("/Report/search?idmonth="+id+"&year="+year+"&searchString=" + text)
+
+
+        
+        })
+          
+
+        /// search by Employee name
+       
 
          $("#searchString").on("keyup",function(){
             let text=$("#searchString").val();
-            let idPageNum=$("#pageNum").val();
+            let id=$("#idmonth").val();
+            let year=$("#year").val();
 
-            $("#renderTable").load("/report/search?searchString=" + text);
+
+
+            $("#renderTable").load("/report/search?searchString="+text+"&idmonth="+id+"&year="+year);
+            
+            
+            })
+
+            //search by year
+
+            $("#year").on("keyup",function(){
+            let year=$("#year").val();
+            let id=$("#idmonth").val();
+            let text=$("#searchString").val();
+
+
+            $("#renderTable").load("/report/search?year="+year+"&idmonth="+id+"&searchString="+text);
             
             
             })

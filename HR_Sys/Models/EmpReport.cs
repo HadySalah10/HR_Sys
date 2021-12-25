@@ -8,6 +8,7 @@ namespace HR_Sys.Models
     {
         [ForeignKey("Months")]
         public int idmonth { get; set; }
+
         public int? year { get; set; }    
         public int? numAttendanceDays { get; set; }
         public int? numAbsenceDays { get; set; }

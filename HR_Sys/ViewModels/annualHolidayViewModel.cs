@@ -1,7 +1,10 @@
-﻿using HR_Sys.Models;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using HR_Sys.Models;
+using HR_Sys.Models.BaseIDEntity;
+
+
 
 namespace HR_Sys.ViewModels
 {
