@@ -22,10 +22,10 @@ namespace HR_Sys.Controllers
             {
                 ViewBag.hrname = db.HRs.Find(HttpContext.Session.GetString("userId"));
             }
-            ViewBag.empnumber = db.Employees.Count();
+            ViewBag.empnumber = db.Employees.Where(n => n.isDeleted == false).Count();
             ViewBag.hrnumbers = db.HRs.Count();
-            ViewBag.deptnumbers = db.Departments.Count();
-            return View("welcome");
+            ViewBag.deptnumbers = db.Departments.Where(n => n.isDeleted == false).Count();
+            return View();
         }
         public IActionResult Index(string searchString, int page = 1, int pageSize = 2)
         {
