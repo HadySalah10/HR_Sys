@@ -37,7 +37,7 @@ namespace HR_Sys.Controllers
                 ViewBag.pageNum = page;
 
                 ViewBag.search = searchString;
-                return View(_db.Employees.ToPagedList(page, pageSize));
+                return View(_db.Employees.Where(emp => emp.isDeleted == false).ToPagedList(page, pageSize));
             }
 
               return View("ErrorPage");

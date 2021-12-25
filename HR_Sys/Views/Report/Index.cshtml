@@ -8,6 +8,46 @@
 
     
 }
+
+<style>
+        .pagination {
+            /display: inline-block;/
+        }
+
+            .pagination a {
+                color: black;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+                transition: background-color .3s;
+                border: 1px solid #ddd;
+                font-size: 20px;
+                font-weight: bold; 
+            }
+
+                .pagination .active {
+                        color: #2a75ff;
+                        float: left;
+                        padding: 8px 16px;
+                        text-decoration: none;
+                        transition: background-color .3s;
+                        border: 1px solid #ddd;
+                        font-size: 20px;
+                        font-weight: bold;  
+                }
+
+                .pagination a:hover:not(.active) {
+                    background-color: #ddd;
+                }
+
+        .container {
+            padding-bottom: 3% !important;
+        }
+
+        .btn {
+            margin-bottom: -12px !important;
+        }
+    </style>
     <section id="configuration">
     <div class="row">
         <div class="col-12">
@@ -22,10 +62,14 @@
                        @* <p class="card-text">DataTables has most features enabled by default, 
                             so all you need to do to use it with your own ables is to call the construction</p>*@
                          
-                            <div class="row"><div class="col-sm-12 col-md-3"><div class="dataTables_length" id="DataTables_Table_0_length"><label>السنة
-                                <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
-                                    <option value="10">1995</option><option value="1996">1996</option><option value="1997">1997</option><option value="2000">
-                                      2000</option></select> </label></div></div>
+                            <form>
+                                        <div class="col-sm-12 col-md-8">
+                                            <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                                <label> السنة:<input type="number" asp-for="@Model.FirstOrDefault().year" class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0" ></label>
+                                            </div>
+                                           
+                                        </div>
+                                      </form>
                                     
                                       <div class="col-sm-12 col-md-3"><div class="dataTables_length" id="DataTables_Table_0_length"><label>الشهر
                                        <select  class="form-control"  asp-items="ViewBag.months" asp-for="@Model.FirstOrDefault().idmonth">
@@ -94,6 +138,9 @@
             
             
             })
+
+
+
 
             //$(function(){
             //    let text=$("#searchString").val();
