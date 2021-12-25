@@ -69,7 +69,7 @@ namespace HR_Sys.Controllers
 
         }
       
-    private List<EmployeeAttendance> GetAttencanceListToDataBase(List<EmployeeAttendanceExcelViewModel> excelViewModels)
+    private List<EmployeeAttendance> GetAttencanceListToDataBase(List<EmployeeAttendanceExcelViewModel> excelViewModels,out Employee employee,out string day, out  DateTime? date)
         {
             List<EmployeeAttendance> attendance =new List<EmployeeAttendance>();
             List<int> ids =new List<int>();
@@ -91,8 +91,29 @@ namespace HR_Sys.Controllers
 
                     foreach (var emp in emps)
                     {
+
                         if (emp.id== excelViewModels[i].empId)
                         {
+
+
+                            // الاجازة الاول 
+                            foreach (var item in emp.TypesOfVacationsEmps)
+                            {
+                                string days = Convert.ToDateTime(excelViewModels[i].attendaceDay).DayOfWeek.ToString();
+                                //الاجازة بتاعته
+                                if (Convert.ToDateTime(excelViewModels[i].attendaceDay).Date.CompareTo(Convert.ToDateTime(item.date).Date)==0 || (days == item.days.daysName))
+                                {
+                                    employee=emp;
+                                    day=days;
+                                    date=item.date;
+
+                                    return attendance;
+
+                                 }
+                             }
+
+
+
                             //جه بدري او متأخر
                             if (emp.requiredAttendanceTime.TimeOfDay != Convert.ToDateTime(excelViewModels[i].attendanceTime).TimeOfDay)
                             {
@@ -425,6 +446,9 @@ namespace HR_Sys.Controllers
 
                 throw;
             }
+             employee=null;
+             day="";
+             date =null;
             return attendance;
         }
 
@@ -456,7 +480,11 @@ namespace HR_Sys.Controllers
                     fileStream.Flush();
                 }
                 var attendance = GetAttencanceList(formFile.FileName);
-                var attendanceToDatabase = GetAttencanceListToDataBase(attendance);
+                Employee employeeProblem;
+                string dayOfHoliday;
+                DateTime? date;
+                var attendanceToDatabase = GetAttencanceListToDataBase(attendance,out employeeProblem,out dayOfHoliday, out date);
+                // هاكريت هنا فيو باج اقوله فيها عندك يوم اجازة وانت مدخلي موظف
                 foreach (var item in attendanceToDatabase)
                 {
                     _db.EmployeesAttendance.Add(item);

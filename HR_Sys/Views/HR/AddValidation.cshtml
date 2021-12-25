@@ -1,4 +1,5 @@
-﻿<form method = "post">
+﻿@model HR_Sys.Models.Validations
+<form method = "post">
     <section id="configuration">
     <div class="row">
         <div class="col-12">
@@ -16,7 +17,8 @@
                                         <label>اســــــــم المجموعة :</label>  
                                      </div>
                                       <div class="col-sm-12 col-md-6 dataTables_filter" id="DataTables_Table_0_filter">
-                                        <input type="search" class="form-control form-control " placeholder="" aria-controls="DataTables_Table_0" style="height: 58px;" name="validationName">
+                                        <input type="search" class="form-control form-control " placeholder="" aria-controls="DataTables_Table_0" style="height: 58px;" asp-for="validationName">
+
                                      </div>
 
                                
@@ -36,7 +38,7 @@
                             <tbody>
                                 <tr>
                                     <td>الموظفين</td>
-                                    <td>  <input type="checkbox" id="item1" name="empAdd"></td>
+                                    <td>  <input type="checkbox" id="item1" asp-for="empAdd"></td>
                                     <td>  <input type="checkbox" id="item1" name="empEdit"></td>
                                     <td>  <input type="checkbox" id="item1" name="empDelete"></td>
                                     <td>  <input type="checkbox" id="item1" name="empDisplay"></td>
@@ -54,7 +56,7 @@
                                 
                                
                                 <tr>
-                                    <td>الحصور والانصراف  </td>
+                                    <td>الحضور والانصراف  </td>
                                     <td>     <input type="checkbox" id="item1" name="reportAdd"></td>
                                     <td>  <input type="checkbox" id="item1" name="reportEdit"></td>
                                     <td>  <input type="checkbox" id="item1" name="reportDelete"></td>
