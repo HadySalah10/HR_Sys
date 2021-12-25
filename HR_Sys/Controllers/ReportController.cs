@@ -15,7 +15,7 @@ namespace HR_Sys.Controllers
             this.db = db;
 
         }
-        public  IActionResult Index(int idmonth, int page = 1, int pageSize = 2)
+        public  IActionResult Index(int idmonth, string searchString,int page = 1, int pageSize = 2)
         {
             if (HttpContext.Session.GetString("reportDisplay") == "True")
             {
@@ -27,13 +27,8 @@ namespace HR_Sys.Controllers
                 pageSize = pageSize > 0 ? pageSize : 7;
                 var emps = db.EmpReports.Where(n => n.idmonth == idmonth).ToPagedList(page, pageSize);
                 ViewBag.month = idmonth;
-                //var item = db.EmpReports.AsNoTracking().OrderBy(p => p.empId);
-                //var model = await PagingList<EmpReport>.CreateAsync(item, 2, page);
-                //if (searchinput != null)
-                //{
-                //    report = (List<EmpReport>)report.Where(n => n.idmonth.ToString() == searchinput.ToString());
+                ViewBag.search = searchString;
 
-                //}
 
                 ViewBag.pageNum = page;
 
@@ -42,38 +37,63 @@ namespace HR_Sys.Controllers
             return View("ErrorPage");
         }
 
-        public IActionResult searchByMonth(int idmonth, int page = 1, int pageSize = 2)
+        public IActionResult search(int idmonth, string searchString, int page = 1, int pageSize = 2)
         {
             page = page > 0 ? page : 1;
 
             pageSize = pageSize > 0 ? pageSize : 7;
-            var emps = db.EmpReports.Where(n=>n.idmonth== idmonth).ToPagedList(page, pageSize);
+
             ViewBag.month = idmonth;
             ViewBag.pageNum = page;
+            ViewBag.search = searchString;
 
-            return PartialView(emps);
-
-        }
-
-        public IActionResult searchByName(string searchString, int page = 1, int pageSize = 2)
-        {
-            page = page > 0 ? page : 1;
-
-            pageSize = pageSize > 0 ? pageSize : 7;
-
-            var employee = db.EmpReports.ToList();
+            var result = db.EmpReports.ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
 
-                employee = employee.Where(n => n.Employees.empName.Contains(searchString)).ToList();
+                result = result.Where(n => n.Employees.empName.Contains(searchString)).ToList();
+
+
+
 
             }
 
-            ViewBag.search = searchString;
+            else{
 
-            return PartialView(employee.ToPagedList(page, pageSize));
+                result = result.Where(n => n.idmonth == idmonth).ToList();
+
+
+
+
+            }
+            
+
+            return PartialView(result.ToPagedList(page, pageSize));
+
+
+
+
+
         }
+
+        //public IActionResult searchByName(string searchString, int page = 1, int pageSize = 2)
+        //{
+        //    page = page > 0 ? page : 1;
+
+        //    pageSize = pageSize > 0 ? pageSize : 7;
+
+        //    var employee = db.EmpReports.ToList();
+
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+
+        //        employee = employee.Where(n => n.Employees.empName.Contains(searchString)).ToList();
+
+        //    }
+
+
+        //}
 
 
         public IActionResult invoice(int empId)

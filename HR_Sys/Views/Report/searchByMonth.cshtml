@@ -1,4 +1,5 @@
-﻿@model X.PagedList.IPagedList<HR_Sys.Models.EmpReport>;
+﻿
+@model X.PagedList.IPagedList<HR_Sys.Models.EmpReport>;
 @using X.PagedList;
 @using X.PagedList.Mvc.Core;
 @using X.PagedList.Mvc.Common;
@@ -105,11 +106,13 @@
                 @Html.PagedListPager((IPagedList)Model, page => Url.Action("index",
                    new
                         {
-                            page ,idmonth=ViewBag.month 
+                            page ,idmonth=ViewBag.month
                  }))
             </div>
                </div>   
                        
            
+
+
 
 

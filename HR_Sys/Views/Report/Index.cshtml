@@ -45,7 +45,7 @@
                                       </form>
                                 </div>
                                    <input id="pageNum" hidden value="@ViewBag.pageNum"/>
-@*                                  <input id="pageNum" hidden value="@ViewBag.pageNum"/>
+@*                                  <input id="search" hidden value="@ViewBag.search"/>
 *@
                             </div>
 
@@ -71,7 +71,7 @@
             let id=$("#idmonth").val();
 
 
-             $("#renderTable").load("/Report/searchByMonth?idmonth="+id)
+             $("#renderTable").load("/Report/search?idmonth="+id)
 
 
         
@@ -80,7 +80,9 @@
         $(function(){
             let id=$("#idmonth").val();
             let idPageNum=$("#pageNum").val();
-            $("#renderTable").load("/Report/searchByMonth?idmonth="+id+"&page="+idPageNum);
+            let text=$("#searchString").val();
+
+            $("#renderTable").load("/Report/search?idmonth="+id+"&page="+idPageNum+"&searchString=" + text);
         
         })
 
@@ -88,10 +90,8 @@
             let text=$("#searchString").val();
             let idPageNum=$("#pageNum").val();
 
-            $("#renderTable").load("/report/searchByName?searchString=" + text+"&page="+idPageNum);
+            $("#renderTable").load("/report/search?searchString=" + text);
             
-
-
             
             })
 
