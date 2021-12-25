@@ -46,24 +46,20 @@
                                                     <td> @item.requiredDepartureTime.ToShortTimeString() </td>
                                                     <td>@item.Nationality.nationalityName</td>
 
-                                                    <td class="text-center">
+                                                    <td class="text-center pt-1">
                                                          @if (HttpContextAccessor.HttpContext.Session.GetString("empEdit") == "True")
                                                          {
-                                                             <a class="btn btn-success mb-2" asp-controller="Employee" asp-action="Edit" asp-route-id="@item.id">تعديل</a>
+                                                             <a class="btn btn-success" asp-controller="Employee" asp-action="Edit" asp-route-id="@item.id">تعديل</a>
                                                          }   
                                                            @if (HttpContextAccessor.HttpContext.Session.GetString("empDelete") == "True")
                                                          {
-                                                              <a class="btn btn-danger mb-2" asp-controller="Employee"  onclick="return confirm('هل تريد مسح  الموظف    @item.empName  ؟  ')" asp-action="delete" asp-route-id="@item.id">حذف</a>
+                                                              <a class="btn btn-danger" asp-controller="Employee"  onclick="return confirm('هل تريد مسح  الموظف    @item.empName  ؟  ')" asp-action="delete" asp-route-id="@item.id">حذف</a>
                                                           }
 @*                                                     <a class="btn btn-info mb-2" asp-controller= "Employee" asp-action="Editsettings" asp-route-id="@item.id">تعديل الاعدادات</a>
 *@                                                
                                                     </td>
                                             </tr>
                                     }                                
-
-                            
-                                
-
                                                                                                                                                                                                                                                                                                                </yr>
                             </tbody>
                         </table>
@@ -76,7 +72,7 @@
                        <div>
                           
                      
-                  <div class="pull-right">
+                  <div>
                 @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index",
                    new
                         {

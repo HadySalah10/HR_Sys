@@ -16,7 +16,7 @@ namespace HR_Sys.Models
         //[Required (ErrorMessage = "هذا الحقل مطلوب")]
         public DateTime? date { get; set; }
         [ForeignKey("days")]
-        public int idDays { get; set; }
+        public int? idDays { get; set; }
 
         //object from employee
         public virtual Employee emp { get; set; }

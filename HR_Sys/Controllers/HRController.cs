@@ -18,9 +18,9 @@ namespace HR_Sys.Controllers
         }
         public IActionResult welcome()
         {
-            if (HttpContext.Session.GetString("userId") != null)
+            if (HttpContext.Session.GetInt32("userId") != null)
             {
-                var hr = db.HRs.Find(HttpContext.Session.GetString("userId"));
+                var hr = db.HRs.Find(HttpContext.Session.GetInt32("userId"));
                 ViewBag.hrname = hr.hrUserName;
             }
             ViewBag.empnumber = db.Employees.Where(n => n.isDeleted == false).Count();
