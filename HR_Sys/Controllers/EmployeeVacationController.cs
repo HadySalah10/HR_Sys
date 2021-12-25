@@ -21,7 +21,6 @@ namespace HR_Sys.Controllers
         public IActionResult create()
         {
             ViewBag.emps = new SelectList(db.Employees.ToList(), "id", "empName");
-            ViewBag.day = new SelectList(db.Days.ToList(), "id", "daysName");
 
             return View();
         
@@ -52,6 +51,24 @@ namespace HR_Sys.Controllers
 
 
         }
+
+        public IActionResult delete(int id)
+        {
+            var vaction = db.TypesOfVacationsEmps.Find(id);
+            if (vaction != null)
+            {
+                db.TypesOfVacationsEmps.Remove(vaction);
+                db.SaveChanges();
+            
+            }
+
+            return RedirectToAction("Index");
+
+
+
+        }
+
+
 
 
 
