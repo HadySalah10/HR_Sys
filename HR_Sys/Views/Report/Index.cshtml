@@ -139,6 +139,15 @@
             
             })
 
+            $("#year").on("keyup",function(){
+            let text=$("#year").val();
+            let idPageNum=$("#pageNum").val();
+
+            $("#renderTable").load("/report/search?year="+text);
+            
+            
+            })
+
 
 
 

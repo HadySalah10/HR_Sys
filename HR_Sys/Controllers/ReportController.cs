@@ -35,7 +35,7 @@ namespace HR_Sys.Controllers
             return View("ErrorPage");
         }
 
-        public IActionResult search(int idmonth, string searchString, int page = 1, int pageSize = 2)
+        public IActionResult search(int idmonth, string searchString,int year, int page = 1, int pageSize = 2)
         {
             page = page > 0 ? page : 1;
 
@@ -57,13 +57,33 @@ namespace HR_Sys.Controllers
 
             }
 
-            else{
+            else if (idmonth != 0)
+            {
 
                 result = result.Where(n => n.idmonth == idmonth).ToList();
 
 
 
 
+            }
+            else if (year != 0)
+            { 
+                int dateOFYear=DateTime.Now.Year;
+                if (year >= 2008 && year <= dateOFYear)
+                {
+                    result = result.Where(n => n.year==year).ToList();
+
+
+
+                }
+                else
+                { 
+
+                
+                }
+
+            
+            
             }
             
 
