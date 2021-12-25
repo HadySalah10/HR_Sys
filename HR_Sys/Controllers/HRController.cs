@@ -18,7 +18,13 @@ namespace HR_Sys.Controllers
         }
         public IActionResult welcome()
         {
-
+            if (HttpContext.Session.GetString("userId") != null)
+            {
+                ViewBag.hrname = db.HRs.Find(HttpContext.Session.GetString("userId"));
+            }
+            ViewBag.empnumber = db.Employees.Count();
+            ViewBag.hrnumbers = db.HRs.Count();
+            ViewBag.deptnumbers = db.Departments.Count();
             return View("welcome");
         }
         public IActionResult Index(string searchString, int page = 1, int pageSize = 2)
@@ -247,9 +253,6 @@ namespace HR_Sys.Controllers
             if (user != null)
                 return Json(false);
             return Json(true);
-
-
-
         }
         public ActionResult logout()
         {

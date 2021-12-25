@@ -49,21 +49,12 @@ namespace HR_Sys.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-
                 result = result.Where(n => n.Employees.empName.Contains(searchString)).ToList();
-
-
-
-
             }
 
             else{
 
                 result = result.Where(n => n.idmonth == idmonth).ToList();
-
-
-
-
             }
             
 
@@ -98,5 +89,6 @@ namespace HR_Sys.Controllers
         {
             return View();
         }
+   
     }
 }
