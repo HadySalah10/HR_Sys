@@ -20,7 +20,8 @@ namespace HR_Sys.Controllers
         {
             if (HttpContext.Session.GetString("userId") != null)
             {
-                ViewBag.hrname = db.HRs.Find(HttpContext.Session.GetString("userId"));
+                var hr = db.HRs.Find(HttpContext.Session.GetString("userId"));
+                ViewBag.hrname = hr.hrUserName;
             }
             ViewBag.empnumber = db.Employees.Where(n => n.isDeleted == false).Count();
             ViewBag.hrnumbers = db.HRs.Count();
