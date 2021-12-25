@@ -1,4 +1,9 @@
-﻿namespace HR_Sys.ViewModels
+﻿using HR_Sys.Models;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HR_Sys.ViewModels
 {
     public class annualHolidayViewModel
     {
