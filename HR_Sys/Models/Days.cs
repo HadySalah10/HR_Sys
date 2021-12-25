@@ -4,7 +4,8 @@ namespace HR_Sys.Models
 {
     public class Days: CommonProps
     {
-        public string daysName { get; set; } 
+        public string daysName { get; set; }
+        public string displayNameEnglish { get; set; }
 
         public virtual ICollection<TypesOfVacationsEmp> TypesOfVacationsEmps { get; set; }
         //dummy edit

@@ -24,7 +24,6 @@ namespace HR_Sys.Models
         public virtual DbSet<Months> Months { get; set; }
         public virtual DbSet<Days> Days { get; set; }
         public virtual DbSet<annualHoliday> AnnualHolidays { get; set; }
-        public virtual DbSet<NameAnnualHoliday> NameAnnualHolidays { get; set; }
 
 
         
@@ -43,17 +42,10 @@ namespace HR_Sys.Models
               new Department { id = 5, deptName = "قسم المبيعات", addBy = 1, lastEdit = true }
          
           );
-            modelBuilder.Entity<NameAnnualHoliday>().HasData(
-             new NameAnnualHoliday { id = 1, nameHoliday = "عيد الغطاس",  addBy = 1, lastEdit = true },
-             new NameAnnualHoliday { id = 2, nameHoliday = "عيد الاضحي", addBy = 1, lastEdit = true },
-             new NameAnnualHoliday { id = 3, nameHoliday = "عيد الفطر", addBy = 1, lastEdit = true },
-             new NameAnnualHoliday { id = 4, nameHoliday = "عيد العمال", addBy = 1, lastEdit = true },
-             new NameAnnualHoliday { id = 5, nameHoliday = "عيد تحرير سيناء", addBy = 1, lastEdit = true }
-           
-
-         );
+          
             modelBuilder.Entity<annualHoliday>().HasData(
-        new annualHoliday { id = 1, idHoliday = 1,dateHoliday= new DateTime(2021, 1, 19), addBy = 1, lastEdit = true }
+        new annualHoliday { id = 1, nameHoliday = "عيد الغطاس", dateHoliday= new DateTime(2021, 1, 19), addBy = 1, lastEdit = true },
+        new annualHoliday { id = 2, nameHoliday = "عيد الاضحي", dateHoliday= new DateTime(2021, 5, 19), addBy = 1, lastEdit = true }
     );
 
             modelBuilder.Entity<Validations>().HasData(
@@ -81,13 +73,13 @@ namespace HR_Sys.Models
 
    );
             modelBuilder.Entity<Days>().HasData(
-                new Days { id=1, daysName = "السبت" ,addBy=1,lastEdit=true },
-                new Days {id=2, daysName = "الاحد", addBy = 1, lastEdit = true },
-                new Days {id=3, daysName = "الاثنين", addBy = 1, lastEdit = true },
-                new Days {id=4, daysName = "الثلاثاء", addBy = 1, lastEdit = true },
-                new Days {id=5, daysName = "الاربعاء", addBy = 1, lastEdit = true },
-                new Days {id=6, daysName = "الخميس", addBy = 1, lastEdit = true },
-                new Days {id=7, daysName = "الجمعة", addBy = 1, lastEdit = true }
+                new Days { id=1, daysName = "السبت",displayNameEnglish= "Saturday", addBy=1,lastEdit=true },
+                new Days {id=2, daysName = "الاحد",  displayNameEnglish = "Sunday", addBy = 1, lastEdit = true },
+                new Days {id=3, daysName = "الاثنين",displayNameEnglish= "Monday", addBy = 1, lastEdit = true },
+                new Days {id=4, daysName = "الثلاثاء",displayNameEnglish= "Thursday", addBy = 1, lastEdit = true },
+                new Days {id=5, daysName = "الاربعاء",displayNameEnglish= "Tuesday", addBy = 1, lastEdit = true },
+                new Days {id=6, daysName = "الخميس",displayNameEnglish= "Wednesday", addBy = 1, lastEdit = true },
+                new Days {id=7, daysName = "الجمعة",displayNameEnglish= "Friday", addBy = 1, lastEdit = true }
             );
          
           

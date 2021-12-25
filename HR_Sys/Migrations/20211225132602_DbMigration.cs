@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HR_Sys.Migrations
 {
-    public partial class intial : Migration
+    public partial class DbMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -62,12 +62,47 @@ namespace HR_Sys.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "annualHoliday",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    nameHoliday = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    dateHoliday = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    editBy = table.Column<int>(type: "int", nullable: true),
+                    deletedBy = table.Column<int>(type: "int", nullable: true),
+                    addBy = table.Column<int>(type: "int", nullable: true),
+                    lastEdit = table.Column<bool>(type: "bit", nullable: true),
+                    isDeleted = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_annualHoliday", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_annualHoliday_HRs_addBy",
+                        column: x => x.addBy,
+                        principalTable: "HRs",
+                        principalColumn: "hrId");
+                    table.ForeignKey(
+                        name: "FK_annualHoliday_HRs_deletedBy",
+                        column: x => x.deletedBy,
+                        principalTable: "HRs",
+                        principalColumn: "hrId");
+                    table.ForeignKey(
+                        name: "FK_annualHoliday_HRs_editBy",
+                        column: x => x.editBy,
+                        principalTable: "HRs",
+                        principalColumn: "hrId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Days",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     daysName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    displayNameEnglish = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     editBy = table.Column<int>(type: "int", nullable: true),
                     deletedBy = table.Column<int>(type: "int", nullable: true),
                     addBy = table.Column<int>(type: "int", nullable: true),
@@ -161,39 +196,6 @@ namespace HR_Sys.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "NameAnnualHolidays",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    nameHoliday = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    editBy = table.Column<int>(type: "int", nullable: true),
-                    deletedBy = table.Column<int>(type: "int", nullable: true),
-                    addBy = table.Column<int>(type: "int", nullable: true),
-                    lastEdit = table.Column<bool>(type: "bit", nullable: true),
-                    isDeleted = table.Column<bool>(type: "bit", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_NameAnnualHolidays", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_NameAnnualHolidays_HRs_addBy",
-                        column: x => x.addBy,
-                        principalTable: "HRs",
-                        principalColumn: "hrId");
-                    table.ForeignKey(
-                        name: "FK_NameAnnualHolidays_HRs_deletedBy",
-                        column: x => x.deletedBy,
-                        principalTable: "HRs",
-                        principalColumn: "hrId");
-                    table.ForeignKey(
-                        name: "FK_NameAnnualHolidays_HRs_editBy",
-                        column: x => x.editBy,
-                        principalTable: "HRs",
-                        principalColumn: "hrId");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Nationalities",
                 columns: table => new
                 {
@@ -257,46 +259,6 @@ namespace HR_Sys.Migrations
                         column: x => x.editBy,
                         principalTable: "HRs",
                         principalColumn: "hrId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "annualHoliday",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    idHoliday = table.Column<int>(type: "int", nullable: false),
-                    dateHoliday = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    editBy = table.Column<int>(type: "int", nullable: true),
-                    deletedBy = table.Column<int>(type: "int", nullable: true),
-                    addBy = table.Column<int>(type: "int", nullable: true),
-                    lastEdit = table.Column<bool>(type: "bit", nullable: true),
-                    isDeleted = table.Column<bool>(type: "bit", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_annualHoliday", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_annualHoliday_HRs_addBy",
-                        column: x => x.addBy,
-                        principalTable: "HRs",
-                        principalColumn: "hrId");
-                    table.ForeignKey(
-                        name: "FK_annualHoliday_HRs_deletedBy",
-                        column: x => x.deletedBy,
-                        principalTable: "HRs",
-                        principalColumn: "hrId");
-                    table.ForeignKey(
-                        name: "FK_annualHoliday_HRs_editBy",
-                        column: x => x.editBy,
-                        principalTable: "HRs",
-                        principalColumn: "hrId");
-                    table.ForeignKey(
-                        name: "FK_annualHoliday_NameAnnualHolidays_idHoliday",
-                        column: x => x.idHoliday,
-                        principalTable: "NameAnnualHolidays",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -531,16 +493,16 @@ namespace HR_Sys.Migrations
 
             migrationBuilder.InsertData(
                 table: "Days",
-                columns: new[] { "id", "addBy", "daysName", "deletedBy", "editBy", "isDeleted", "lastEdit" },
+                columns: new[] { "id", "addBy", "daysName", "deletedBy", "displayNameEnglish", "editBy", "isDeleted", "lastEdit" },
                 values: new object[,]
                 {
-                    { 1, 1, "السبت", null, null, false, true },
-                    { 2, 1, "الاحد", null, null, false, true },
-                    { 3, 1, "الاثنين", null, null, false, true },
-                    { 4, 1, "الثلاثاء", null, null, false, true },
-                    { 5, 1, "الاربعاء", null, null, false, true },
-                    { 6, 1, "الخميس", null, null, false, true },
-                    { 7, 1, "الجمعة", null, null, false, true }
+                    { 1, 1, "السبت", null, "Saturday", null, false, true },
+                    { 2, 1, "الاحد", null, "Sunday", null, false, true },
+                    { 3, 1, "الاثنين", null, "Monday", null, false, true },
+                    { 4, 1, "الثلاثاء", null, "Thursday", null, false, true },
+                    { 5, 1, "الاربعاء", null, "Tuesday", null, false, true },
+                    { 6, 1, "الخميس", null, "Wednesday", null, false, true },
+                    { 7, 1, "الجمعة", null, "Friday", null, false, true }
                 });
 
             migrationBuilder.InsertData(
@@ -575,18 +537,6 @@ namespace HR_Sys.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "NameAnnualHolidays",
-                columns: new[] { "id", "addBy", "deletedBy", "editBy", "isDeleted", "lastEdit", "nameHoliday" },
-                values: new object[,]
-                {
-                    { 1, 1, null, null, false, true, "عيد الغطاس" },
-                    { 2, 1, null, null, false, true, "عيد الاضحي" },
-                    { 3, 1, null, null, false, true, "عيد الفطر" },
-                    { 4, 1, null, null, false, true, "عيد العمال" },
-                    { 5, 1, null, null, false, true, "عيد تحرير سيناء" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Nationalities",
                 columns: new[] { "id", "addBy", "deletedBy", "editBy", "isDeleted", "lastEdit", "nationalityName" },
                 values: new object[,]
@@ -608,27 +558,26 @@ namespace HR_Sys.Migrations
             migrationBuilder.InsertData(
                 table: "VacationTypes",
                 columns: new[] { "id", "addBy", "deletedBy", "editBy", "isDeleted", "lastEdit", "vacationName" },
-                values: new object[] { 1, 1, null, null, false, true, "اجازة اسبوعية" });
+                values: new object[,]
+                {
+                    { 1, 1, null, null, false, true, "اجازة اسبوعية" },
+                    { 2, 1, null, null, false, true, "اجازة عارضة" },
+                    { 3, 1, null, null, false, true, "اجازة سنوية" }
+                });
 
             migrationBuilder.InsertData(
-                table: "VacationTypes",
-                columns: new[] { "id", "addBy", "deletedBy", "editBy", "isDeleted", "lastEdit", "vacationName" },
-                values: new object[] { 2, 1, null, null, false, true, "اجازة عارضة" });
-
-            migrationBuilder.InsertData(
-                table: "VacationTypes",
-                columns: new[] { "id", "addBy", "deletedBy", "editBy", "isDeleted", "lastEdit", "vacationName" },
-                values: new object[] { 3, 1, null, null, false, true, "اجازة سنوية" });
+                table: "annualHoliday",
+                columns: new[] { "id", "addBy", "dateHoliday", "deletedBy", "editBy", "isDeleted", "lastEdit", "nameHoliday" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2021, 1, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, false, true, "عيد الغطاس" },
+                    { 2, 1, new DateTime(2021, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, false, true, "عيد الاضحي" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "id", "addBy", "deletedBy", "deptid", "editBy", "empAddress", "empDateOfBirth", "empGender", "empGrossSalary", "empHireDate", "empName", "empNetSalary", "empNonNetSalary", "empSsn", "isDeleted", "lastEdit", "nationalityId", "phoneNum", "phoneNum2", "requiredAttendanceTime", "requiredDaysPerMonth", "requiredDeductHours", "requiredDepartureTime", "requiredExtraHours", "requiredSalaryPerHour" },
                 values: new object[] { 1, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User", 600.20000000000005, 100.2, "29705251400191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 24, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m });
-
-            migrationBuilder.InsertData(
-                table: "annualHoliday",
-                columns: new[] { "id", "addBy", "dateHoliday", "deletedBy", "editBy", "idHoliday", "isDeleted", "lastEdit" },
-                values: new object[] { 1, 1, new DateTime(2021, 1, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, 1, false, true });
 
             migrationBuilder.InsertData(
                 table: "TypesOfVacationsEmps",
@@ -654,11 +603,6 @@ namespace HR_Sys.Migrations
                 name: "IX_annualHoliday_editBy",
                 table: "annualHoliday",
                 column: "editBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_annualHoliday_idHoliday",
-                table: "annualHoliday",
-                column: "idHoliday");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Days_addBy",
@@ -781,21 +725,6 @@ namespace HR_Sys.Migrations
                 column: "editBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_NameAnnualHolidays_addBy",
-                table: "NameAnnualHolidays",
-                column: "addBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_NameAnnualHolidays_deletedBy",
-                table: "NameAnnualHolidays",
-                column: "deletedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_NameAnnualHolidays_editBy",
-                table: "NameAnnualHolidays",
-                column: "editBy");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Nationalities_addBy",
                 table: "Nationalities",
                 column: "addBy");
@@ -869,9 +798,6 @@ namespace HR_Sys.Migrations
 
             migrationBuilder.DropTable(
                 name: "TypesOfVacationsEmps");
-
-            migrationBuilder.DropTable(
-                name: "NameAnnualHolidays");
 
             migrationBuilder.DropTable(
                 name: "Months");

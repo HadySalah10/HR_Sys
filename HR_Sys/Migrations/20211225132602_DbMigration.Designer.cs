@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HR_Sys.Migrations
 {
     [DbContext(typeof(HrDBContext))]
-    [Migration("20211224222554_intial")]
-    partial class intial
+    [Migration("20211225132602_DbMigration")]
+    partial class DbMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,14 +45,15 @@ namespace HR_Sys.Migrations
                     b.Property<int?>("editBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("idHoliday")
-                        .HasColumnType("int");
-
                     b.Property<bool?>("isDeleted")
                         .HasColumnType("bit");
 
                     b.Property<bool?>("lastEdit")
                         .HasColumnType("bit");
+
+                    b.Property<string>("nameHoliday")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
@@ -62,8 +63,6 @@ namespace HR_Sys.Migrations
 
                     b.HasIndex("editBy");
 
-                    b.HasIndex("idHoliday");
-
                     b.ToTable("annualHoliday");
 
                     b.HasData(
@@ -72,9 +71,18 @@ namespace HR_Sys.Migrations
                             id = 1,
                             addBy = 1,
                             dateHoliday = new DateTime(2021, 1, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            idHoliday = 1,
                             isDeleted = false,
-                            lastEdit = true
+                            lastEdit = true,
+                            nameHoliday = "عيد الغطاس"
+                        },
+                        new
+                        {
+                            id = 2,
+                            addBy = 1,
+                            dateHoliday = new DateTime(2021, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            isDeleted = false,
+                            lastEdit = true,
+                            nameHoliday = "عيد الاضحي"
                         });
                 });
 
@@ -95,6 +103,10 @@ namespace HR_Sys.Migrations
 
                     b.Property<int?>("deletedBy")
                         .HasColumnType("int");
+
+                    b.Property<string>("displayNameEnglish")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("editBy")
                         .HasColumnType("int");
@@ -121,6 +133,7 @@ namespace HR_Sys.Migrations
                             id = 1,
                             addBy = 1,
                             daysName = "السبت",
+                            displayNameEnglish = "Saturday",
                             isDeleted = false,
                             lastEdit = true
                         },
@@ -129,6 +142,7 @@ namespace HR_Sys.Migrations
                             id = 2,
                             addBy = 1,
                             daysName = "الاحد",
+                            displayNameEnglish = "Sunday",
                             isDeleted = false,
                             lastEdit = true
                         },
@@ -137,6 +151,7 @@ namespace HR_Sys.Migrations
                             id = 3,
                             addBy = 1,
                             daysName = "الاثنين",
+                            displayNameEnglish = "Monday",
                             isDeleted = false,
                             lastEdit = true
                         },
@@ -145,6 +160,7 @@ namespace HR_Sys.Migrations
                             id = 4,
                             addBy = 1,
                             daysName = "الثلاثاء",
+                            displayNameEnglish = "Thursday",
                             isDeleted = false,
                             lastEdit = true
                         },
@@ -153,6 +169,7 @@ namespace HR_Sys.Migrations
                             id = 5,
                             addBy = 1,
                             daysName = "الاربعاء",
+                            displayNameEnglish = "Tuesday",
                             isDeleted = false,
                             lastEdit = true
                         },
@@ -161,6 +178,7 @@ namespace HR_Sys.Migrations
                             id = 6,
                             addBy = 1,
                             daysName = "الخميس",
+                            displayNameEnglish = "Wednesday",
                             isDeleted = false,
                             lastEdit = true
                         },
@@ -169,6 +187,7 @@ namespace HR_Sys.Migrations
                             id = 7,
                             addBy = 1,
                             daysName = "الجمعة",
+                            displayNameEnglish = "Friday",
                             isDeleted = false,
                             lastEdit = true
                         });
@@ -706,85 +725,6 @@ namespace HR_Sys.Migrations
                         });
                 });
 
-            modelBuilder.Entity("HR_Sys.Models.NameAnnualHoliday", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<int?>("addBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("deletedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("editBy")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("isDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("lastEdit")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("nameHoliday")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("addBy");
-
-                    b.HasIndex("deletedBy");
-
-                    b.HasIndex("editBy");
-
-                    b.ToTable("NameAnnualHolidays");
-
-                    b.HasData(
-                        new
-                        {
-                            id = 1,
-                            addBy = 1,
-                            isDeleted = false,
-                            lastEdit = true,
-                            nameHoliday = "عيد الغطاس"
-                        },
-                        new
-                        {
-                            id = 2,
-                            addBy = 1,
-                            isDeleted = false,
-                            lastEdit = true,
-                            nameHoliday = "عيد الاضحي"
-                        },
-                        new
-                        {
-                            id = 3,
-                            addBy = 1,
-                            isDeleted = false,
-                            lastEdit = true,
-                            nameHoliday = "عيد الفطر"
-                        },
-                        new
-                        {
-                            id = 4,
-                            addBy = 1,
-                            isDeleted = false,
-                            lastEdit = true,
-                            nameHoliday = "عيد العمال"
-                        },
-                        new
-                        {
-                            id = 5,
-                            addBy = 1,
-                            isDeleted = false,
-                            lastEdit = true,
-                            nameHoliday = "عيد تحرير سيناء"
-                        });
-                });
-
             modelBuilder.Entity("HR_Sys.Models.Nationality", b =>
                 {
                     b.Property<int>("id")
@@ -1161,17 +1101,9 @@ namespace HR_Sys.Migrations
                         .WithMany()
                         .HasForeignKey("editBy");
 
-                    b.HasOne("HR_Sys.Models.NameAnnualHoliday", "NameAnnualHoliday")
-                        .WithMany("AnnualHolidays")
-                        .HasForeignKey("idHoliday")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Add");
 
                     b.Navigation("Delete");
-
-                    b.Navigation("NameAnnualHoliday");
 
                     b.Navigation("edit");
                 });
@@ -1353,27 +1285,6 @@ namespace HR_Sys.Migrations
                     b.Navigation("edit");
                 });
 
-            modelBuilder.Entity("HR_Sys.Models.NameAnnualHoliday", b =>
-                {
-                    b.HasOne("HR_Sys.Models.HR", "Add")
-                        .WithMany()
-                        .HasForeignKey("addBy");
-
-                    b.HasOne("HR_Sys.Models.HR", "Delete")
-                        .WithMany()
-                        .HasForeignKey("deletedBy");
-
-                    b.HasOne("HR_Sys.Models.HR", "edit")
-                        .WithMany()
-                        .HasForeignKey("editBy");
-
-                    b.Navigation("Add");
-
-                    b.Navigation("Delete");
-
-                    b.Navigation("edit");
-                });
-
             modelBuilder.Entity("HR_Sys.Models.Nationality", b =>
                 {
                     b.HasOne("HR_Sys.Models.HR", "Add")
@@ -1534,11 +1445,6 @@ namespace HR_Sys.Migrations
             modelBuilder.Entity("HR_Sys.Models.Months", b =>
                 {
                     b.Navigation("EmpReports");
-                });
-
-            modelBuilder.Entity("HR_Sys.Models.NameAnnualHoliday", b =>
-                {
-                    b.Navigation("AnnualHolidays");
                 });
 
             modelBuilder.Entity("HR_Sys.Models.Nationality", b =>
