@@ -61,7 +61,9 @@ namespace HR_Sys.Controllers
 
             }
 
-            ViewBag.search=searchString;    
+            ViewBag.search=searchString;
+            ViewBag.pageNum = page;
+
 
             return PartialView(employees.ToPagedList(page, pageSize));
         }

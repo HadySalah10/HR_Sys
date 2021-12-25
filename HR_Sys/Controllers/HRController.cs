@@ -25,6 +25,9 @@ namespace HR_Sys.Controllers
         {
             if (HttpContext.Session.GetString("group") == "Admin")
             {
+                ViewBag.page = searchString;
+                ViewBag.pageNum = page;
+
                 page = page > 0 ? page : 1;
 
                 pageSize = pageSize > 0 ? pageSize : 7;
@@ -34,11 +37,35 @@ namespace HR_Sys.Controllers
                     hrs = hrs.Where(n => n.hrUserName.Contains(searchString)).ToList();
 
                 }
+
                 return View(hrs.ToPagedList(page, pageSize));
 
             }
             return View("ErrorPage");
         }
+
+        public IActionResult search(string searchString, int page = 1, int pageSize = 2)
+        {
+            page = page > 0 ? page : 1;
+
+            pageSize = pageSize > 0 ? pageSize : 7;
+
+            var users = db.HRs.ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                users = users.Where(n => n.hrUserName.Contains(searchString)).ToList();
+
+            }
+
+            ViewBag.search = searchString;
+
+            return PartialView(users.ToPagedList(page, pageSize));
+        }
+
+
+
 
         public IActionResult RegisterHR()
         {

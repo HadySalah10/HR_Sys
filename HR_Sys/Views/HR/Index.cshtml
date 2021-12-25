@@ -81,11 +81,11 @@
                                       <form>
                                         <div class="col-sm-12 col-md-8">
                                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                                <label>بحث:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0" name="searchString"></label>
+                                                <label>بحث:<input type="text" class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0" name="searchString" id="searchString"></label>
                                             </div>
-                                            <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                            @*<div id="DataTables_Table_0_filter" class="dataTables_filter">
                                                 <input type="submit" class="btn btn-info"  name="searchString" value="search">
-                                            </div>
+                                            </div>*@
                                         </div>
                                       </form>
                                 <div class="col-lg-1"></div>
@@ -96,46 +96,11 @@
                                    </button>
                                 </div>
                             </div> 
-                            <!------------------------------------------- start table of HRS-------------------------------------->                    
-                            <table class="table text-center table-striped table-bordered zero-configuration">
-                            <thead>
-                                <tr>
-                                    <th>اسم المستخدم</th>
-                                    <th>الحدث</th>
-                                    <th>تعديل </th>
-                                    <th>حذف</th>
-                               
-                                </tr>
-                            </thead>
-                            <tbody>
-                            
-                                @foreach(var item in Model)
-                                {
-                                    <tr class="user">
-                                     <td>@item.hrUserName</td>
-                                     <td>
-                                        <button class="btn btn-gray mb-2"> 
-                                        <a asp-controller="HR" asp-action="Index" target="_blank"  asp-route-id="@*@item.id*@">تفعيل</a>
-                                        </button>
-                                     </td>
-                                    <td>
-                                        <button class="btn btn-success mb-2"> 
-                                        <a asp-controller="HR" asp-action="editHr"  asp-route-id="@item.hrId">تعديل</a>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger mb-2"> 
-                                        <a asp-controller="HR" asp-action="deleteHR" asp-route-id="@item.hrId" onclick="return confirm('هل تريد حذف @item.hrUserName ؟ ')">حذف</a>
-                                        </button>
-                                    </td>   
+                            <input id="pageNum" hidden value="@ViewBag.pageNum"/>
 
-                                  </tr>                
-                                }
-                                
-                               
-                                 
-                            </tbody>               
-                        </table>
+                            <!------------------------------------------- start table of HRS-------------------------------------->                    
+                        <div id="renderTable"></div>
+@*
                         <div class="pagination">
                               Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
                        </div>
@@ -145,9 +110,10 @@
                 @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index",
                    new
                         {
-                            page
+                            page, searchString= ViewBag.search 
+
                  }))
-            </div>
+            </div>*@
                         
                             <!------------------------------------------- end table of HRS-------------------------------------->                    
 
@@ -160,4 +126,37 @@
 
             </div>
           </div>
+
+@section scripts
+{
+    <script>
+            $("#searchString").on("keyup",function(){
+            let text=$("#searchString").val();
+            let idPageNum=$("#pageNum").val();
+
+            $("#renderTable").load("/HR/search?searchString=" + text+"&page="+idPageNum);
+            
+
+
+            
+            })
+
+            $(function(){
+                let text=$("#searchString").val();
+                let idPageNum=$("#pageNum").val();
+                $("#renderTable").load("/HR/search?searchString=" + text+"&page="+idPageNum)
+
+            
+            })
+
+
+
+
+
+</script>
+
+
+
+
+}
 

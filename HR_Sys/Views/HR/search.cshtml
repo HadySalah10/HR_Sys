@@ -1,0 +1,57 @@
+﻿@model  X.PagedList.IPagedList<HR_Sys.Models.HR>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Common;   
+
+
+<table class="table text-center table-striped table-bordered zero-configuration">
+                            <thead>
+                                <tr>
+                                    <th>اسم المستخدم</th>
+                                    <th>الحدث</th>
+                                    <th>تعديل </th>
+                                    <th>حذف</th>
+                               
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                                @foreach(var item in Model)
+                                {
+                                    <tr class="user">
+                                     <td>@item.hrUserName</td>
+                                     <td>
+                                        <button class="btn btn-gray mb-2"> 
+                                        <a asp-controller="HR" asp-action="Index" target="_blank"  asp-route-id="@*@item.id*@">تفعيل</a>
+                                        </button>
+                                     </td>
+                                    <td>
+                                        <button class="btn btn-success mb-2"> 
+                                        <a asp-controller="HR" asp-action="editHr"  asp-route-id="@item.hrId">تعديل</a>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger mb-2"> 
+                                        <a asp-controller="HR" asp-action="deleteHR" asp-route-id="@item.hrId" onclick="return confirm('هل تريد حذف @item.hrUserName ؟ ')">حذف</a>
+                                        </button>
+                                    </td>   
+
+                                  </tr>                
+                                }
+                                
+                               
+                                 
+                            </tbody>               
+                        </table>
+                        <div class="pagination">
+                              Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                       </div>
+                       <div>
+                     
+                  <div class="pull-right">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index",
+                   new
+                        {
+                            page, searchString= ViewBag.search
+                 }))
+            </div>
