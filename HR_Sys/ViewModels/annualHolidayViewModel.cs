@@ -7,14 +7,17 @@ namespace HR_Sys.ViewModels
 {
     public class annualHolidayViewModel
     {
+        public int? Id { get; set; }
         //اسم الأجازه 
+        [Required(ErrorMessage = "برجاء ادخال اسم الأجازه")]
         [DisplayName("اسـم الأجازه")]
         //[Required(ErrorMessage = "برجاء تحديد اسـم الأجازه")]
-        public string displayNameEnglish { get; set; }
+
+        public string NameHoliday { get; set; }
 
         //تاريخ الأجازه
         [Required(ErrorMessage = "برجاء ادخال تاريخ الأجازه")]
         [DisplayName("تاريخ الأجازه")]
-        public DateTime? dateHoliday { get; set; }
+        public DateTime DateHoliday { get; set; }
     }
 }

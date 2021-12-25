@@ -1,4 +1,5 @@
 ﻿using HR_Sys.Models;
+using HR_Sys.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -16,9 +17,13 @@ namespace HR_Sys.Controllers
         //Index
         public IActionResult Index()
         {
-            ViewBag.NameAnnualHoliday = new SelectList(db.AnnualHolidays.ToList(), "idHoliday", "NameAnnualHoliday");
-            //ViewBag.annulholiday = db.annualHoliday.ToList();
-            return View(db.AnnualHolidays.ToList());
+            if (HttpContext.Session.GetString("group") == "Admin")
+            {
+                // ViewBag.NameAnnualHoliday = new SelectList(db.AnnualHolidays.ToList(), "idHoliday", "NameAnnualHoliday");
+                //ViewBag.annulholiday = db.annualHoliday.ToList();
+                return View(db.AnnualHolidays.ToList());
+            }
+            return View("ErrorPage");
         }
 
         //[HttpPost]
@@ -44,25 +49,27 @@ namespace HR_Sys.Controllers
         //GET: Create 
         public IActionResult Create() 
         {
+            if(HttpContext.Session.GetString("group") == "Admin")
+            {
 
-            ViewBag.NameAnnualHoliday = new SelectList(db.AnnualHolidays.ToList(), "idHoliday", "NameAnnualHoliday");
-            return View();
+             // ViewBag.NameAnnualHoliday = new SelectList(db.AnnualHolidays.ToList(), "idHoliday", "NameAnnualHoliday");
+                return View();
+            }
+            return View("ErrorPage");
         }
 
         //Post: Create
         [HttpPost]
-        public IActionResult Create(annualHoliday holidays)
+        public IActionResult Create(annualHolidayViewModel holidays)
         {
-
-            //annualHoliday annualHolidayModel = new annualHoliday()
-            //{
-            //    NameAnnualHoliday = holidays.NameAnnualHoliday,
-            //    dateHoliday = holidays.dateHoliday,
-            //};
             if (ModelState.IsValid)
             {
-                db.AnnualHolidays.Add(holidays);    
+                annualHoliday holiday = new annualHoliday();
+                holiday.nameHoliday = holidays.NameHoliday;
+                holiday.dateHoliday = holidays.DateHoliday;
+               db.annualHoliday.Add(holiday);    
                 db.SaveChanges();
+               
             }
                 return RedirectToAction("Index");
             
@@ -72,23 +79,36 @@ namespace HR_Sys.Controllers
         //Get: Edit
         public IActionResult Edit( int id)
         {
-            var AnnualHolidays = db.AnnualHolidays.Find(id);
-           // ViewBag.NameAnnualHoliday = new SelectList(db.NameAnnualHolidays.ToList(), "id", "nameHoliday");
+            if (HttpContext.Session.GetString("group") == "Admin")
 
-            return View(AnnualHolidays);
+            {
+                var AnnualHolidays = db.AnnualHolidays.Find(id);
+                annualHolidayViewModel editAnnualHoliday = new annualHolidayViewModel();
+                editAnnualHoliday.Id = AnnualHolidays.id;
+                editAnnualHoliday.NameHoliday = AnnualHolidays.nameHoliday;
+                editAnnualHoliday.DateHoliday = (DateTime)AnnualHolidays.dateHoliday;
+
+                return View(editAnnualHoliday);
+            }
+            return View("ErrorPage");
         }
 
         //Post: Edit
         [HttpPost]
-        public IActionResult Edit(annualHoliday holidays)
+        public IActionResult Edit(annualHolidayViewModel holidays)
         {
-            //annualHoliday ah = db.AnnualHolidays.Find(holidays.idHoliday);
-            annualHoliday annual = db.annualHoliday.Find(holidays.id);
-         //   annual.idHoliday = holidays.idHoliday;
-            annual.dateHoliday = holidays.dateHoliday;
+            if (ModelState.IsValid)
+            {
+                var holiday = db.annualHoliday.Find(holidays.Id);
+                holiday.nameHoliday = holidays.NameHoliday;
+                holiday.dateHoliday = holidays.DateHoliday;
+                
+                db.SaveChanges();
 
-            db.SaveChanges();
+            }
             return RedirectToAction("Index");
+
+
         }
 
         //Delete
