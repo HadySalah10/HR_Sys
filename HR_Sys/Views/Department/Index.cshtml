@@ -1,0 +1,46 @@
+﻿@model IEnumerable<HR_Sys.Models.Department>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">الاقسام</h1>
+
+
+<button id="addRow" class="btn btn-primary mb-2"> 
+   <i class="ft-plus"></i>&nbsp;
+   <a asp-action="Create" target="_blank"> إضافة قسم جديد</a>
+</button><br />
+<table class="table text-center table-striped table-bordered zero-configuration">
+    <thead>
+        <tr>
+            <th>
+                الاقسام
+            </th>
+            <th>
+                الاجراءات
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.deptName)
+            </td>
+           
+            <td>
+               <button class="btn btn-info mb-2"> 
+                  <a asp-action="Edit"  asp-route-id="@item.id">تعديل</a>
+               </button>&nbsp; &nbsp;| &nbsp;
+
+               <button class="btn btn-danger mb-2"> 
+                 <a asp-action="Delete" asp-route-id="@item.id" onclick="return confirm('هل تريد حذف @item.deptName ؟ ')">حذف</a>
+               </button>
+            </td>
+              
+        </tr>
+}
+    </tbody>
+</table>
