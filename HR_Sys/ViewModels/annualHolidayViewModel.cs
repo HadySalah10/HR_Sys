@@ -1,17 +1,7 @@
-﻿using HR_Sys.Models.BaseIDEntity;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using HR_Sys.ValidationsAttributes;
-using Microsoft.AspNetCore.Mvc;
-
-namespace HR_Sys.Models
+﻿namespace HR_Sys.ViewModels
 {
-    public class annualHoliday: CommonProps
+    public class annualHolidayViewModel
     {
-        
-     
-
         //اسم الأجازه 
         [DisplayName("اسـم الأجازه")]
         //[Required(ErrorMessage = "برجاء تحديد اسـم الأجازه")]
@@ -23,6 +13,5 @@ namespace HR_Sys.Models
         [Required(ErrorMessage = "برجاء ادخال تاريخ الأجازه")]
         [DisplayName("تاريخ الأجازه")]
         public DateTime? dateHoliday { get; set; }
-
     }
 }

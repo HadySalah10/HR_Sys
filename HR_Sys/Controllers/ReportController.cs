@@ -28,8 +28,6 @@ namespace HR_Sys.Controllers
                 var emps = db.EmpReports.Where(n => n.idmonth == idmonth).ToPagedList(page, pageSize);
                 ViewBag.month = idmonth;
                 ViewBag.search = searchString;
-
-
                 ViewBag.pageNum = page;
 
                 return View(emps);
