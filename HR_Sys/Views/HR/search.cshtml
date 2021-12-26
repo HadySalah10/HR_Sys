@@ -8,7 +8,6 @@
     <thead>
         <tr>
             <th>اسم المستخدم</th>
-            <th>الحدث</th>
             <th>تعديل </th>
             <th>حذف</th>
         </tr>
@@ -19,11 +18,7 @@
         {
             <tr class="user">
                 <td>@item.hrUserName</td>
-                <td class="pt-1">
-                    <button class="btn btn-gray"> 
-                        <a asp-controller="HR" asp-action="Index" target="_blank"  asp-route-id="@*@item.id*@">تفعيل</a>
-                    </button>
-                </td>
+               
                 <td class="pt-1">
                     <button class="btn btn-success"> 
                         <a asp-controller="HR" asp-action="editHr"  asp-route-id="@item.hrId">تعديل</a>
