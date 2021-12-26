@@ -17,7 +17,7 @@ namespace HR_Sys.Controllers
         //Index
         public IActionResult Index()
         {
-            if (HttpContext.Session.GetString("group") == "Admin")
+            if (HttpContext.Session.GetString("gsDisplay") == "True")
             {
                 // ViewBag.NameAnnualHoliday = new SelectList(db.AnnualHolidays.ToList(), "idHoliday", "NameAnnualHoliday");
                 //ViewBag.annulholiday = db.annualHoliday.ToList();
@@ -49,7 +49,7 @@ namespace HR_Sys.Controllers
         //GET: Create 
         public IActionResult Create() 
         {
-            if(HttpContext.Session.GetString("group") == "Admin")
+            if (HttpContext.Session.GetString("gsAdd") == "True")
             {
 
              // ViewBag.NameAnnualHoliday = new SelectList(db.AnnualHolidays.ToList(), "idHoliday", "NameAnnualHoliday");
@@ -79,7 +79,7 @@ namespace HR_Sys.Controllers
         //Get: Edit
         public IActionResult Edit( int id)
         {
-            if (HttpContext.Session.GetString("group") == "Admin")
+            if (HttpContext.Session.GetString("gsEdit") == "True")
 
             {
                 var AnnualHolidays = db.AnnualHolidays.Find(id);

@@ -71,8 +71,14 @@
                     <td>@item.dateHoliday</td>
 
                     <td>
-                        <a asp-controller="AnnualHolidays" asp-action="Edit" onclick="" asp-route-id="@item.id"> <i class="icon-note font-medium-4 ml-2"></i></a>
-                        <a asp-controller="AnnualHolidays" asp-action="Delete" onclick="return confirm('هل تريد مسح  الأجازه      ؟  ')"  asp-route-id="@item.id"><i class="fa fa-trash font-medium-4"></i></a> 
+                        @if(HttpContextAccessor.HttpContext.Session.GetString("gsEdit") == "True"){
+                           <a asp-controller="AnnualHolidays" asp-action="Edit" onclick="" asp-route-id="@item.id"> <i class="icon-note font-medium-4 ml-2"></i></a>
+                                                
+                             }
+                              @if(HttpContextAccessor.HttpContext.Session.GetString("gsDelete") == "True"){
+                                     <a asp-controller="AnnualHolidays" asp-action="Delete" onclick="return confirm('هل تريد مسح  الأجازه      ؟  ')"  asp-route-id="@item.id"><i class="fa fa-trash font-medium-4"></i></a> 
+                                                
+                             }
                     </td>
                 </tr>
             }
@@ -88,9 +94,7 @@
     <!------------------------------------------- end table of HRS-------------------------------------->  
 
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>  
