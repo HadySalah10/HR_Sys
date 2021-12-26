@@ -85,12 +85,24 @@
                                 {
                                     <li class=" nav-item">
                                         <a asp-controller="employeeAttendance" asp-action="show">
-                                            <span data-i18n="" class="menu-title"> حضور الموظفين</span>
+                                            <span data-i18n="" class="menu-title"> عرض الموظفين</span>
 
                                             <i class="icon-support"></i>
                                         </a>
                                     </li>
                                 }
+                                 @if (HttpContextAccessor.HttpContext.Session.GetString("attendAdd") == "True")
+                                {
+                                    <li class=" nav-item">
+                                        <a asp-controller="employeeAttendance" asp-action="show">
+                                            <span data-i18n="" class="menu-title"> عرض الموظفين</span>
+
+                                            <i class="icon-support"></i>
+                                        </a>
+                                    </li>
+                                }
+
+
                                  @if (HttpContextAccessor.HttpContext.Session.GetString("attendAdd") == "True")
                                 {
                                     <li class=" nav-item">
@@ -103,11 +115,11 @@
                             </ul>
                             </li>
                         
-                      @if (HttpContextAccessor.HttpContext.Session.GetString("attendAdd") == "True")
+                      @if (HttpContextAccessor.HttpContext.Session.GetString("gsAdd") == "True")
                         {
                             <li class=" nav-item">
                                 <a asp-controller="GeneralSetting" asp-action="index">
-                                    <span data-i18n="" class="menu-title">اعدادات الموظفين</span>
+                                    <span data-i18n="" class="menu-title">الاجازات الرسمية</span>
                                     <i class="icon-pie-chart"></i>
                                 </a>
                             </li>
@@ -135,6 +147,13 @@
                                      <a asp-action="registerHr" asp-controller="HR">
                                          <i class="icon-note"></i>                 
                                          <span data-i18n="" class="menu-title">إضافة مستخدم</span>
+                           
+                                     </a>
+                                </li>
+                                 <li class=" nav-item">
+                                     <a asp-action="index" asp-controller="department">
+                                         <i class="icon-note"></i>                 
+                                         <span data-i18n="" class="menu-title">اقسام الموظفين</span>
                            
                                      </a>
                                 </li>
