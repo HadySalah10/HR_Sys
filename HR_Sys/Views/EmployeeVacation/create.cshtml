@@ -23,9 +23,10 @@
                                          <input type="hidden" asp-for="vacId" value="2" />
                                           <label class="col-md-2 label-control" asp-for="empId"> اسم الموظف </label>
                                           <div class="col-md-9">
-                                              <select asp-items="@ViewBag.emps" asp-for="empId" class="form-control">
+                                            @*  <select asp-items="@ViewBag.emps" asp-for="empId" class="form-control">
                                                   <option>اختار اسم الموظف</option>
-                                              </select>
+                                              </select>*@
+                                              <input type="hidden"  value="@ViewBag.empID" />
                                               <span asp-validation-for="empId"class="text-danger"></span>
                                           </div>
                                           

@@ -18,10 +18,10 @@ namespace HR_Sys.Controllers
             return View(db.TypesOfVacationsEmps.ToList());
         }
 
-        public IActionResult create()
+        public IActionResult create(int id )
         {
-            ViewBag.emps = new SelectList(db.Employees.ToList(), "id", "empName");
-
+            //ViewBag.emps = new SelectList(db.Employees.ToList(), "id", "empName");
+            ViewBag.empID = id;
             return View();
         
         }

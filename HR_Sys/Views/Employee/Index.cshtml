@@ -60,18 +60,7 @@
                     <div class="card-block card-dashboard" style="padding:1rem 20px">
                      
                             <div class="row">
-                                <div class="col-md-3">
-                                    <div class="dataTables_length" id="DataTables_Table_0_length">
-                                         <label>عرض 
-                                           <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                             </select>
-                                        </label>
-                                    </div>
-                                 </div>
+                                
                                 <div class="col-md-5">
                                     <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                         <label>بحث:<input type="text" class="form-control" aria-controls="DataTables_Table_0" name="searchString" id="searchString"></label>
@@ -90,6 +79,19 @@
                                             </button>
                                         </div>
                                     }
+                                 @if (HttpContextAccessor.HttpContext.Session.GetString("group") == "Admin")
+                            {
+                                <div class="col-md-3">
+                                    <button id="addRow" class="btn btn-danger mb-2"> 
+                                                <i class="ft-plus"></i>&nbsp;
+                                                <a asp-controller="employee" asp-action="deletedEmployees" target=""> الموظفين المحذوفين</a>
+                                    </button>
+                                        </div>
+                            }
+
+                            
+
+                    
                             </div>
                             <input id="pageNum" hidden value="@ViewBag.pageNum"/>
 

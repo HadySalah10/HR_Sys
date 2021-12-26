@@ -8,10 +8,7 @@
 *@
 
 <style>
-        .pagination {
-            /display: inline-block;
-        }
-
+        
             .pagination a {
                 color: black;
                 float: left;
@@ -48,7 +45,7 @@
     </style>
     
  
-                        <table class="table table-striped table-bordered zero-configuration mt-40">
+                        <table class="table text-center table-striped table-bordered zero-configuration mt-40">
                             <thead>
                                 <tr>
                                     <th>اسم الموظف</th>
@@ -101,7 +98,7 @@
                        </div>
                 <div>
                      
-                  <div class="pull-right">
+                  <div>
                       @Html.PagedListPager((IPagedList)Model, page => Url.Action("index",
                        new
                         {

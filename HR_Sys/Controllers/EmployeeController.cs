@@ -58,7 +58,7 @@ namespace HR_Sys.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
 
-                employees = employees.Where(n => n.empName.Contains(searchString) ).ToList();
+                employees = employees.Where(n => n.empName.Contains(searchString) &&n.isDeleted==false).ToList();
 
             }
 
@@ -255,6 +255,31 @@ namespace HR_Sys.Controllers
                 return Json(true);
 
         }
+
+        public IActionResult deletedEmployees() 
+        {
+            var emps = _db.Employees.Where(n => n.isDeleted == true).ToList();
+
+
+
+            return View(emps);
+        }
+
+        public IActionResult Retrive(int id)
+        {
+            var emp = _db.Employees.Find(id);
+            emp.isDeleted = false;
+            _db.SaveChanges();
+
+
+
+
+
+
+            return RedirectToAction("index");
+        }
+
+
 
 
     }
