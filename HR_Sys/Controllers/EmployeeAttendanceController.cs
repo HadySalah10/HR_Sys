@@ -585,7 +585,7 @@ namespace HR_Sys.Controllers
 
         public IActionResult saveInDataBase()
         {
-            if (HttpContext.Session.GetString("attendDisplay") == "True")
+            if (HttpContext.Session.GetString("attendAdd") == "True")
             {
                 return View();
 
