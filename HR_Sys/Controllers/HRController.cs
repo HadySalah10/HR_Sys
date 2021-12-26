@@ -385,16 +385,50 @@ namespace HR_Sys.Controllers
 
         public IActionResult deletevalidation(int id)
         {
-            return View();
+            Validations val = db.Validations.Find(id);
+            db.Validations.Remove(val);
+            db.SaveChanges();   
+            return RedirectToAction("allvalidations");
         }
-        public IActionResult editvalidation()
+        public IActionResult editvalidation(int id)
         {
-            return View();
+            var hr = db.Validations.Find(id);
+            return View(hr);
         }
         [HttpPost]
-        public IActionResult editvalidation(Validations val)
+        public IActionResult editvalidation(Validations valid)
         {
-            return RedirectToAction("allvalidations");
+
+      
+                if (ModelState.IsValid)
+                {
+                    var hr = db.Validations.Find(valid.id);
+                    hr.validationName = valid.validationName;
+                    hr.empAdd = valid.empAdd;
+                    hr.empEdit = valid.empEdit;
+                    hr.empDelete = valid.empDelete;
+                    hr.empDisplay = valid.empDisplay;
+                    hr.gsAdd = valid.gsAdd;
+                    hr.gsEdit = valid.gsEdit;
+                    hr.gsDelete = valid.gsDelete;
+                    hr.gsDisplay = valid.gsDisplay;
+                    hr.attendAdd = valid.attendAdd;
+                    hr.attendEdit = valid.attendEdit;
+                    hr.attendDelete = valid.attendDelete;
+                    hr.attendDisplay = valid.attendDisplay;
+                    hr.reportAdd = valid.reportAdd;
+                    hr.reportEdit = valid.reportEdit;
+                    hr.reportDelete = valid.reportDelete;
+                    hr.reportDisplay = valid.reportDisplay;
+                    db.SaveChanges();
+                    return RedirectToAction("allvalidations");
+
+                }
+            return View();
+           
+
+
+           
         }
 
 
