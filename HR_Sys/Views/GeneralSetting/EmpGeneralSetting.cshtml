@@ -32,6 +32,7 @@
 											</div>
 
 									</div>
+
 									<div class="form-group row">
 						
 										  <label asp-for="requiredDeductHours" class="col-md-3 label-control control-label"></label>
@@ -64,17 +65,19 @@
 
 											</div>
 									</div>
-							<div class="form-group row">
+									<div class="form-group row">
 										  <label asp-for="idDayHolday2" class="col-md-3 label-control control-label"></label>
 
 										<div class="col-md-6 text-right">
 										 <select asp-for="idDayHolday2"  class="form-control" asp-items="@ViewBag.holidays2" >
 											 <option value="0" selected="selected">   </option>
 									      </select>
+												 <span  class="text-danger">@ViewBag.errorHoliday</span>
                                       
 										</div>
-											
-									</div>
+
+											<h4></h4>
+										</div>
 							
 						
    

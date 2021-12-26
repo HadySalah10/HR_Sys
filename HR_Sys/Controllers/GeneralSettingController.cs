@@ -38,6 +38,15 @@ namespace HR_Sys.Controllers
             ViewBag.idEmployee = empGeneral.id;
             if (ModelState.IsValid)
             {
+                if (empGeneral.idDayHolday1==empGeneral.idDayHolday2)
+                {
+                    ViewBag.errorHoliday = "لا يمكنك ادخال نفس الاجازة مرتين";
+                    var holidays = new SelectList(_db.Days.ToList(), "id", "daysName");
+                    ViewBag.holidays1 = holidays;
+                    ViewBag.holidays2 = holidays;
+
+                    return View();
+                }
 
                 Employee EMP = _db.Employees.Where(s => s.id == empGeneral.id).FirstOrDefault();
              

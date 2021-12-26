@@ -118,7 +118,7 @@
               <tr class="form-group">
                 <td><label asp-for="requiredSalaryPerHour" class="control-label"></label></td>
                 <td><input id="requiredSalaryPerHour" asp-for="requiredSalaryPerHour"  class="form-control" /></td>
-                <td><span asp-validation-for="requiredSalaryPerHour" disabled class="text-danger"></span></td>
+                <td><span asp-validation-for="requiredSalaryPerHour"  class="text-danger"></span></td>
             </tr>
 
 
@@ -180,7 +180,6 @@
               $("#requiredDaysPerMonth").val() ==""?requiredDaysPerMonth:requiredDaysPerMonth=$("#requiredDaysPerMonth").val();
 
             $("#requiredSalaryPerHour").val(parseFloat( empGrossSalary)/parseFloat( requiredDaysPerMonth))
-            $( "#requiredSalaryPerHour" ).prop( "disabled", true );
 
             
             
