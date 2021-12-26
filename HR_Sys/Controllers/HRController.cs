@@ -20,7 +20,11 @@ namespace HR_Sys.Controllers
         {
             if (HttpContext.Session.GetInt32("userId") != null)
             {
+
                 var hr = db.HRs.Find(HttpContext.Session.GetInt32("userId"));
+
+                var id = HttpContext.Session.GetInt32("userId");
+
                 ViewBag.hrname = hr.hrUserName;
             }
             ViewBag.empnumber = db.Employees.Where(n => n.isDeleted == false).Count();
@@ -374,6 +378,25 @@ namespace HR_Sys.Controllers
             HttpContext.Session.SetString("group", dbUser.Valids.validationName);
 
         }
+        public IActionResult allvalidations()
+        {
+            return View();
+        }
+
+        public IActionResult deletevalidation(int id)
+        {
+            return View();
+        }
+        public IActionResult editvalidation()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult editvalidation(Validations val)
+        {
+            return RedirectToAction("allvalidations");
+        }
+
 
     }
     }

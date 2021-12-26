@@ -1,0 +1,131 @@
+﻿@model IEnumerable<HR_Sys.Models.Validations>
+
+@{
+    ViewData["Title"] = "allvalidations";
+}
+
+<h1>allvalidations</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.validationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.empAdd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.empEdit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.empDelete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.empDisplay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gsAdd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gsEdit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gsDelete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gsDisplay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.attendAdd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.attendEdit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.attendDelete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.attendDisplay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reportAdd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reportEdit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reportDelete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reportDisplay)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.validationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empAdd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empEdit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empDelete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empDisplay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gsAdd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gsEdit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gsDelete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gsDisplay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.attendAdd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.attendEdit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.attendDelete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.attendDisplay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reportAdd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reportEdit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reportDelete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reportDisplay)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
