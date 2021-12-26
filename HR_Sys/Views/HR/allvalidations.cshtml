@@ -3,129 +3,121 @@
 @{
     ViewData["Title"] = "allvalidations";
 }
+<style>
+        
 
-<h1>كل الصلاحيات</h1>
+            .pagination a {
+                color: black;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+                transition: background-color .3s;
+                border: 1px solid #ddd;
+                font-size: 20px;
+                font-weight: bold; 
+            }
 
-<p>
-    <a asp-action="addvalidation" asp-controller="hr">اضافة مجموعة</a>
-</p>
-<table class="table text-center table-striped table-bordered zero-configuration">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.validationName)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.empAdd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.empEdit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.empDelete)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.empDisplay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.gsAdd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.gsEdit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.gsDelete)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.gsDisplay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.attendAdd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.attendEdit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.attendDelete)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.attendDisplay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.reportAdd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.reportEdit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.reportDelete)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.reportDisplay)
-            </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.validationName)
-            </td>
-           @* <td>
-                @Html.DisplayFor(modelItem => item.empAdd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.empEdit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.empDelete)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.empDisplay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.gsAdd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.gsEdit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.gsDelete)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.gsDisplay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.attendAdd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.attendEdit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.attendDelete)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.attendDisplay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.reportAdd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.reportEdit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.reportDelete)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.reportDisplay)
-            </td>*@
-            <td>
-                <a asp-action="editvalidation" asp-route-id="@item.id">تعديل</a> |
+                .pagination .active {
+                        color: #2a75ff;
+                        float: left;
+                        padding: 8px 16px;
+                        text-decoration: none;
+                        transition: background-color .3s;
+                        border: 1px solid #ddd;
+                        font-size: 20px;
+                        font-weight: bold;  
+                }
+
+                .pagination a:hover:not(.active) {
+                    background-color: #ddd;
+                }
+
+        .container {
+            padding-bottom: 3% !important;
+        }
+
+        .btn {
+            margin-bottom: -12px !important;
+        }
+    </style>
+
+
+
+<section id="configuration">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title text-center">كل الصلاحيات</h4>
+                    </div>
+                </div>
+                <div class="card-body collapse show">
+                    <div class="card-block card-dashboard" style="padding:1rem 20px">
+                     
+                            <div class="row">
+                                <div class="col-md-3">
+                                    
+                                 </div>
+                                
+                                @if (HttpContextAccessor.HttpContext.Session.GetString("empAdd") == "True")
+                                    {
+                                        <div class="col-md-3">
+                                            <button id="addRow" class="btn btn-primary mb-2"> 
+                                                <i class="ft-plus"></i>&nbsp;
+                                                <a asp-action="addvalidation" asp-controller="hr" target=""> إضافة صلاحية جديدة</a>
+                                            </button>
+                                        </div>
+                                    }
+                            </div>
+                            <input id="pageNum" hidden value="@ViewBag.pageNum"/>
+
+                            <br />
+                      <!------------------------------------------- start table of Employee-------------------------------------->   
+                      
+                <table class="table table-striped table-bordered" >
+
+                            <thead class="text-center">
+                                <tr>
+                                    <th >الاتاحة</th>
+                                    <th >العمليات</th>
+                                    
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                           @if(Model!=null){
+                                    @foreach(var item in Model)
+                                    {
+                                         <tr>
+                                                <td style="text-align:center;">
+                                                      <span>@item.validationName</span>
+                                                </td>
+                                            @if(item.id!=1){
+                                                 <td style="text-align:center;">
+                                                    <a asp-action="editvalidation" asp-route-id="@item.id">تعديل</a> |
                 
-                <a asp-action="deletevalidation" asp-route-id="@item.id" onclick="return confirm('هل تريد حذف هذه المجموعه ؟  ')">حذف </a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                                                    <a asp-action="deletevalidation" asp-route-id="@item.id" onclick="return confirm('هل تريد حذف هذه المجموعه ؟  ')">حذف </a>
+                                                    </td>
+                                               
+                                            }
+                                           </tr>
+
+                                           
+                                    }        
+                                }
+                                                        
+                                                                                                                                                                                                                                                                                                               </yr>
+                            </tbody>
+                        </table>
+
+                                             
+                        <!------------------------------------------- end table of Empolyees-------------------------------------->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

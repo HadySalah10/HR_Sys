@@ -380,23 +380,32 @@ namespace HR_Sys.Controllers
         }
         public IActionResult allvalidations()
         {
+
             return View(db.Validations.ToList());
         }
 
         public IActionResult deletevalidation(int id)
         {
-            Validations val = db.Validations.Find(id);
-            db.Validations.Remove(val);
-            db.SaveChanges();   
-            return RedirectToAction("allvalidations");
+            if (HttpContext.Session.GetString("group") == "Admin")
+            {
+                Validations val = db.Validations.Find(id);
+                db.Validations.Remove(val);
+                db.SaveChanges();
+                return RedirectToAction("allvalidations");
+            }
+            return View("ErrorPage");
         }
         public IActionResult editvalidation(int id)
         {
-            var hr = db.Validations.Find(id);
-            return View(hr);
+            if (HttpContext.Session.GetString("group") == "Admin")
+            {
+                var hr = db.Validations.Find(id);
+                return View(hr);
+            }
+            return View("ErrorPage");
         }
         [HttpPost]
-        public IActionResult editvalidation(Validations valid)
+        public IActionResult editvalidation(addvalidationviewmodel valid)
         {
 
       
