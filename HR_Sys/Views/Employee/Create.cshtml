@@ -85,17 +85,17 @@
               </tr>
               <tr class="form-group">
                 <td><label asp-for="empNetSalary" class="control-label"></label></td>
-                <td><input asp-for="empNetSalary" class="form-control" /></td>
+                <td><input id="empNetSalary" asp-for="empNetSalary" class="form-control" /></td>
                 <td><span asp-validation-for="empNetSalary" class="text-danger"></span></td>
               </tr>
               <tr class="form-group">
                 <td><label asp-for="empNonNetSalary" class="control-label"></label></td>
-                <td><input asp-for="empNonNetSalary" class="form-control" /></td>
+                <td><input id="empNonNetSalary" asp-for="empNonNetSalary" class="form-control" /></td>
                 <td><span asp-validation-for="empNonNetSalary" class="text-danger"></span></td>
               </tr>
                <tr class="form-group">
                 <td><label asp-for="empGrossSalary" class="control-label"></label></td>
-                <td><input asp-for="empGrossSalary" class="form-control" /></td>
+                <td><input id="empGrossSalary" disabled  asp-for="empGrossSalary" class="form-control" /></td>
                 <td><span asp-validation-for="empGrossSalary" class="text-danger"></span></td>
               </tr>
               <tr class="form-group">
@@ -109,15 +109,16 @@
                 <td><span asp-validation-for="requiredDepartureTime" class="text-danger"></span></td>
             </tr>
           
-             <tr class="form-group">
-                <td><label asp-for="requiredSalaryPerHour" class="control-label"></label></td>
-                <td><input asp-for="requiredSalaryPerHour" class="form-control" /></td>
-                <td><span asp-validation-for="requiredSalaryPerHour" class="text-danger"></span></td>
-            </tr>
+           
              <tr class="form-group">
                 <td><label asp-for="requiredDaysPerMonth" class="control-label"></label></td>
-                <td><input asp-for="requiredDaysPerMonth" class="form-control" /></td>
+                <td><input id="requiredDaysPerMonth" asp-for="requiredDaysPerMonth" class="form-control" /></td>
                 <td><span asp-validation-for="requiredDaysPerMonth" class="text-danger"></span></td>
+            </tr>
+              <tr class="form-group">
+                <td><label asp-for="requiredSalaryPerHour" class="control-label"></label></td>
+                <td><input id="requiredSalaryPerHour" asp-for="requiredSalaryPerHour"  class="form-control" /></td>
+                <td><span asp-validation-for="requiredSalaryPerHour" disabled class="text-danger"></span></td>
             </tr>
 
 
@@ -142,8 +143,49 @@
 
 </form>
 
-
       @section scripts{
+          <script>
+       $("#empNonNetSalary").on("keyup",function(){
+            let empNetSalary=0
+                   let empNonNetSalary=0
+              $("#empNetSalary").val() ==""?empNetSalary:empNetSalary=$("#empNetSalary").val();
+              $("#empNonNetSalary").val() ==""?empNonNetSalary:empNonNetSalary=$("#empNonNetSalary").val();
+
+            $("#empGrossSalary").val(parseFloat( empNetSalary)+parseFloat( empNonNetSalary))
+            $( "#empGrossSalary" ).prop( "disabled", true );
+
+            
+            
+            })
+
+              $("#empNetSalary").on("keyup",function(){
+                 
+             let empNetSalary=0
+                   let empNonNetSalary=0
+              $("#empNetSalary").val() ==""?empNetSalary:empNetSalary=$("#empNetSalary").val();
+              $("#empNonNetSalary").val() ==""?empNonNetSalary:empNonNetSalary=$("#empNonNetSalary").val();
+
+            $("#empGrossSalary").val(parseFloat( empNetSalary)+parseFloat( empNonNetSalary))
+            $( "#empGrossSalary" ).prop( "disabled", true );
+
+            
+            
+            })
+
+             $("#requiredDaysPerMonth").on("keyup",function(){
+                 
+             let empGrossSalary=0
+                   let requiredDaysPerMonth=0
+              $("#empGrossSalary").val() ==""?empGrossSalary:empGrossSalary=$("#empGrossSalary").val();
+              $("#requiredDaysPerMonth").val() ==""?requiredDaysPerMonth:requiredDaysPerMonth=$("#requiredDaysPerMonth").val();
+
+            $("#requiredSalaryPerHour").val(parseFloat( empGrossSalary)/parseFloat( requiredDaysPerMonth))
+            $( "#requiredSalaryPerHour" ).prop( "disabled", true );
+
+            
+            
+            })
+</script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>  
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>  
 
