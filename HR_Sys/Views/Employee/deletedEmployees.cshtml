@@ -32,7 +32,7 @@
                     <td>@item.Delete.hrUserName</td>
 
                     <td>
-                       <a asp-controller="Employee" asp-action="Retrive" onclick="return confirm('هل تريد استرجاع هذا الموظف ؟  ')"  asp-route-id="@item.id">استرجاع</a> 
+                       <a asp-controller="Employee" asp-action="Retrive" onclick="return confirm('هل تريد استرجاع هذا الموظف ؟  ')"  asp-route-id="@item.id" class="btn btn-info">استرجاع</a> 
                     </td>
                 </tr>
             }
@@ -50,3 +50,4 @@
         </div>
     </div>
 </section>
+

@@ -16,7 +16,6 @@
                                     <th >الاسم</th>
                                     <th>رقم التليفون</th>
                                     <th>رقم اخر</th>
-                                    <th>تاريخ الميلاد </th>
                                     <th>تاريخ التعاقد</th>
                                     <th>المرتب</th>
                                     <th>وقت الحضور</th>
@@ -38,7 +37,6 @@
                                                     @item.phoneNum
                                                 </td>
                                                 <td>@item.phoneNum2</td>
-                                                <td>@item.empDateOfBirth.ToString("dd/MM/yyyy")</td>
                                             
                                                 <td>@item.empHireDate.ToString("dd/MM/yyyy")</td>
                                                     <td>@item.empNetSalary</td>
@@ -50,13 +48,21 @@
                                                          @if (HttpContextAccessor.HttpContext.Session.GetString("empEdit") == "True")
                                                          {
                                                              <a class="btn btn-success" asp-controller="Employee" asp-action="Edit" asp-route-id="@item.id">تعديل</a>
+                                                             <a class="btn btn-info mb-2" asp-controller= "Employee" asp-action="Editsettings" asp-route-id="@item.id">تعديل الاعدادات</a>
+
                                                          }   
                                                            @if (HttpContextAccessor.HttpContext.Session.GetString("empDelete") == "True")
                                                          {
                                                               <a class="btn btn-danger" asp-controller="Employee"  onclick="return confirm('هل تريد مسح  الموظف    @item.empName  ؟  ')" asp-action="delete" asp-controller="Employee" asp-route-id="@item.id">حذف</a>
+
                                                           }
-@*                                                     <a class="btn btn-info mb-2" asp-controller= "Employee" asp-action="Editsettings" asp-route-id="@item.id">تعديل الاعدادات</a>
-*@                                                
+                                                            @if (HttpContextAccessor.HttpContext.Session.GetString("gsEdit") == "True")
+                                                         {
+                                                              <a class="btn btn-danger"  asp-action="create"  asp-controller="employeevacation" asp-route-id="@item.id">اضافة اجازه عارضه</a>
+
+                                                          }
+
+                                                
                                                     </td>
                                             </tr>
                                     }                                
