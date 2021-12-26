@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using HR_Sys.Models.BaseIDEntity;
 
@@ -9,7 +10,7 @@ namespace HR_Sys.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-
+        [DisplayName("الاتاحة")]
         [Required(ErrorMessage = "من فضلك ادخل اسم المجموعة")]
         public string validationName { get; set; }
         public bool empAdd { get; set; } = false;

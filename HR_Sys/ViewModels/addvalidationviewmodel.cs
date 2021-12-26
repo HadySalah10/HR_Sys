@@ -4,6 +4,7 @@ namespace HR_Sys.ViewModels
 {
     public class addvalidationviewmodel
     {
+        public int id { get; set; }
         [Required(ErrorMessage = "من فضلك ادخل اسم المجموعة")]
         public string validationName { get; set; }
         public bool empAdd { get; set; } = false;
