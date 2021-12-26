@@ -4,18 +4,18 @@
     ViewData["Title"] = "allvalidations";
 }
 
-<h1>allvalidations</h1>
+<h1>كل الصلاحيات</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="addvalidation" asp-controller="hr">اضافة مجموعة</a>
 </p>
-<table class="table">
+<table class="table text-center table-striped table-bordered zero-configuration">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.validationName)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.empAdd)
             </th>
             <th>
@@ -62,7 +62,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.reportDisplay)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -72,7 +72,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.validationName)
             </td>
-            <td>
+           @* <td>
                 @Html.DisplayFor(modelItem => item.empAdd)
             </td>
             <td>
@@ -119,11 +119,11 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.reportDisplay)
-            </td>
+            </td>*@
             <td>
-                <a asp-action="editvalidation" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="deletevalidation" asp-route-id="@item.id">Delete</a>
+                <a asp-action="editvalidation" asp-route-id="@item.id">تعديل</a> |
+                
+                <a asp-action="deletevalidation" asp-route-id="@item.id" onclick="return confirm('هل تريد حذف هذه المجموعه ؟  ')">حذف </a>
             </td>
         </tr>
 }

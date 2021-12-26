@@ -85,7 +85,7 @@
                                 {
                                     <li class=" nav-item">
                                         <a asp-controller="employeeAttendance" asp-action="show">
-                                            <span data-i18n="" class="menu-title"> عرض الموظفين</span>
+                                            <span data-i18n="" class="menu-title"> excel الموظفين</span>
 
                                             <i class="icon-support"></i>
                                         </a>
@@ -94,7 +94,7 @@
                                  @if (HttpContextAccessor.HttpContext.Session.GetString("attendAdd") == "True")
                                 {
                                     <li class=" nav-item">
-                                        <a asp-controller="employeeAttendance" asp-action="show">
+                                        <a asp-controller="employeeAttendance" asp-action="saveInDataBase">
                                             <span data-i18n="" class="menu-title"> عرض الموظفين</span>
 
                                             <i class="icon-support"></i>
@@ -138,7 +138,7 @@
                         {
 
                                  <li class=" nav-item">
-                                     <a asp-action="AddValidation" asp-controller="HR">
+                                     <a asp-action="AllValidations" asp-controller="HR">
                                          <span data-i18n="" class="menu-title">الصلاحيات</span>
                                          <i class="icon-equalizer"></i>
                                      </a>

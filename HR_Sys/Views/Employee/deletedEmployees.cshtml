@@ -1,0 +1,52 @@
+﻿
+@model List<Employee>
+
+<section id="configuration">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title text-right">الموظفين المحذوفين </h4>
+                    </div>
+                </div>
+                <div class="card-body collapse show">
+                    <div class="card-block card-dashboard">
+                      
+                         
+
+                            </div>
+      <table class="table text-center table-striped table-bordered zero-configuration">
+        <thead>
+            <tr>
+                 <th>الاسم الموظف</th>
+                 <th> القائم بالحذف</th>
+                 <th>العمليات </th>
+            </tr>
+        </thead>
+        <tbody>
+           @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.empName</td>
+                    <td>@item.Delete.hrUserName</td>
+
+                    <td>
+                       <a asp-controller="Employee" asp-action="Retrive" onclick="return confirm('هل تريد استرجاع هذا الموظف ؟  ')"  asp-route-id="@item.id">استرجاع</a> 
+                    </td>
+                </tr>
+            }
+            
+        </tbody>            
+    </table>
+                            
+                           
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

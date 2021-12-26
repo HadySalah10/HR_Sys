@@ -233,7 +233,7 @@ namespace HR_Sys.Controllers
 
                 db.Validations.Add(val);
                 db.SaveChanges();
-                return RedirectToAction("index");
+                return RedirectToAction("allvalidations");
             }
             else
             {
@@ -380,7 +380,7 @@ namespace HR_Sys.Controllers
         }
         public IActionResult allvalidations()
         {
-            return View();
+            return View(db.Validations.ToList());
         }
 
         public IActionResult deletevalidation(int id)
