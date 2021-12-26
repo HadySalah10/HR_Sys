@@ -138,9 +138,11 @@ namespace HR_Sys.Controllers
         //}
 
 
-        public IActionResult invoice(int empId)
+        public IActionResult invoice(int Id)
         {
-            return View();
+            EmpReport empinvoice = db.EmpReports.Where(n=>n.empId==Id).FirstOrDefault();
+
+            return View(empinvoice);
         }
    
     }

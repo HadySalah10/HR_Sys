@@ -49,7 +49,7 @@
                             <thead>
                                 <tr>
                                     <th>اسم الموظف</th>
-                                    <th>رقم الهاتف</th>
+                                    
                                     <th>المرتب</th>
                                     <th>أيام الحضور</th>
                                     <th>أيام الغياب</th>
@@ -79,7 +79,7 @@
                                         <td>@item.totalOfExtraPrice</td>
                                         <td>@item.totalOfDeductionPrice</td>
                                         <td>@item.netSalary</td>
-                                        <td><a asp-action="invoice" asp-controller="Report" asp-route-id="@item.empId">
+                                        <td><a asp-action="invoice" asp-controller="Report" class="btn btn-danger" style="margin-top:-17px" asp-route-id="@item.empId">
                                             الفاتورة <i class="ft-plus"></i>&nbsp;</a>
                                        </td>
                                        </tr>

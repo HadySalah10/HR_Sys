@@ -1,4 +1,4 @@
-﻿
+﻿@model EmpReport
 @{
     ViewData["Title"] = "invoice";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,21 +16,28 @@
                                 <!-- Invoice Company Details -->
                                 <div id="invoice-company-details" class="row">
                                     <div class="col-6 text-right">
-                                        <img src="../app-assets/img/logo.png" alt="company logo" class="mb-2" width="70">
                                         <ul class="px-0 list-unstyled">
-                                            <li class="text-bold-800">Pioneer Solutions Company </li>
-                                            <li>القاهرة</li>
-                                            <li>مدينة نصر</li>
-                                            <li>102 شارع عبيد</li>
+                                         <li class="text-bold-800">Pioneer Solutions Company </li>
+                                         <li class="text-danger"> مستحقات الموظف </li>
+                                            <li class="lead text-bold-800">@Model.Employees.empName</li>
+
+                                           <li class="text-danger"> العنوان</li>
+                                            <li class="lead text-bold-800">@Model.Employees.empAddress</li>
+
                                            
                                         </ul>
                                     </div>
-                                    <div class="col-6 text-left">
-                                        <h2>الفاتورة</h2>
-                                        <p class="pb-3"># INV-001001</p>
+                                    <div class="col-6 text-lef text-bold-700">
+                                        
                                         <ul class="px-0 list-unstyled">
-                                            <li>الرصيد المستحق</li>
-                                            <li class="lead text-bold-800">2100 $</li>
+                                            <li class="text-danger"> الاساسى</li>
+                                            <li class="lead text-bold-800">@Model.netSalary</li>
+
+                                            <li class="text-danger">الرصيد الاجمالى</li>
+                                            <li class="lead text-bold-800">@Model.Employees.empGrossSalary</li>
+                                            <li class="text-danger"> قيمة الساعة</li>
+                                            <li class="lead text-bold-800">@Model.Employees.requiredSalaryPerHour</li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -42,25 +49,34 @@
                                       <table class="table table-striped table-bordered zero-configuration mt-40">
                                         <thead>
                                             <tr>
-                                                <th>اسم الموظف</th>
+                                      <th>اسم الموظف</th>
                                     <th>رقم الهاتف</th>
-                                    <th>المرتب</th>
+                                   
                                     <th>أيام الحضور</th>
                                     <th>أيام الغياب</th>
                                     <th>عدد الساعات الاضافية </th>
                                     <th> عدد ساعات الخصم</th>
                                     <th>الاضافي</th>
                                     <th> الخصم</th>
-                                    <th>الاجمالي</th>
+                                    
                                     
                                      
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                               
-                                              
-                                              
+                                           
+                                        
+                                          <tr>
+                                         <td>@Model.Employees.empName</td>
+                                        <td>@Model.Employees.phoneNum</td>
+                                        
+                                        <td>@Model.numAttendanceDays</td>
+                                        <td>@Model.numAbsenceDays</td>
+                                        <td>@Model.numOfExtraHours</td>
+                                        <td>@Model.numOfDeductHours</td>
+                                        <td>@Model.totalOfExtraPrice</td>
+                                        <td>@Model.totalOfDeductionPrice</td>
+                                       
                                               
                                             </tr>
                                    
