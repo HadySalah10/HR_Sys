@@ -94,11 +94,11 @@ namespace HR_Sys.Controllers
         {
             var tVE = _db.TypesOfVacationsEmps.Where(a => a.id == id).ToList();
             if (tVE != null) { 
-            var holidays = new SelectList(_db.Days.ToList(), "id", "daysName",tVE[0].idDays);
-            var holidays2 = new SelectList(_db.Days.ToList(), "id", "daysName",tVE[1].idDays);
+                var holidays = new SelectList(_db.Days.ToList(), "id", "daysName",tVE[0].idDays);
+                var holidays2 = new SelectList(_db.Days.ToList(), "id", "daysName",tVE[1].idDays);
             
-            ViewBag.holidays1 = holidays;
-            ViewBag.holidays2 = holidays2;
+                ViewBag.holidays1 = holidays;
+                ViewBag.holidays2 = holidays2;
             }
             else
             {

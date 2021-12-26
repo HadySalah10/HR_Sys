@@ -35,9 +35,10 @@ namespace HR_Sys.Controllers
                 //}
 
                 ViewBag.pageNum = page;
+                var model = _db.Employees.Where(emp => emp.isDeleted == false).ToPagedList(page, pageSize);
 
                 ViewBag.search = searchString;
-                return View(_db.Employees.Where(emp => emp.isDeleted == false).ToPagedList(page, pageSize));
+                return View(model);
             }
 
               return View("ErrorPage");
@@ -52,12 +53,12 @@ namespace HR_Sys.Controllers
 
             pageSize = pageSize > 0 ? pageSize : 7;
 
-            var employees = _db.Employees.ToList();
+            var employees = _db.Employees.Where(x=>x.isDeleted==false).ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
 
-                employees = employees.Where(n => n.empName.Contains(searchString)).ToList();
+                employees = employees.Where(n => n.empName.Contains(searchString) ).ToList();
 
             }
 
@@ -233,7 +234,10 @@ namespace HR_Sys.Controllers
             {
                var employeetodelete = _db.Employees.Find(id);
                if (employeetodelete.id > 0 || employeetodelete != null)
+                {
                     employeetodelete.isDeleted = true;
+                    employeetodelete.deletedBy = HttpContext.Session.GetInt32("userId");
+                }
                 _db.SaveChanges();
 
                 return RedirectToAction("Index");

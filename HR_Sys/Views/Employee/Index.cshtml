@@ -108,27 +108,7 @@
 @section scripts{
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#btnSearch').click(function () {
-            var val = $('#txtSearch').val();
-            var urlX = $(this).closest("form").attr("action");
-            var x = (urlX, { orderNo: val }, { shippingRefNumber: val })
-        });
-        if ($('#txtSearch').val() == '/') {
-            $('#txtSearch').val('')
-        }
-    });
-     function ExportToExcelf() {
 
-            let orderNo = $('#txtSearch').val();
-            let from = $('#txtfrom').val();
-            let to = $('#txtTo').val();
-            window.location.href = "@Url.Action("CompletedOrdersExcel", "Order")" + "?orderNo=" + orderNo + "&from=" + from + "&to=" + to;
-            }
-
-            ///ajax
-</Script>
 <script>
             $("#searchString").on("keyup",function(){
             let text=$("#searchString").val();

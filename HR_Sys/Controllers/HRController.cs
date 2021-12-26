@@ -271,7 +271,7 @@ namespace HR_Sys.Controllers
             var dbUser = db.HRs.SingleOrDefault(u => u.email == Request.Cookies["email"] && u.password == Request.Cookies["password"]);
             if (HttpContext.Session.GetString("userId") != null)
             {
-                return View("welcome");
+                return RedirectToAction("welcome");
             }
             if (Request.Cookies["userId"] != null && dbUser != null)
             {
@@ -286,7 +286,7 @@ namespace HR_Sys.Controllers
 
 
 
-                return View("welcome");
+                return RedirectToAction("welcome");
             }
             return View();
 
@@ -320,7 +320,7 @@ namespace HR_Sys.Controllers
 
 
 
-                    return View("welcome");
+                    return RedirectToAction("welcome");
 
 
                 }
@@ -366,10 +366,10 @@ namespace HR_Sys.Controllers
             HttpContext.Session.SetString("gsDelete", dbUser.Valids.gsDelete.ToString());
             HttpContext.Session.SetString("gsEdit", dbUser.Valids.gsEdit.ToString());
 
-            //HttpContext.Session.SetString("reportAdd", dbUser.Valids.reportAdd.ToString());
-            //HttpContext.Session.SetString("reportDelete", dbUser.Valids.reportDelete.ToString());
+            HttpContext.Session.SetString("reportAdd", dbUser.Valids.reportAdd.ToString());
+            HttpContext.Session.SetString("reportDelete", dbUser.Valids.reportDelete.ToString());
             HttpContext.Session.SetString("reportDisplay", dbUser.Valids.reportDisplay.ToString());
-            //HttpContext.Session.SetString("reportEdit", dbUser.Valids.reportEdit.ToString());
+            HttpContext.Session.SetString("reportEdit", dbUser.Valids.reportEdit.ToString());
 
             HttpContext.Session.SetString("group", dbUser.Valids.validationName);
 

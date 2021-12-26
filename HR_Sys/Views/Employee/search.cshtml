@@ -53,7 +53,7 @@
                                                          }   
                                                            @if (HttpContextAccessor.HttpContext.Session.GetString("empDelete") == "True")
                                                          {
-                                                              <a class="btn btn-danger" asp-controller="Employee"  onclick="return confirm('هل تريد مسح  الموظف    @item.empName  ؟  ')" asp-action="delete" asp-route-id="@item.id">حذف</a>
+                                                              <a class="btn btn-danger" asp-controller="Employee"  onclick="return confirm('هل تريد مسح  الموظف    @item.empName  ؟  ')" asp-action="delete" asp-controller="Employee" asp-route-id="@item.id">حذف</a>
                                                           }
 @*                                                     <a class="btn btn-info mb-2" asp-controller= "Employee" asp-action="Editsettings" asp-route-id="@item.id">تعديل الاعدادات</a>
 *@                                                
