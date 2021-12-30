@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HR_Sys.Migrations
 {
     [DbContext(typeof(HrDBContext))]
-    [Migration("20211225201430_DbMigration")]
-    partial class DbMigration
+    [Migration("20211226140935_dBMigration")]
+    partial class dBMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -390,6 +390,240 @@ namespace HR_Sys.Migrations
                             empNetSalary = 600.20000000000005,
                             empNonNetSalary = 100.2,
                             empSsn = "29705251400191",
+                            isDeleted = false,
+                            lastEdit = true,
+                            nationalityId = 1,
+                            phoneNum = "01119959346",
+                            phoneNum2 = "01554904905",
+                            requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredDaysPerMonth = 24,
+                            requiredDeductHours = 2f,
+                            requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredExtraHours = 2f,
+                            requiredSalaryPerHour = 50m
+                        },
+                        new
+                        {
+                            id = 2,
+                            addBy = 1,
+                            deptid = 1,
+                            empAddress = "كوكب الارض",
+                            empDateOfBirth = new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empGender = true,
+                            empGrossSalary = 700.40000000000009,
+                            empHireDate = new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empName = "test User1",
+                            empNetSalary = 600.20000000000005,
+                            empNonNetSalary = 100.2,
+                            empSsn = "29705251400124",
+                            isDeleted = false,
+                            lastEdit = true,
+                            nationalityId = 1,
+                            phoneNum = "01119959346",
+                            phoneNum2 = "01554904905",
+                            requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredDaysPerMonth = 24,
+                            requiredDeductHours = 2f,
+                            requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredExtraHours = 2f,
+                            requiredSalaryPerHour = 50m
+                        },
+                        new
+                        {
+                            id = 3,
+                            addBy = 1,
+                            deptid = 1,
+                            empAddress = "كوكب الارض",
+                            empDateOfBirth = new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empGender = true,
+                            empGrossSalary = 700.40000000000009,
+                            empHireDate = new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empName = "test User2",
+                            empNetSalary = 600.20000000000005,
+                            empNonNetSalary = 100.2,
+                            empSsn = "29747251400191",
+                            isDeleted = false,
+                            lastEdit = true,
+                            nationalityId = 1,
+                            phoneNum = "01119959346",
+                            phoneNum2 = "01554904905",
+                            requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredDaysPerMonth = 24,
+                            requiredDeductHours = 2f,
+                            requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredExtraHours = 2f,
+                            requiredSalaryPerHour = 50m
+                        },
+                        new
+                        {
+                            id = 4,
+                            addBy = 1,
+                            deptid = 1,
+                            empAddress = "كوكب الارض",
+                            empDateOfBirth = new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empGender = true,
+                            empGrossSalary = 700.40000000000009,
+                            empHireDate = new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empName = "test User3",
+                            empNetSalary = 600.20000000000005,
+                            empNonNetSalary = 100.2,
+                            empSsn = "29025251400191",
+                            isDeleted = false,
+                            lastEdit = true,
+                            nationalityId = 1,
+                            phoneNum = "01119959346",
+                            phoneNum2 = "01554904905",
+                            requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredDaysPerMonth = 24,
+                            requiredDeductHours = 2f,
+                            requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredExtraHours = 2f,
+                            requiredSalaryPerHour = 50m
+                        },
+                        new
+                        {
+                            id = 5,
+                            addBy = 1,
+                            deptid = 1,
+                            empAddress = "كوكب الارض",
+                            empDateOfBirth = new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empGender = true,
+                            empGrossSalary = 700.40000000000009,
+                            empHireDate = new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empName = "test User4",
+                            empNetSalary = 600.20000000000005,
+                            empNonNetSalary = 100.2,
+                            empSsn = "29705361400191",
+                            isDeleted = false,
+                            lastEdit = true,
+                            nationalityId = 1,
+                            phoneNum = "01119959346",
+                            phoneNum2 = "01554904905",
+                            requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredDaysPerMonth = 24,
+                            requiredDeductHours = 2f,
+                            requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredExtraHours = 2f,
+                            requiredSalaryPerHour = 50m
+                        },
+                        new
+                        {
+                            id = 6,
+                            addBy = 1,
+                            deptid = 1,
+                            empAddress = "كوكب الارض",
+                            empDateOfBirth = new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empGender = true,
+                            empGrossSalary = 700.40000000000009,
+                            empHireDate = new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empName = "test User5",
+                            empNetSalary = 600.20000000000005,
+                            empNonNetSalary = 100.2,
+                            empSsn = "29705251466191",
+                            isDeleted = false,
+                            lastEdit = true,
+                            nationalityId = 1,
+                            phoneNum = "01119959346",
+                            phoneNum2 = "01554904905",
+                            requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredDaysPerMonth = 24,
+                            requiredDeductHours = 2f,
+                            requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredExtraHours = 2f,
+                            requiredSalaryPerHour = 50m
+                        },
+                        new
+                        {
+                            id = 7,
+                            addBy = 1,
+                            deptid = 1,
+                            empAddress = "كوكب الارض",
+                            empDateOfBirth = new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empGender = true,
+                            empGrossSalary = 700.40000000000009,
+                            empHireDate = new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empName = "test User6",
+                            empNetSalary = 600.20000000000005,
+                            empNonNetSalary = 100.2,
+                            empSsn = "29705247400191",
+                            isDeleted = false,
+                            lastEdit = true,
+                            nationalityId = 1,
+                            phoneNum = "01119959346",
+                            phoneNum2 = "01554904905",
+                            requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredDaysPerMonth = 24,
+                            requiredDeductHours = 2f,
+                            requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredExtraHours = 2f,
+                            requiredSalaryPerHour = 50m
+                        },
+                        new
+                        {
+                            id = 8,
+                            addBy = 1,
+                            deptid = 1,
+                            empAddress = "كوكب الارض",
+                            empDateOfBirth = new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empGender = true,
+                            empGrossSalary = 700.40000000000009,
+                            empHireDate = new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empName = "test User7",
+                            empNetSalary = 600.20000000000005,
+                            empNonNetSalary = 100.2,
+                            empSsn = "29705296400191",
+                            isDeleted = false,
+                            lastEdit = true,
+                            nationalityId = 1,
+                            phoneNum = "01119959346",
+                            phoneNum2 = "01554904905",
+                            requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredDaysPerMonth = 24,
+                            requiredDeductHours = 2f,
+                            requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredExtraHours = 2f,
+                            requiredSalaryPerHour = 50m
+                        },
+                        new
+                        {
+                            id = 9,
+                            addBy = 1,
+                            deptid = 1,
+                            empAddress = "كوكب الارض",
+                            empDateOfBirth = new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empGender = true,
+                            empGrossSalary = 700.40000000000009,
+                            empHireDate = new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empName = "test User8",
+                            empNetSalary = 600.20000000000005,
+                            empNonNetSalary = 100.2,
+                            empSsn = "29705255700191",
+                            isDeleted = false,
+                            lastEdit = true,
+                            nationalityId = 1,
+                            phoneNum = "01119959346",
+                            phoneNum2 = "01554904905",
+                            requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredDaysPerMonth = 24,
+                            requiredDeductHours = 2f,
+                            requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            requiredExtraHours = 2f,
+                            requiredSalaryPerHour = 50m
+                        },
+                        new
+                        {
+                            id = 10,
+                            addBy = 1,
+                            deptid = 1,
+                            empAddress = "كوكب الارض",
+                            empDateOfBirth = new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empGender = true,
+                            empGrossSalary = 700.40000000000009,
+                            empHireDate = new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empName = "test User8",
+                            empNetSalary = 600.20000000000005,
+                            empNonNetSalary = 100.2,
+                            empSsn = "29705236400191",
                             isDeleted = false,
                             lastEdit = true,
                             nationalityId = 1,
@@ -900,7 +1134,7 @@ namespace HR_Sys.Migrations
                     b.Property<int>("empId")
                         .HasColumnType("int");
 
-                    b.Property<int>("idDays")
+                    b.Property<int?>("idDays")
                         .HasColumnType("int");
 
                     b.Property<bool?>("isDeleted")
@@ -1344,9 +1578,7 @@ namespace HR_Sys.Migrations
 
                     b.HasOne("HR_Sys.Models.Days", "days")
                         .WithMany("TypesOfVacationsEmps")
-                        .HasForeignKey("idDays")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("idDays");
 
                     b.HasOne("HR_Sys.Models.VacationType", "VacationType")
                         .WithMany("TypesOfVacationsEmps")

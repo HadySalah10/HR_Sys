@@ -101,13 +101,32 @@ namespace HR_Sys.Controllers
 
         public ActionResult EditGeneralSetting(int id)
         {
+            var employee= _db.Employees.Where(x=>x.id==id).FirstOrDefault();
+            EmpGeneralSettingViewModel model = new EmpGeneralSettingViewModel()
+            {
+                requiredExtraHours = employee.requiredExtraHours,   
+                requiredDeductHours=employee.requiredDeductHours
+            };
             var tVE = _db.TypesOfVacationsEmps.Where(a => a.id == id).ToList();
             if (tVE != null) { 
                 var holidays = new SelectList(_db.Days.ToList(), "id", "daysName",tVE[0].idDays);
-                var holidays2 = new SelectList(_db.Days.ToList(), "id", "daysName",tVE[1].idDays);
-            
+                if (tVE.Count>1)
+                {
+                    var holidays2 = new SelectList(_db.Days.ToList(), "id", "daysName", tVE[1].idDays);
+                    ViewBag.holidays2 = holidays2;
+                    
+
+                }
+                else
+                {
+                    var holidays2 = new SelectList(_db.Days.ToList(), "id", "daysName");
+                    ViewBag.holidays2 = holidays2;
+
+
+                }
+
+
                 ViewBag.holidays1 = holidays;
-                ViewBag.holidays2 = holidays2;
             }
             else
             {
@@ -117,7 +136,7 @@ namespace HR_Sys.Controllers
                 ViewBag.holidays2 = holidays;
 
             }
-            return View();
+            return View(model);
         
         }
 

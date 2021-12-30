@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HR_Sys.Migrations
 {
-    public partial class DbMigration : Migration
+    public partial class dBMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -437,7 +437,7 @@ namespace HR_Sys.Migrations
                     empId = table.Column<int>(type: "int", nullable: false),
                     vacId = table.Column<int>(type: "int", nullable: false),
                     date = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    idDays = table.Column<int>(type: "int", nullable: false),
+                    idDays = table.Column<int>(type: "int", nullable: true),
                     editBy = table.Column<int>(type: "int", nullable: true),
                     deletedBy = table.Column<int>(type: "int", nullable: true),
                     addBy = table.Column<int>(type: "int", nullable: true),
@@ -451,8 +451,7 @@ namespace HR_Sys.Migrations
                         name: "FK_TypesOfVacationsEmps_Days_idDays",
                         column: x => x.idDays,
                         principalTable: "Days",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_TypesOfVacationsEmps_Employees_empId",
                         column: x => x.empId,
@@ -578,7 +577,19 @@ namespace HR_Sys.Migrations
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "id", "addBy", "deletedBy", "deptid", "editBy", "empAddress", "empDateOfBirth", "empGender", "empGrossSalary", "empHireDate", "empName", "empNetSalary", "empNonNetSalary", "empSsn", "isDeleted", "lastEdit", "nationalityId", "phoneNum", "phoneNum2", "requiredAttendanceTime", "requiredDaysPerMonth", "requiredDeductHours", "requiredDepartureTime", "requiredExtraHours", "requiredSalaryPerHour" },
-                values: new object[] { 1, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User", 600.20000000000005, 100.2, "29705251400191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 24, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m });
+                values: new object[,]
+                {
+                    { 1, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User", 600.20000000000005, 100.2, "29705251400191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 24, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m },
+                    { 2, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User1", 600.20000000000005, 100.2, "29705251400124", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 24, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m },
+                    { 3, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User2", 600.20000000000005, 100.2, "29747251400191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 24, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m },
+                    { 4, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User3", 600.20000000000005, 100.2, "29025251400191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 24, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m },
+                    { 5, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User4", 600.20000000000005, 100.2, "29705361400191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 24, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m },
+                    { 6, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User5", 600.20000000000005, 100.2, "29705251466191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 24, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m },
+                    { 7, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User6", 600.20000000000005, 100.2, "29705247400191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 24, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m },
+                    { 8, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User7", 600.20000000000005, 100.2, "29705296400191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 24, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m },
+                    { 9, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User8", 600.20000000000005, 100.2, "29705255700191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 24, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m },
+                    { 10, 1, null, 1, null, "كوكب الارض", new DateTime(1997, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 700.40000000000009, new DateTime(2008, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "test User8", 600.20000000000005, 100.2, "29705236400191", false, true, 1, "01119959346", "01554904905", new DateTime(2008, 1, 1, 9, 0, 0, 0, DateTimeKind.Unspecified), 24, 2f, new DateTime(2008, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), 2f, 50m }
+                });
 
             migrationBuilder.InsertData(
                 table: "TypesOfVacationsEmps",

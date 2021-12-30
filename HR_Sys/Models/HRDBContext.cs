@@ -137,7 +137,247 @@ namespace HR_Sys.Models
        phoneNum2 = "01554904905"
     
        
-   }
+   },
+    new Employee
+    {
+        id = 2,
+        empName = "test User1",
+        empAddress = "كوكب الارض",
+        empDateOfBirth = new DateTime(1997, 5, 21),
+        empGender = true,
+        empSsn = "29705251400124",
+        empNetSalary = 600.20,
+        empNonNetSalary = 100.20,
+        empGrossSalary = 600.20 + 100.20,
+        empHireDate = new DateTime(2008, 1, 1),
+        requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0),
+        requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0),
+        requiredSalaryPerHour = 50,
+        requiredDaysPerMonth = 24,
+        requiredExtraHours = 2,
+        requiredDeductHours = 2,
+        addBy = 1,
+        deptid = 1,
+        nationalityId = 1,
+        phoneNum = "01119959346",
+        phoneNum2 = "01554904905"
+
+
+    },
+    new Employee
+    {
+        id = 3,
+        empName = "test User2",
+        empAddress = "كوكب الارض",
+        empDateOfBirth = new DateTime(1997, 5, 21),
+        empGender = true,
+        empSsn = "29747251400191",
+        empNetSalary = 600.20,
+        empNonNetSalary = 100.20,
+        empGrossSalary = 600.20 + 100.20,
+        empHireDate = new DateTime(2008, 1, 1),
+        requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0),
+        requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0),
+        requiredSalaryPerHour = 50,
+        requiredDaysPerMonth = 24,
+        requiredExtraHours = 2,
+        requiredDeductHours = 2,
+        addBy = 1,
+        deptid = 1,
+        nationalityId = 1,
+        phoneNum = "01119959346",
+        phoneNum2 = "01554904905"
+
+
+    }
+    ,
+    new Employee
+    {
+        id = 4,
+        empName = "test User3",
+        empAddress = "كوكب الارض",
+        empDateOfBirth = new DateTime(1997, 5, 21),
+        empGender = true,
+        empSsn = "29025251400191",
+        empNetSalary = 600.20,
+        empNonNetSalary = 100.20,
+        empGrossSalary = 600.20 + 100.20,
+        empHireDate = new DateTime(2008, 1, 1),
+        requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0),
+        requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0),
+        requiredSalaryPerHour = 50,
+        requiredDaysPerMonth = 24,
+        requiredExtraHours = 2,
+        requiredDeductHours = 2,
+        addBy = 1,
+        deptid = 1,
+        nationalityId = 1,
+        phoneNum = "01119959346",
+        phoneNum2 = "01554904905"
+
+
+    }
+    ,
+    new Employee
+    {
+        id = 5,
+        empName = "test User4",
+        empAddress = "كوكب الارض",
+        empDateOfBirth = new DateTime(1997, 5, 21),
+        empGender = true,
+        empSsn = "29705361400191",
+        empNetSalary = 600.20,
+        empNonNetSalary = 100.20,
+        empGrossSalary = 600.20 + 100.20,
+        empHireDate = new DateTime(2008, 1, 1),
+        requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0),
+        requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0),
+        requiredSalaryPerHour = 50,
+        requiredDaysPerMonth = 24,
+        requiredExtraHours = 2,
+        requiredDeductHours = 2,
+        addBy = 1,
+        deptid = 1,
+        nationalityId = 1,
+        phoneNum = "01119959346",
+        phoneNum2 = "01554904905"
+
+
+    }
+     ,
+    new Employee
+    {
+        id = 6,
+        empName = "test User5",
+        empAddress = "كوكب الارض",
+        empDateOfBirth = new DateTime(1997, 5, 21),
+        empGender = true,
+        empSsn = "29705251466191",
+        empNetSalary = 600.20,
+        empNonNetSalary = 100.20,
+        empGrossSalary = 600.20 + 100.20,
+        empHireDate = new DateTime(2008, 1, 1),
+        requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0),
+        requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0),
+        requiredSalaryPerHour = 50,
+        requiredDaysPerMonth = 24,
+        requiredExtraHours = 2,
+        requiredDeductHours = 2,
+        addBy = 1,
+        deptid = 1,
+        nationalityId = 1,
+        phoneNum = "01119959346",
+        phoneNum2 = "01554904905"
+
+
+    }
+     ,
+    new Employee
+    {
+        id = 7,
+        empName = "test User6",
+        empAddress = "كوكب الارض",
+        empDateOfBirth = new DateTime(1997, 5, 21),
+        empGender = true,
+        empSsn = "29705247400191",
+        empNetSalary = 600.20,
+        empNonNetSalary = 100.20,
+        empGrossSalary = 600.20 + 100.20,
+        empHireDate = new DateTime(2008, 1, 1),
+        requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0),
+        requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0),
+        requiredSalaryPerHour = 50,
+        requiredDaysPerMonth = 24,
+        requiredExtraHours = 2,
+        requiredDeductHours = 2,
+        addBy = 1,
+        deptid = 1,
+        nationalityId = 1,
+        phoneNum = "01119959346",
+        phoneNum2 = "01554904905"
+
+
+    }
+      ,
+    new Employee
+    {
+        id = 8,
+        empName = "test User7",
+        empAddress = "كوكب الارض",
+        empDateOfBirth = new DateTime(1997, 5, 21),
+        empGender = true,
+        empSsn = "29705296400191",
+        empNetSalary = 600.20,
+        empNonNetSalary = 100.20,
+        empGrossSalary = 600.20 + 100.20,
+        empHireDate = new DateTime(2008, 1, 1),
+        requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0),
+        requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0),
+        requiredSalaryPerHour = 50,
+        requiredDaysPerMonth = 24,
+        requiredExtraHours = 2,
+        requiredDeductHours = 2,
+        addBy = 1,
+        deptid = 1,
+        nationalityId = 1,
+        phoneNum = "01119959346",
+        phoneNum2 = "01554904905"
+
+
+    }
+     ,
+    new Employee
+    {
+        id = 9,
+        empName = "test User8",
+        empAddress = "كوكب الارض",
+        empDateOfBirth = new DateTime(1997, 5, 21),
+        empGender = true,
+        empSsn = "29705255700191",
+        empNetSalary = 600.20,
+        empNonNetSalary = 100.20,
+        empGrossSalary = 600.20 + 100.20,
+        empHireDate = new DateTime(2008, 1, 1),
+        requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0),
+        requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0),
+        requiredSalaryPerHour = 50,
+        requiredDaysPerMonth = 24,
+        requiredExtraHours = 2,
+        requiredDeductHours = 2,
+        addBy = 1,
+        deptid = 1,
+        nationalityId = 1,
+        phoneNum = "01119959346",
+        phoneNum2 = "01554904905"
+
+
+    },
+     new Employee
+     {
+         id = 10,
+         empName = "test User8",
+         empAddress = "كوكب الارض",
+         empDateOfBirth = new DateTime(1997, 5, 21),
+         empGender = true,
+         empSsn = "29705236400191",
+         empNetSalary = 600.20,
+         empNonNetSalary = 100.20,
+         empGrossSalary = 600.20 + 100.20,
+         empHireDate = new DateTime(2008, 1, 1),
+         requiredAttendanceTime = new DateTime(2008, 1, 1, 9, 0, 0),
+         requiredDepartureTime = new DateTime(2008, 1, 1, 16, 0, 0),
+         requiredSalaryPerHour = 50,
+         requiredDaysPerMonth = 24,
+         requiredExtraHours = 2,
+         requiredDeductHours = 2,
+         addBy = 1,
+         deptid = 1,
+         nationalityId = 1,
+         phoneNum = "01119959346",
+         phoneNum2 = "01554904905"
+
+
+     }
 
 );
            

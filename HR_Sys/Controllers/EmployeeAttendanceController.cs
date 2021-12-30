@@ -89,7 +89,7 @@ namespace HR_Sys.Controllers
 
                 var validIds = _db
                    .Employees
-                   .Where(obj => ids.Contains(obj.id))
+                   .Where(obj => ids.Contains(obj.id) && obj.isDeleted==false)
                    .Select(obj => obj.id).ToList();
 
                 List<int> idsThatDoNotExistInTheDb = ids.Except(validIds).ToList();
@@ -136,7 +136,7 @@ namespace HR_Sys.Controllers
 
 
 
-                var emps = _db.Employees.Where(em => ids.Contains(em.id)).ToList();
+                var emps = _db.Employees.Where(em => ids.Contains(em.id) && em.isDeleted==false).ToList();
                 idsAllSheet = ids;
 
 
@@ -668,9 +668,10 @@ namespace HR_Sys.Controllers
                         _db.EmployeesAttendance.Add(item);
                     }
                     _db.SaveChanges();
-                    ViewBag.EmployeeSuccses = "تم ادخال البيانات بنجاح";
 
                     addToEmpReport(idsOfallSheet);
+                    ViewBag.EmployeeSuccses = "تم ادخال البيانات بنجاح";
+
                 }
 
             }
@@ -689,13 +690,47 @@ namespace HR_Sys.Controllers
             var emplyeesDays = _db.Employees.Where(em => idsOfallSheet.Contains(em.id)).ToList();
             var emplyeesReport = _db.EmpReports.Where(em => idsOfallSheet.Contains(em.empId)).ToList();
             int? numAbsenceDays = 0;
+            var numOfExtraHours = emps
+                       .GroupBy(l => l.empId)
+                       .Select(cl => new EmployeeAttendance
+                       {
+                           empId = cl.Key,
+                           extraHours = cl.Sum(c => c.extraHours),
+                       }).ToList();
+            var numOfDeductHours = emps
+                    .GroupBy(l => l.empId)
+                    .Select(cl => new EmployeeAttendance
+                    {
+                        empId = cl.Key,
 
+                        deductHours = cl.Sum(c => c.deductHours),
+                    }).ToList();
+
+            var totalOfExtraPrice = emps
+                  .GroupBy(l => l.empId )
+                  .Select(cl => new EmployeeAttendance
+                  {
+                      empId = cl.Key,
+
+                      extraAmount = cl.Sum(c => c.extraAmount),
+                  }).ToList();
+
+            var totalOfDeductionPrice = emps
+                  .GroupBy(l => l.empId )
+                  .Select(cl => new EmployeeAttendance
+                  {
+                      empId = cl.Key,
+
+                      deductAmount = cl.Sum(c => c.deductAmount),
+                  }).ToList();
             foreach (var item in idsOfallSheet)
             {
+              
 
                 var numAttendanceDays = emps
                     .GroupBy(x => item)
-                    .Select(x => x.Count(y => y.empId == item)).FirstOrDefault();
+                    .Select(x => x.Count(y => y.empId == item ) ).FirstOrDefault();
+
                 foreach (var itemDays in emplyeesDays)
                 {
                     if (itemDays.id == item)
@@ -705,57 +740,59 @@ namespace HR_Sys.Controllers
 
                     }
                 }
-
-                var numOfExtraHours = emps
-                    .GroupBy(x => item)
-                    .Select(x => x.Sum(y => y.extraHours)).FirstOrDefault();
-                var numOfDeductHours = emps
-                    .GroupBy(x => item)
-                    .Select(x => x.Sum(y => y.deductHours)).FirstOrDefault();
-
-
-                var totalOfExtraPrice = emps
-                     .GroupBy(x => item)
-                     .Select(x => x.Sum(y => y.extraAmount)).FirstOrDefault();
-
-                var totalOfDeductionPrice = emps
-                   .GroupBy(x => item)
-                   .Select(x => x.Sum(y => y.deductAmount)).FirstOrDefault();
-
-                var idmonth = emps.Select(x => x.attendaceDay).FirstOrDefault();
-                var empReport = new EmpReport()
+                for (int i = 0; i < numOfExtraHours.Count; i++)
                 {
-                    empId=item,
-                    year = DateTime.Now.Year,   
-                    idmonth= idmonth.Month,
-                    numAttendanceDays = numAttendanceDays,
-                    numAbsenceDays= numAbsenceDays,
+                    if (item == numOfExtraHours[i].empId)
+                    {
 
-                    numOfDeductHours= numOfDeductHours,
-                    numOfExtraHours= numOfExtraHours,
-                    totalOfExtraPrice =totalOfExtraPrice,
-                    totalOfDeductionPrice=totalOfDeductionPrice,
+                        var idmonth = emps.Select(x => x.attendaceDay).FirstOrDefault();
+                        var extra = numOfExtraHours[i].extraHours;
+                        var deduct = numOfDeductHours[i].deductHours;
+                        var netSalary = totalOfExtraPrice[i].extraAmount - totalOfDeductionPrice[i].deductAmount + emps[i].Employee.empNetSalary ;
+                        var empReport = new EmpReport()
+                        {
+                            empId = item,
+                            year = DateTime.Now.Year,
+                            idmonth = idmonth.Month,
+                            numAttendanceDays = numAttendanceDays,
+                            numAbsenceDays = numAbsenceDays,
+                            numOfExtraHours = numOfExtraHours[i].extraHours,
+                            numOfDeductHours = numOfDeductHours[i].deductHours,
+
+                            totalOfExtraPrice = totalOfExtraPrice[i].extraAmount,
+                            totalOfDeductionPrice = totalOfDeductionPrice[i].deductAmount,
+                            netSalary =(float) netSalary,
 
 
-                    
-                };
-                var numContainsThisElemnt = emplyeesReport.Where(em => empReport.idmonth == em.idmonth && empReport.year==em.year).FirstOrDefault();
-                if (numContainsThisElemnt !=null)
-                {
-                    _db.Remove(numContainsThisElemnt);
-                    _db.SaveChanges();
 
+                        };
+                        var numContainsThisElemnt = emplyeesReport.Where(em => empReport.idmonth == em.idmonth && empReport.year == em.year && em.empId == empReport.empId).FirstOrDefault();
+                        if (numContainsThisElemnt != null)
+                        {
+                            _db.Remove(numContainsThisElemnt);
+
+                        }
+                        ListOfEmPReport.Add(empReport);
+
+
+
+
+                    }
                 }
-                    ListOfEmPReport.Add(empReport);
-
-
+         
 
 
             }
 
 
+
+
             _db.EmpReports.AddRange(ListOfEmPReport);
             _db.SaveChanges();
+
+
+
+
 
         }
 
@@ -768,6 +805,7 @@ namespace HR_Sys.Controllers
             {
                 using (var reader = ExcelReaderFactory.CreateReader(stream)) 
                 {
+                    reader.Read();
                     while (reader.Read())
                     {
                         if (reader.GetValue(0)==null)

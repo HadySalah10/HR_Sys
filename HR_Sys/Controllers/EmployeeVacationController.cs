@@ -15,7 +15,7 @@ namespace HR_Sys.Controllers
         }
         public IActionResult Index()
         {
-            return View(db.TypesOfVacationsEmps.ToList());
+            return View(db.TypesOfVacationsEmps.Where(x=>x.vacId==2).ToList());
         }
 
         public IActionResult create(int id )

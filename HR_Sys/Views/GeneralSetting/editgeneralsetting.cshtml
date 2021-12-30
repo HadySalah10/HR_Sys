@@ -21,7 +21,7 @@
 						<div class="px-3">
 							<form class="form form-horizontal" asp-action="EmpGeneralSetting" method="post">
 								
-									<input type = "hidden" value="@ViewBag.idEmployee" />
+									<input type = "hidden" asp-for="id" value="@ViewBag.idEmployee" />
 									<div class="form-group row">
 						
 										  <label asp-for="requiredExtraHours" class="col-md-3 label-control control-label"></label>
@@ -72,6 +72,7 @@
 
 										<div class="col-md-6 text-right">
 										 <select asp-for="idDayHolday2"  class="form-control" asp-items="ViewBag.holidays2">
+											 <option></option>
 									      </select>
                                       
 										</div>
